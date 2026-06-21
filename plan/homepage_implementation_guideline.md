@@ -78,14 +78,25 @@ Below is the structure of the homepage matched with the specific design system t
   - Flat text status badge ("Insured · 24/7 monitored" in teal, no background/border/shadow).
   - Glass status card (`backdrop-blur(12px)`) with unified `12px` corners and constrained `320px` width (stretching to full content width on mobile) displaying long-term metrics (Contract: `12+ Mos`, Maintenance: `Included`).
 
-### C. Start Your Journey (Overlap Card)
-- **Layout**: 3-column grid/bento, pulled up by 56px into the Hero section to bridge dark and light areas.
-- **Styling**: White background, 24px radius, `shadow-card` elevation.
-- **Elements**: 
-  - Numbered badges (`radius-full`, bordered).
-  - Col 1: Model rows (hover states on `#F1F4F1` background).
-  - Col 2: Illustration.
-  - Col 3: Primary button "See bikes ->".
+### C. Start Your Journey
+- **Layout**: 3-column grid featuring separate, spacious cards. Positioned in normal page flow with visual separation padding (100px top/bottom on desktop, and 70px top / 50px bottom on mobile) to guarantee a consistent visual separation from surrounding content. On mobile (under `992px`), it switches to a horizontal snap scroll slider with card widths set to `85%` and bottom indicator bars tracking current card visibility with active animations and click-to-scroll triggers.
+- **Styling**: Cards use a muted gray background (`#F1F4F1`), `24px` border-radius (`radius-2xl`), and a 1px border. Section title sits fully on the light background in dark brand green (`#005B45`).
+- **Cards details**:
+  - **Card 01: Pick your fleet**
+    - Step counter "01".
+    - Description: "Browse vetted DUOTTS, Neuzer, MyEsel and Mamba models. Filter by range, motor power, intended use. Add bikes to a quote in one click."
+    - Scrollable List: A vertically scrollable list containing all 7 fleets (VOK S, ELEGLIDE M2, Equickey Q8 - Pro, Kukirin G3 Pro, DUOTTS C29 Pro, Urban E-Cruise, DUOTTS F26 Lite). Scrollbar is completely hidden. Hovering over a fleet item triggers the dynamic preview in Card 02.
+    - Footer Metrics: Grid of "4 brands curated" and "12 models in stock".
+  - **Card 02: Configure cover**
+    - Step counter "02".
+    - Description: "Choose a Courier+ plan per bike — maintenance, GPS, theft insurance bundled. Switch plans monthly, no penalty."
+    - Footer Metrics: Grid of "3 plans from 4,900 Ft" and "VAT reclaimable".
+    - Fleet Preview Visual: Houses a 1.5x sized active bike preview image (`object-fit: contain` inside a `200px` container, `170px` on mobile) that transitions smoothly on hover. All cluttered text overlays have been removed.
+  - **Card 03: Sign & ride**
+    - Step counter "03".
+    - Description: "Digital contract, optional KYC for business accounts, courier delivers within 48h to anywhere in Hungary."
+    - Footer Metrics: Grid of "Delivery 48h nationwide" and "Contract e-sign".
+    - CTA Button: A full-width primary teal pill button (`#00D8A4`) at the bottom labeled "See fleets".
 
 ### D. Your Journey Partner
 - **Layout**: Full-width product shot, text anchored in corners.
