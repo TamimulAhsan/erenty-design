@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import StartYourJourney from "@/components/StartYourJourney";
+import YourJourneyPartner from "@/components/YourJourneyPartner";
 
 export default function Home() {
   return (
@@ -9,7 +10,9 @@ export default function Home() {
       <main>
         <Hero />
         <StartYourJourney />
+        <YourJourneyPartner />
       </main>
     </>
   );
 }
+

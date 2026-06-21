@@ -172,9 +172,7 @@
   position: absolute;
   top: 72px; /* Anchored directly below navbar with no gap */
   left: 0;
-  width: 100vw;
-  left: 50%;
-  transform: translateX(-50%);
+  width: 100%;
   background: var(--card);
   box-shadow: var(--shadow-elevated);
   border-bottom: 1px solid var(--border);
@@ -291,8 +289,8 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
@@ -304,9 +302,9 @@
   position: fixed;
   top: 0;
   left: 0;
-  height: 100vh;
-  width: 100vw;
-  max-width: 100vw;
+  height: 100%;
+  width: 320px;
+  max-width: 100%;
   background: var(--card);
   z-index: 1002;
   transform: translateX(-100%);
