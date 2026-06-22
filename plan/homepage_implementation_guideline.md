@@ -99,18 +99,38 @@ Below is the structure of the homepage matched with the specific design system t
     - CTA Button: A full-width primary teal pill button (`#00D8A4`) at the bottom labeled "See fleets".
 
 ### D. Your Journey Partner
-- **Layout**: Full-width product shot, text anchored in corners.
-- **Elements**:
-  - Top Left: H2 + Category.
-  - Bottom Left: Mono Price (e.g. 24px) + "/month" caption.
-  - Right: Spec list with `#00D8A4` dot bullets.
-  - Bottom Center: Primary CTA pill "Rent Now ->" and Ghost link "View All".
+- **Behavior**: A scroll-locked showcase. The section container is `400vh` tall. As the user scrolls vertically, the active product updates synchronously (via `activeIndex` and direct DOM tracking) causing in-place staggered crossfade animations.
+- **Animations (Staggered Crossfade)**: 
+  - Instead of horizontally sliding, products crossfade in-place with a premium staggered sequence:
+    1. **Product Image**: Slides up from the bottom (`0.1s` delay).
+    2. **Name & Price**: Slide in from the left (`0.3s` delay).
+    3. **Specifications**: Slide in from the right (`0.5s` delay).
+    4. **CTA Buttons**: Slide up from the bottom (`0.7s` delay).
+- **Layout (Desktop)**: 
+  - Central 1.5x scaled bike image (`max-width: 960px`).
+  - Text anchored in corners within a `1280px` max-width container:
+    - Top Left: H2 + Category.
+    - Bottom Left (Raised to `30%` from bottom): Mono Price + "/month" caption (`var(--brand-dark)`).
+    - Top Right (Lowered to `25%` from top): Spec list with `#00D8A4` dot bullets.
+  - Bottom Center: Center Column flex layout separating the image and the CTAs (Primary "Rent [Model] ->" and Ghost "View All") with a generous `6vh` margin to prevent collisions.
+  - Sticky vertical navigation dots sit on the right edge.
+- **Layout (Mobile)**: 
+  - Mathematical `vh`-proportioned vertical stack: Name -> Image (`35dvh` max-height to naturally fill space) -> Price -> Specs -> CTA.
+  - Box models (backgrounds/shadows) are removed from specs and price for a clean "zigzag" flow.
+  - Layout perfectly balanced using `margin-bottom: auto` on the Name and Price wrappers to act as dynamic, proportional vertical buffers.
+  - Navbar integration: The sticky container explicitly calculates a `top: 72px` and `height: calc(100vh - 72px)` offset to ensure no UI is ever clipped by the global sticky header.
 
 ### E. We Handle It All (Services)
-- **Layout**: 3x2 Bento Grid.
-- **Center Cell**: No card styling. Just "OUR PROMISE" eyebrow + H2 + subtext.
-- **Service Cards (5)**: White background, 16px radius, subtle 1px border. 
-- **Elements**: Icon tiles (circular, `#D5EDE8` background), H3 titles, muted 14px body text.
+- **Concept**: A minimalist typographic grid ("Rest Zone" feature matrix) with no card boxes, borders, shadows, or background blocks at rest, creating an airy layout.
+- **Layout (Desktop)**: 3-column, 2-row grid. Generous spacing using `column-gap: var(--space-16)` (64px) and `row-gap: var(--space-12)` (48px).
+- **Layout (Tablet)**: 2-column typographic grid.
+- **Layout (Mobile)**: Clean 1-column stack. Each cell aligns the stroke icon and header title horizontally on the same line, with the subtext description indented underneath to align perfectly with the start of the title text.
+- **Header**: Left-aligned, featuring a bold H2 ("We Handle It All") and muted subtitle description.
+- **Service Items (6)**: Raw, minimalist cells containing:
+  - Simple stroke SVG icons colored in brand primary (`#00D8A4`).
+  - Bold, benefit-driven titles (e.g., "Always in top shape", "Zero downtime guarantee", "Worry-free protection", etc.).
+  - Muted body descriptions (15px) incorporating all 8 operational items from the website.
+- **Micro-Interactions**: Subtle transition translating the icon upward (`translateY(-2px)`) on hover.
 
 ### F. Locations & Workshops
 - **Layout**: Two columns (35% left / 65% right).
