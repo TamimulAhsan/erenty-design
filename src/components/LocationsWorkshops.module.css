@@ -1,0 +1,844 @@
+.section {
+  padding: 0;
+  height: calc(100vh - 72px);
+  min-height: calc(100vh - 72px);
+  max-height: calc(100vh - 72px);
+  background: var(--background);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-8);
+  width: 100%;
+  height: 85%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Direction 1 Stacked Layout */
+.heroContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+}
+
+/* ========================================================================= */
+/* TOP 80%: MAP HERO */
+/* ========================================================================= */
+.mapHero {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 0;
+  /* Allows svg to shrink if needed */
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-8);
+}
+
+.mapSvg {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  user-select: none;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.03));
+}
+
+.mapPath {
+  transition: stroke 0.3s ease, fill 0.3s ease;
+  pointer-events: none;
+  /* Start hidden */
+  stroke-dasharray: 4000;
+  stroke-dashoffset: 4000;
+}
+
+.map3DLayer {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.animated .map3DLayer {
+  /* Fades in and drops down to create a thick 3D bevel */
+  animation: fade3D 1s cubic-bezier(0.34, 1.56, 0.64, 1) 1.5s forwards;
+}
+
+@keyframes fade3D {
+  0% { opacity: 0; transform: translate(0, 0); }
+  100% { opacity: 0.08; transform: translate(0, 16px); }
+}
+
+.animated .mapPath {
+  /* Entrance: Draw Map slowly */
+  animation: drawMap 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes drawMap {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ========================================================================= */
+/* ACTIVE CONNECTION LINE */
+/* ========================================================================= */
+.connectionLine {
+  stroke: var(--primary);
+  stroke-width: 2;
+  stroke-dasharray: 6 6;
+  opacity: 0.6;
+  stroke-dashoffset: 1000;
+}
+
+.animated .connectionLine {
+  /* Entrance: Draw Line */
+  animation: drawLine 0.5s linear forwards;
+}
+
+@keyframes drawLine {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ========================================================================= */
+/* BOTTOM 20%: MINIMAL TEXT FOOTER */
+/* ========================================================================= */
+.heroFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-4);
+  flex-shrink: 0;
+}
+
+.footerText {
+  display: flex;
+  flex-direction: column;
+}
+
+.headline {
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--brand-darker);
+  margin-bottom: var(--space-2);
+  letter-spacing: -0.02em;
+}
+
+.subline {
+  color: var(--muted-foreground);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.footerActions {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-4);
+}
+
+/* Map Markers */
+.markerGroup {
+  cursor: pointer;
+  outline: none;
+  /* Start hidden */
+  opacity: 0;
+  transform-origin: 0px 0px;
+}
+
+.animated .markerGroup {
+  /* Entrance: Drop from above slowly */
+  animation: dropPin 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes dropPin {
+  0% { opacity: 0; transform: translateY(-40px) scale(0.5); }
+  60% { opacity: 1; transform: translateY(5px) scale(1.1); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.pinShape {
+  fill: var(--primary);
+  /* Bright teal #00D8A4 */
+  stroke: var(--brand-darker);
+  /* Dark teal/black */
+  stroke-width: 1px;
+  filter: drop-shadow(0 4px 8px rgba(0, 216, 164, 0.3));
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), fill 0.2s ease, stroke-width 0.2s ease;
+  /* Idle Breathing */
+  animation: breathePin 3s ease-in-out infinite alternate;
+  animation-delay: 2.5s; /* Start after entrance */
+}
+
+@keyframes breathePin {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-3px); }
+}
+
+.pinDot {
+  fill: #FFFFFF;
+  transition: fill 0.2s ease;
+  pointer-events: none;
+  /* Idle Inner Pulse */
+  animation: pulseDot 2s ease-in-out infinite alternate;
+  animation-delay: 3s;
+}
+
+@keyframes pulseDot {
+  0% { opacity: 0.5; r: 3; }
+  100% { opacity: 1; r: 4.5; }
+}
+
+.markerText {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  fill: #FFFFFF;
+  /* White text inside */
+  pointer-events: none;
+  /* Idle Inner Pulse */
+  animation: pulseText 2s ease-in-out infinite alternate;
+  animation-delay: 3s;
+}
+
+@keyframes pulseText {
+  0% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+/* Hover/Active states */
+.markerHovered .pinShape {
+  fill: #00FFCA;
+  transform: scale(1.1);
+  animation-play-state: paused; /* Pause breathing on hover */
+}
+
+.markerActive .pinShape {
+  fill: var(--brand-dark);
+  stroke: var(--primary);
+  stroke-width: 2px;
+  animation-play-state: paused; /* Pause breathing when selected */
+}
+
+.markerActive .markerText,
+.markerActive .pinDot {
+  fill: var(--primary);
+  animation-play-state: paused;
+}
+
+.pinTooltip {
+  pointer-events: none;
+}
+
+/* ========================================================================= */
+/* UPWORK-STYLE SIDE-OVER DRAWER STYLING */
+/* ========================================================================= */
+
+.drawerBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 49, 50, 0.45);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.backdropVisible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.drawer {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  width: 520px;
+  background: #FFFFFF;
+  z-index: 1000;
+  box-shadow: -12px 0 40px -10px rgba(20, 49, 50, 0.2);
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.drawerOpen {
+  transform: translateX(0);
+}
+
+.drawerHeader {
+  padding: var(--space-6) var(--space-6);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+  background: #FFFFFF;
+}
+
+.backBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--input);
+  background: #FFFFFF;
+  cursor: pointer;
+  color: var(--primary);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.backBtn:hover {
+  background: var(--muted);
+  border-color: var(--primary);
+  transform: translateX(-2px);
+}
+
+.drawerHeaderMeta {
+  display: flex;
+  flex-direction: column;
+}
+
+.drawerEyebrow {
+  color: var(--muted-foreground);
+  font-size: 11px;
+  margin-bottom: 2px;
+}
+
+.drawerTitle {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--brand-darker);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.drawerSubtitle {
+  font-size: 13px;
+  color: var(--muted-foreground);
+  margin-top: 1px;
+}
+
+.drawerContent {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: var(--space-6) var(--space-6);
+  background: #FAFBF9;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.drawerFilters {
+  display: flex;
+  gap: var(--space-2);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: var(--space-4);
+}
+
+.drawerToggleBtn {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted-foreground);
+  padding: 6px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.drawerToggleBtn:hover {
+  border-color: var(--brand-dark);
+  color: var(--brand-dark);
+}
+
+.drawerToggleBtnActive {
+  background: var(--brand-light);
+  border-color: var(--brand-dark);
+  color: var(--brand-dark);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.drawerWorkshopsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.emptyState {
+  text-align: center;
+  padding: var(--space-8) 0;
+  color: var(--muted-foreground);
+  font-size: 14px;
+}
+
+.drawerCard {
+  background: #FFFFFF;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  overflow: hidden;
+}
+
+.drawerCard:hover {
+  border-color: var(--primary);
+  box-shadow: 0 6px 20px -8px rgba(0, 216, 164, 0.12);
+}
+
+.drawerFeaturedCard {
+  border-left: 4px solid var(--primary);
+}
+
+.drawerCardHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  cursor: pointer;
+}
+
+.initialsAvatar {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 13px;
+  font-family: var(--font-mono), monospace;
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.2);
+}
+
+.drawerCardMeta {
+  flex-grow: 1;
+}
+
+.drawerTitleRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  margin-bottom: 2px;
+}
+
+.drawerWorkshopTitle {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--brand-darker);
+  line-height: 1.3;
+}
+
+.featuredBadge {
+  font-size: 9px;
+  background: var(--brand-light);
+  color: var(--brand-dark);
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.drawerWorkshopSubtitle {
+  font-size: 12px;
+  color: var(--muted-foreground);
+}
+
+.chevron {
+  color: var(--muted-foreground);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+  color: var(--primary);
+}
+
+.drawerCardBody {
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.drawerCardBodyOpen {
+  max-height: 800px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.drawerCardBodyInner {
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--muted);
+  margin-top: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.workshopDesc {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+}
+
+.coverageBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--muted);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+}
+
+.coverageTitle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--brand-darker);
+}
+
+.coverageGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-left: 20px;
+}
+
+.coverageRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12.5px;
+}
+
+.coverageType {
+  color: var(--muted-foreground);
+  font-weight: 500;
+}
+
+.coverageTiers {
+  color: var(--brand-darker);
+  font-weight: 600;
+}
+
+.infoSplit {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 1px dashed var(--border);
+}
+
+.blockTitle {
+  margin-bottom: var(--space-3);
+  color: var(--muted-foreground);
+}
+
+.hoursTable {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.hourRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--brand-darker);
+}
+
+.hourDay {
+  font-weight: 500;
+}
+
+.hourClosed {
+  color: var(--muted-foreground);
+}
+
+.fallbackHours {
+  font-size: 13px;
+  color: var(--foreground);
+  line-height: 1.4;
+}
+
+.contactBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.mapLink {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.mapLink:hover {
+  text-decoration: underline;
+}
+
+.capacityText {
+  font-size: 12px;
+  color: var(--muted-foreground);
+  padding-top: var(--space-2);
+}
+
+.detailRow {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.detailIcon {
+  color: var(--brand-dark);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.detailText {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--foreground);
+  word-break: break-word;
+}
+
+/* ========================================================================= */
+/* MOBILE RESPONSIVENESS                                                     */
+/* ========================================================================= */
+
+@media (max-width: 768px) {
+  .drawer {
+    top: auto;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+    height: 90vh;
+    border-radius: 24px 24px 0 0;
+    transform: translateY(100%);
+  }
+
+  .drawerOpen {
+    transform: translateY(0);
+  }
+
+  .infoSplit {
+    grid-template-columns: 1fr;
+  }
+
+  /* Make Map Icons larger on mobile */
+  .markerGroup {
+    transform: scale(1.5);
+  }
+
+  .animated .markerGroup {
+    animation: dropPinMobile 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+}
+
+@keyframes dropPinMobile {
+  0% { opacity: 0; transform: translateY(-40px) scale(0.5); }
+  60% { opacity: 1; transform: translateY(5px) scale(1.6); }
+  100% { opacity: 1; transform: translateY(0) scale(1.5); }
+}
+
+.bookingContainer {
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-4);
+}
+
+.bookingForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.bookingTitle {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--brand-darker);
+}
+
+.formRow {
+  width: 100%;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+}
+
+.bookingInput {
+  width: 100%;
+  background: #FFFFFF;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-sm);
+  padding: 6px 8px;
+  font-size: 12px;
+  color: var(--foreground);
+  outline: none;
+  font-family: inherit;
+}
+
+.bookingInput:focus {
+  border-color: var(--primary);
+}
+
+.bookingSubmitBtn {
+  background: var(--brand-dark);
+  color: #FFFFFF;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s;
+  border: none;
+}
+
+.bookingSubmitBtn:hover {
+  background: var(--brand-darker);
+}
+
+.bookingSuccess {
+  background: var(--brand-light);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  text-align: center;
+}
+
+.successIcon {
+  background: var(--primary);
+  color: var(--brand-darker);
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.successMeta h5 {
+  font-size: 12.5px;
+  color: var(--brand-dark);
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.successMeta p {
+  font-size: 11px;
+  color: var(--brand-darker);
+  line-height: 1.4;
+}
+
+.resetBtn {
+  font-size: 10.5px;
+  color: var(--brand-dark);
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+/* ========================================================================= */
+/* RESPONSIVE LAYOUTS */
+/* ========================================================================= */
+
+@media (max-width: 991px) {
+  .section {
+    height: auto;
+    min-height: auto;
+    max-height: none;
+    padding: var(--space-12) 0;
+    overflow: visible;
+  }
+
+  .container {
+    height: auto;
+  }
+
+  .mapHero {
+    min-height: 400px;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 var(--space-4);
+  }
+
+  .headline {
+    font-size: 28px;
+  }
+
+  .heroFooter {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  .footerActions {
+    width: 100%;
+  }
+
+  .footerActions button {
+    width: 100%;
+  }
+
+  .mapHero {
+    min-height: 280px;
+  }
+
+  .drawer {
+    width: 100%;
+  }
+
+  .drawerHeader {
+    padding: var(--space-4) var(--space-4);
+  }
+
+  .drawerContent {
+    padding: var(--space-4) var(--space-4);
+  }
+
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -133,10 +133,20 @@ Below is the structure of the homepage matched with the specific design system t
 - **Micro-Interactions**: Subtle transition translating the icon upward (`translateY(-2px)`) on hover.
 
 ### F. Locations & Workshops
-- **Layout**: Two columns (35% left / 65% right).
-- **Left**: Workshop photo card (`radius-xl`, gradient overlay, white mono stats).
-- **Right (Map)**: White card (`radius-xl`, `shadow-card`). Accent tinted map regions with `#005B45` borders. Filter pills at the top (`#F1F4F1` background).
-
+- **Layout**: "Map as Hero" full-width section centered around a massive, dynamic SVG map of Hungary.
+- **Map Aesthetics**: 
+  - **3D Depth**: Uses an isometric depth effect by rendering an extruded dark layer beneath the main white map body.
+  - **Entrance Animations**: Triggered via `IntersectionObserver`. The map outline organically draws itself over 2.5s, followed by staggered "teardrop" pins dropping into their exact coordinates.
+  - **Idle State**: Pins subtly "breathe" (float) and pulse to prevent a static image feel.
+  - **Mobile Scaling**: SVG marker coordinates natively scale down, but the pins themselves are enlarged by `1.5x` via a custom `dropPinMobile` animation to ensure tap targets remain huge.
+- **Interaction (The Drawer)**: 
+  - Clicking a pin opens a premium "Upwork-style" side-over drawer (`520px` wide, sliding from the right).
+  - **Mobile Bottom Sheet**: On mobile (`<768px`), the drawer gracefully transforms into a `90vh` Bottom Sheet sliding up from the bottom (`border-radius: 24px 24px 0 0`).
+- **Drawer Content**: 
+  - **Coverage Block**: Clean typographic layout mapping "Rentals" and "Service+" to their respective free tiers, avoiding cluttered background-colored pills.
+  - **Details Grid**: "Business Hours" automatically parsed into a highly legible Monday-Sunday table, sitting beside or above "Contact" details (styled cleanly at 13px with a "View on Map ↗" link).
+  - **Booking**: Inline appointment booking form leading to a "Confirm Appointment" primary CTA.
+- **Section Footer**: Minimal 20% height footer featuring a dual CTA stack ("Service+ ↗" in primary green, and "Book a service" in a crisp, dark outline variant).
 ### G. Trusted By
 - **Layout**: Two columns.
 - **Left**: H2 heading + Primary button.

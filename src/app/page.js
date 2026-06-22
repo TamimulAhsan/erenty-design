@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import StartYourJourney from "@/components/StartYourJourney";
 import YourJourneyPartner from "@/components/YourJourneyPartner";
 import WeHandleItAll from "@/components/WeHandleItAll";
+import LocationsWorkshops from "@/components/LocationsWorkshops";
 
 export default function Home() {
   return (
@@ -13,8 +14,10 @@ export default function Home() {
         <StartYourJourney />
         <YourJourneyPartner />
         <WeHandleItAll />
+        <LocationsWorkshops />
       </main>
     </>
   );
 }
+
 
