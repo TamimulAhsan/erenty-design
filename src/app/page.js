@@ -5,6 +5,7 @@ import YourJourneyPartner from "@/components/YourJourneyPartner";
 import WeHandleItAll from "@/components/WeHandleItAll";
 import LocationsWorkshops from "@/components/LocationsWorkshops";
 import TrustedBy from "@/components/TrustedBy";
+import FAQ from "@/components/FAQ";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
         <WeHandleItAll />
         <LocationsWorkshops />
         <TrustedBy />
+        <FAQ />
       </main>
     </>
   );

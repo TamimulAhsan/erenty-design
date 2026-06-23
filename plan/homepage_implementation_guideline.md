@@ -148,14 +148,27 @@ Below is the structure of the homepage matched with the specific design system t
   - **Booking**: Inline appointment booking form leading to a "Confirm Appointment" primary CTA.
 - **Section Footer**: Minimal 20% height footer featuring a dual CTA stack ("Service+ ↗" in primary green, and "Book a service" in a crisp, dark outline variant).
 ### G. Trusted By
-- **Layout**: Two columns.
-- **Left**: H2 heading + Primary button.
-- **Right**: Logo gallery (loose grid). Grayscale at rest (`opacity: 0.6`), full color on hover. Max height 32-40px.
+- **Concept**: A premium business trust section featuring a dynamic, rotating dual-ring logo orbital carousel.
+- **Layout (Desktop)**: Two columns within a `1280px` max-width container.
+  - **Left (Text Content)**: A bold H2 ("Trusted by leading companies") and a horizontal stack of action buttons (Primary green "For Business" with a hover slide-up effect, and a Secondary outlined "Rent now" button).
+  - **Right (Visual Content)**: A large absolute-positioned container (`1100px`) hosting:
+    - **Background Bike Illustration**: A scaled-up (`1.2x`) bike image rotated at `-15deg` with low opacity (`0.12`) and masked out smoothly via a radial transparency gradient to sit behind the logos.
+    - **Dual-Ring Logo Orbit Carousel**: A circular container (`800px`) spinning continuously (`60s` linear animation) featuring dashed outer (`400px` radius) and inner (`180px` radius) tracks.
+    - **Revolving Logos (20 total)**: 12 outer logos and 8 inner logos staggered circularly using custom CSS properties (`--angle` and `--radius`). Each logo is wrapped in a counter-rotating element (`-60s` linear animation) that keeps the logo images upright and legible.
+- **Layout (Mobile - under 992px)**: Stacked vertical layout:
+  - Text content centers at the top with adjusted typography size (36px heading).
+  - The visual content anchors directly to the bottom edge of the section. The rotating wheel is scaled down to `600px` width/height and shifted using margins (`-300px` top/left) to cut the bottom half of the circle off-screen.
+  - The background bike illustration is repositioned (`margin-top: -420px`), scaled up (`1.4x`), and rotated to `-25deg` to maximize visual impact on small screens.
+  - Logo bubbles scale down from `120px` to `80px` diameter.
+- **Next.js Image Optimizations**:
+  - The main bike uses `fill` with `sizes="(max-width: 992px) 700px, 1100px"`.
+  - All company logos use `fill` with `sizes="(max-width: 992px) 80px, 120px"` to prevent layout shifts and ensure Next.js serves optimized resolutions.
 
 ### H. FAQ
-- **Layout**: Centered header block + single expanding list container.
+- **Layout**: Centered header block + single expanding list container + bottom centered link.
 - **Container**: White, 24px radius, `shadow-card`, max-width 720px.
 - **Rows**: 18px / 600-weight questions, 1px bottom border separator, chevron icon (rotates 180deg). Expanded text is muted 16px body.
+- **View All Link**: A centered link below the list ("View all FAQs" with an arrow icon) that transitions to primary green on hover and shifts the arrow rightwards.
 
 ### I. Footer
 - **Layout**: Top content area + bottom legal bar.
