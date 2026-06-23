@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./Navbar.module.css";
@@ -16,10 +16,24 @@ const fleetList = [
 export default function Navbar() {
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const [hoverTimeout, setHoverTimeout] = useState(null);
-  
+  const [hasScrolled, setHasScrolled] = useState(false);
+
   // Mobile drawer states
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileFleetsOpen, setIsMobileFleetsOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Transition after scrolling past the hero (typically around 600px-700px on desktop)
+      if (window.scrollY > 550) {
+        setHasScrolled(true);
+      } else {
+        setHasScrolled(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleMouseEnter = () => {
     if (hoverTimeout) clearTimeout(hoverTimeout);
@@ -47,64 +61,66 @@ export default function Navbar() {
       <div className={styles.container}>
         {/* Left Side: Desktop Navigation Links */}
         <nav className={styles.nav}>
-          {/* Wraps both trigger and megaMenu so the mouse never leaves the hover boundary */}
-          <div
-            className={styles.navLinkWrapper}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-          >
-            <div className={`${styles.navLink} ${isMegaMenuOpen ? styles.navLinkActive : ""}`}>
-              Fleets
-              <svg
-                className={styles.chevron}
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </div>
+          {!hasScrolled && (
+            /* Wraps both trigger and megaMenu so the mouse never leaves the hover boundary */
+            <div
+              className={styles.navLinkWrapper}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div className={`${styles.navLink} ${isMegaMenuOpen ? styles.navLinkActive : ""}`}>
+                Fleets
+                <svg
+                  className={styles.chevron}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
 
-            {/* Mega Menu Dropdown (Nested to retain hover context) */}
-            <div className={`${styles.megaMenu} ${isMegaMenuOpen ? styles.megaMenuOpen : ""}`}>
-              <div className={styles.megaMenuContent}>
-                {/* Grid of 5 bike models */}
-                <div className={styles.fleetGrid}>
-                  {fleetList.map((bike, idx) => (
-                    <div key={idx} className={styles.fleetItem}>
-                      <div className={styles.bikeImageWrapper}>
-                        <Image
-                          src={bike.image}
-                          alt={bike.name}
-                          width={140}
-                          height={90}
-                          className={styles.bikeImage}
-                          priority={true}
-                        />
+              {/* Mega Menu Dropdown (Nested to retain hover context) */}
+              <div className={`${styles.megaMenu} ${isMegaMenuOpen ? styles.megaMenuOpen : ""}`}>
+                <div className={styles.megaMenuContent}>
+                  {/* Grid of 5 bike models */}
+                  <div className={styles.fleetGrid}>
+                    {fleetList.map((bike, idx) => (
+                      <div key={idx} className={styles.fleetItem}>
+                        <div className={styles.bikeImageWrapper}>
+                          <Image
+                            src={bike.image}
+                            alt={bike.name}
+                            width={140}
+                            height={90}
+                            className={styles.bikeImage}
+                            priority={true}
+                          />
+                        </div>
+                        <div className={styles.bikeName}>
+                          {bike.isElectric && <span className={styles.lightningIcon}>⚡</span>}
+                          {bike.name}
+                        </div>
                       </div>
-                      <div className={styles.bikeName}>
-                        {bike.isElectric && <span className={styles.lightningIcon}>⚡</span>}
-                        {bike.name}
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
 
-                {/* Quick Links on the right */}
-                <div className={styles.quickLinks}>
-                  <Link href="/see-all-fleets" className={styles.quickLinkItem}>
-                    See all fleets
-                    <span className={styles.arrowIcon}>→</span>
-                  </Link>
-                  <Link href="/service" className={styles.quickLinkItem}>
-                    Service+
-                    <span className={styles.arrowIcon}>→</span>
-                  </Link>
+                  {/* Quick Links on the right */}
+                  <div className={styles.quickLinks}>
+                    <Link href="/see-all-fleets" className={styles.quickLinkItem}>
+                      See all fleets
+                      <span className={styles.arrowIcon}>→</span>
+                    </Link>
+                    <Link href="/service" className={styles.quickLinkItem}>
+                      Service+
+                      <span className={styles.arrowIcon}>→</span>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
 
           <Link href="/service" className={styles.navLink}>
             Service+
@@ -112,6 +128,26 @@ export default function Navbar() {
           <Link href="/how-it-works" className={styles.navLink}>
             How it works
           </Link>
+
+          {hasScrolled && (
+            <Link href="/business" className={styles.businessBtnLeft}>
+              For Business
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+            </Link>
+          )}
         </nav>
 
         {/* Middle Side: Text Logo */}
@@ -121,23 +157,25 @@ export default function Navbar() {
 
         {/* Right Side: Utilities */}
         <div className={styles.rightArea}>
-          <Link href="/business" className={styles.businessBtn}>
-            For Business
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-              <polyline points="15 3 21 3 21 9" />
-              <line x1="10" y1="14" x2="21" y2="3" />
-            </svg>
-          </Link>
+          {!hasScrolled && (
+            <Link href="/business" className={styles.businessBtn}>
+              For Business
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+            </Link>
+          )}
 
           {/* Language icon */}
           <button className={styles.iconButton} aria-label="Select Language">
@@ -192,6 +230,26 @@ export default function Navbar() {
             </svg>
           </button>
 
+          {hasScrolled && (
+            <Link href="/see-all-fleets" className={styles.seeFleetsBtn}>
+              See Fleets
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className={styles.seeFleetsArrow}
+              >
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </Link>
+          )}
+
           {/* Mobile menu trigger */}
           <button className={styles.mobileMenuBtn} onClick={toggleMobileMenu} aria-label="Toggle Menu">
             <svg
@@ -242,8 +300,8 @@ export default function Navbar() {
           <div className={styles.mobileNavLinks}>
             {/* Accordion item for Fleets */}
             <div className={styles.mobileAccordion}>
-              <button 
-                className={`${styles.mobileNavLink} ${isMobileFleetsOpen ? styles.mobileAccordionActive : ""}`} 
+              <button
+                className={`${styles.mobileNavLink} ${isMobileFleetsOpen ? styles.mobileAccordionActive : ""}`}
                 onClick={toggleMobileFleets}
               >
                 <span>Fleets</span>
@@ -262,8 +320,8 @@ export default function Navbar() {
 
               <div className={`${styles.mobileAccordionContent} ${isMobileFleetsOpen ? styles.mobileAccordionContentOpen : ""}`}>
                 {fleetList.map((bike, idx) => (
-                  <Link 
-                    key={idx} 
+                  <Link
+                    key={idx}
                     href="/see-all-fleets"
                     className={styles.mobileFleetItem}
                     onClick={toggleMobileMenu}

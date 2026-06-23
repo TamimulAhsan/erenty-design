@@ -145,6 +145,77 @@
   box-shadow: 0 4px 12px rgba(0, 91, 69, 0.15);
 }
 
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.businessBtnLeft {
+  font-size: 14px;
+  font-weight: 600;
+  background: var(--brand-light);
+  color: var(--brand-dark);
+  border: 1.5px solid rgba(0, 91, 69, 0.2);
+  padding: 8px 16px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  transition: all 0.2s ease;
+  animation: fadeInLeft 0.25s ease forwards;
+}
+
+.businessBtnLeft:hover {
+  background: var(--accent);
+  border-color: var(--brand-dark);
+  box-shadow: 0 4px 12px rgba(0, 91, 69, 0.15);
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.seeFleetsBtn {
+  font-size: 14px;
+  font-weight: 600;
+  background: var(--primary, #00D8A4);
+  color: var(--brand-darker, #143132);
+  padding: 8px 16px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  transition: all 0.2s ease;
+  animation: fadeInRight 0.25s ease forwards;
+}
+
+.seeFleetsArrow {
+  transition: transform 0.2s ease;
+}
+
+.seeFleetsBtn:hover {
+  background: var(--primary-glow, #00FFCA);
+  box-shadow: var(--shadow-btn-primary-hover);
+  transform: translateY(-1px);
+}
+
+.seeFleetsBtn:hover .seeFleetsArrow {
+  transform: translateX(4px);
+}
+
 .mobileMenuBtn {
   display: none;
   font-size: 24px;
@@ -163,6 +234,12 @@
     display: none;
   }
   .businessBtn {
+    display: none;
+  }
+  .businessBtnLeft {
+    display: none;
+  }
+  .seeFleetsBtn {
     display: none;
   }
 }

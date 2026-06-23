@@ -51,7 +51,9 @@ Below is the structure of the homepage matched with the specific design system t
 - **Elements**: 
   - Logo (Centered): Text-only logo "E-RENTY" in Cruiser font, no icon mark.
   - Left Side (Nav links): `Fleets`, `Service+`, `How it works` (`Inter` 16px 500-weight, hover → `#00D8A4`).
+    - **Scroll Behavior**: While scrolling past the hero section, the `Fleets` mega-menu link is removed from the left side, and a "For Business" action button slides in smoothly after "How it works".
   - Right Side (Utilities): "For Business" button (Prominently styled with brand-light tint background and brand-dark text/border for high visibility), language, help, and user profile icons.
+    - **Scroll Behavior**: While scrolling past the hero section, the standard "For Business" button is removed, and a prominent primary-colored "See Fleets" CTA button appears on the far right.
     - **Visual Alignment Offset:** The right-side utility area includes a `margin-right: -10px` offset on desktop to counterbalance the internal padding of standard `40px` circular icon buttons. This ensures the rightmost icon aligns visually with the container margin (matching the leftmost "Fleets" link margin). On mobile, the margin offset is disabled to align the hamburger button cleanly to the viewport edge.
   - **"Fleets" Mega-Menu (Hover State)**:
     - Full-width dropdown panel anchored directly below the navbar with no gap, white background, `shadow-elevated`.
