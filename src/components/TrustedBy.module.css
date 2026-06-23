@@ -1,6 +1,6 @@
 .trustedBySection {
   padding: 120px 0;
-  background-color: #F1F4F1; /* Darker muted background so white bubbles pop */
+  background-color: var(--background, #F7FAF7); /* Unified background */
   overflow: hidden;
   position: relative;
   min-height: 700px;

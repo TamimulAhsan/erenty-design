@@ -149,6 +149,7 @@ Below is the structure of the homepage matched with the specific design system t
 - **Section Footer**: Minimal 20% height footer featuring a dual CTA stack ("Service+ ↗" in primary green, and "Book a service" in a crisp, dark outline variant).
 ### G. Trusted By
 - **Concept**: A premium business trust section featuring a dynamic, rotating dual-ring logo orbital carousel.
+- **Aesthetic**: Muted off-white/green background (`var(--background, #F7FAF7)`) aligned with the unified body background so white bubble logo containers pop.
 - **Layout (Desktop)**: Two columns within a `1280px` max-width container.
   - **Left (Text Content)**: A bold H2 ("Trusted by leading companies") and a horizontal stack of action buttons (Primary green "For Business" with a hover slide-up effect, and a Secondary outlined "Rent now" button).
   - **Right (Visual Content)**: A large absolute-positioned container (`1100px`) hosting:
