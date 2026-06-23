@@ -6,6 +6,7 @@ import WeHandleItAll from "@/components/WeHandleItAll";
 import LocationsWorkshops from "@/components/LocationsWorkshops";
 import TrustedBy from "@/components/TrustedBy";
 import FAQ from "@/components/FAQ";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
         <LocationsWorkshops />
         <TrustedBy />
         <FAQ />
+        <Footer />
       </main>
     </>
   );

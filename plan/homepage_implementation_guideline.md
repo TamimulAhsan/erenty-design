@@ -172,9 +172,10 @@ Below is the structure of the homepage matched with the specific design system t
 
 ### I. Footer
 - **Layout**: Top content area + bottom legal bar.
-- **Styling**: `#F1F4F1` background with 1px top border.
+- **Styling**: White background (`var(--card, #FFFFFF)`) matching the navbar background, with a 1px top border.
+- **Height**: On desktop, the footer utilizes `min-height: calc(100vh - 72px)` to span the entire screen height below the global sticky navbar. On mobile/tablets, height transitions to `auto` with custom vertical spacing.
 - **Elements**: 
-  - Left: Logo + Tagline.
-  - Middle: 3 columns of links (`eyebrow` headers, muted links).
-  - Right: Email subscribe block (Standard input + Primary button).
-  - Bottom: Copyright, links, and grayscale partner logo.
+  - Left (Brand): Text logo `e-renty` (Cruiser font), "Fuel-Free. Stress-Free." slogan text, and a "Fleet partner" section displaying the DUOTTS logo (grayscaled at rest, color on hover).
+  - Middle (Links): 2 columns of links (Company, Services) and 1 column of interactive contact details (mailto email, tel phone, maps address).
+  - Right (Subscribe): Newsletter subscribe box ("Stay Updated") with email input and primary confirm button.
+  - Bottom (Legal): Two-row structure with the top row centering the certified Stripe partner badge, and the bottom row splitting copyright (left) and legal links (right).
