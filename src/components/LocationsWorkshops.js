@@ -336,9 +336,10 @@ export default function LocationsWorkshops() {
       id="workshops"
       ref={sectionRef}
     >
-      <div className={styles.container}>
+      <div className={styles.stickyContainer}>
+        <div className={styles.container}>
 
-        <div className={styles.heroContainer}>
+          <div className={styles.heroContainer}>
           {/* ========================================================================= */}
           {/* TOP 80%: THE HERO MAP */}
           {/* ========================================================================= */}
@@ -395,7 +396,7 @@ export default function LocationsWorkshops() {
                   >
                     <g
                       className={`${styles.markerGroup} ${isActive ? styles.markerActive : ""} ${isHovered ? styles.markerHovered : ""}`}
-                      style={{ animationDelay: `${1.2 + index * 0.2}s` }}
+                      style={{ animationDelay: `${0.6 + index * 0.05}s` }}
                     >
                       {/* Hover Tooltip */}
                       {(isHovered || city.name === "Budapest") && (
@@ -467,7 +468,7 @@ export default function LocationsWorkshops() {
           </div>
 
         </div>
-
+      </div>
       </div>
 
       {/* ========================================================================= */}

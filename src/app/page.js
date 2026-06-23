@@ -4,6 +4,7 @@ import StartYourJourney from "@/components/StartYourJourney";
 import YourJourneyPartner from "@/components/YourJourneyPartner";
 import WeHandleItAll from "@/components/WeHandleItAll";
 import LocationsWorkshops from "@/components/LocationsWorkshops";
+import TrustedBy from "@/components/TrustedBy";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
         <YourJourneyPartner />
         <WeHandleItAll />
         <LocationsWorkshops />
+        <TrustedBy />
       </main>
     </>
   );
