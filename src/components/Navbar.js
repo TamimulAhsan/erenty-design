@@ -17,6 +17,7 @@ export default function Navbar() {
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const [hoverTimeout, setHoverTimeout] = useState(null);
   const [hasScrolled, setHasScrolled] = useState(false);
+  const [footerNear, setFooterNear] = useState(false);
 
   // Mobile drawer states
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -24,11 +25,17 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Transition after scrolling past the hero (typically around 600px-700px on desktop)
       if (window.scrollY > 550) {
         setHasScrolled(true);
       } else {
         setHasScrolled(false);
+      }
+
+      // Detect when footer logo is approaching the navbar
+      const footer = document.getElementById("footer");
+      if (footer) {
+        const rect = footer.getBoundingClientRect();
+        setFooterNear(rect.top <= 120);
       }
     };
     window.addEventListener("scroll", handleScroll);
@@ -153,6 +160,9 @@ export default function Navbar() {
         {/* Middle Side: Text Logo */}
         <Link href="/" className={styles.logoArea}>
           E-RENTY
+          <span className={`${styles.logoTagline} ${footerNear ? styles.logoTaglineVisible : ""}`}>
+            Fuel-Free. Stress-Free.
+          </span>
         </Link>
 
         {/* Right Side: Utilities */}

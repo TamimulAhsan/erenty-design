@@ -2,37 +2,30 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { CreditCard, Smartphone, Landmark, Wallet } from "lucide-react";
 import styles from "./Footer.module.css";
 
 export default function Footer() {
-  const handleSubscribeSubmit = (e) => {
+  const handleSubscribe = (e) => {
     e.preventDefault();
     alert("Subscribed successfully!");
   };
 
   return (
     <footer className={styles.footer} id="footer">
-      <div className={styles.container}>
+      <div className={styles.inner}>
 
-        {/* Main Content Area */}
-        <div className={styles.mainContent}>
+        {/* Left Column — Brand Field */}
+        <div className={styles.leftCol}>
 
-          {/* Brand Info */}
-          <div className={styles.brandCol}>
+          {/* Zone 1 — Brand Identity */}
+          <div className={styles.brandZone}>
             <Link href="/" className={styles.logo}>
-              e-renty
+              E-RENTY
+              <span className={styles.tagline}>Fuel-Free. Stress-Free.</span>
             </Link>
-
-            <p className={styles.tagline}>
-              Complete e-bike fleet management for Hungarian companies. Sustainable, managed, and fully insured.
-            </p>
-
-            <div className={styles.slogan}>
-              Fuel-Free. Stress-Free.
-            </div>
-
-            <div className={styles.partnerContainer}>
-              <span className={`${styles.partnerLabel} eyebrow`}>Fleet partner</span>
+            <div className={styles.partnerBlock}>
+              <span className={styles.partnerLabel}>FLEET PARTNER</span>
               <div className={styles.logoWrapper}>
                 <Image
                   src="/images/duotts_logo.png"
@@ -46,102 +39,119 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Links Grid */}
-          <div className={styles.linksGrid}>
-            {/* Column 1: Company */}
-            <div className={styles.linkCol}>
-              <span className={`${styles.columnTitle} eyebrow`}>Company</span>
-              <ul className={styles.linkList}>
-                <li><Link href="/about">About e-Renty</Link></li>
-                <li><Link href="/contact">Contact</Link></li>
-                <li><Link href="/careers">Careers</Link></li>
-              </ul>
-            </div>
-
-            {/* Column 2: Services */}
-            <div className={styles.linkCol}>
-              <span className={`${styles.columnTitle} eyebrow`}>Services</span>
-              <ul className={styles.linkList}>
-                <li><Link href="/fleets">Our Fleet</Link></li>
-                <li><Link href="/service-plus">Service+</Link></li>
-                <li><Link href="/corporate-plans">Corporate Plans</Link></li>
-                <li><Link href="/repair-partners">Repair Partners</Link></li>
-              </ul>
-            </div>
-
-            {/* Column 3: Contact */}
-            <div className={styles.linkCol}>
-              <span className={`${styles.columnTitle} eyebrow`}>Contact</span>
-              <div className={styles.contactDetails}>
-                <a href="mailto:info@e-renty.com" className={styles.contactLink}>
-                  <svg className={styles.contactIcon} width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                    <polyline points="22,6 12,13 2,6" />
-                  </svg>
-                  info@e-renty.com
-                </a>
-                <a href="tel:+36204340771" className={styles.contactLink}>
-                  <svg className={styles.contactIcon} width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                  </svg>
-                  +36 20 434 0771
-                </a>
-                <a
-                  href="https://maps.google.com/?q=1012+Budapest,+Kuny+Domokos+utca+13-15"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.contactLink}
-                >
-                  <svg className={styles.contactIcon} width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                    <circle cx="12" cy="10" r="3" />
-                  </svg>
-                  1012 Budapest, Kuny Domokos u. 13-15
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Subscribe Form Column */}
-          <div className={styles.subscribeCol}>
-            <span className={`${styles.columnTitle} eyebrow`}>Stay Updated</span>
-            <p className={styles.subscribeDesc}>
-              Subscribe to get maintenance updates, fleet additions, and business offers.
-            </p>
-            <form className={styles.subscribeForm} onSubmit={handleSubscribeSubmit}>
+          {/* Zone 2 — Subscribe */}
+          <div className={styles.subscribeZone}>
+            <span className={styles.subscribeLabel}>Stay Updated</span>
+            <form className={styles.subscribeForm} onSubmit={handleSubscribe}>
               <input
                 type="email"
-                placeholder="your.email@domain.com"
+                placeholder="Your email address"
                 required
                 className={styles.subscribeInput}
               />
-              <button type="submit" className="btn-primary">
-                Subscribe
-              </button>
+              <button type="submit" className={styles.subscribeBtn}>Subscribe</button>
             </form>
+            <p className={styles.legalNote}>
+              By submitting, you agree to our Privacy Policy.
+            </p>
           </div>
 
         </div>
 
-        {/* Bottom Bar */}
-        <div className={styles.bottomBar}>
-          <div className={styles.badgeRow}>
-            <div className={styles.partnerBadge}>
-              <span className={styles.badgeText}>Certified Payment Partners</span>
-            </div>
-          </div>
-          <div className={styles.legalInfoRow}>
-            <span className={styles.copyright}>
-              &copy; {new Date().getFullYear()} e-Renty. All rights reserved.
-            </span>
-            <div className={styles.legalLinks}>
-              <Link href="/privacy">Privacy Policy</Link>
-              <Link href="/terms">Terms of Service</Link>
-            </div>
-          </div>
-        </div>
+        {/* Right Column — Navigation Field */}
+        <div className={styles.rightCol}>
 
+          {/* Nav Grid */}
+          <div className={styles.navGrid}>
+            <div className={styles.navCol}>
+              <span className={styles.navHeader}>Company</span>
+              <ul className={styles.navList}>
+                <li><Link href="/about">About Us</Link></li>
+                <li><Link href="/how-it-works">How It Works</Link></li>
+                <li><Link href="/for-business">For Business</Link></li>
+                <li><Link href="/blog">Blog</Link></li>
+                <li><Link href="/careers">Careers</Link></li>
+              </ul>
+            </div>
+            <div className={styles.navCol}>
+              <span className={styles.navHeader}>Services</span>
+              <ul className={styles.navList}>
+                <li><Link href="/fleets">Fleet Subscriptions</Link></li>
+                <li><Link href="/service-plus">Service+</Link></li>
+                <li><Link href="/insurance">Insurance &amp; Coverage</Link></li>
+                <li><Link href="/maintenance">Maintenance</Link></li>
+                <li><Link href="/damage-protection">Damage Protection</Link></li>
+              </ul>
+            </div>
+            <div className={styles.navCol}>
+              <span className={styles.navHeader}>Contact</span>
+              <ul className={styles.navList}>
+                <li><a href="mailto:hello@e-renty.hu">hello@e-renty.hu</a></li>
+                <li><a href="tel:+3612345678">+36 1 234 5678</a></li>
+                <li><span className={styles.contactText}>Budapest, Hungary</span></li>
+                <li>
+                  <a
+                    href="https://maps.google.com/?q=Budapest,Hungary"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View on Maps ↗
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Ghost Bike */}
+          <div className={styles.ghostBike} aria-hidden="true">
+            <div className={styles.ghostBikeGlow} />
+            <Image
+              src="/images/c29_pro.png"
+              alt=""
+              width={480}
+              height={360}
+              className={styles.ghostBikeImg}
+            />
+          </div>
+
+        </div>
       </div>
+
+      {/* Bottom Legal Bar */}
+      <div className={styles.bottomBar}>
+        <div className={styles.badgeRow}>
+          <span className={styles.paymentLabel}>Accepted Payments</span>
+          <div className={styles.paymentIcons}>
+            <div className={styles.paymentChip}>
+              <CreditCard size={15} strokeWidth={1.8} />
+              <span>Card</span>
+            </div>
+            <div className={styles.paymentChip}>
+              <Smartphone size={15} strokeWidth={1.8} />
+              <span>Google Pay</span>
+            </div>
+            <div className={styles.paymentChip}>
+              <Wallet size={15} strokeWidth={1.8} />
+              <span>Apple Pay</span>
+            </div>
+            <div className={styles.paymentChip}>
+              <Landmark size={15} strokeWidth={1.8} />
+              <span>Bank Transfer</span>
+            </div>
+          </div>
+        </div>
+        <div className={styles.legalRow}>
+          <span className={styles.copyright}>
+            &copy; {new Date().getFullYear()} E-Renty. All rights reserved.
+          </span>
+          <div className={styles.legalLinks}>
+            <Link href="/privacy">Privacy Policy</Link>
+            <Link href="/terms">Terms of Service</Link>
+            <Link href="/cookies">Cookie Policy</Link>
+          </div>
+        </div>
+      </div>
+
     </footer>
   );
 }

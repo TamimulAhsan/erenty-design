@@ -174,11 +174,22 @@ Below is the structure of the homepage matched with the specific design system t
 - **View All Link**: A centered link below the list ("View all FAQs" with an arrow icon) that transitions to primary green on hover and shifts the arrow rightwards.
 
 ### I. Footer
-- **Layout**: Top content area + bottom legal bar.
-- **Styling**: White background (`var(--card, #FFFFFF)`) matching the navbar background, with a 1px top border.
-- **Height**: On desktop, the footer utilizes `min-height: calc(100vh - 72px)` to span the entire screen height below the global sticky navbar. On mobile/tablets, height transitions to `auto` with custom vertical spacing.
-- **Elements**: 
-  - Left (Brand): Text logo `e-renty` (Cruiser font), "Fuel-Free. Stress-Free." slogan text, and a "Fleet partner" section displaying the DUOTTS logo (grayscaled at rest, color on hover).
-  - Middle (Links): 2 columns of links (Company, Services) and 1 column of interactive contact details (mailto email, tel phone, maps address).
-  - Right (Subscribe): Newsletter subscribe box ("Stay Updated") with email input and primary confirm button.
-  - Bottom (Legal): Two-row structure with the top row centering the certified Stripe partner badge, and the bottom row splitting copyright (left) and legal links (right).
+- **Layout**: Split-field two-column architecture separated by the natural edge of the columns (no drawn divider lines). Left column at 42% width, right column takes the remaining 58%.
+- **Styling**: White background (`#FFFFFF`) with a single 1px top border (`#DAE2DA`). No internal dividing lines — the left/right split is purely positional.
+- **Height**: On desktop, the footer uses `height: calc(100dvh - 72px)` to fill exactly the visible viewport below the sticky navbar. On tablet/mobile, height reverts to `auto` so content scrolls naturally.
+- **Left Column (Brand Field)**:
+  - Logo: `e-renty` in Cruiser font, 28px, `#143132`.
+  - Tagline: `"Fuel-Free. Stress-Free."` in Inter 18px, 500 weight, `#667370`.
+  - Fleet partner block: `FLEET PARTNER` eyebrow label (11px, uppercase, `#667370`) + DUOTTS logo (grayscale at rest, full color on hover over 300ms).
+  - Subscribe zone anchored to the bottom of the left column via `justify-content: space-between`: `STAY UPDATED` label (`#005B45`), inline email input + `Subscribe` button (input takes remaining width, button fixed at 110px, joined border-radius), legal note 11px at 65% opacity.
+- **Right Column (Nav Field)**:
+  - 3-column navigation grid (gap: 40px): Company / Services / Contact.
+  - Column headers: Inter 12px, 600 weight, uppercase, `#143132`.
+  - Links: Inter 14px, `#667370`, hover → `#00D8A4`.
+  - Ghost bike illustration: `c29_pro.png` positioned absolutely to the bottom-right, rotated `-8deg`, `width: 700px`, `opacity: 0.10`, `filter: hue-rotate(140deg) saturate(0.5) brightness(0.85)`. A radial gradient glow (`rgba(0,216,164,0.20)`) sits behind it. Nav grid sits at `z-index: 2` above the image at `z-index: 1`.
+- **Bottom Legal Bar** (full-width, `border-top: 1px solid #DAE2DA`, `z-index: 2`):
+  - Single row centered: `Accepted Payments` label + four payment chips (Card, Google Pay, Apple Pay, Bank Transfer). Each chip uses a lucide-react icon (`CreditCard`, `Smartphone`, `Wallet`, `Landmark`) + label, styled with `#F7FAF7` background, `#DAE2DA` border, 8px radius, hover → teal border + `#005B45` text.
+  - Legal row: copyright left (`© 2025 E-Renty`) + Privacy Policy · Terms of Service · Cookie Policy right, `#667370`, hover → `#005B45`.
+- **Responsive**:
+  - Tablet (≤991px): `height: auto`, left column narrows to 40%, nav grid collapses to 2 columns, ghost bike scales to 300px.
+  - Mobile (≤767px): Single column stack, ghost bike hidden, subscribe form stacks vertically (full-width input + full-width button), payment chips wrap centered.

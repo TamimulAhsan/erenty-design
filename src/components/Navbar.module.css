@@ -40,6 +40,38 @@
   color: var(--foreground);
   cursor: pointer;
   text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.logoTagline {
+  display: none;
+}
+
+@media (max-width: 992px) {
+  .logoTagline {
+    display: block;
+    font-family: var(--font-inter), sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: none;
+    color: #667370;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .logoTaglineVisible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 992px) {
