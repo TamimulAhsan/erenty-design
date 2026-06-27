@@ -57,44 +57,53 @@ const FLEET_CATEGORIES = [
   },
 ];
 
+const CONFIGURATION_ADDONS = [
+  { id: "rack", name: "Heavy Cargo Rack", price: "+1 200 Ft/mo" },
+  { id: "battery", name: "Extended Battery", price: "+2 500 Ft/mo" },
+  { id: "mount", name: "Phone Mount & USB", price: "+500 Ft/mo" },
+];
+
+const APPOINTMENT_DAYS = [
+  { id: "Mon", label: "Mon", date: "29 Jun" },
+  { id: "Tue", label: "Tue", date: "30 Jun" },
+  { id: "Wed", label: "Wed", date: "01 Jul" },
+  { id: "Thu", label: "Thu", date: "02 Jul" },
+  { id: "Fri", label: "Fri", date: "03 Jul" },
+  { id: "Sat", label: "Sat", date: "04 Jul" },
+];
+
+const APPOINTMENT_TIMES = ["09:00", "11:30", "14:00", "16:30"];
+
 export default function StartYourJourney() {
   const [activeModel, setActiveModel] = useState(FLEET_CATEGORIES[0]);
+  const [selectedAddons, setSelectedAddons] = useState(["rack"]); // default selected addon
+  const [selectedDay, setSelectedDay] = useState("Mon");
+  const [selectedTime, setSelectedTime] = useState("11:30");
   const [activeCardIndex, setActiveCardIndex] = useState(0);
   const gridRef = useRef(null);
+
+  // Toggle addons
+  const handleToggleAddon = (id) => {
+    setSelectedAddons((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
+  };
 
   // Handle mobile scroll swipe to update indicators
   const handleScroll = (e) => {
     const { scrollLeft, scrollWidth, clientWidth } = e.target;
+    if (scrollWidth <= clientWidth) return;
     
-    // 1. If we are near the rightmost scroll limit, active card is Card 3 (index 2)
-    if (scrollLeft + clientWidth >= scrollWidth - 25) {
-      setActiveCardIndex(2);
-      return;
-    }
-    
-    // 2. If we are near the leftmost scroll limit, active card is Card 1 (index 0)
-    if (scrollLeft <= 25) {
-      setActiveCardIndex(0);
-      return;
-    }
-    
-    // 3. Otherwise, we are in the middle transition (index 1)
-    setActiveCardIndex(1);
+    const progress = scrollLeft / (scrollWidth - clientWidth);
+    const index = Math.round(progress * 3);
+    setActiveCardIndex(index);
   };
 
   // Scroll to card index on indicator click
   const scrollToCard = (index) => {
     if (gridRef.current) {
       const { scrollWidth, clientWidth } = gridRef.current;
-      let targetScrollLeft = 0;
-      
-      if (index === 1) {
-        // Center card target scroll point
-        targetScrollLeft = (scrollWidth - clientWidth) / 2;
-      } else if (index === 2) {
-        // Rightmost card target scroll point
-        targetScrollLeft = scrollWidth - clientWidth;
-      }
+      const targetScrollLeft = (index / 3) * (scrollWidth - clientWidth);
       
       gridRef.current.scrollTo({
         left: targetScrollLeft,
@@ -110,19 +119,19 @@ export default function StartYourJourney() {
         {/* Section Headline */}
         <h2 className={`${styles.headerTitle} h2`}>Start your journey</h2>
 
-        {/* Three Separate Cards Grid */}
+        {/* Four Separate Cards Grid */}
         <div className={styles.grid} ref={gridRef} onScroll={handleScroll}>
-          {/* Card 1: Pick Your Fleet */}
+          {/* Card 1: Choosing Fleet */}
           <div className={styles.card}>
             <div className={styles.badgeWrapper}>
               <div className={styles.stepBadge}>01</div>
             </div>
-            <h3 className={`${styles.cardTitle} h3`}>Pick your fleet</h3>
+            <h3 className={`${styles.cardTitle} h3`}>Choose fleet</h3>
             <p className={`${styles.cardDesc} body-sm`}>
-              Browse vetted DUOTTS, Neuzer, MyEsel and Mamba models. Filter by range, motor power, intended use. Add bikes to a quote in one click.
+              Browse vetted DUOTTS, Neuzer, MyEsel and Mamba models. Filter by range, motor power, and intended use.
             </p>
 
-            {/* Scrollable list of 7 fleets (no scrollbar) */}
+            {/* Scrollable list of 7 fleets */}
             <div className={styles.scrollList}>
               {FLEET_CATEGORIES.map((item) => (
                 <div
@@ -130,6 +139,7 @@ export default function StartYourJourney() {
                   className={`${styles.fleetPill} ${
                     activeModel.id === item.id ? styles.fleetPillActive : ""
                   }`}
+                  onClick={() => setActiveModel(item)}
                   onMouseEnter={() => setActiveModel(item)}
                 >
                   <div className={styles.pillLeft}>
@@ -174,29 +184,48 @@ export default function StartYourJourney() {
             </div>
           </div>
 
-          {/* Card 2: Configure Cover */}
+          {/* Card 2: Choosing Configuration */}
           <div className={styles.card}>
             <div className={styles.badgeWrapper}>
               <div className={styles.stepBadge}>02</div>
             </div>
-            <h3 className={`${styles.cardTitle} h3`}>Configure cover</h3>
+            <h3 className={`${styles.cardTitle} h3`}>Choose configuration</h3>
             <p className={`${styles.cardDesc} body-sm`}>
-              Choose a Courier+ plan per bike — maintenance, GPS, theft insurance bundled. Switch plans monthly, no penalty.
+              Choose a Courier+ protection plan and select add-on hardware accessories tailored to your daily needs.
             </p>
+
+            {/* Configuration Selectors */}
+            <div className={styles.configContainer}>
+              {CONFIGURATION_ADDONS.map((addon) => {
+                const isSelected = selectedAddons.includes(addon.id);
+                return (
+                  <button
+                    key={addon.id}
+                    className={`${styles.configPill} ${
+                      isSelected ? styles.configPillActive : ""
+                    }`}
+                    onClick={() => handleToggleAddon(addon.id)}
+                  >
+                    <span className={styles.configLabel}>{addon.name}</span>
+                    <span className={styles.configPrice}>{addon.price}</span>
+                  </button>
+                );
+              })}
+            </div>
 
             {/* Metric Footer for Card 2 */}
             <div className={styles.cardStats}>
               <div className={styles.statBlock}>
                 <span className={styles.statValue}>3 plans</span>
-                <span className={styles.statLabel}>from 4 900 Ft</span>
+                <span className={styles.statLabel}>available</span>
               </div>
               <div className={styles.statBlock}>
-                <span className={styles.statValue}>VAT</span>
-                <span className={styles.statLabel}>reclaimable</span>
+                <span className={styles.statValue}>{selectedAddons.length} add-ons</span>
+                <span className={styles.statLabel}>configured</span>
               </div>
             </div>
 
-            {/* Bleeding/Cropped Illustration at the Bottom - Fitted and gaps reduced */}
+            {/* Image Preview Container */}
             <div className={styles.imageContainer}>
               <Image
                 src={activeModel.image}
@@ -209,32 +238,108 @@ export default function StartYourJourney() {
             </div>
           </div>
 
-          {/* Card 3: Sign & Ride */}
+          {/* Card 3: Book an Appointment */}
           <div className={styles.card}>
             <div className={styles.badgeWrapper}>
               <div className={styles.stepBadge}>03</div>
             </div>
-            <h3 className={`${styles.cardTitle} h3`}>Sign & ride</h3>
+            <h3 className={`${styles.cardTitle} h3`}>Book appointment</h3>
             <p className={`${styles.cardDesc} body-sm`}>
-              Digital contract, optional KYC for business accounts, courier delivers within 48h to anywhere in Hungary.
+              Select a flexible time slot at our central Budapest service workshop for inspection, tutorial, and setup.
             </p>
+
+            {/* Mini Scheduler Component */}
+            <div className={styles.scheduler}>
+              {/* Day Tabs */}
+              <div className={styles.dayGrid}>
+                {APPOINTMENT_DAYS.map((day) => (
+                  <button
+                    key={day.id}
+                    className={`${styles.dayTab} ${
+                      selectedDay === day.id ? styles.dayTabActive : ""
+                    }`}
+                    onClick={() => setSelectedDay(day.id)}
+                  >
+                    <span className={styles.dayLabel}>{day.label}</span>
+                    <span className={styles.dayNum}>{day.date.split(" ")[0]}</span>
+                  </button>
+                ))}
+              </div>
+
+              {/* Time Slots */}
+              <div className={styles.timeGrid}>
+                {APPOINTMENT_TIMES.map((time) => (
+                  <button
+                    key={time}
+                    className={`${styles.timeChip} ${
+                      selectedTime === time ? styles.timeChipActive : ""
+                    }`}
+                    onClick={() => setSelectedTime(time)}
+                  >
+                    {time}
+                  </button>
+                ))}
+              </div>
+            </div>
 
             {/* Metric Footer for Card 3 */}
             <div className={styles.cardStats}>
               <div className={styles.statBlock}>
-                <span className={styles.statValue}>Delivery</span>
-                <span className={styles.statLabel}>48h nationwide</span>
+                <span className={styles.statValue}>{selectedDay}day</span>
+                <span className={styles.statLabel}>selected day</span>
               </div>
               <div className={styles.statBlock}>
-                <span className={styles.statValue}>Contract</span>
-                <span className={styles.statLabel}>e-sign</span>
+                <span className={styles.statValue}>{selectedTime}</span>
+                <span className={styles.statLabel}>confirmed slot</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 4: Sign Document & Take Bike */}
+          <div className={styles.card}>
+            <div className={styles.badgeWrapper}>
+              <div className={styles.stepBadge}>04</div>
+            </div>
+            <h3 className={`${styles.cardTitle} h3`}>Sign & ride</h3>
+            <p className={`${styles.cardDesc} body-sm`}>
+              Review the lease terms. You will sign the official lease agreement on-site at the workshop during your scheduled appointment time.
+            </p>
+
+            {/* Mock Digital Contract & Signature Pad */}
+            <div className={styles.documentMock}>
+              <div className={styles.docHeader}>
+                <span className={styles.docTitle}>Lease Agreement</span>
+                <span className={styles.docStatus}>
+                  ON-SITE SIGNING
+                </span>
+              </div>
+              <div className={styles.docBody}>
+                <p>E-Renty Lease Terms:</p>
+                <p>Model: {activeModel.name}</p>
+                <p>Add-ons: {selectedAddons.length > 0 ? selectedAddons.join(", ") : "none"}</p>
+                <p>Appointment: {selectedDay} @ {selectedTime}</p>
+              </div>
+            </div>
+
+            {/* Metric Footer for Card 4 */}
+            <div className={styles.cardStats}>
+              <div className={styles.statBlock}>
+                <span className={styles.statValue}>On-site sign</span>
+                <span className={styles.statLabel}>at appointment</span>
+              </div>
+              <div className={styles.statBlock}>
+                <span className={styles.statValue}>Instant</span>
+                <span className={styles.statLabel}>handover</span>
               </div>
             </div>
 
             {/* Primary Pill CTA Button at the Bottom */}
             <div className={styles.ctaWrapper}>
-              <Link href="/see-fleets" className={styles.primaryPillBtn}>
-                See fleets
+              <Link
+                href="/see-fleets"
+                className={styles.primaryPillBtn}
+              >
+                Confirm booking
                 <svg
                   width="18"
                   height="18"
@@ -255,7 +360,7 @@ export default function StartYourJourney() {
 
         {/* Mobile Horizontal Scroll Indicators */}
         <div className={styles.indicators}>
-          {[0, 1, 2].map((idx) => (
+          {[0, 1, 2, 3].map((idx) => (
             <button
               key={idx}
               className={`${styles.dot} ${activeCardIndex === idx ? styles.dotActive : ""}`}
@@ -268,3 +373,4 @@ export default function StartYourJourney() {
     </section>
   );
 }
+

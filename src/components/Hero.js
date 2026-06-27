@@ -55,7 +55,7 @@ export default function Hero() {
           </svg>
         </Link>
         <Link href="/service" className="btn-secondary dark">
-          Service+
+          Courier+
         </Link>
       </div>
 

@@ -192,7 +192,7 @@ WORKSHOPS.forEach(w => {
   if (!w.freeCoverage) {
     w.freeCoverage = [
       { type: "Rentals", tiers: ["Basic"] },
-      { type: "Service+", tiers: w.tiers || ["Basic", "Extra"] }
+      { type: "Courier+", tiers: w.tiers || ["Basic", "Extra"] }
     ];
   }
   if (!w.businessHours && w.hours) {
@@ -446,7 +446,7 @@ export default function LocationsWorkshops() {
             </div>
             <div className={styles.footerActions}>
               <Link href="/service" className="btn-primary">
-                Service+
+                Courier+
                 <svg
                   width="16"
                   height="16"

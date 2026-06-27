@@ -50,7 +50,7 @@ Below is the structure of the homepage matched with the specific design system t
 - **Styling**: White card background, 1px bottom border `#DAE2DA`.
 - **Elements**: 
   - Logo (Centered): Text-only logo "E-RENTY" in Cruiser font, no icon mark.
-  - Left Side (Nav links): `Fleets`, `Service+`, `How it works` (`Inter` 16px 500-weight, hover → `#00D8A4`).
+  - Left Side (Nav links): `Fleets`, `Courier+`, `How it works` (`Inter` 16px 500-weight, hover → `#00D8A4`).
     - **Scroll Behavior**: While scrolling past the hero section, the `Fleets` mega-menu link is removed from the left side, and a "For Business" action button slides in smoothly after "How it works".
   - Right Side (Utilities): "For Business" button (Prominently styled with brand-light tint background and brand-dark text/border for high visibility), language, help, and user profile icons.
     - **Scroll Behavior**: While scrolling past the hero section, the standard "For Business" button is removed, and a prominent primary-colored "See Fleets" CTA button appears on the far right.
@@ -58,7 +58,7 @@ Below is the structure of the homepage matched with the specific design system t
   - **"Fleets" Mega-Menu (Hover State)**:
     - Full-width dropdown panel anchored directly below the navbar with no gap, white background, `shadow-elevated`.
     - Left Area: Grid of 5 fleet models (VOK S, ELEGLIDE M2, Equickey Q8 - Pro, Kukirin G3 Pro, DUOTTS C29 Pro). Each item has a centered cutout image, name, and attributes.
-    - Right Area: Separated by a 1px vertical border. Contains two ghost links: "See all fleets" and "Service+".
+    - Right Area: Separated by a 1px vertical border. Contains two ghost links: "See all fleets" and "Courier+".
   - **Mobile Menu Drawer**:
     - Replaces nav menus on devices under `992px`. Triggers via hamburger button.
     - Fills the screen completely (`width: 100vw`, `max-width: 100vw`) overlaying a blurred backdrop (`backdrop-filter: blur(4px)`).
@@ -66,19 +66,23 @@ Below is the structure of the homepage matched with the specific design system t
     - Footer displays horizontally aligned Language, Help, and Profile selectors.
 
 ### B. Hero Section
-- **Layout**: Two columns with an overlapping bottom card.
-- **Styling**: `#143132` background with `#005B45` gradients, rotating spoke background tire (`@keyframes rotate` over 80s), and dot grid.
-- **Left Column**:
-  - Eyebrow (text-only): "Fuel-free • Stress-free" in primary teal (`#00D8A4`), uppercase with spacing, no pill/card outline wrapper.
-  - H1 (`hero-display`, 64px white/primary mixed): "Your Team. Your Fleet. Your E-rent Solution."
-  - Subtext (18px white at 70% opacity): Uses "fleet" terminology.
-  - CTA Buttons: Primary "See Fleets" and Secondary "Service+" (Unified 12px border radius).
-  - Stat strip below: Mono numbers (`JetBrains`, white) with uppercase caption labels.
-- **Right Column**:
-  - Massive, unconstrained preview container (floating up-and-down via `@keyframes float`, no boxed card outline). Image width set to `800x600`, stretching to `135%` width (up to `820px` max-width) and shifting `-15%` leftwards on desktop to bleed organically across the center gutter (`flex-shrink: 0` to prevent flex shrinking). Scales back down to `100%` on mobile/tablets.
-  - Blends seamlessly into the dark background using a radial transparency gradient mask (`mask-image: radial-gradient(circle, black 65%, transparent 100%)`).
-  - Flat text status badge ("Insured · 24/7 monitored" in teal, no background/border/shadow).
-  - Glass status card (`backdrop-blur(12px)`) with unified `12px` corners and constrained `320px` width (stretching to full content width on mobile) displaying long-term metrics (Contract: `12+ Mos`, Maintenance: `Included`).
+- **Layout & Structure**: 3D vehicle cluster positioned on a dynamic, sloped polygon stage (clip-path: `polygon(0% 100%, 22% 52%, 100% 42%, 100% 100%)` in dark green gradient) with a dark gradient page background.
+- **Left Column / Top-Left Area**:
+  - H1 (`hero-display`, 76px white/gradient mixed, block layout): Structured as three stacked spans: "Your Team." (white), "Your Fleet." (white), and a glowing brand gradient span "Your E-Rent Solution."
+  - Highlight Gradient: Linear gradient from `#00d8a4` to `#00ffc2` to `#8cffdf`. Renders on top of a solid background color (`#0a1618`) pseudo-element with multi-layered drop shadows/neon-green glow to prevent gradient bleed and maximize contrast.
+  - Spacing: Line-height at `1.15` (desktop) and `1.25` (mobile) to allow spacious text wrapping on portrait viewports.
+- **CTA Row / Horizontal Centering**:
+  - Anchored absolutely under the center scooter: `left: 50%; bottom: calc(var(--space-8) + 12px); transform: translateX(-50%)`.
+  - Buttons: Primary "See Fleets" and Secondary "Courier+" (Standard padding, unified 12px border radius).
+- **Right Column / Mid-Right Area**:
+  - Stats Block: Minimal glassmorphic stats card (`backdrop-filter: blur(16px)`, dark translucent teal background `rgba(10, 22, 24, 0.45)`, thin border `rgba(255, 255, 255, 0.08)`, and shadow). Sits mid-right, overlapping the stage. Contains mono numbers (`JetBrains Mono`, white) and uppercase caption labels.
+- **Vehicles Composition (3D Cluster)**:
+  - Three-dimensional overlapping layering (`z-index` stacking): **Left bike** (background, `z-index: 6`, rotated `-11deg`), **Center scooter** (middle, `z-index: 8`, hovering), and **Right kick-scooter** (foreground, `z-index: 9`, rotated/flipped `scaleX(-1) rotate(-7deg)`).
+  - Scale & Positioning:
+    - Desktop: Left vehicle (`44%` width, `left: 7%`), Center vehicle (`34%` width, `left: 50%`, `bottom: 8%`), Right vehicle (`36%` width, `right: 9%`, `bottom: 5%`).
+    - Mobile Portrait: Left vehicle (`75%` width, `left: -12%`), Center vehicle (`58%` width, `bottom: 12%`), Right vehicle (`64%` width, `right: -8%`).
+  - **CSS Hover Interactions**: Hovering a vehicle container scales it up (`1.06`), lifts it to the front (`z-index: 20`), and applies a brilliant teal-green drop shadow glow around the image.
+  - **Decoupled Float Animation**: The center vehicle's floating animation operates on the image itself, allowing container-level hover scaling to remain completely smooth and jitter-free.
 
 ### C. Start Your Journey
 - **Layout**: 3-column grid featuring separate, spacious cards. Positioned in normal page flow with visual separation padding (100px top/bottom on desktop, and 70px top / 50px bottom on mobile) to guarantee a consistent visual separation from surrounding content. On mobile (under `992px`), it switches to a horizontal snap scroll slider with card widths set to `85%` and bottom indicator bars tracking current card visibility with active animations and click-to-scroll triggers.
@@ -145,10 +149,10 @@ Below is the structure of the homepage matched with the specific design system t
   - Clicking a pin opens a premium "Upwork-style" side-over drawer (`520px` wide, sliding from the right).
   - **Mobile Bottom Sheet**: On mobile (`<768px`), the drawer gracefully transforms into a `90vh` Bottom Sheet sliding up from the bottom (`border-radius: 24px 24px 0 0`).
 - **Drawer Content**: 
-  - **Coverage Block**: Clean typographic layout mapping "Rentals" and "Service+" to their respective free tiers, avoiding cluttered background-colored pills.
+  - **Coverage Block**: Clean typographic layout mapping "Rentals" and "Courier+" to their respective free tiers, avoiding cluttered background-colored pills.
   - **Details Grid**: "Business Hours" automatically parsed into a highly legible Monday-Sunday table, sitting beside or above "Contact" details (styled cleanly at 13px with a "View on Map ↗" link).
   - **Booking**: Inline appointment booking form leading to a "Confirm Appointment" primary CTA.
-- **Section Footer**: Minimal 20% height footer featuring a dual CTA stack ("Service+ ↗" in primary green, and "Book a service" in a crisp, dark outline variant).
+- **Section Footer**: Minimal 20% height footer featuring a dual CTA stack ("Courier+ ↗" in primary green, and "Book a service" in a crisp, dark outline variant).
 ### G. Trusted By
 - **Concept**: A premium business trust section featuring a dynamic, rotating dual-ring logo orbital carousel.
 - **Aesthetic**: Muted off-white/green background (`var(--background, #F7FAF7)`) aligned with the unified body background so white bubble logo containers pop.

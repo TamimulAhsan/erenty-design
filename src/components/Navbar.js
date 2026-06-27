@@ -108,7 +108,6 @@ export default function Navbar() {
                           />
                         </div>
                         <div className={styles.bikeName}>
-                          {bike.isElectric && <span className={styles.lightningIcon}>⚡</span>}
                           {bike.name}
                         </div>
                       </div>
@@ -122,7 +121,7 @@ export default function Navbar() {
                       <span className={styles.arrowIcon}>→</span>
                     </Link>
                     <Link href="/service" className={styles.quickLinkItem}>
-                      Service+
+                      Courier+
                       <span className={styles.arrowIcon}>→</span>
                     </Link>
                   </div>
@@ -132,7 +131,7 @@ export default function Navbar() {
           )}
 
           <Link href="/service" className={styles.navLink}>
-            Service+
+            Courier+
           </Link>
           <Link href="/how-it-works" className={styles.navLink}>
             How it works
@@ -360,7 +359,7 @@ export default function Navbar() {
             </div>
 
             <Link href="/service" className={styles.mobileNavLink} onClick={toggleMobileMenu}>
-              Service+
+              Courier+
             </Link>
             <Link href="/how-it-works" className={styles.mobileNavLink} onClick={toggleMobileMenu}>
               How it works
