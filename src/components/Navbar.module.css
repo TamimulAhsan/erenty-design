@@ -1,5 +1,5 @@
 .header {
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -9,6 +9,95 @@
   z-index: 1000;
   display: flex;
   align-items: center;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* ── Transparent state: hero top ────────────────────────────────────── */
+.headerTransparent {
+  background: transparent;
+  border-bottom-color: transparent;
+}
+
+.headerTransparent .logoArea {
+  color: #FFFFFF;
+}
+
+.headerTransparent .navLink {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.headerTransparent .navLink:hover,
+.headerTransparent .navLinkActive {
+  color: #FFFFFF;
+}
+
+.headerTransparent .iconButton {
+  color: rgba(255, 255, 255, 0.70);
+}
+
+.headerTransparent .iconButton:hover {
+  background: rgba(255, 255, 255, 0.10);
+  color: #FFFFFF;
+}
+
+.headerTransparent .businessBtn {
+  background: rgba(255, 255, 255, 0.10);
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.headerTransparent .businessBtn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: none;
+}
+
+.headerTransparent .mobileMenuBtn {
+  color: #FFFFFF;
+}
+
+/* ── Hover on transparent state → restore solid appearance ──────────── */
+.headerTransparent:hover {
+  background: var(--card);
+  border-bottom-color: var(--border);
+}
+
+.headerTransparent:hover .logoArea {
+  color: var(--foreground);
+}
+
+.headerTransparent:hover .navLink {
+  color: var(--foreground);
+}
+
+.headerTransparent:hover .navLink:hover,
+.headerTransparent:hover .navLinkActive {
+  color: var(--primary);
+}
+
+.headerTransparent:hover .iconButton {
+  color: var(--muted-foreground);
+}
+
+.headerTransparent:hover .iconButton:hover {
+  background: var(--muted);
+  color: var(--foreground);
+}
+
+.headerTransparent:hover .businessBtn {
+  background: var(--brand-light);
+  color: var(--brand-dark);
+  border-color: rgba(0, 91, 69, 0.2);
+}
+
+.headerTransparent:hover .businessBtn:hover {
+  background: var(--accent);
+  border-color: var(--brand-dark);
+  box-shadow: 0 4px 12px rgba(0, 91, 69, 0.15);
+}
+
+.headerTransparent:hover .mobileMenuBtn {
+  color: var(--foreground);
 }
 
 .container {
@@ -278,7 +367,7 @@
 
 /* Mega Menu Dropdown */
 .megaMenu {
-  position: absolute;
+  position: fixed;
   top: 72px; /* Anchored directly below navbar with no gap */
   left: 0;
   width: 100%;

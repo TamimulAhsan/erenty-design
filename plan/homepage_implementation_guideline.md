@@ -174,22 +174,25 @@ Below is the structure of the homepage matched with the specific design system t
 - **View All Link**: A centered link below the list ("View all FAQs" with an arrow icon) that transitions to primary green on hover and shifts the arrow rightwards.
 
 ### I. Footer
-- **Layout**: Split-field two-column architecture separated by the natural edge of the columns (no drawn divider lines). Left column at 42% width, right column takes the remaining 58%.
-- **Styling**: White background (`#FFFFFF`) with a single 1px top border (`#DAE2DA`). No internal dividing lines — the left/right split is purely positional.
-- **Height**: On desktop, the footer uses `height: calc(100dvh - 72px)` to fill exactly the visible viewport below the sticky navbar. On tablet/mobile, height reverts to `auto` so content scrolls naturally.
+- **Layout**: Split-field two-column architecture. Left column at 42% width, right column takes the remaining 58%. No drawn divider lines — the split is purely positional.
+- **Styling**: White background (`#FFFFFF`) with a single 1px top border (`#DAE2DA`). No internal dividing lines anywhere.
+- **Height**: Desktop: `height: calc(100dvh - 72px)` — fills exactly the visible viewport below the sticky navbar. Tablet (≤991px) and mobile (≤767px): `height: auto`.
 - **Left Column (Brand Field)**:
-  - Logo: `e-renty` in Cruiser font, 28px, `#143132`.
-  - Tagline: `"Fuel-Free. Stress-Free."` in Inter 18px, 500 weight, `#667370`.
-  - Fleet partner block: `FLEET PARTNER` eyebrow label (11px, uppercase, `#667370`) + DUOTTS logo (grayscale at rest, full color on hover over 300ms).
-  - Subscribe zone anchored to the bottom of the left column via `justify-content: space-between`: `STAY UPDATED` label (`#005B45`), inline email input + `Subscribe` button (input takes remaining width, button fixed at 110px, joined border-radius), legal note 11px at 65% opacity.
+  - Logo: `E-RENTY` in Cruiser 24px, `var(--foreground)`, uppercase, `letter-spacing: 0.05em` — identical spec to the navbar logo. The tagline `"Fuel-Free. Stress-Free."` sits as a `<span>` inside the same `<Link>` element, Inter 11px, 500 weight, `#667370`, `letter-spacing: 0.04em`, `text-transform: none`. Both stacked via `display: flex; flex-direction: column; align-items: flex-start; gap: 2px; line-height: 1`.
+  - Fleet partner block: `FLEET PARTNER` eyebrow (11px, uppercase, `#667370`) + DUOTTS logo (grayscale at rest `filter: grayscale(100%) opacity(0.5)`, full color on hover over 300ms).
+  - Subscribe zone anchored to the bottom via `justify-content: space-between` on the left column: `STAY UPDATED` label (`#005B45`, 13px, uppercase), inline email input + `Subscribe` button (input flex-grows, button fixed 110px, joined 12px border-radius), legal note 11px at 65% opacity.
 - **Right Column (Nav Field)**:
   - 3-column navigation grid (gap: 40px): Company / Services / Contact.
-  - Column headers: Inter 12px, 600 weight, uppercase, `#143132`.
-  - Links: Inter 14px, `#667370`, hover → `#00D8A4`.
-  - Ghost bike illustration: `c29_pro.png` positioned absolutely to the bottom-right, rotated `-8deg`, `width: 700px`, `opacity: 0.10`, `filter: hue-rotate(140deg) saturate(0.5) brightness(0.85)`. A radial gradient glow (`rgba(0,216,164,0.20)`) sits behind it. Nav grid sits at `z-index: 2` above the image at `z-index: 1`.
+  - Column headers: Inter 12px, 600 weight, uppercase, 0.08em tracking, `#143132`, `margin-bottom: 18px`.
+  - Links: Inter 14px, 400 weight, `#667370`, hover → `#00D8A4` over 200ms.
+  - Ghost bike: `c29_pro.png` positioned absolutely bottom-right, `rotate(-8deg)` from `transform-origin: bottom right`, `width: 700px`, `opacity: 0.10`, `filter: hue-rotate(140deg) saturate(0.5) brightness(0.85)`. Radial gradient glow (`rgba(0,216,164,0.20)` → transparent) sits as a sibling div behind it. Nav grid at `z-index: 2`, ghost bike at `z-index: 1`.
+- **Navbar mirror effect (mobile only)**:
+  - When the footer scrolls into view (footer `getBoundingClientRect().top ≤ 120`), a `footerNear` state triggers in the navbar.
+  - On mobile (≤992px only via CSS), the tagline `"Fuel-Free. Stress-Free."` fades in and slides up (`opacity: 0 → 1`, `translateY(-4px) → 0`, 300ms) beneath `E-RENTY` in the navbar — visually mirroring the footer logo appearing under the navbar.
+  - On desktop the tagline is `display: none` regardless of scroll state.
 - **Bottom Legal Bar** (full-width, `border-top: 1px solid #DAE2DA`, `z-index: 2`):
-  - Single row centered: `Accepted Payments` label + four payment chips (Card, Google Pay, Apple Pay, Bank Transfer). Each chip uses a lucide-react icon (`CreditCard`, `Smartphone`, `Wallet`, `Landmark`) + label, styled with `#F7FAF7` background, `#DAE2DA` border, 8px radius, hover → teal border + `#005B45` text.
-  - Legal row: copyright left (`© 2025 E-Renty`) + Privacy Policy · Terms of Service · Cookie Policy right, `#667370`, hover → `#005B45`.
+  - Payment row (centered): `Accepted Payments` label + four lucide-react chips — `CreditCard` / Card, `Smartphone` / Google Pay, `Wallet` / Apple Pay, `Landmark` / Bank Transfer. Chips: `#F7FAF7` bg, `1px #DAE2DA` border, `8px` radius, Inter 12px 500 weight, `#143132`. Hover → `#00D8A4` border + `#005B45` text. On mobile, chips wrap to two rows centered.
+  - Legal row: copyright left (`© 2025 E-Renty. All rights reserved.`) + Privacy Policy · Terms of Service · Cookie Policy right. Inter 13px, `#667370`, hover → `#005B45`.
 - **Responsive**:
-  - Tablet (≤991px): `height: auto`, left column narrows to 40%, nav grid collapses to 2 columns, ghost bike scales to 300px.
-  - Mobile (≤767px): Single column stack, ghost bike hidden, subscribe form stacks vertically (full-width input + full-width button), payment chips wrap centered.
+  - Tablet (≤991px): left column 40%, nav grid 2 columns, ghost bike scales to 300px.
+  - Mobile (≤767px): single column stack, ghost bike hidden, subscribe form full-width vertical stack, nav grid stays 2 columns (Company + Services / Contact), payment chips wrap centered.

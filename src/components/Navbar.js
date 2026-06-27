@@ -16,6 +16,7 @@ const fleetList = [
 export default function Navbar() {
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const [hoverTimeout, setHoverTimeout] = useState(null);
+  const [isAtTop, setIsAtTop] = useState(true);
   const [hasScrolled, setHasScrolled] = useState(false);
   const [footerNear, setFooterNear] = useState(false);
 
@@ -25,20 +26,21 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 550) {
-        setHasScrolled(true);
-      } else {
-        setHasScrolled(false);
-      }
+      const y = window.scrollY;
+      setIsAtTop(y < 10);
+      setHasScrolled(y > 550);
 
-      // Detect when footer logo is approaching the navbar
       const footer = document.getElementById("footer");
       if (footer) {
         const rect = footer.getBoundingClientRect();
         setFooterNear(rect.top <= 120);
       }
     };
-    window.addEventListener("scroll", handleScroll);
+
+    // Sync on mount in case the page was reloaded mid-scroll
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -64,7 +66,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${isAtTop ? styles.headerTransparent : ""}`}>
       <div className={styles.container}>
         {/* Left Side: Desktop Navigation Links */}
         <nav className={styles.nav}>

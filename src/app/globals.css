@@ -113,9 +113,21 @@ button {
   letter-spacing: -0.02em;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1279px) and (min-width: 992px) {
   .hero-display {
-    font-size: 40px;
+    font-size: 52px;
+  }
+}
+
+@media (max-width: 991px) {
+  .hero-display {
+    font-size: 42px;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-display {
+    font-size: 36px;
   }
 }
 
@@ -206,12 +218,12 @@ button {
 }
 
 .btn-secondary.dark {
-  border-color: rgba(255, 255, 255, 0.2);
-  color: #FFFFFF;
+  border-color: var(--primary);
+  color: var(--primary);
 }
 
 .btn-secondary.dark:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 216, 164, 0.1);
   border-color: var(--primary);
 }
 
