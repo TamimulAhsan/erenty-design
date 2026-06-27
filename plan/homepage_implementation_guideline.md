@@ -85,24 +85,31 @@ Below is the structure of the homepage matched with the specific design system t
   - **Decoupled Float Animation**: The center vehicle's floating animation operates on the image itself, allowing container-level hover scaling to remain completely smooth and jitter-free.
 
 ### C. Start Your Journey
-- **Layout**: 3-column grid featuring separate, spacious cards. Positioned in normal page flow with visual separation padding (100px top/bottom on desktop, and 70px top / 50px bottom on mobile) to guarantee a consistent visual separation from surrounding content. On mobile (under `992px`), it switches to a horizontal snap scroll slider with card widths set to `85%` and bottom indicator bars tracking current card visibility with active animations and click-to-scroll triggers.
+- **Layout**: 4-column grid featuring separate, spacious cards. Positioned in normal page flow with visual separation padding (100px top/bottom on desktop, and 70px top / 50px bottom on mobile). On tablet (under `1200px`), it transitions cleanly to a 2x2 grid card arrangement. On mobile (under `768px`), it switches to a horizontal snap scroll slider with card widths set to `85%` and bottom indicator dots tracking current card visibility with active animations and click-to-scroll triggers.
 - **Styling**: Cards use a muted gray background (`#F1F4F1`), `24px` border-radius (`radius-2xl`), and a 1px border. Section title sits fully on the light background in dark brand green (`#005B45`).
-- **Cards details**:
-  - **Card 01: Pick your fleet**
+- **Cards details (4-Step Digital Journey Wizard)**:
+  - **Card 01: Choose Fleet**
     - Step counter "01".
     - Description: "Browse vetted DUOTTS, Neuzer, MyEsel and Mamba models. Filter by range, motor power, intended use. Add bikes to a quote in one click."
-    - Scrollable List: A vertically scrollable list containing all 7 fleets (VOK S, ELEGLIDE M2, Equickey Q8 - Pro, Kukirin G3 Pro, DUOTTS C29 Pro, Urban E-Cruise, DUOTTS F26 Lite). Scrollbar is completely hidden. Hovering over a fleet item triggers the dynamic preview in Card 02.
+    - Scrollable List: A vertically scrollable list containing all 7 fleets (VOK S, ELEGLIDE M2, Equickey Q8 - Pro, Kukirin G3 Pro, DUOTTS C29 Pro, Urban E-Cruise, DUOTTS F26 Lite). Clicking or hovering over a fleet item sets it as the active model state, dynamically updating the vehicle image preview in Step 2 and Step 4.
     - Footer Metrics: Grid of "4 brands curated" and "12 models in stock".
-  - **Card 02: Configure cover**
+  - **Card 02: Choose Configuration**
     - Step counter "02".
     - Description: "Choose a Courier+ plan per bike — maintenance, GPS, theft insurance bundled. Switch plans monthly, no penalty."
-    - Footer Metrics: Grid of "3 plans from 4,900 Ft" and "VAT reclaimable".
-    - Fleet Preview Visual: Houses a 1.5x sized active bike preview image (`object-fit: contain` inside a `200px` container, `170px` on mobile) that transitions smoothly on hover. All cluttered text overlays have been removed.
-  - **Card 03: Sign & ride**
+    - Configuration Pills: Toggleable accessory pills (*Heavy Cargo Rack*, *Extended Battery*, *Phone Mount & USB*). Active states are styled with a brand-light background color, primary green border glow, and increment the add-ons counter in the footer metrics.
+    - Fleet Preview Visual: Houses a 1.5x sized active bike preview image (`object-fit: contain` inside a `200px` container, `170px` on mobile) that transitions smoothly on hover.
+    - Footer Metrics: Grid of "3 plans available" and "X add-ons configured".
+  - **Card 03: Book Appointment**
     - Step counter "03".
-    - Description: "Digital contract, optional KYC for business accounts, courier delivers within 48h to anywhere in Hungary."
+    - Description: "Schedule your pickup slot. Our technicians prepare your fleet configuration with custom add-ons ready for pickup."
+    - Mini Scheduler Grid: Features Day Tabs (Mon-Sat) and Time Chips (09:00, 11:30, 14:00, 16:30) with hover borders for slot booking selection.
+    - Footer Metrics: Displays the selected weekday and booking time slot.
+  - **Card 04: Sign & Ride**
+    - Step counter "04".
+    - Description: "Review details, sign your lease contract, and collect your custom configured e-bike at your selected slot."
+    - Contract Preview Mockup: Renders contract details (selected vehicle, accessories, and appointment slot) under an "ON-SITE SIGNING" status badge.
+    - CTA Button: A prominent, full-width primary teal pill button (`#00D8A4`) labeled "Confirm booking" that finalizes the user's booking selection.
     - Footer Metrics: Grid of "Delivery 48h nationwide" and "Contract e-sign".
-    - CTA Button: A full-width primary teal pill button (`#00D8A4`) at the bottom labeled "See fleets".
 
 ### D. Your Journey Partner
 - **Behavior**: A scroll-locked showcase. The section container is `400vh` tall. As the user scrolls vertically, the active product updates synchronously (via `activeIndex` and direct DOM tracking) causing in-place staggered crossfade animations.
@@ -145,14 +152,18 @@ Below is the structure of the homepage matched with the specific design system t
   - **Entrance Animations**: Triggered via `IntersectionObserver`. The map outline organically draws itself over 2.5s, followed by staggered "teardrop" pins dropping into their exact coordinates.
   - **Idle State**: Pins subtly "breathe" (float) and pulse to prevent a static image feel.
   - **Mobile Scaling**: SVG marker coordinates natively scale down, but the pins themselves are enlarged by `1.5x` via a custom `dropPinMobile` animation to ensure tap targets remain huge.
-- **Interaction (The Drawer)**: 
-  - Clicking a pin opens a premium "Upwork-style" side-over drawer (`520px` wide, sliding from the right).
-  - **Mobile Bottom Sheet**: On mobile (`<768px`), the drawer gracefully transforms into a `90vh` Bottom Sheet sliding up from the bottom (`border-radius: 24px 24px 0 0`).
+- **Interaction & Drawer Behavior**: 
+  - **Default Closed Drawer**: The side-over drawer is closed by default (`isDrawerOpen: false`) on initial mount to keep the page layout clear.
+  - **Standout Drawer Opener Tab (`.drawerTab`)**: When the drawer is closed, a floating vertical button is anchored to the right side of the screen. It is styled with E-Renty's solid dark background (`var(--brand-dark)`), high-contrast white text, a glowing neon-green left border highlight (`border-left: 3px solid var(--primary)`), and a deep drop shadow.
+  - **Viewport-Aware Tab visibility**: Controlled via a continuous `IntersectionObserver` state (`isSectionInView`). The tab is visible only when `isSectionInView && !isDrawerOpen` is true, smoothly sliding out from the right viewport edge when entering the section.
+  - **Micro-Animations**: Hovering over the tab translates it slightly leftward (`translate(-4px, -50%)`) and slides the green chevron indicator left (`translateX(-3px)`) for a premium tactile feel.
+  - **Mobile Bottom Sheet**: On mobile (`<768px`), the drawer gracefully transforms into a `90vh` Bottom Sheet sliding up from the bottom (`border-radius: 24px 24px 0 0`). On mobile, the vertical tab scales down its padding and font size appropriately.
 - **Drawer Content**: 
   - **Coverage Block**: Clean typographic layout mapping "Rentals" and "Courier+" to their respective free tiers, avoiding cluttered background-colored pills.
   - **Details Grid**: "Business Hours" automatically parsed into a highly legible Monday-Sunday table, sitting beside or above "Contact" details (styled cleanly at 13px with a "View on Map ↗" link).
   - **Booking**: Inline appointment booking form leading to a "Confirm Appointment" primary CTA.
 - **Section Footer**: Minimal 20% height footer featuring a dual CTA stack ("Courier+ ↗" in primary green, and "Book a service" in a crisp, dark outline variant).
+- **Custom Dropdown Selector**: Replaced the native dropdown with a custom, glassmorphic React dropdown menu (`.customSelectWrapper`) with click-outside detection, highlighting chosen items with soft hover transitions and anchoring rightwards on mobile to prevent clipping.
 ### G. Trusted By
 - **Concept**: A premium business trust section featuring a dynamic, rotating dual-ring logo orbital carousel.
 - **Aesthetic**: Muted off-white/green background (`var(--background, #F7FAF7)`) aligned with the unified body background so white bubble logo containers pop.

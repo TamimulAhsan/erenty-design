@@ -236,16 +236,19 @@ export default function LocationsWorkshops() {
   const [filterPriority, setFilterPriority] = useState("All");
   const [expandedCard, setExpandedCard] = useState(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [bookingStatus, setBookingStatus] = useState({});
   const [isVisible, setIsVisible] = useState(false);
+  const [isSectionInView, setIsSectionInView] = useState(false);
   const sectionRef = useRef(null);
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
+        setIsSectionInView(entry.isIntersecting);
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.disconnect();
         }
       },
       { threshold: 0.1 }
@@ -257,15 +260,33 @@ export default function LocationsWorkshops() {
   }, []);
 
   useEffect(() => {
-    if (isDrawerOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
+    const handleResize = () => {
+      const isMobile = window.innerWidth <= 768;
+      if (isDrawerOpen && isSectionInView && isMobile) {
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "unset";
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
     return () => {
+      window.removeEventListener("resize", handleResize);
       document.body.style.overflow = "unset";
     };
-  }, [isDrawerOpen]);
+  }, [isDrawerOpen, isSectionInView]);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleCitySelect = (cityName) => {
     setSelectedCity(cityName);
@@ -344,6 +365,45 @@ export default function LocationsWorkshops() {
           {/* TOP 80%: THE HERO MAP */}
           {/* ========================================================================= */}
           <div className={styles.mapHero}>
+            {/* Top Floating Selector Panel for clear UX direction */}
+            <div className={styles.topSelectorPanel}>
+              <span className={styles.selectorLabel}>Find certified workshop:</span>
+              <div className={styles.customSelectWrapper} ref={dropdownRef}>
+                <button
+                  className={styles.dropdownToggleBtn}
+                  onClick={() => setIsDropdownOpen((prev) => !prev)}
+                  type="button"
+                >
+                  <span>
+                    {selectedCity} ({CITIES.find(c => c.name === selectedCity)?.count} {CITIES.find(c => c.name === selectedCity)?.count === 1 ? 'workshop' : 'workshops'})
+                  </span>
+                  <svg className={`${styles.selectChevron} ${isDropdownOpen ? styles.chevronRotated : ''}`} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
+                </button>
+
+                {isDropdownOpen && (
+                  <div className={styles.dropdownMenu}>
+                    {CITIES.map((c) => (
+                      <div
+                        key={c.name}
+                        className={`${styles.dropdownOption} ${c.name === selectedCity ? styles.dropdownOptionActive : ''}`}
+                        onClick={() => {
+                          handleCitySelect(c.name);
+                          setIsDropdownOpen(false);
+                        }}
+                      >
+                        <span className={styles.optionCityName}>{c.name}</span>
+                        <span className={styles.optionCount}>
+                          {c.count} {c.count === 1 ? 'workshop' : 'workshops'}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+
             <svg
               viewBox="0 0 800 420"
               className={styles.mapSvg}
@@ -369,7 +429,7 @@ export default function LocationsWorkshops() {
               />
 
               {/* Active Connection Line (To Drawer) */}
-              {isDrawerOpen && selectedCity && CITY_COORDINATES[selectedCity] && (
+              {isDrawerOpen && isSectionInView && selectedCity && CITY_COORDINATES[selectedCity] && (
                 <line
                   x1={CITY_COORDINATES[selectedCity].x}
                   y1={CITY_COORDINATES[selectedCity].y}
@@ -417,10 +477,10 @@ export default function LocationsWorkshops() {
                       {/* Number inside or Dot */}
                       {city.count > 1 ? (
                         <text
-                          x="0"
-                          y="-14"
-                          textAnchor="middle"
-                          className={styles.markerText}
+                           x="0"
+                           y="-14"
+                           textAnchor="middle"
+                           className={styles.markerText}
                         >
                           {city.count}
                         </text>
@@ -441,7 +501,7 @@ export default function LocationsWorkshops() {
             <div className={styles.footerText}>
               <h2 className={`${styles.headline} h2`}>Certified Repair Network</h2>
               <p className={`${styles.subline} body-sm`}>
-                12 service centres across Hungary
+                Select a city pin or use the search dropdown above to book an appointment.
               </p>
             </div>
             <div className={styles.footerActions}>
@@ -471,16 +531,25 @@ export default function LocationsWorkshops() {
       </div>
       </div>
 
-      {/* ========================================================================= */}
-      {/* UPWORK-STYLE SIDE-OVER DRAWER & BACKDROP */}
-      {/* ========================================================================= */}
+      <button
+        className={`${styles.drawerTab} ${(isSectionInView && !isDrawerOpen) ? styles.drawerTabVisible : ""}`}
+        onClick={() => setIsDrawerOpen(true)}
+        aria-label="Open workshop directory"
+      >
+        <span className={styles.drawerTabChevron}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+        </span>
+        <span className={styles.drawerTabText}>Find Certified Workshop</span>
+      </button>
 
       <div
-        className={`${styles.drawerBackdrop} ${isDrawerOpen ? styles.backdropVisible : ""}`}
+        className={`${styles.drawerBackdrop} ${(isDrawerOpen && isSectionInView) ? styles.backdropVisible : ""}`}
         onClick={closeDrawer}
       />
 
-      <div className={`${styles.drawer} ${isDrawerOpen ? styles.drawerOpen : ""}`}>
+      <div className={`${styles.drawer} ${(isDrawerOpen && isSectionInView) ? styles.drawerOpen : ""}`}>
 
         <div className={styles.drawerHeader}>
           <button className={styles.backBtn} onClick={closeDrawer} aria-label="Close details">

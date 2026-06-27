@@ -50,6 +50,138 @@
   /* Allows svg to shrink if needed */
   padding-top: var(--space-8);
   padding-bottom: var(--space-8);
+  position: relative;
+}
+
+.topSelectorPanel {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  padding: 8px var(--space-4);
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 20px -4px rgba(20, 49, 50, 0.08);
+}
+
+.selectorLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted-foreground);
+  font-family: var(--font-inter), sans-serif;
+  letter-spacing: -0.01em;
+}
+
+.customSelectWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdownToggleBtn {
+  background: transparent;
+  border: none;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--brand-darker);
+  padding: 2px 24px 2px 0;
+  cursor: pointer;
+  outline: none;
+  font-family: var(--font-inter), sans-serif;
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  transition: color 0.2s ease;
+}
+
+.dropdownToggleBtn:hover {
+  color: var(--primary);
+}
+
+.selectChevron {
+  position: absolute;
+  right: 0;
+  pointer-events: none;
+  color: var(--brand-darker);
+  transition: transform 0.25s cubic-bezier(0.25, 0.8, 0.25, 1), color 0.2s ease;
+}
+
+.dropdownToggleBtn:hover .selectChevron {
+  color: var(--primary);
+}
+
+.chevronRotated {
+  transform: rotate(180deg);
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  left: 0;
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 12px 30px rgba(10, 22, 24, 0.12);
+  z-index: 100;
+  min-width: 220px;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  animation: dropdownFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdownOption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  color: var(--foreground);
+}
+
+.dropdownOption:hover {
+  background: var(--brand-light);
+  color: var(--brand-dark);
+}
+
+.dropdownOptionActive {
+  background: var(--brand-light);
+  color: var(--brand-dark);
+  font-weight: 600;
+}
+
+.optionCityName {
+  font-size: 13px;
+  color: var(--brand-darker);
+  font-weight: 600;
+}
+
+.dropdownOptionActive .optionCityName {
+  color: var(--primary);
+}
+
+.optionCount {
+  font-size: 11px;
+  color: var(--muted-foreground);
+  font-weight: 500;
 }
 
 .mapSvg {
@@ -606,12 +738,14 @@
 .mapLink {
   font-size: 11.5px;
   font-weight: 600;
-  color: var(--primary);
+  color: var(--brand-dark);
   text-decoration: none;
+  transition: color 0.15s ease;
 }
 
 .mapLink:hover {
   text-decoration: underline;
+  color: var(--primary);
 }
 
 .capacityText {
@@ -644,6 +778,15 @@
 /* ========================================================================= */
 
 @media (max-width: 768px) {
+  .drawerTab {
+    padding: var(--space-4) var(--space-2);
+    gap: var(--space-2);
+  }
+
+  .drawerTabText {
+    font-size: 11px;
+  }
+
   .drawer {
     top: auto;
     bottom: 0;
@@ -785,6 +928,62 @@
   border: none;
 }
 
+.drawerTab {
+  position: fixed;
+  right: 0;
+  top: 45%;
+  transform: translate(100%, -50%);
+  background: var(--brand-dark);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 3px solid var(--primary);
+  border-right: none;
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+  padding: var(--space-6) var(--space-3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  cursor: pointer;
+  z-index: 100;
+  box-shadow: -8px 8px 24px rgba(0, 0, 0, 0.25);
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), background 0.3s ease, border-left-color 0.3s ease;
+}
+
+.drawerTabVisible {
+  transform: translate(0, -50%);
+}
+
+.drawerTabVisible:hover {
+  transform: translate(-4px, -50%);
+}
+
+.drawerTab:hover {
+  background: var(--brand-darker);
+  border-left-color: #8cffdf;
+}
+
+.drawerTabChevron {
+  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.drawerTab:hover .drawerTabChevron {
+  transform: translateX(-3px);
+}
+
+.drawerTabText {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 13px;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+}
+
 /* ========================================================================= */
 /* RESPONSIVE LAYOUTS */
 /* ========================================================================= */
@@ -835,6 +1034,25 @@
 
   .mapHero {
     min-height: 280px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .topSelectorPanel {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    margin-bottom: var(--space-4);
+    box-sizing: border-box;
+    justify-content: space-between;
+    border-radius: var(--radius-md);
+  }
+
+  .dropdownMenu {
+    right: 0;
+    left: auto;
+    min-width: 180px;
   }
 
   .drawer {
