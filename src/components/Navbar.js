@@ -6,11 +6,11 @@ import Image from "next/image";
 import styles from "./Navbar.module.css";
 
 const fleetList = [
-  { name: "VOK S", isElectric: true, image: "/images/S.png" },
-  { name: "ELEGLIDE M2", isElectric: true, image: "/images/m2.png" },
-  { name: "Equickey Q8 - Pro", isElectric: true, image: "/images/q8_pro.png" },
-  { name: "Kukirin G3 Pro", isElectric: true, image: "/images/g3_pro.png" },
-  { name: "DUOTTS C29 Pro", isElectric: true, image: "/images/c29_pro.png" },
+  { name: "VOK S", isElectric: true, image: "/images/S.png", slug: "vok-s" },
+  { name: "ELEGLIDE M2", isElectric: true, image: "/images/m2.png", slug: "eleglide-m2" },
+  { name: "Equickey Q8 - Pro", isElectric: true, image: "/images/q8_pro.png", slug: "equickey-q8-pro" },
+  { name: "Kukirin G3 Pro", isElectric: true, image: "/images/g3_pro.png", slug: "kukirin-g3-pro" },
+  { name: "DUOTTS C29 Pro", isElectric: true, image: "/images/c29_pro.png", slug: "duotts-c29-pro" },
 ];
 
 export default function Navbar() {
@@ -19,12 +19,26 @@ export default function Navbar() {
   const [isAtTop, setIsAtTop] = useState(true);
   const [hasScrolled, setHasScrolled] = useState(false);
   const [footerNear, setFooterNear] = useState(false);
+  const [language, setLanguage] = useState("EN");
+  const [mounted, setMounted] = useState(false);
 
   // Mobile drawer states
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileFleetsOpen, setIsMobileFleetsOpen] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+
+    // Hydration safe load of language
+    try {
+      const savedLanguage = localStorage.getItem("language");
+      if (savedLanguage) {
+        setLanguage(savedLanguage);
+      }
+    } catch (e) {
+      console.warn("Could not read language from localStorage:", e);
+    }
+
     const handleScroll = () => {
       const y = window.scrollY;
       setIsAtTop(y < 10);
@@ -43,6 +57,26 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const toggleLanguage = () => {
+    setLanguage((prev) => {
+      const next = prev === "EN" ? "HU" : "EN";
+      try {
+        localStorage.setItem("language", next);
+      } catch (e) {
+        console.warn("Could not write language to localStorage:", e);
+      }
+      return next;
+    });
+  };
+
+  // Safe checks to avoid hydration mismatches
+  const activeIsAtTop = mounted ? isAtTop : true;
+  const showMegaMenu = mounted ? !hasScrolled : true;
+  const showBusinessBtnLeft = mounted ? hasScrolled : false;
+  const showBusinessBtn = mounted ? !hasScrolled : true;
+  const showSeeFleetsBtn = mounted ? hasScrolled : false;
+  const showLogoTagline = mounted ? footerNear : false;
 
   const handleMouseEnter = () => {
     if (hoverTimeout) clearTimeout(hoverTimeout);
@@ -66,11 +100,11 @@ export default function Navbar() {
   };
 
   return (
-    <header className={`${styles.header} ${isAtTop ? styles.headerTransparent : ""}`}>
+    <header className={`${styles.header} ${activeIsAtTop ? styles.headerTransparent : ""}`}>
       <div className={styles.container}>
         {/* Left Side: Desktop Navigation Links */}
         <nav className={styles.nav}>
-          {!hasScrolled && (
+          {showMegaMenu && (
             /* Wraps both trigger and megaMenu so the mouse never leaves the hover boundary */
             <div
               className={styles.navLinkWrapper}
@@ -96,7 +130,7 @@ export default function Navbar() {
                   {/* Grid of 5 bike models */}
                   <div className={styles.fleetGrid}>
                     {fleetList.map((bike, idx) => (
-                      <div key={idx} className={styles.fleetItem}>
+                      <Link key={idx} href={`/fleets/${bike.slug}`} className={styles.fleetItem}>
                         <div className={styles.bikeImageWrapper}>
                           <Image
                             src={bike.image}
@@ -110,17 +144,17 @@ export default function Navbar() {
                         <div className={styles.bikeName}>
                           {bike.name}
                         </div>
-                      </div>
+                      </Link>
                     ))}
                   </div>
 
                   {/* Quick Links on the right */}
                   <div className={styles.quickLinks}>
-                    <Link href="/see-all-fleets" className={styles.quickLinkItem}>
+                    <Link href="/fleets" className={styles.quickLinkItem}>
                       See all fleets
                       <span className={styles.arrowIcon}>→</span>
                     </Link>
-                    <Link href="/service" className={styles.quickLinkItem}>
+                    <Link href="/courier-plus" className={styles.quickLinkItem}>
                       Courier+
                       <span className={styles.arrowIcon}>→</span>
                     </Link>
@@ -130,14 +164,14 @@ export default function Navbar() {
             </div>
           )}
 
-          <Link href="/service" className={styles.navLink}>
+          <Link href="/courier-plus" className={styles.navLink}>
             Courier+
           </Link>
-          <Link href="/how-it-works" className={styles.navLink}>
+          <Link href="/#how-it-works" className={styles.navLink}>
             How it works
           </Link>
 
-          {hasScrolled && (
+          {showBusinessBtnLeft && (
             <Link href="/business" className={styles.businessBtnLeft}>
               For Business
               <svg
@@ -161,14 +195,14 @@ export default function Navbar() {
         {/* Middle Side: Text Logo */}
         <Link href="/" className={styles.logoArea}>
           E-RENTY
-          <span className={`${styles.logoTagline} ${footerNear ? styles.logoTaglineVisible : ""}`}>
+          <span className={`${styles.logoTagline} ${showLogoTagline ? styles.logoTaglineVisible : ""}`}>
             Fuel-Free. Stress-Free.
           </span>
         </Link>
 
         {/* Right Side: Utilities */}
         <div className={styles.rightArea}>
-          {!hasScrolled && (
+          {showBusinessBtn && (
             <Link href="/business" className={styles.businessBtn}>
               For Business
               <svg
@@ -189,7 +223,12 @@ export default function Navbar() {
           )}
 
           {/* Language icon */}
-          <button className={styles.iconButton} aria-label="Select Language">
+          <button 
+            className={styles.iconButton} 
+            aria-label="Select Language"
+            onClick={toggleLanguage}
+            style={{ display: 'flex', alignItems: 'center', gap: '4px' }}
+          >
             <svg
               width="20"
               height="20"
@@ -204,10 +243,11 @@ export default function Navbar() {
               <line x1="2" y1="12" x2="22" y2="12" />
               <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
             </svg>
+            <span style={{ fontSize: '11px', fontWeight: '800', color: 'var(--brand-dark)' }}>{language}</span>
           </button>
 
           {/* Help icon */}
-          <button className={styles.iconButton} aria-label="Help Center">
+          <Link href="/contact" className={styles.iconButton} aria-label="Help Center">
             <svg
               width="20"
               height="20"
@@ -222,10 +262,10 @@ export default function Navbar() {
               <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
               <line x1="12" y1="17" x2="12.01" y2="17" />
             </svg>
-          </button>
+          </Link>
 
           {/* Profile icon */}
-          <button className={styles.iconButton} aria-label="User Profile">
+          <Link href="/profile/user-123" className={styles.iconButton} aria-label="User Profile">
             <svg
               width="20"
               height="20"
@@ -239,10 +279,10 @@ export default function Navbar() {
               <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
               <circle cx="12" cy="7" r="4" />
             </svg>
-          </button>
+          </Link>
 
-          {hasScrolled && (
-            <Link href="/see-all-fleets" className={styles.seeFleetsBtn}>
+          {showSeeFleetsBtn && (
+            <Link href="/fleets" className={styles.seeFleetsBtn}>
               See Fleets
               <svg
                 width="14"
@@ -312,7 +352,7 @@ export default function Navbar() {
             {/* Accordion item for Fleets */}
             <div className={styles.mobileAccordion}>
               <button
-                className={`${styles.mobileNavLink} ${isMobileFleetsOpen ? styles.mobileAccordionActive : ""}`}
+                 className={`${styles.mobileNavLink} ${isMobileFleetsOpen ? styles.mobileAccordionActive : ""}`}
                 onClick={toggleMobileFleets}
               >
                 <span>Fleets</span>
@@ -333,7 +373,7 @@ export default function Navbar() {
                 {fleetList.map((bike, idx) => (
                   <Link
                     key={idx}
-                    href="/see-all-fleets"
+                    href={`/fleets/${bike.slug}`}
                     className={styles.mobileFleetItem}
                     onClick={toggleMobileMenu}
                   >
@@ -352,16 +392,16 @@ export default function Navbar() {
                     </span>
                   </Link>
                 ))}
-                <Link href="/see-all-fleets" className={styles.mobileFleetItemAll} onClick={toggleMobileMenu}>
+                <Link href="/fleets" className={styles.mobileFleetItemAll} onClick={toggleMobileMenu}>
                   See all fleets →
                 </Link>
               </div>
             </div>
 
-            <Link href="/service" className={styles.mobileNavLink} onClick={toggleMobileMenu}>
+            <Link href="/courier-plus" className={styles.mobileNavLink} onClick={toggleMobileMenu}>
               Courier+
             </Link>
-            <Link href="/how-it-works" className={styles.mobileNavLink} onClick={toggleMobileMenu}>
+            <Link href="/#how-it-works" className={styles.mobileNavLink} onClick={toggleMobileMenu}>
               How it works
             </Link>
             <Link href="/business" className={styles.mobileBusinessLink} onClick={toggleMobileMenu}>
@@ -370,31 +410,35 @@ export default function Navbar() {
           </div>
 
           <div className={styles.drawerFooter}>
-            <button className={styles.footerIconButton} aria-label="Select Language">
+            <button 
+              className={styles.footerIconButton} 
+              aria-label="Select Language"
+              onClick={toggleLanguage}
+            >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="12" cy="12" r="10" />
                 <line x1="2" y1="12" x2="22" y2="12" />
                 <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
               </svg>
-              <span>English</span>
+              <span>{language === "EN" ? "English" : "Hungarian (HU)"}</span>
             </button>
 
-            <button className={styles.footerIconButton} aria-label="Help Center">
+            <Link href="/contact" className={styles.footerIconButton} aria-label="Help Center" onClick={toggleMobileMenu}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="12" cy="12" r="10" />
                 <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
                 <line x1="12" y1="17" x2="12.01" y2="17" />
               </svg>
               <span>Help</span>
-            </button>
+            </Link>
 
-            <button className={styles.footerIconButton} aria-label="User Profile">
+            <Link href="/profile/user-123" className={styles.footerIconButton} aria-label="User Profile" onClick={toggleMobileMenu}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                 <circle cx="12" cy="7" r="4" />
               </svg>
               <span>Profile</span>
-            </button>
+            </Link>
           </div>
         </div>
       </div>

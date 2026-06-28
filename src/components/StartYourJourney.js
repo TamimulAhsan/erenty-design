@@ -114,7 +114,7 @@ export default function StartYourJourney() {
   };
 
   return (
-    <section className={styles.wrapper}>
+    <section id="how-it-works" className={styles.wrapper}>
       <div className={styles.container}>
         {/* Section Headline */}
         <h2 className={`${styles.headerTitle} h2`}>Start your journey</h2>
@@ -336,7 +336,7 @@ export default function StartYourJourney() {
             {/* Primary Pill CTA Button at the Bottom */}
             <div className={styles.ctaWrapper}>
               <Link
-                href="/see-fleets"
+                href="/fleets"
                 className={styles.primaryPillBtn}
               >
                 Confirm booking

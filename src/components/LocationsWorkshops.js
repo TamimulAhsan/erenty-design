@@ -505,7 +505,7 @@ export default function LocationsWorkshops() {
               </p>
             </div>
             <div className={styles.footerActions}>
-              <Link href="/service" className="btn-primary">
+              <Link href="/courier-plus" className="btn-primary">
                 Courier+
                 <svg
                   width="16"
@@ -521,9 +521,9 @@ export default function LocationsWorkshops() {
                   <polyline points="7 7 17 7 17 17" />
                 </svg>
               </Link>
-              <button className="btn-outline" onClick={() => setIsDrawerOpen(true)}>
+              <Link href="/repair-partners" className="btn-outline">
                 Book a service
-              </button>
+              </Link>
             </div>
           </div>
 

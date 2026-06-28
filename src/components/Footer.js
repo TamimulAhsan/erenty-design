@@ -67,8 +67,8 @@ export default function Footer() {
               <span className={styles.navHeader}>Company</span>
               <ul className={styles.navList}>
                 <li><Link href="/about">About Us</Link></li>
-                <li><Link href="/how-it-works">How It Works</Link></li>
-                <li><Link href="/for-business">For Business</Link></li>
+                <li><Link href="/#how-it-works">How It Works</Link></li>
+                <li><Link href="/business">For Business</Link></li>
                 <li><Link href="/blog">Blog</Link></li>
                 <li><Link href="/careers">Careers</Link></li>
               </ul>
@@ -77,10 +77,10 @@ export default function Footer() {
               <span className={styles.navHeader}>Services</span>
               <ul className={styles.navList}>
                 <li><Link href="/fleets">Fleet Subscriptions</Link></li>
-                <li><Link href="/service-plus">Courier+</Link></li>
+                <li><Link href="/courier-plus">Courier+</Link></li>
                 <li><Link href="/insurance">Insurance &amp; Coverage</Link></li>
-                <li><Link href="/maintenance">Maintenance</Link></li>
-                <li><Link href="/damage-protection">Damage Protection</Link></li>
+                <li><Link href="/repair-partners">Maintenance</Link></li>
+                <li><Link href="/insurance">Damage Protection</Link></li>
               </ul>
             </div>
             <div className={styles.navCol}>

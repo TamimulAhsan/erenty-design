@@ -164,7 +164,7 @@ export default function YourJourneyPartner() {
                       </div>
 
                       <div className={styles.ctaContainer}>
-                        <Link href="/see-fleets" className="btn-primary">
+                        <Link href={`/fleets/${bike.id === "cargo" ? "vok-s" : bike.id === "courier" ? "eleglide-m2" : bike.id === "scooter" ? "kukirin-g3-pro" : "duotts-c29-pro"}`} className="btn-primary">
                           Rent {bike.name}
                           <svg
                             width="18"
@@ -180,7 +180,7 @@ export default function YourJourneyPartner() {
                             <polyline points="12 5 19 12 12 19" />
                           </svg>
                         </Link>
-                        <Link href="/see-fleets" className="btn-ghost">
+                        <Link href="/fleets" className="btn-ghost">
                           View All
                         </Link>
                       </div>

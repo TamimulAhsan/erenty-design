@@ -38,7 +38,7 @@ export default function Hero() {
 
       {/* CTA buttons — bottom-left */}
       <div className={styles.ctaRow}>
-        <Link href="/see-fleets" className="btn-primary">
+        <Link href="/fleets" className="btn-primary">
           See Fleets
           <svg
             width="16"
@@ -54,7 +54,7 @@ export default function Hero() {
             <polyline points="12 5 19 12 12 19" />
           </svg>
         </Link>
-        <Link href="/service" className="btn-secondary dark">
+        <Link href="/courier-plus" className="btn-secondary dark">
           Courier+
         </Link>
       </div>
