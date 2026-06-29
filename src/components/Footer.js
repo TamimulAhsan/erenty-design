@@ -5,6 +5,26 @@ import Image from "next/image";
 import { CreditCard, Smartphone, Landmark, Wallet } from "lucide-react";
 import styles from "./Footer.module.css";
 
+const PARTNER_LOGOS = [
+  { src: "/fleetpartnerlogos/logo_vok-bikes.png", alt: "Vok Bikes" },
+  { src: "/fleetpartnerlogos/specialized-logo-png_seeklogo-130169.png", alt: "Specialized" },
+  { src: "/fleetpartnerlogos/znen_logo.jfif", alt: "ZNEN" },
+  { src: "/fleetpartnerlogos/Niu_Technologies_Logo.png", alt: "Niu Technologies" },
+  { src: "/fleetpartnerlogos/Koliken-nyeri-logo.png", alt: "Koliken" },
+  { src: "/fleetpartnerlogos/Merida_(Unternehmen)_logo.svg", alt: "Merida" },
+  { src: "/fleetpartnerlogos/Ridley_Bikes_Logo_.png", alt: "Ridley" },
+  { src: "/fleetpartnerlogos/Xiaomi-logo.jpg", alt: "Xiaomi" },
+  { src: "/fleetpartnerlogos/neuzer-logo350.png", alt: "Neuzer" },
+  { src: "/fleetpartnerlogos/tech2b_Logo_ESEL_2017.jpg", alt: "ESEL" },
+  { src: "/fleetpartnerlogos/479-4797688_bike-logo-png-for-kids-scott-bike-logo-png.png", alt: "Scott" },
+  { src: "/fleetpartnerlogos/duotts_logo.png", alt: "duotts" },
+  { src: "/fleetpartnerlogos/images.png", alt: "Fleet Partner" },
+  { src: "/fleetpartnerlogos/images (1).png", alt: "Fleet Partner" },
+  { src: "/fleetpartnerlogos/layout_hu_header_logo-300x80_1_default.png", alt: "Fleet Partner" },
+  { src: "/fleetpartnerlogos/logo.png", alt: "Fleet Partner" },
+  { src: "/fleetpartnerlogos/unnamed.png", alt: "Fleet Partner" }
+];
+
 export default function Footer() {
   const handleSubscribe = (e) => {
     e.preventDefault();
@@ -24,19 +44,6 @@ export default function Footer() {
               E-RENTY
               <span className={styles.tagline}>Fuel-Free. Stress-Free.</span>
             </Link>
-            <div className={styles.partnerBlock}>
-              <span className={styles.partnerLabel}>FLEET PARTNER</span>
-              <div className={styles.logoWrapper}>
-                <Image
-                  src="/images/duotts_logo.png"
-                  alt="DUOTTS Logo"
-                  width={110}
-                  height={24}
-                  className={styles.duottsLogo}
-                  style={{ objectFit: "contain" }}
-                />
-              </div>
-            </div>
           </div>
 
           {/* Zone 2 — Subscribe */}
@@ -102,18 +109,42 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Ghost Bike */}
-          <div className={styles.ghostBike} aria-hidden="true">
-            <div className={styles.ghostBikeGlow} />
-            <Image
-              src="/images/c29_pro.png"
-              alt=""
-              width={480}
-              height={360}
-              className={styles.ghostBikeImg}
-            />
-          </div>
+        </div>
+      </div>
 
+      {/* Partners Section */}
+      <div className={styles.partnersSection}>
+        <div className={styles.partnersBg} />
+        <div className={styles.partnersContent}>
+          <span className={styles.partnersLabel}>OUR FLEET PARTNERS</span>
+          <div className={styles.tickerContainer}>
+            <div className={styles.tickerTrack}>
+              {PARTNER_LOGOS.map((logo, index) => (
+                <div key={`logo-1-${index}`} className={styles.logoItem}>
+                  <Image
+                    src={logo.src}
+                    alt={logo.alt}
+                    width={120}
+                    height={40}
+                    className={styles.partnerLogoImg}
+                    style={{ objectFit: "contain" }}
+                  />
+                </div>
+              ))}
+              {PARTNER_LOGOS.map((logo, index) => (
+                <div key={`logo-2-${index}`} className={styles.logoItem}>
+                  <Image
+                    src={logo.src}
+                    alt={logo.alt}
+                    width={120}
+                    height={40}
+                    className={styles.partnerLogoImg}
+                    style={{ objectFit: "contain" }}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
@@ -150,6 +181,18 @@ export default function Footer() {
             <Link href="/cookies">Cookie Policy</Link>
           </div>
         </div>
+      </div>
+
+      {/* Single Unified Ghost Bike in background */}
+      <div className={styles.ghostBike} aria-hidden="true">
+        <div className={styles.ghostBikeGlow} />
+        <Image
+          src="/images/c29_pro.png"
+          alt=""
+          width={640}
+          height={480}
+          className={styles.ghostBikeImg}
+        />
       </div>
 
     </footer>

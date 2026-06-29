@@ -3,8 +3,7 @@
   border-top: 1px solid #DAE2DA;
   position: relative;
   overflow: hidden;
-  /* Desktop: exactly fills remaining viewport below navbar */
-  height: calc(100dvh - 72px);
+  height: 530px;
   display: flex;
   flex-direction: column;
 }
@@ -19,13 +18,14 @@
 /* ── Left Column (42%) ── */
 .leftCol {
   width: 42%;
-  padding: 48px 56px;
+  padding: 44px 56px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 30px;
   box-sizing: border-box;
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 
 .brandZone {
@@ -152,12 +152,13 @@
 /* ── Right Column (58%) ── */
 .rightCol {
   flex: 1;
-  padding: 48px 56px 48px 48px;
+  padding: 44px 56px 44px 48px;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   box-sizing: border-box;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  z-index: 3;
 }
 
 /* Nav Grid */
@@ -211,26 +212,26 @@
 /* Ghost Bike — large, angled, teal glow */
 .ghostBike {
   position: absolute;
-  bottom: -40px;
-  right: -100px;
-  z-index: 1;
+  bottom: 80px;
+  right: -80px;
+  z-index: 2;
   pointer-events: none;
-  transform: rotate(-8deg);
+  transform: rotate(-6deg);
   transform-origin: bottom right;
 }
 
 .ghostBikeGlow {
   position: absolute;
   inset: -60px;
-  background: radial-gradient(ellipse at 55% 55%, rgba(0, 216, 164, 0.20) 0%, rgba(0, 216, 164, 0.06) 45%, transparent 70%);
+  background: radial-gradient(ellipse at 55% 55%, rgba(0, 216, 164, 0.15) 0%, rgba(0, 216, 164, 0.04) 45%, transparent 70%);
   z-index: 2;
   pointer-events: none;
 }
 
 .ghostBikeImg {
-  opacity: 0.10;
+  opacity: 0.08;
   display: block;
-  width: 700px;
+  width: 780px;
   height: auto;
   position: relative;
   z-index: 1;
@@ -242,7 +243,8 @@
   border-top: 1px solid #DAE2DA;
   flex-shrink: 0;
   position: relative;
-  z-index: 2;
+  z-index: 3;
+  background: #FFFFFF;
 }
 
 .badgeRow {
@@ -318,6 +320,133 @@
 
 .legalLinks a:hover { color: #005B45; }
 
+/* ── Fleet Partners Marquee Section ── */
+.partnersSection {
+  padding: 24px 0;
+  border-top: 1px solid #DAE2DA;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  overflow: hidden;
+  position: relative;
+  /* CSS variables for responsive marquee spacing */
+  --marquee-gap: 48px;
+  --marquee-gap-half: 24px;
+}
+
+.partnersBg {
+  position: absolute;
+  inset: 0;
+  background-color: #FAFCFA;
+  z-index: 1;
+}
+
+.partnersContent {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  z-index: 3;
+}
+
+.partnersLabel {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #667370;
+}
+
+.tickerContainer {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  position: relative;
+}
+
+/* Gradient fade-out overlays */
+.tickerContainer::before,
+.tickerContainer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.tickerContainer::before {
+  left: 0;
+  background: linear-gradient(to right, #FAFCFA, transparent);
+}
+
+.tickerContainer::after {
+  right: 0;
+  background: linear-gradient(to left, #FAFCFA, transparent);
+}
+
+.tickerTrack {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+  gap: var(--marquee-gap);
+  padding-left: var(--marquee-gap-half);
+}
+
+.tickerContainer:hover .tickerTrack {
+  animation-play-state: paused;
+}
+
+.logoItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  width: 150px;
+  flex-shrink: 0;
+  background: #FFFFFF;
+  border: 1px solid #E8EFE8;
+  border-radius: 8px;
+  padding: 6px 16px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.logoItem:hover {
+  border-color: #00D8A4;
+  box-shadow: 0 4px 12px rgba(0, 216, 164, 0.1);
+  transform: translateY(-2px);
+}
+
+.partnerLogoImg {
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.logoItem:hover .partnerLogoImg {
+  opacity: 1;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - var(--marquee-gap-half)));
+  }
+}
+
 /* ── Responsive ── */
 
 @media (max-width: 991px) {
@@ -342,6 +471,25 @@
   .ghostBikeImg {
     width: 300px;
   }
+
+  .partnersSection {
+    --marquee-gap: 32px;
+    --marquee-gap-half: 16px;
+  }
+
+  .logoItem {
+    width: 130px;
+    height: 52px;
+  }
+
+  .tickerContainer::before,
+  .tickerContainer::after {
+    width: 80px;
+  }
+
+  .partnerLogoImg {
+    opacity: 1;
+  }
 }
 
 @media (max-width: 767px) {
@@ -358,6 +506,7 @@
     width: 100%;
     padding: 36px 24px;
     gap: 32px;
+    justify-content: flex-start;
   }
 
   .rightCol {
@@ -409,6 +558,22 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 12px;
+  }
+
+  .partnersSection {
+    --marquee-gap: 20px;
+    --marquee-gap-half: 10px;
+  }
+
+  .logoItem {
+    width: 110px;
+    height: 46px;
+    padding: 4px 10px;
+  }
+
+  .tickerContainer::before,
+  .tickerContainer::after {
+    width: 40px;
   }
 }
 

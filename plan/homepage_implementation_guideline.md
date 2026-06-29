@@ -189,25 +189,39 @@ Below is the structure of the homepage matched with the specific design system t
 - **View All Link**: A centered link below the list ("View all FAQs" with an arrow icon) that transitions to primary green on hover and shifts the arrow rightwards.
 
 ### I. Footer
-- **Layout**: Split-field two-column architecture. Left column at 42% width, right column takes the remaining 58%. No drawn divider lines — the split is purely positional.
-- **Styling**: White background (`#FFFFFF`) with a single 1px top border (`#DAE2DA`). No internal dividing lines anywhere.
-- **Height**: Desktop: `height: calc(100dvh - 72px)` — fills exactly the visible viewport below the sticky navbar. Tablet (≤991px) and mobile (≤767px): `height: auto`.
+- **Layout**: Three-level vertical stack:
+  1. `.inner`: Split-field two-column top section (Left column at 42% width, Right column at 58% width).
+  2. `.partnersSection`: Infinite scrolling partner logos marquee.
+  3. `.bottomBar`: Solid white bottom legal and payments bar.
+- **Styling**: White background (`#FFFFFF`) on top/bottom sections, light sage background (`#FAFCFA`) on the middle partners section, with borders separating sections (`#DAE2DA`).
+- **Height**: Desktop: `530px` (optimized to avoid vertical stretching and eliminate massive empty space). Tablet (≤991px) and mobile (≤767px): `height: auto` with stacked flex layouts.
 - **Left Column (Brand Field)**:
-  - Logo: `E-RENTY` in Cruiser 24px, `var(--foreground)`, uppercase, `letter-spacing: 0.05em` — identical spec to the navbar logo. The tagline `"Fuel-Free. Stress-Free."` sits as a `<span>` inside the same `<Link>` element, Inter 11px, 500 weight, `#667370`, `letter-spacing: 0.04em`, `text-transform: none`. Both stacked via `display: flex; flex-direction: column; align-items: flex-start; gap: 2px; line-height: 1`.
-  - Fleet partner block: `FLEET PARTNER` eyebrow (11px, uppercase, `#667370`) + DUOTTS logo (grayscale at rest `filter: grayscale(100%) opacity(0.5)`, full color on hover over 300ms).
-  - Subscribe zone anchored to the bottom via `justify-content: space-between` on the left column: `STAY UPDATED` label (`#005B45`, 13px, uppercase), inline email input + `Subscribe` button (input flex-grows, button fixed 110px, joined 12px border-radius), legal note 11px at 65% opacity.
+  - Vertical layout with a consistent `gap: 30px` for unified grouping of brand identity and user actions.
+  - Logo: `E-RENTY` in Cruiser 24px, uppercase, identical spec to the navbar. Tagline `"Fuel-Free. Stress-Free."` (Inter 11px, 500 weight, `#667370`) stacked vertically inside the same Link element.
+  - Subscribe zone: `STAY UPDATED` label (`#005B45`, 13px, uppercase), inline email input + `Subscribe` button (input flex-grows, button fixed 110px, joined 12px border-radius), legal note 11px at 65% opacity.
 - **Right Column (Nav Field)**:
-  - 3-column navigation grid (gap: 40px): Company / Services / Contact.
+  - 3-column navigation grid: Company / Services / Contact.
   - Column headers: Inter 12px, 600 weight, uppercase, 0.08em tracking, `#143132`, `margin-bottom: 18px`.
   - Links: Inter 14px, 400 weight, `#667370`, hover → `#00D8A4` over 200ms.
-  - Ghost bike: `c29_pro.png` positioned absolutely bottom-right, `rotate(-8deg)` from `transform-origin: bottom right`, `width: 700px`, `opacity: 0.10`, `filter: hue-rotate(140deg) saturate(0.5) brightness(0.85)`. Radial gradient glow (`rgba(0,216,164,0.20)` → transparent) sits as a sibling div behind it. Nav grid at `z-index: 2`, ghost bike at `z-index: 1`.
+- **Fleet Partners Marquee Section**:
+  - Mapped List: Mapped all 17 partner logo assets from `public/fleetpartnerlogos/` into an infinite marquee loop track.
+  - Infinite Marquee Animation: Auto-scrolling ticker track (`marquee` animation over 35s) translating by `calc(-50% - var(--marquee-gap-half))` to ensure seamless looping without layout shifts, utilizing responsive CSS custom properties (`--marquee-gap` and `--marquee-gap-half`).
+  - Edge Fades: Pseudo-elements (`::before` / `::after` inside `.tickerContainer` fading out to `#FAFCFA`) on the left and right edges. Width is `120px` on desktop, `80px` on tablet, and `40px` on mobile to optimize screen real estate on smaller viewports.
+  - Premium Interactive Cards: Each logo is placed inside a solid white box card (`.logoItem`). Default card dimensions are `150px` width by `56px` height, scaling down to `130px` x `52px` on tablet and `110px` x `46px` on mobile.
+  - Opacity & Interactions: Baseline logo image opacity is `0.8` on desktop, lifting to `1.0` on hover. On tablet and mobile viewports, the default image opacity is set directly to `1.0` to compensate for the lack of touch-hover states. Hovering anywhere on the desktop track pauses marquee scrolling.
+- **Seamless Unified Watermark**:
+  - A single large, subtle watermark cycle (`c29_pro.png`, width `780px`, opacity `0.08`) is rendered at the root footer level (`.ghostBike`) with a radial glow sibling (`rgba(0, 216, 164, 0.15)`).
+  - Positioning: Placed absolutely at `bottom: 80px` and rotated at `rotate(-6deg)` from `transform-origin: bottom right`.
+  - Layering & Stacking Context: To keep the white logo cards 100% solid white and text legible, the layers are separated:
+    - `.partnersBg` (middle section background): `z-index: 1`.
+    - `.ghostBike` (watermark): `z-index: 2` (renders on top of the partners background).
+    - `.inner` columns, `.partnersContent` (logos and labels wrapper), and `.bottomBar`: `z-index: 3`.
+    - This allows the watermark to bleed seamlessly behind the top navigation columns and down into the partners section background, while remaining cleanly hidden behind logo cards and text.
 - **Navbar mirror effect (mobile only)**:
-  - When the footer scrolls into view (footer `getBoundingClientRect().top ≤ 120`), a `footerNear` state triggers in the navbar.
-  - On mobile (≤992px only via CSS), the tagline `"Fuel-Free. Stress-Free."` fades in and slides up (`opacity: 0 → 1`, `translateY(-4px) → 0`, 300ms) beneath `E-RENTY` in the navbar — visually mirroring the footer logo appearing under the navbar.
-  - On desktop the tagline is `display: none` regardless of scroll state.
-- **Bottom Legal Bar** (full-width, `border-top: 1px solid #DAE2DA`, `z-index: 2`):
-  - Payment row (centered): `Accepted Payments` label + four lucide-react chips — `CreditCard` / Card, `Smartphone` / Google Pay, `Wallet` / Apple Pay, `Landmark` / Bank Transfer. Chips: `#F7FAF7` bg, `1px #DAE2DA` border, `8px` radius, Inter 12px 500 weight, `#143132`. Hover → `#00D8A4` border + `#005B45` text. On mobile, chips wrap to two rows centered.
-  - Legal row: copyright left (`© 2025 E-Renty. All rights reserved.`) + Privacy Policy · Terms of Service · Cookie Policy right. Inter 13px, `#667370`, hover → `#005B45`.
+  - When the footer scrolls into view, a `footerNear` state triggers in the navbar. Tagline `"Fuel-Free. Stress-Free."` slides up and fades in beneath `E-RENTY` in the mobile navbar.
+- **Bottom Legal Bar** (full-width, `border-top: 1px solid #DAE2DA`, `z-index: 3`, solid background `#FFFFFF`):
+  - Payment row (centered): `Accepted Payments` label + four lucide-react chips — Card, Google Pay, Apple Pay, Bank Transfer. Chips: `#F7FAF7` bg, `1.5px #DAE2DA` border, `8px` radius. Hover → `#00D8A4` border + `#005B45` text.
+  - Legal row: copyright left + Privacy Policy · Terms of Service · Cookie Policy right.
 - **Responsive**:
-  - Tablet (≤991px): left column 40%, nav grid 2 columns, ghost bike scales to 300px.
-  - Mobile (≤767px): single column stack, ghost bike hidden, subscribe form full-width vertical stack, nav grid stays 2 columns (Company + Services / Contact), payment chips wrap centered.
+  - Tablet (≤991px): left column 40%, nav grid 2 columns, marquee gap/overlays scaled down.
+  - Mobile (≤767px): single column stack, ghost bike hidden, subscribe form full-width vertical stack, nav grid stays 2 columns (Company + Services / Contact), payment chips wrap centered, marquee elements fully scaled.
