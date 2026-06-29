@@ -19,8 +19,8 @@ export default async function FleetDetailPage({ params }) {
         <p className="body-default" style={{ marginBottom: "32px", color: "var(--muted-foreground)" }}>
           Detailed fleet specifications and custom lease options for the <strong>{displayName}</strong>.
         </p>
-        <Link href="/" className="btn-primary">
-          ← Back to Homepage
+        <Link href="/fleets" className="btn-primary">
+          ← Back to Fleets
         </Link>
       </main>
       <Footer />

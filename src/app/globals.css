@@ -77,6 +77,18 @@
   background: #111111;
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
+html.modalOpen {
+  overflow: hidden;
+}
+
+html.modalOpen body {
+  overflow: hidden;
+}
+
 html,
 body {
   min-height: 100vh;

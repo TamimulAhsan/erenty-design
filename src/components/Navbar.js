@@ -13,7 +13,7 @@ const fleetList = [
   { name: "DUOTTS C29 Pro", isElectric: true, image: "/images/c29_pro.png", slug: "duotts-c29-pro" },
 ];
 
-export default function Navbar() {
+export default function Navbar({ forceSolid = false, transparentLight = false }) {
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const [hoverTimeout, setHoverTimeout] = useState(null);
   const [isAtTop, setIsAtTop] = useState(true);
@@ -71,7 +71,9 @@ export default function Navbar() {
   };
 
   // Safe checks to avoid hydration mismatches
-  const activeIsAtTop = mounted ? isAtTop : true;
+  const isTransparentDark = !forceSolid && !transparentLight && (mounted ? isAtTop : true);
+  const isTransparentLight = !forceSolid && transparentLight && (mounted ? isAtTop : true);
+  const isNavbarScrolled = mounted ? !isAtTop : false;
   const showMegaMenu = mounted ? !hasScrolled : true;
   const showBusinessBtnLeft = mounted ? hasScrolled : false;
   const showBusinessBtn = mounted ? !hasScrolled : true;
@@ -100,7 +102,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className={`${styles.header} ${activeIsAtTop ? styles.headerTransparent : ""}`}>
+    <header className={`${styles.header} ${isTransparentDark ? styles.headerTransparent : ""} ${isTransparentLight ? styles.headerTransparentLight : ""} ${isNavbarScrolled ? styles.headerScrolled : ""}`}>
       <div className={styles.container}>
         {/* Left Side: Desktop Navigation Links */}
         <nav className={styles.nav}>
