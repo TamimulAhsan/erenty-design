@@ -1,0 +1,412 @@
+/* CSS Module for the Invoice Page */
+
+.invoicePage {
+  background-color: #0F172A; /* Rich slate dark background on screen */
+  color: #1E293B; /* Slate-800 text inside the white invoice sheet */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 60px;
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* 1. Action Bar */
+.actionBar {
+  width: 100%;
+  background-color: #1E293B;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.actionBarContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.backButton {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.backButton:hover {
+  color: #FFFFFF;
+}
+
+.printBtn {
+  background-color: #00D8A4; /* E-Renty signature green */
+  color: #0F172A;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0, 216, 164, 0.2);
+}
+
+.printBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 216, 164, 0.3);
+  background-color: #00f0b6;
+}
+
+.printBtn:active {
+  transform: translateY(0);
+}
+
+/* 2. Invoice Sheet (A4 ratio wrapper) */
+.invoiceSheet {
+  background-color: #FFFFFF;
+  width: 100%;
+  max-width: 800px;
+  margin: 40px auto 0 auto;
+  padding: 48px;
+  border-radius: 12px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+  position: relative;
+  box-sizing: border-box;
+}
+
+.sheetHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  margin-bottom: 30px;
+}
+
+.logoAndContact {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.logoText {
+  font-family: var(--font-cruiser), sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #0F172A;
+  text-transform: uppercase;
+}
+
+.companyInfo {
+  font-size: 12px;
+  color: #64748B;
+  line-height: 1.5;
+}
+
+.companyInfo p {
+  margin: 0;
+}
+
+.invoiceMeta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.invoiceTitle {
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  margin: 0 0 12px 0;
+  color: #0F172A;
+}
+
+.metaGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.metaRow {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 13px;
+  gap: 12px;
+}
+
+.metaLabel {
+  color: #64748B;
+  font-weight: 500;
+}
+
+.metaValue {
+  color: #0F172A;
+  font-weight: 600;
+}
+
+.statusBadge {
+  background-color: #E6FFFA; /* Light teal bg */
+  color: #008767;
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid #B2F5EA;
+  display: inline-block;
+  line-height: 1.2;
+}
+
+.divider {
+  height: 1px;
+  background-color: #E2E8F0;
+  width: 100%;
+  margin: 24px 0;
+}
+
+/* 3. Billing & Payment section */
+.billingSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 30px;
+}
+
+.billTo h3,
+.paymentInfo h3 {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #94A3B8;
+  margin: 0 0 10px 0;
+}
+
+.customerName {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0F172A;
+  margin: 0 0 4px 0;
+}
+
+.fleetInfo {
+  font-size: 13px;
+  color: #64748B;
+  margin: 0;
+}
+
+.payMethodDetail {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  color: #334155;
+  font-weight: 500;
+}
+
+/* 4. VIN / Frame Numbers Box */
+.vinSection {
+  background-color: #F8FAFC;
+  border: 1px dashed #CBD5E1;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 30px;
+}
+
+.vinTitle {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #64748B;
+  margin: 0 0 10px 0;
+}
+
+.vinGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+}
+
+.vinItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #334155;
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+.vinNumber {
+  color: #00D8A4;
+  font-weight: 700;
+}
+
+.vinCode {
+  font-family: monospace;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* 5. Invoice Items Table */
+.invoiceTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+}
+
+.invoiceTable th {
+  background-color: #F1F5F9;
+  color: #475569;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 10px 14px;
+  border-bottom: 2px solid #E2E8F0;
+}
+
+.invoiceTable td {
+  padding: 16px 14px;
+  border-bottom: 1px solid #E2E8F0;
+  vertical-align: top;
+  font-size: 13px;
+  color: #334155;
+}
+
+.itemTagline {
+  font-size: 11px;
+  color: #64748B;
+  margin-top: 4px;
+  font-weight: 400;
+}
+
+/* 6. Summary Block */
+.summaryContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 40px;
+}
+
+.summaryBox {
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #64748B;
+}
+
+.discountRow {
+  color: #EF4444;
+  font-weight: 500;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 800;
+  color: #0F172A;
+  border-top: 1.5px solid #E2E8F0;
+  padding-top: 12px;
+  margin-top: 4px;
+}
+
+.totalRow span:last-child {
+  color: #008767;
+  font-size: 18px;
+}
+
+/* 7. Footer */
+.sheetFooter {
+  border-top: 1px solid #E2E8F0;
+  padding-top: 24px;
+  text-align: center;
+}
+
+.thankYou {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0F172A;
+  margin: 0 0 6px 0;
+}
+
+.footerTerms {
+  font-size: 11px;
+  color: #94A3B8;
+  line-height: 1.5;
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   PRINT MEDIA QUERY
+   ========================================================================== */
+@media print {
+  body, .invoicePage {
+    background-color: #FFFFFF !important;
+    color: #1E293B !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .actionBar {
+    display: none !important;
+  }
+
+  .invoiceSheet {
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+  }
+
+  /* Force background colors to print on safari/chrome */
+  .statusBadge {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    background-color: #E6FFFA !important;
+    color: #008767 !important;
+    border: 1px solid #B2F5EA !important;
+  }
+
+  .vinSection {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    background-color: #F8FAFC !important;
+    border: 1px dashed #CBD5E1 !important;
+  }
+
+  .invoiceTable th {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    background-color: #F1F5F9 !important;
+  }
+
+  .printBtn {
+    display: none !important;
+  }
+
+  /* Force page size configuration */
+  @page {
+    size: A4;
+    margin: 20mm;
+  }
+}
