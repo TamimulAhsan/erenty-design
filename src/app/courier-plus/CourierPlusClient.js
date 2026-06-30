@@ -68,7 +68,11 @@ const COMPARISON_ROWS = [
 
 export default function CourierPlusClient() {
   const tableWrapperRef = useRef(null);
+  const plansScrollRef = useRef(null);
+  const valueStripRef = useRef(null);
   const [tableScrollShadow, setTableScrollShadow] = useState(false);
+  const [activePlanIndex, setActivePlanIndex] = useState(1);
+  const [valueStripVisible, setValueStripVisible] = useState(false);
   const isAnnual = false;
 
   const handleTableScroll = () => {
@@ -78,14 +82,86 @@ export default function CourierPlusClient() {
     }
   };
 
+  const handlePlansScroll = () => {
+    if (plansScrollRef.current) {
+      const container = plansScrollRef.current;
+      const containerRect = container.getBoundingClientRect();
+      const containerCenter = containerRect.left + containerRect.width / 2;
+
+      const cards = container.children;
+      let minDistance = Infinity;
+      let activeIndex = 0;
+
+      // Iterate through card elements to find the one closest to the container center
+      for (let i = 0; i < PLANS.length; i++) {
+        const card = cards[i];
+        if (card) {
+          const cardRect = card.getBoundingClientRect();
+          const cardCenter = cardRect.left + cardRect.width / 2;
+          const distance = Math.abs(cardCenter - containerCenter);
+          if (distance < minDistance) {
+            minDistance = distance;
+            activeIndex = i;
+          }
+        }
+      }
+      setActivePlanIndex(activeIndex);
+    }
+  };
+
+  const handleIndicatorClick = (index) => {
+    setActivePlanIndex(index);
+    if (plansScrollRef.current) {
+      const container = plansScrollRef.current;
+      const cards = container.children;
+      if (cards && cards[index]) {
+        const card = cards[index];
+        const containerWidth = container.offsetWidth;
+        const cardWidth = card.offsetWidth;
+        const cardLeft = card.offsetLeft;
+        container.scrollTo({
+          left: cardLeft - (containerWidth - cardWidth) / 2,
+          behavior: "smooth"
+        });
+      }
+    }
+  };
+
   useEffect(() => {
     const el = tableWrapperRef.current;
     if (el) {
       handleTableScroll();
       el.addEventListener("scroll", handleTableScroll);
     }
+
+    // Smooth scroll to center the middle card ("Extra") on mobile viewport mount
+    if (plansScrollRef.current && window.innerWidth <= 768) {
+      const container = plansScrollRef.current;
+      const cards = container.children;
+      if (cards && cards[1]) {
+        const card = cards[1];
+        const containerWidth = container.offsetWidth;
+        const cardWidth = card.offsetWidth;
+        const cardLeft = card.offsetLeft;
+        container.scrollLeft = cardLeft - (containerWidth - cardWidth) / 2;
+      }
+    }
+
+    const valueStripEl = valueStripRef.current;
+    let valueObserver;
+    if (valueStripEl) {
+      valueObserver = new IntersectionObserver(
+        ([entry]) => {
+          setValueStripVisible(entry.isIntersecting);
+        },
+        { threshold: 0.1 }
+      );
+      valueObserver.observe(valueStripEl);
+    }
+
     return () => {
       if (el) el.removeEventListener("scroll", handleTableScroll);
+      if (valueObserver) valueObserver.disconnect();
     };
   }, []);
 
@@ -193,7 +269,10 @@ export default function CourierPlusClient() {
       </div>
 
       {/* B. Merged Value Propositions Strip */}
-      <section className={styles.valueStrip}>
+      <section
+        ref={valueStripRef}
+        className={`${styles.valueStrip} ${valueStripVisible ? styles.animated : ""}`}
+      >
         <div className={styles.valueContainer}>
           <div className={styles.benefitGrid}>
             <div className={styles.benefitCard}>
@@ -277,11 +356,17 @@ export default function CourierPlusClient() {
             </div>
           </div>
 
-          <div className={styles.plansGrid}>
-            {PLANS.map((plan) => (
+          <div
+            ref={plansScrollRef}
+            onScroll={handlePlansScroll}
+            className={styles.plansGrid}
+          >
+            {PLANS.map((plan, idx) => (
               <div
                 key={plan.id}
-                className={`${styles.planCard} ${plan.featured ? styles.featuredCard : ""}`}
+                className={`${styles.planCard} ${plan.featured ? styles.featuredCard : ""} ${
+                  activePlanIndex === idx ? styles.activeCard : ""
+                }`}
               >
                 {plan.featured && (
                   <span className={styles.featuredBadge}>Most popular</span>
@@ -334,6 +419,19 @@ export default function CourierPlusClient() {
                   {plan.cta}
                 </Link>
               </div>
+            ))}
+          </div>
+
+          <div className={styles.plansIndicatorWrapper}>
+            {PLANS.map((_, idx) => (
+              <button
+                key={idx}
+                className={`${styles.indicatorDot} ${
+                  activePlanIndex === idx ? styles.indicatorActive : ""
+                }`}
+                onClick={() => handleIndicatorClick(idx)}
+                aria-label={`Go to plan ${idx + 1}`}
+              />
             ))}
           </div>
         </div>

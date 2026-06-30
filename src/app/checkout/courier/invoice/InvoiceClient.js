@@ -254,42 +254,44 @@ export default function InvoiceClient() {
           </div>
         </div>
 
-        <table className={styles.invoiceTable}>
-          <thead>
-            <tr>
-              <th align="left">Description</th>
-              <th align="center">Billing Cycle</th>
-              <th align="right">Unit Price</th>
-              <th align="center">Qty</th>
-              <th align="right">Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td align="left">
-                <strong>Courier+ {selectedPlan.name} Subscription</strong>
-                <div className={styles.itemTagline}>{selectedPlan.tagline}</div>
-              </td>
-              <td align="center">{getCycleDisplayName()}</td>
-              <td align="right">{formatPrice(selectedPlan.price * multiplier)} Ft</td>
-              <td align="center">{vehiclesCount}</td>
-              <td align="right">{formatPrice(basePlanPricePeriod)} Ft</td>
-            </tr>
-
-            {activeAddonsList.map((addon, idx) => (
-              <tr key={idx}>
-                <td align="left">
-                  <strong>+ {addon.name} Add-on</strong>
-                  <div className={styles.itemTagline}>Flat monthly accessory fee</div>
-                </td>
-                <td align="center">Monthly</td>
-                <td align="right">{formatPrice(addon.price)} Ft</td>
-                <td align="center">{vehiclesCount}</td>
-                <td align="right">{formatPrice(addon.total)} Ft</td>
+        <div className={styles.invoiceTableWrapper}>
+          <table className={styles.invoiceTable}>
+            <thead>
+              <tr>
+                <th align="left">Description</th>
+                <th align="center">Billing Cycle</th>
+                <th align="right">Unit Price</th>
+                <th align="center">Qty</th>
+                <th align="right">Total</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              <tr>
+                <td align="left">
+                  <strong>Courier+ {selectedPlan.name} Subscription</strong>
+                  <div className={styles.itemTagline}>{selectedPlan.tagline}</div>
+                </td>
+                <td align="center">{getCycleDisplayName()}</td>
+                <td align="right">{formatPrice(selectedPlan.price * multiplier)} Ft</td>
+                <td align="center">{vehiclesCount}</td>
+                <td align="right">{formatPrice(basePlanPricePeriod)} Ft</td>
+              </tr>
+
+              {activeAddonsList.map((addon, idx) => (
+                <tr key={idx}>
+                  <td align="left">
+                    <strong>+ {addon.name} Add-on</strong>
+                    <div className={styles.itemTagline}>Flat monthly accessory fee</div>
+                  </td>
+                  <td align="center">Monthly</td>
+                  <td align="right">{formatPrice(addon.price)} Ft</td>
+                  <td align="center">{vehiclesCount}</td>
+                  <td align="right">{formatPrice(addon.total)} Ft</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
         <div className={styles.summaryContainer}>
           <div className={styles.summaryBox}>

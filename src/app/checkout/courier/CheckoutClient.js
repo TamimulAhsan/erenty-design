@@ -290,7 +290,7 @@ export default function CheckoutClient() {
       <header className={styles.checkoutHeader}>
         <Link href="/courier-plus" className={styles.logoArea}>
           <span className={styles.logoText}>E-RENTY</span>
-          <span className={styles.checkoutBadge}>Checkout</span>
+          {step < 3 && <span className={styles.checkoutBadge}>Checkout</span>}
         </Link>
 
         {step < 3 ? (
@@ -320,7 +320,12 @@ export default function CheckoutClient() {
               </div>
             </div>
             <div className={styles.progressStepsMobile}>
-              Step {step} of 2: {step === 1 ? "Configure" : "Payment"}
+              <span className={styles.mobileStepLabelFull}>
+                Step {step} of 2: {step === 1 ? "Configure" : "Payment"}
+              </span>
+              <span className={styles.mobileStepLabelShort}>
+                Step {step}/2
+              </span>
             </div>
           </>
         ) : (
@@ -930,7 +935,7 @@ export default function CheckoutClient() {
                   Your {selectedPlan.name} plan is now active. Our team will be in touch within 24 hours to get you started.
                 </p>
                 <div className={styles.confirmActions}>
-                  <Link href="/profile" className="btn-primary">
+                  <Link href="/profile/user-123" className="btn-primary">
                     Go to dashboard ➔
                   </Link>
                   <button
@@ -1063,7 +1068,7 @@ export default function CheckoutClient() {
                   </p>
                 </div>
                 <div>
-                  <Link href="/profile" className={styles.addMoreLink}>
+                  <Link href="/profile/user-123" className={styles.addMoreLink}>
                     Go to dashboard ➔
                   </Link>
                 </div>
@@ -1215,45 +1220,47 @@ export default function CheckoutClient() {
                 </div>
               </div>
 
-              <table className={styles.invoiceTable}>
-                <thead>
-                  <tr>
-                    <th align="left">Description</th>
-                    <th align="center">Billing Cycle</th>
-                    <th align="right">Unit Price</th>
-                    <th align="center">Qty</th>
-                    <th align="right">Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td align="left">
-                      <strong>Courier+ {selectedPlan.name} Subscription</strong>
-                      <div className={styles.itemTagline}>{selectedPlan.tagline}</div>
-                    </td>
-                    <td align="center">{getCycleDisplayName()}</td>
-                    <td align="right">{formatPrice(selectedPlan.price * multiplier)} Ft</td>
-                    <td align="center">{vehicles}</td>
-                    <td align="right">{formatPrice(basePlanPricePeriod)} Ft</td>
-                  </tr>
+              <div className={styles.invoiceTableWrapper}>
+                <table className={styles.invoiceTable}>
+                  <thead>
+                    <tr>
+                      <th align="left">Description</th>
+                      <th align="center">Billing Cycle</th>
+                      <th align="right">Unit Price</th>
+                      <th align="center">Qty</th>
+                      <th align="right">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td align="left">
+                        <strong>Courier+ {selectedPlan.name} Subscription</strong>
+                        <div className={styles.itemTagline}>{selectedPlan.tagline}</div>
+                      </td>
+                      <td align="center">{getCycleDisplayName()}</td>
+                      <td align="right">{formatPrice(selectedPlan.price * multiplier)} Ft</td>
+                      <td align="center">{vehicles}</td>
+                      <td align="right">{formatPrice(basePlanPricePeriod)} Ft</td>
+                    </tr>
 
-                  {Object.keys(addOns).map(
-                    (key) =>
-                      addOns[key] && (
-                        <tr key={key}>
-                          <td align="left">
-                            <strong>+ {ADD_ONS[key].name} Add-on</strong>
-                            <div className={styles.itemTagline}>Flat monthly accessory fee</div>
-                          </td>
-                          <td align="center">Monthly</td>
-                          <td align="right">{formatPrice(ADD_ONS[key].price)} Ft</td>
-                          <td align="center">{vehicles}</td>
-                          <td align="right">{formatPrice(ADD_ONS[key].price * vehicles)} Ft</td>
-                        </tr>
-                      )
-                  )}
-                </tbody>
-              </table>
+                    {Object.keys(addOns).map(
+                      (key) =>
+                        addOns[key] && (
+                          <tr key={key}>
+                            <td align="left">
+                              <strong>+ {ADD_ONS[key].name} Add-on</strong>
+                              <div className={styles.itemTagline}>Flat monthly accessory fee</div>
+                            </td>
+                            <td align="center">Monthly</td>
+                            <td align="right">{formatPrice(ADD_ONS[key].price)} Ft</td>
+                            <td align="center">{vehicles}</td>
+                            <td align="right">{formatPrice(ADD_ONS[key].price * vehicles)} Ft</td>
+                          </tr>
+                        )
+                    )}
+                  </tbody>
+                </table>
+              </div>
 
               <div className={styles.summaryContainer}>
                 <div className={styles.summaryBox}>

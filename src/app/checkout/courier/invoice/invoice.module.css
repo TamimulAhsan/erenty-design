@@ -410,3 +410,76 @@
     margin: 20mm;
   }
 }
+
+/* Responsive Overrides */
+@media (max-width: 768px) {
+  .invoiceSheet {
+    margin: 16px auto 0 auto;
+    padding: 24px 16px;
+    border-radius: 8px;
+    width: calc(100% - 32px);
+  }
+
+  .sheetHeader {
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .invoiceMeta {
+    align-items: flex-start;
+    text-align: left;
+    width: 100%;
+  }
+
+  .metaRow {
+    justify-content: flex-start;
+  }
+
+  .billingSection {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .vinGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .invoiceTableWrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 24px;
+    border: 1px solid #E2E8F0;
+    border-radius: 6px;
+  }
+
+  .invoiceTable {
+    width: 100%;
+    min-width: 500px;
+    margin-bottom: 0;
+  }
+
+  .invoiceTable th,
+  .invoiceTable td {
+    padding: 12px 10px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 576px) {
+  .actionBar {
+    padding: 12px 16px;
+  }
+  
+  .actionBarContainer {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  
+  .printBtn {
+    width: 100%;
+    justify-content: center;
+  }
+}

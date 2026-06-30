@@ -359,13 +359,39 @@
   border: 1px solid var(--border);
   border-radius: var(--radius-xl);
   padding: 28px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  opacity: 0;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.2s ease,
+              border-color 0.2s ease;
 }
 
-.benefitCard:hover {
+/* Zigzag offsets: odd cards slide in from left, even cards slide in from right */
+.benefitCard:nth-child(odd) {
+  transform: translateX(-60px);
+}
+
+.benefitCard:nth-child(even) {
+  transform: translateX(60px);
+}
+
+/* Staggered entrance delays */
+.valueStrip.animated .benefitCard:nth-child(1) { transition-delay: 0.1s; }
+.valueStrip.animated .benefitCard:nth-child(2) { transition-delay: 0.2s; }
+.valueStrip.animated .benefitCard:nth-child(3) { transition-delay: 0.3s; }
+.valueStrip.animated .benefitCard:nth-child(4) { transition-delay: 0.4s; }
+
+/* In-view entrance active state */
+.valueStrip.animated .benefitCard {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Premium hover effect when visible */
+.valueStrip.animated .benefitCard:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-card);
   border-color: rgba(0, 216, 164, 0.3);
@@ -1074,24 +1100,98 @@
   }
 }
 
+/* Pricing Plans Scroll Indicator Dots */
+.plansIndicatorWrapper {
+  display: none;
+}
+
+.indicatorDot {
+  background: none;
+  border: none;
+}
+
 @media (max-width: 768px) {
   .hero {
     padding-top: 100px;
-    padding-bottom: 60px;
+    padding-bottom: 140px; /* Cover half of stats card */
+  }
+
+  .heroStatsStrip {
+    margin-top: -100px; /* Pull stats card up to overlap the hero background */
   }
 
   .heroTitle {
     font-size: 40px !important;
   }
 
+  /* Horizontal plans scroller on mobile/tablet viewports */
   .plansGrid {
-    grid-template-columns: 1fr;
-    gap: var(--space-6);
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 24px 7%; /* Expose corners of adjacent cards */
+    gap: 16px;
+    width: 100%;
+    margin: 0 auto;
+    -webkit-overflow-scrolling: touch;
+    /* Hide scrollbars */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .plansGrid::-webkit-scrollbar {
+    display: none;
   }
 
   .plansGrid > div:last-child {
-    grid-column: span 1;
-    max-width: 100%;
+    grid-column: auto;
+    max-width: none;
+    margin: 0;
+  }
+
+  .planCard {
+    flex: 0 0 86%;
+    width: 86%;
+    scroll-snap-align: center;
+    transform: scale(0.92);
+    opacity: 0.7;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Centered/active plan card pops up and stands out */
+  .activeCard {
+    transform: scale(1.02);
+    opacity: 1;
+    box-shadow: var(--shadow-elevated) !important;
+  }
+
+  .plansIndicatorWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 24px;
+    width: 100%;
+  }
+
+  .indicatorDot {
+    width: 20px;
+    height: 4px;
+    border-radius: var(--radius-full);
+    background-color: var(--border);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .indicatorActive {
+    background-color: var(--primary);
+    width: 36px;
   }
 
   .businessCard {
@@ -1099,18 +1199,34 @@
     border-radius: var(--radius-xl);
   }
 
-  /* Comparison table sticky column on mobile horizontal scroll */
+  /* Comparison table mobile optimization */
   .tableWrapper {
     position: relative;
+    box-shadow: none;
   }
 
+  .comparisonTable {
+    min-width: auto;
+    width: 100%;
+  }
+
+  /* Lock labels column sticky on the left side */
   .comparisonTable th:first-child,
   .comparisonTable td:first-child {
     position: sticky;
     left: 0;
-    background-color: #FFFFFF;
+    background-color: var(--card); /* Match card background */
     z-index: 10;
-    box-shadow: 4px 0 8px -4px rgba(0, 0, 0, 0.08);
+    box-shadow: 4px 0 8px -4px rgba(0, 0, 0, 0.12);
+    border-right: 1px solid var(--border);
+    /* Set fixed width and enable text wrapping for labels */
+    width: 130px !important;
+    min-width: 130px !important;
+    max-width: 130px !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    font-size: 12px;
+    padding: 12px 10px !important;
   }
 
   .tableHeaderRow th:first-child {
@@ -1118,7 +1234,32 @@
   }
 
   .bodyRow:nth-child(even) td:first-child {
-    background-color: #F8FAF8;
+    background-color: var(--muted); /* Ensure alternating colors blend nicely */
+  }
+
+  /* Scale plan value columns appropriately */
+  .planHeaderCell,
+  .valueCell {
+    width: 90px !important;
+    min-width: 90px !important;
+    max-width: 90px !important;
+    padding: 12px 8px !important;
+    font-size: 12px;
+  }
+
+  .tableCtaRow td {
+    padding: 16px 4px !important;
+  }
+
+  /* Ensure button styling fits mobile cells */
+  .tableCtaRow td a {
+    font-size: 11px !important;
+    padding: 8px 4px !important;
+    white-space: normal !important;
+    line-height: 1.2 !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -1130,6 +1271,14 @@
 }
 
 @media (max-width: 480px) {
+  .hero {
+    padding-bottom: 220px; /* Taller padding for single-column stats overlap */
+  }
+
+  .heroStatsStrip {
+    margin-top: -180px; /* Pull single-column stats card up more */
+  }
+
   .heroPre {
     display: none;
   }
