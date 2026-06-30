@@ -148,6 +148,7 @@
 @media (max-width: 992px) {
   .container {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     padding: 0 var(--space-5);
   }
@@ -183,16 +184,12 @@
     letter-spacing: 0.04em;
     text-transform: none;
     color: #667370;
-    opacity: 0;
-    transform: translateY(-4px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
     pointer-events: none;
     white-space: nowrap;
   }
 
   .logoTaglineVisible {
-    opacity: 1;
-    transform: translateY(0);
+    /* always visible on mobile — no-op */
   }
 }
 

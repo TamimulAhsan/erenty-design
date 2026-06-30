@@ -523,7 +523,7 @@
 
   .ghostBike { display: none; }
 
-  .subscribeForm { flex-direction: column; }
+  .subscribeForm { flex-direction: column; gap: 8px; }
 
   .subscribeInput {
     border-radius: 12px;
