@@ -3,232 +3,8 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import styles from "./LocationsWorkshops.module.css";
-
-const WORKSHOPS = [
-  {
-    id: "bbs",
-    featured: true,
-    title: "Budapest Bike Service Kft.",
-    type: "Full service",
-    location: "Budapest",
-    description: "Authorised E-renty service centre offering full mechanical overhauls, firmware updates and same-day turnaround for every model in the fleet.",
-    address: "1083 Budapest, Corvin utca 15.",
-    tiers: ["Basic", "Extra"],
-    initials: "BB",
-    hours: "Mon - Fri: 8:00 - 18:00 | Sat: 9:00 - 14:00",
-    phone: "+36 1 456 7890",
-    email: "corvin@budapestbike.hu",
-    businessHours: [
-      { day: "Monday", hours: "09:00 – 18:00" },
-      { day: "Tuesday", hours: "09:00 – 18:00" },
-      { day: "Wednesday", hours: "09:00 – 18:00" },
-      { day: "Thursday", hours: "09:00 – 18:00" },
-      { day: "Friday", hours: "09:00 – 17:00" },
-      { day: "Saturday", hours: "Closed" },
-      { day: "Sunday", hours: "Closed" },
-    ],
-    features: ["Free repair coverage", "Rentals"],
-    models: ["Basic", "Courier+", "Extra"],
-    capacity: "Accepts up to 1 repair appointment per hour",
-  },
-  {
-    id: "fbr",
-    featured: true,
-    title: "Fish Bike repair",
-    type: "Full service",
-    location: "Egressy Út 23",
-    description: "A big description with 50 words in it most probably. This includes complete drivetrain diagnostics, brake fluid flushes, gear adjustments, chain lubrication, puncture repairs, and electronic systems integration for all standard commuting and cargo e-bikes. Friendly technicians and fast turnaround times guaranteed for all local riders.",
-    address: "Egressy Út 23",
-    tiers: ["Basic", "Extra"],
-    initials: "FB",
-    hours: "Mon - Fri: 9:00 - 19:00 | Sat: 10:00 - 15:00",
-    phone: "+36 30 123 4567",
-    email: "egressy@fishbikerepair.hu",
-  },
-  {
-    id: "rv",
-    featured: true,
-    title: "Roller Világ",
-    type: "Battery & motor",
-    location: "Zalaegerszeg",
-    description: "Battery cell reconditioning, range testing and certified pack recycling — the go-to specialist for high-mileage delivery e-bikes in Northern Hungary.",
-    address: "8900 Zalaegerszeg, Tüttőssy Ferenc utca 7.",
-    tiers: ["Extra", "Max"],
-    initials: "RV",
-    hours: "Mon - Fri: 8:30 - 17:30",
-    phone: "+36 92 345 678",
-    email: "zalaegerszeg@rollervilag.hu",
-  },
-  {
-    id: "vg",
-    featured: true,
-    title: "Volt Garázs",
-    type: "Battery & motor",
-    location: "Budapest",
-    description: "Battery health checks, motor diagnostics and same-day controller swaps — certified for every E-renty model currently in the fleet.",
-    address: "1061 Budapest, Király utca 32.",
-    tiers: ["Extra", "Max"],
-    initials: "VG",
-    hours: "Mon - Fri: 9:00 - 18:00 | Sat: 9:00 - 13:00",
-    phone: "+36 1 876 5432",
-    email: "kiraly@voltgarazs.hu",
-  },
-  {
-    id: "fk",
-    featured: false,
-    title: "Fék & Kerék",
-    type: "Wheels & brakes",
-    location: "Szeged",
-    description: "Wheel truing, hydraulic brake service and tubeless conversions done while you wait — no appointment needed on weekdays.",
-    address: "6720 Szeged, Kárász utca 9.",
-    tiers: ["Basic", "Plus", "Max", "Extra"],
-    initials: "FK",
-    hours: "Mon - Fri: 8:00 - 18:00 | Sat: 9:00 - 12:00",
-    phone: "+36 62 123 456",
-    email: "szeged@fekeskerek.hu",
-  },
-  {
-    id: "kk",
-    featured: false,
-    title: "Kerékpár Klinika",
-    type: "Full service",
-    location: "Debrecen",
-    description: "Family-run workshop handling drivetrain rebuilds, brake bleeds and seasonal storage for daily commuters across the Debrecen region.",
-    address: "4025 Debrecen, Piac utca 45.",
-    tiers: ["Basic", "Plus"],
-    initials: "KK",
-    hours: "Mon - Fri: 8:00 - 17:00 | Sat: 8:00 - 12:00",
-    phone: "+36 52 987 654",
-    email: "debrecen@kerekparklinika.hu",
-  },
-  {
-    id: "mp",
-    featured: false,
-    title: "MobilSzerviz Pest",
-    type: "Mobile repair",
-    location: "Budapest",
-    description: "Van-based repair crew covering all of Budapest — punctures, firmware updates and emergency fixes dispatched to your door within 90 minutes.",
-    address: "1139 Budapest, Váci út 99.",
-    tiers: ["Basic", "Extra", "Max"],
-    initials: "MP",
-    hours: "Mon - Sun: 7:00 - 22:00 (Emergency Dispatch)",
-    phone: "+36 30 999 8888",
-    email: "pest@mobilszerviz.hu",
-  },
-  {
-    id: "pd",
-    featured: false,
-    title: "Pedál Doktor",
-    type: "Full service",
-    location: "Győr",
-    description: "Complete tune-ups, gear indexing and pre-season readiness inspections for trekking and cargo e-bikes throughout Western Hungary.",
-    address: "9021 Győr, Baross Gábor út 21.",
-    tiers: ["Basic", "Plus", "Extra"],
-    initials: "PD",
-    hours: "Mon - Fri: 8:00 - 18:00",
-    phone: "+36 96 555 444",
-    email: "gyor@pedaldoktor.hu",
-  },
-  {
-    id: "tm",
-    featured: false,
-    title: "Test Map repair",
-    type: "Full service",
-    location: "Miskolc",
-    description: "Comprehensive frame alignment checkups, electronic drive repairs, software upgrades, and battery diagnostics for the Miskolc region.",
-    address: "Miskolc, Klapka György u. 22, 3524",
-    tiers: ["Max"],
-    initials: "TM",
-    hours: "Mon - Fri: 9:00 - 17:00",
-    phone: "+36 46 222 333",
-    email: "miskolc@testmap.hu",
-  },
-  {
-    id: "tt",
-    featured: false,
-    title: "Töltő & Tekerő",
-    type: "Battery & motor",
-    location: "Pécs",
-    description: "Charger diagnostics, motor rewinds and BMS reflashing for high-mileage delivery fleets — fast turnaround with loaner chargers available.",
-    address: "7621 Pécs, Széchenyi tér 1.",
-    tiers: ["Extra", "Max"],
-    initials: "TT",
-    hours: "Mon - Fri: 8:00 - 18:00 | Sat: 9:00 - 13:00",
-    phone: "+36 72 333 444",
-    email: "pecs@toltotekero.hu",
-  },
-  {
-    id: "vm",
-    featured: false,
-    title: "Váz Műhely",
-    type: "Frame & bodywork",
-    location: "Pécs",
-    description: "Frame alignment, weld repair and full respray for crash-damaged and heavily used bikes — all finishes colour-matched to original.",
-    address: "7621 Pécs, Király utca 5.",
-    tiers: ["Plus", "Max"],
-    initials: "VM",
-    hours: "Mon - Fri: 8:00 - 16:30",
-    phone: "+36 72 777 888",
-    email: "pecs@vazmuhely.hu",
-  },
-  {
-    id: "zl",
-    featured: false,
-    title: "Zöld Lánc Szerviz",
-    type: "Full service",
-    location: "Debrecen",
-    description: "Eco-minded workshop using reconditioned parts — chain, cassette and bearing overhauls with a focus on reducing waste and extending component life.",
-    address: "4025 Debrecen, Simonffy utca 4/B.",
-    tiers: ["Basic", "Extra"],
-    initials: "ZL",
-    hours: "Mon - Fri: 8:30 - 17:30 | Sat: 9:00 - 12:00",
-    phone: "+36 52 444 555",
-    email: "debrecen@zoldlanc.hu",
-  },
-];
-
-// Ensure all workshops have rich data for the UI
-WORKSHOPS.forEach(w => {
-  if (!w.freeCoverage) {
-    w.freeCoverage = [
-      { type: "Rentals", tiers: ["Basic"] },
-      { type: "Courier+", tiers: w.tiers || ["Basic", "Extra"] }
-    ];
-  }
-  if (!w.businessHours && w.hours) {
-    const parts = w.hours.split(" | ");
-    w.businessHours = parts.map(p => {
-      // Split by first colon
-      const colonIdx = p.indexOf(":");
-      if (colonIdx > -1) {
-        return { day: p.substring(0, colonIdx).trim(), hours: p.substring(colonIdx + 1).trim() };
-      }
-      return { day: p, hours: "Open" };
-    });
-  }
-});
-
-const CITIES = [
-  { name: "Budapest", count: 3, isHub: true },
-  { name: "Debrecen", count: 2, isHub: true },
-  { name: "Egressy Út 23", count: 1, isHub: false },
-  { name: "Győr", count: 1, isHub: false },
-  { name: "Miskolc", count: 1, isHub: false },
-  { name: "Pécs", count: 2, isHub: true },
-  { name: "Szeged", count: 1, isHub: false },
-  { name: "Zalaegerszeg", count: 1, isHub: false },
-];
-
-const CITY_COORDINATES = {
-  "Budapest": { x: 348.8, y: 157.2 },
-  "Debrecen": { x: 666.8, y: 152.5 },
-  "Egressy Út 23": { x: 358.3, y: 155.3 },
-  "Győr": { x: 176.1, y: 131.3 },
-  "Miskolc": { x: 563.1, y: 73.2 },
-  "Pécs": { x: 249.5, y: 356.3 },
-  "Szeged": { x: 484.2, y: 331.1 },
-  "Zalaegerszeg": { x: 78.9, y: 249.1 },
-};
+import { WORKSHOPS, CITIES, CITY_COORDINATES, getInitialsBg } from "@/data/workshops";
+import BookingForm from "@/components/BookingForm";
 
 export default function LocationsWorkshops() {
   const [selectedCity, setSelectedCity] = useState("Budapest");
@@ -242,6 +18,8 @@ export default function LocationsWorkshops() {
   const [isSectionInView, setIsSectionInView] = useState(false);
   const sectionRef = useRef(null);
   const dropdownRef = useRef(null);
+  const closeDrawerBtnRef = useRef(null);
+  const lastActiveElementRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -270,6 +48,20 @@ export default function LocationsWorkshops() {
     };
     handleResize();
     window.addEventListener("resize", handleResize);
+
+    if (isDrawerOpen) {
+      lastActiveElementRef.current = document.activeElement;
+      setTimeout(() => {
+        if (closeDrawerBtnRef.current) {
+          closeDrawerBtnRef.current.focus();
+        }
+      }, 50);
+    } else {
+      if (lastActiveElementRef.current) {
+        lastActiveElementRef.current.focus();
+      }
+    }
+
     return () => {
       window.removeEventListener("resize", handleResize);
       document.body.style.overflow = "unset";
@@ -307,31 +99,6 @@ export default function LocationsWorkshops() {
     }
   };
 
-  const handleBookingSubmit = (e, workshopId) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const bookingDate = formData.get("bookingDate");
-    const bookingTime = formData.get("bookingTime");
-
-    if (!bookingDate || !bookingTime) return;
-
-    setBookingStatus((prev) => ({
-      ...prev,
-      [workshopId]: {
-        status: "success",
-        date: bookingDate,
-        time: bookingTime,
-      },
-    }));
-  };
-
-  const resetBooking = (workshopId) => {
-    setBookingStatus((prev) => ({
-      ...prev,
-      [workshopId]: null,
-    }));
-  };
-
   const filteredWorkshops = WORKSHOPS.filter((workshop) => {
     const matchesCity = workshop.location === selectedCity;
     const matchesPriority =
@@ -340,16 +107,6 @@ export default function LocationsWorkshops() {
       (filterPriority === "Standard" && !workshop.featured);
     return matchesCity && matchesPriority;
   });
-
-  const getInitialsBg = (type) => {
-    switch (type) {
-      case "Battery & motor": return "linear-gradient(135deg, var(--primary), #143132)";
-      case "Wheels & brakes": return "linear-gradient(135deg, #E03030, #9A1F1F)";
-      case "Mobile repair": return "linear-gradient(135deg, #00D8A4, var(--primary))";
-      case "Frame & bodywork": return "linear-gradient(135deg, #667370, #22191B)";
-      default: return "linear-gradient(135deg, #00D8A4, #00FFCA)";
-    }
-  };
 
   return (
     <section
@@ -549,11 +306,21 @@ export default function LocationsWorkshops() {
         onClick={closeDrawer}
       />
 
-      <div className={`${styles.drawer} ${(isDrawerOpen && isSectionInView) ? styles.drawerOpen : ""}`}>
+      <div
+        className={`${styles.drawer} ${(isDrawerOpen && isSectionInView) ? styles.drawerOpen : ""}`}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="drawer-title"
+      >
 
         <div className={styles.drawerHeader}>
-          <button className={styles.backBtn} onClick={closeDrawer} aria-label="Close details">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <button
+            ref={closeDrawerBtnRef}
+            className={styles.backBtn}
+            onClick={closeDrawer}
+            aria-label="Close directory"
+          >
+            <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <line x1="19" y1="12" x2="5" y2="12" />
               <polyline points="12 19 5 12 12 5" />
             </svg>
@@ -561,7 +328,7 @@ export default function LocationsWorkshops() {
 
           <div className={styles.drawerHeaderMeta}>
             <span className={`${styles.drawerEyebrow} eyebrow`}>Service Hub</span>
-            <h3 className={`${styles.drawerTitle} h3`}>{selectedCity}</h3>
+            <h3 id="drawer-title" className={`${styles.drawerTitle} h3`}>{selectedCity}</h3>
             <p className={styles.drawerSubtitle}>
               <span className="mono-num">{filteredWorkshops.length}</span> certified repair {filteredWorkshops.length === 1 ? "partner" : "partners"} found
             </p>
@@ -594,7 +361,18 @@ export default function LocationsWorkshops() {
 
                 return (
                   <div key={workshop.id} className={`${styles.drawerCard} ${workshop.featured ? styles.drawerFeaturedCard : ""} ${isExpanded ? styles.drawerCardExpanded : ""}`}>
-                    <div className={styles.drawerCardHeader} onClick={() => toggleExpandCard(workshop.id)}>
+                    <div
+                      className={styles.drawerCardHeader}
+                      role="button"
+                      tabIndex={0}
+                      onClick={() => toggleExpandCard(workshop.id)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          toggleExpandCard(workshop.id);
+                        }
+                      }}
+                    >
                       <div className={styles.initialsAvatar} style={{ background: getInitialsBg(workshop.type) }}>
                         <span className="mono-num">{workshop.initials}</span>
                       </div>
@@ -608,7 +386,7 @@ export default function LocationsWorkshops() {
                       </div>
 
                       <div className={`${styles.chevron} ${isExpanded ? styles.chevronOpen : ""}`}>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                           <polyline points="6 9 12 15 18 9" />
                         </svg>
                       </div>
@@ -653,7 +431,7 @@ export default function LocationsWorkshops() {
                             )}
                           </div>
 
-                          <div className={styles.contactBlock}>
+                           <div className={styles.contactBlock}>
                             <h5 className={`${styles.blockTitle} eyebrow`}>Contact</h5>
                             <div className={styles.detailRow}>
                               <svg className={styles.detailIcon} width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></svg>
@@ -665,12 +443,12 @@ export default function LocationsWorkshops() {
                               </div>
                             </div>
                             <div className={styles.detailRow}>
-                              <svg className={styles.detailIcon} width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
-                              <span className={styles.detailText}>{workshop.phone}</span>
+                              <svg aria-hidden="true" className={styles.detailIcon} width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
+                              <a href={`tel:${workshop.phone}`} className={styles.detailText}>{workshop.phone}</a>
                             </div>
                             <div className={styles.detailRow}>
-                              <svg className={styles.detailIcon} width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" /></svg>
-                              <span className={styles.detailText}>{workshop.email}</span>
+                              <svg aria-hidden="true" className={styles.detailIcon} width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" /></svg>
+                              <a href={`mailto:${workshop.email}`} className={styles.detailText}>{workshop.email}</a>
                             </div>
                           </div>
                         </div>
@@ -679,32 +457,22 @@ export default function LocationsWorkshops() {
                           <p className={styles.capacityText}>{workshop.capacity}</p>
                         )}
 
-                        <div className={styles.bookingContainer}>
-                          {booking && booking.status === "success" ? (
-                            <div className={styles.bookingSuccess}>
-                              <div className={styles.successIcon}>
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="20 6 9 17 4 12" /></svg>
-                              </div>
-                              <div className={styles.successMeta}>
-                                <h5>Booking Successful</h5>
-                                <p>Scheduled for {booking.date} at {booking.time}.</p>
-                              </div>
-                              <button onClick={() => resetBooking(workshop.id)} className={styles.resetBtn}>Reschedule</button>
-                            </div>
-                          ) : (
-                            <form onSubmit={(e) => handleBookingSubmit(e, workshop.id)} className={styles.bookingForm}>
-                              <h5 className={`${styles.blockTitle} eyebrow`}>Book Appointment</h5>
-                              <div className={styles.formGrid}>
-                                <input type="date" name="bookingDate" required className={styles.bookingInput} min={new Date().toISOString().split("T")[0]} />
-                                <input type="time" name="bookingTime" required className={styles.bookingInput} min="08:00" max="18:00" />
-                              </div>
-                              <button type="submit" className="btn-primary" style={{ width: '100%', marginTop: '8px' }}>
-                                Confirm Appointment
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
-                              </button>
-                            </form>
-                          )}
-                        </div>
+                        <BookingForm
+                          workshop={workshop}
+                          booking={booking}
+                          onBookingSuccess={(bookingData) => {
+                            setBookingStatus((prev) => ({
+                              ...prev,
+                              [workshop.id]: bookingData
+                            }));
+                          }}
+                          onResetBooking={() => {
+                            setBookingStatus((prev) => ({
+                              ...prev,
+                              [workshop.id]: null
+                            }));
+                          }}
+                        />
 
                       </div>
                     </div>

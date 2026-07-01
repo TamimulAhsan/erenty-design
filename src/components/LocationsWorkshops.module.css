@@ -538,7 +538,7 @@
   display: flex;
   flex-direction: column;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  overflow: hidden;
+  overflow: visible;
 }
 
 .drawerCard:hover {
@@ -625,12 +625,14 @@
   opacity: 0;
   transition: max-height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.3s ease;
   pointer-events: none;
+  overflow: hidden;
 }
 
 .drawerCardBodyOpen {
-  max-height: 800px;
+  max-height: 1500px;
   opacity: 1;
   pointer-events: auto;
+  overflow: visible;
 }
 
 .drawerCardBodyInner {
@@ -822,111 +824,7 @@
   100% { opacity: 1; transform: translateY(0) scale(1.5); }
 }
 
-.bookingContainer {
-  border-top: 1px solid var(--border);
-  padding-top: var(--space-4);
-}
 
-.bookingForm {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-
-.bookingTitle {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--brand-darker);
-}
-
-.formRow {
-  width: 100%;
-}
-
-.formGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-2);
-}
-
-.bookingInput {
-  width: 100%;
-  background: #FFFFFF;
-  border: 1px solid var(--input);
-  border-radius: var(--radius-sm);
-  padding: 6px 8px;
-  font-size: 12px;
-  color: var(--foreground);
-  outline: none;
-  font-family: inherit;
-}
-
-.bookingInput:focus {
-  border-color: var(--primary);
-}
-
-.bookingSubmitBtn {
-  background: var(--brand-dark);
-  color: #FFFFFF;
-  font-size: 11.5px;
-  font-weight: 600;
-  padding: 8px;
-  border-radius: var(--radius-sm);
-  text-align: center;
-  cursor: pointer;
-  transition: background 0.2s;
-  border: none;
-}
-
-.bookingSubmitBtn:hover {
-  background: var(--brand-darker);
-}
-
-.bookingSuccess {
-  background: var(--brand-light);
-  border: 1px solid var(--accent);
-  border-radius: var(--radius-sm);
-  padding: var(--space-3);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-2);
-  text-align: center;
-}
-
-.successIcon {
-  background: var(--primary);
-  color: var(--brand-darker);
-  width: 32px;
-  height: 32px;
-  border-radius: var(--radius-full);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.successMeta h5 {
-  font-size: 12.5px;
-  color: var(--brand-dark);
-  font-weight: 700;
-  margin-bottom: 2px;
-}
-
-.successMeta p {
-  font-size: 11px;
-  color: var(--brand-darker);
-  line-height: 1.4;
-}
-
-.resetBtn {
-  font-size: 10.5px;
-  color: var(--brand-dark);
-  font-weight: 600;
-  text-decoration: underline;
-  cursor: pointer;
-  background: none;
-  border: none;
-}
 
 .drawerTab {
   position: fixed;
