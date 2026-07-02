@@ -153,7 +153,7 @@ const HERO_HOTSPOTS = [
   }
 ];
 
-export default function FleetsClient() {
+export default function FleetsClient({ dict = {} }) {
   // Filter states
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedBrands, setSelectedBrands] = useState([]);
@@ -330,10 +330,10 @@ export default function FleetsClient() {
       {/* 1. Immersive Typographic Hero Section */}
       <section className={styles.cleanHero}>
         <div className={styles.heroTextContainer}>
-          <span className={styles.heroPre}>E-Renty Fleets</span>
-          <h1 className={styles.heroTitleCentered}>Go Green. Go Electric.</h1>
+          <span className={styles.heroPre}>{dict.heroPre || "E-Renty Fleets"}</span>
+          <h1 className={styles.heroTitleCentered}>{dict.heroTitle || "Go Green. Go Electric."}</h1>
           <p className={styles.heroSubtitleCentered}>
-            Smart GPS, anti-theft insurance, and 24/7 service included. Pick the bike that fits your urban journey.
+            {dict.heroSubtitle || "Smart GPS, anti-theft insurance, and 24/7 service included. Pick the bike that fits your urban journey."}
           </p>
         </div>
 
@@ -350,32 +350,36 @@ export default function FleetsClient() {
             />
 
             {/* Pulsing Hotspots */}
-            {HERO_HOTSPOTS.map((hotspot, idx) => (
-              <div
-                key={hotspot.id}
-                className={styles.hotspotWrapper}
-                style={{ top: hotspot.top, left: hotspot.left }}
-                onMouseEnter={() => setActiveHotspot(idx)}
-                onMouseLeave={() => setActiveHotspot(null)}
-              >
-                <button
-                  className={`${styles.hotspotDot} ${activeHotspot === idx ? styles.hotspotDotActive : ""}`}
-                  aria-label={`View details about ${hotspot.title}`}
-                >
-                  <span className={styles.hotspotPulse}></span>
-                </button>
-
-                {/* Tooltip Card */}
+            {HERO_HOTSPOTS.map((hotspot, idx) => {
+              const localizedTitle = dict.hotspots?.[hotspot.id]?.title || hotspot.title;
+              const localizedDesc = dict.hotspots?.[hotspot.id]?.desc || hotspot.desc;
+              return (
                 <div
-                  className={`${styles.hotspotTooltip} ${
-                    activeHotspot === idx ? styles.tooltipVisible : ""
-                  } ${hotspot.align === "right" ? styles.tooltipAlignRight : ""}`}
+                  key={hotspot.id}
+                  className={styles.hotspotWrapper}
+                  style={{ top: hotspot.top, left: hotspot.left }}
+                  onMouseEnter={() => setActiveHotspot(idx)}
+                  onMouseLeave={() => setActiveHotspot(null)}
                 >
-                  <h4 className={styles.tooltipTitle}>{hotspot.title}</h4>
-                  <p className={styles.tooltipDesc}>{hotspot.desc}</p>
+                  <button
+                    className={`${styles.hotspotDot} ${activeHotspot === idx ? styles.hotspotDotActive : ""}`}
+                    aria-label={`View details about ${localizedTitle}`}
+                  >
+                    <span className={styles.hotspotPulse}></span>
+                  </button>
+
+                  {/* Tooltip Card */}
+                  <div
+                    className={`${styles.hotspotTooltip} ${
+                      activeHotspot === idx ? styles.tooltipVisible : ""
+                    } ${hotspot.align === "right" ? styles.tooltipAlignRight : ""}`}
+                  >
+                    <h4 className={styles.tooltipTitle}>{localizedTitle}</h4>
+                    <p className={styles.tooltipDesc}>{localizedDesc}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -391,7 +395,7 @@ export default function FleetsClient() {
                 className={`${styles.tabBtn} ${selectedCategory === cat ? styles.tabBtnActive : ""}`}
                 onClick={() => setSelectedCategory(cat)}
               >
-                {cat.charAt(0).toUpperCase() + cat.slice(1)}
+                {dict.categories?.[cat] || (cat.charAt(0).toUpperCase() + cat.slice(1))}
                 <span className={styles.tabCount}>{getCategoryCount(cat)}</span>
               </button>
             ))}
@@ -409,7 +413,7 @@ export default function FleetsClient() {
                   setIsSortDropdownOpen(false);
                 }}
               >
-                Brand {selectedBrands.length > 0 ? `(${selectedBrands.length})` : ""}
+                {dict.filterBrand || "Brand"} {selectedBrands.length > 0 ? `(${selectedBrands.length})` : ""}
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <polyline points="6 9 12 15 18 9" />
                 </svg>
@@ -418,11 +422,11 @@ export default function FleetsClient() {
               {isBrandDropdownOpen && (
                 <div className={styles.glassPopover}>
                   <div className={styles.popoverHeader}>
-                    <span>Filter by Brand</span>
+                    <span>{dict.filterBrandTitle || "Filter by Brand"}</span>
                     <div className={styles.popoverHeaderActions}>
-                      <button type="button" onClick={handleSelectAllBrands} className={styles.popoverActionBtn}>Select All</button>
+                      <button type="button" onClick={handleSelectAllBrands} className={styles.popoverActionBtn}>{dict.selectAll || "Select All"}</button>
                       <span className={styles.popoverActionDivider}>/</span>
-                      <button type="button" onClick={handleClearAllBrands} className={styles.popoverActionBtn}>Clear All</button>
+                      <button type="button" onClick={handleClearAllBrands} className={styles.popoverActionBtn}>{dict.clearAll || "Clear All"}</button>
                     </div>
                   </div>
                   <div className={styles.popoverList}>
@@ -454,7 +458,7 @@ export default function FleetsClient() {
                   setIsSortDropdownOpen(false);
                 }}
               >
-                Price
+                {dict.filterPrice || "Price"}
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <polyline points="6 9 12 15 18 9" />
                 </svg>
@@ -462,7 +466,7 @@ export default function FleetsClient() {
 
               {isPriceDropdownOpen && (
                 <div className={styles.glassPopover} style={{ width: "260px" }}>
-                  <div className={styles.popoverHeader}>Price Range (Monthly)</div>
+                  <div className={styles.popoverHeader}>{dict.filterPriceTitle || "Price Range (Monthly)"}</div>
                   <div className={styles.sliderWrapper}>
                     <div className={styles.rangeInputs}>
                       <div ref={trackRef} className={styles.sliderTrack} />
@@ -512,10 +516,10 @@ export default function FleetsClient() {
                 }}
               >
                 <span>
-                  {sortBy === "price-asc" && "Price: Low to High"}
-                  {sortBy === "price-desc" && "Price: High to Low"}
-                  {sortBy === "range-desc" && "Range: Longest First"}
-                  {sortBy === "motor-desc" && "Power: Highest First"}
+                  {sortBy === "price-asc" && (dict.sortOptions?.["price-asc"] || "Price: Low to High")}
+                  {sortBy === "price-desc" && (dict.sortOptions?.["price-desc"] || "Price: High to Low")}
+                  {sortBy === "range-desc" && (dict.sortOptions?.["range-desc"] || "Range: Longest First")}
+                  {sortBy === "motor-desc" && (dict.sortOptions?.["motor-desc"] || "Power: Highest First")}
                 </span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <polyline points="6 9 12 15 18 9" />
@@ -532,7 +536,7 @@ export default function FleetsClient() {
                         setIsSortDropdownOpen(false);
                       }}
                     >
-                      Price: Low to High
+                      {dict.sortOptions?.["price-asc"] || "Price: Low to High"}
                     </button>
                     <button
                       className={`${styles.sortOption} ${sortBy === "price-desc" ? styles.activeSortOption : ""}`}
@@ -541,7 +545,7 @@ export default function FleetsClient() {
                         setIsSortDropdownOpen(false);
                       }}
                     >
-                      Price: High to Low
+                      {dict.sortOptions?.["price-desc"] || "Price: High to Low"}
                     </button>
                     <button
                       className={`${styles.sortOption} ${sortBy === "range-desc" ? styles.activeSortOption : ""}`}
@@ -550,7 +554,7 @@ export default function FleetsClient() {
                         setIsSortDropdownOpen(false);
                       }}
                     >
-                      Range: Longest First
+                      {dict.sortOptions?.["range-desc"] || "Range: Longest First"}
                     </button>
                     <button
                       className={`${styles.sortOption} ${sortBy === "motor-desc" ? styles.activeSortOption : ""}`}
@@ -559,7 +563,7 @@ export default function FleetsClient() {
                         setIsSortDropdownOpen(false);
                       }}
                     >
-                      Power: Highest First
+                      {dict.sortOptions?.["motor-desc"] || "Power: Highest First"}
                     </button>
                   </div>
                 </div>
@@ -572,7 +576,7 @@ export default function FleetsClient() {
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className={styles.resetIcon}>
                   <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" />
                 </svg>
-                Reset
+                {dict.reset || "Reset"}
               </button>
             )}
           </div>
@@ -582,7 +586,7 @@ export default function FleetsClient() {
       {/* 3. Creative Asymmetric Catalog Grid */}
       <section className={styles.gridSection}>
         <div className={styles.resultsSummary}>
-          {sortedBikes.length} {sortedBikes.length === 1 ? "bike matches" : "bikes match"}
+          {sortedBikes.length} {sortedBikes.length === 1 ? (dict.resultsSingle || "bike matches") : (dict.resultsMultiple || "bikes match")}
         </div>
 
         <div className={styles.portfolioGrid}>
@@ -594,7 +598,7 @@ export default function FleetsClient() {
                   className={styles.portfolioCard}
                 >
                   <div className={styles.cardImageContainer} onClick={() => setActiveModalBike(bike)}>
-                    <span className={styles.cardCategoryBadge}>{bike.category}</span>
+                    <span className={styles.cardCategoryBadge}>{dict.categories?.[bike.category] || bike.category}</span>
                     <Image
                       src={bike.image}
                       alt={`${bike.brand} ${bike.model}`}
@@ -612,7 +616,7 @@ export default function FleetsClient() {
 
                       <div className={styles.bikePriceRow}>
                         <span className={styles.priceFt}>{formatPrice(bike.price)} Ft</span>
-                        <span className={styles.priceMo}>/ month</span>
+                        <span className={styles.priceMo}>{dict.modalPeriod || "/ month"}</span>
                       </div>
                     </div>
 
@@ -620,21 +624,21 @@ export default function FleetsClient() {
                       {/* Specs Row */}
                       <div className={styles.cardSpecsRow}>
                         <div className={styles.cardSpecCol}>
-                          <span className={styles.specLabelTitle}>Range</span>
+                          <span className={styles.specLabelTitle}>{dict.modalRange ? dict.modalRange.replace(":", "") : "Range"}</span>
                           <span className={styles.specLabelVal}>{bike.range}</span>
                         </div>
                         <div className={styles.cardSpecCol}>
-                          <span className={styles.specLabelTitle}>Motor</span>
+                          <span className={styles.specLabelTitle}>{dict.modalMotor ? dict.modalMotor.replace(":", "") : "Motor"}</span>
                           <span className={styles.specLabelVal}>{bike.motor}</span>
                         </div>
                         <div className={styles.cardSpecCol}>
-                          <span className={styles.specLabelTitle}>Speed</span>
+                          <span className={styles.specLabelTitle}>{dict.modalSpeed ? dict.modalSpeed.replace(":", "") : "Speed"}</span>
                           <span className={styles.specLabelVal}>{bike.topSpeed}</span>
                         </div>
                       </div>
 
                       <Link href={`/fleets/${bike.slug}`} className={styles.portfolioRentLink}>
-                        Rent this fleet
+                        {dict.rentThisFleet || "Rent this fleet"}
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                           <line x1="5" y1="12" x2="19" y2="12"></line>
                           <polyline points="12 5 19 12 12 19"></polyline>
@@ -647,12 +651,12 @@ export default function FleetsClient() {
             })
           ) : (
             <div className={styles.noResultsBox}>
-              <h3 className={styles.noResultsHeader}>No fleets match this search</h3>
+              <h3 className={styles.noResultsHeader}>{dict.noResults || "No fleets match this search"}</h3>
               <p className={styles.noResultsDetail}>
-                Try adjusting your brand toggles, category selectors, or price range inputs.
+                {dict.noResultsDetail || "Try adjusting your brand toggles, category selectors, or price range inputs."}
               </p>
               <button className={styles.resetSearchBtn} onClick={handleClearFilters}>
-                Reset Filter Parameters
+                {dict.resetFilters || "Reset Filter Parameters"}
               </button>
             </div>
           )}
@@ -699,15 +703,15 @@ export default function FleetsClient() {
             {/* Right Information Details Panel */}
             <div className={styles.modalInfoArea}>
               <div className={styles.modalEyebrowRow}>
-                <span className={styles.modalCategoryBadge}>{activeModalBike.category}</span>
+                <span className={styles.modalCategoryBadge}>{dict.categories?.[activeModalBike.category] || activeModalBike.category}</span>
                 <span className={styles.modalBrand}>{activeModalBike.brand}</span>
               </div>
               <h2 className={styles.modalTitle}>{activeModalBike.model}</h2>
 
               <div className={styles.modalPriceRow}>
-                <span className={styles.modalPriceLabel}>Starting From</span>
+                <span className={styles.modalPriceLabel}>{dict.modalStartingFrom || "Starting From"}</span>
                 <span className={styles.modalPriceValue}>{formatPrice(activeModalBike.price)} Ft</span>
-                <span className={styles.modalPricePeriod}>/ month</span>
+                <span className={styles.modalPricePeriod}>{dict.modalPeriod || "/ month"}</span>
               </div>
 
               <div className={styles.modalSpecsList}>
@@ -716,32 +720,32 @@ export default function FleetsClient() {
                     <circle cx="12" cy="12" r="10" />
                     <polyline points="12 6 12 12 16 14" />
                   </svg>
-                  <span><strong>Range:</strong> {activeModalBike.range} (Pedal Assist / Dual mode options)</span>
+                  <span><strong>{dict.modalRange || "Range:"}</strong> {activeModalBike.range}{dict.modalRangeDetail || " (Pedal Assist / Dual mode options)"}</span>
                 </div>
                 <div className={styles.modalSpecItem}>
                   <svg className={styles.modalSpecIcon} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
                   </svg>
-                  <span><strong>Top speed:</strong> {activeModalBike.topSpeed} (Electronically optimized)</span>
+                  <span><strong>{dict.modalSpeed || "Top speed:"}</strong> {activeModalBike.topSpeed}{dict.modalSpeedDetail || " (Electronically optimized)"}</span>
                 </div>
                 <div className={styles.modalSpecItem}>
                   <svg className={styles.modalSpecIcon} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
                   </svg>
-                  <span><strong>Motor capacity:</strong> {activeModalBike.motor} brushless peak output</span>
+                  <span><strong>{dict.modalMotor || "Motor capacity:"}</strong> {activeModalBike.motor}{dict.modalMotorDetail || " brushless peak output"}</span>
                 </div>
                 <div className={styles.modalSpecItem}>
                   <svg className={styles.modalSpecIcon} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
                     <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                   </svg>
-                  <span><strong>Security:</strong> Smart GPS tracking + Remote anti-theft app lock</span>
+                  <span><strong>{dict.modalSecurity || "Security:"}</strong> {dict.modalSecurityDetail || "Smart GPS tracking + Remote anti-theft app lock"}</span>
                 </div>
                 <div className={styles.modalSpecItem}>
                   <svg className={styles.modalSpecIcon} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                   </svg>
-                  <span><strong>Insurance:</strong> Full comprehensive damages & third party liability</span>
+                  <span><strong>{dict.modalInsurance || "Insurance:"}</strong> {dict.modalInsuranceDetail || "Full comprehensive damages & third party liability"}</span>
                 </div>
               </div>
 
@@ -752,27 +756,27 @@ export default function FleetsClient() {
                     <line x1="12" y1="8" x2="12" y2="12" />
                     <line x1="12" y1="16" x2="12.01" y2="16" />
                   </svg>
-                  24/7 Service Support
+                  {dict.modalServiceSupport || "24/7 Service Support"}
                 </span>
                 <span className={styles.modalFeatureBadge}>
                   <svg className={styles.modalFeatureIcon} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                     <polyline points="22 4 12 14.01 9 11.01" />
                   </svg>
-                  Sub-24h Maintenance
+                  {dict.modalMaintenance || "Sub-24h Maintenance"}
                 </span>
               </div>
 
               <div className={styles.modalActions}>
                 <Link href={`/fleets/${activeModalBike.slug}`} className={styles.modalRentBtn}>
-                  Rent this bike
+                  {dict.modalRentBtn || "Rent this bike"}
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                     <polyline points="12 5 19 12 12 19"></polyline>
                   </svg>
                 </Link>
                 <Link href="/courier-plus" className={styles.modalCourierBtn}>
-                  View Courier+ plans
+                  {dict.modalCourierBtn || "View Courier+ plans"}
                 </Link>
               </div>
             </div>
