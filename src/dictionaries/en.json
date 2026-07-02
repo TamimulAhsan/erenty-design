@@ -1,4 +1,8 @@
 {
+  "meta": {
+    "title": "E-Renty — Fuel-Free, Stress-Free Fleet Solutions",
+    "description": "Find and lease the perfect e-bike fleet for your business or personal use."
+  },
   "navbar": {
     "fleets": "Fleets",
     "seeAllFleets": "See all fleets",
@@ -21,5 +25,204 @@
     "statDeployed": "Deployed",
     "statAvgMo": "AVG/MO",
     "statUpTime": "UP TIME"
+  },
+  "startJourney": {
+    "title": "Start your journey",
+    "card1Title": "Choose fleet",
+    "card1Desc": "Browse vetted DUOTTS, Neuzer, MyEsel and Mamba models. Filter by range, motor power, and intended use.",
+    "card1Stat1Value": "4 brands",
+    "card1Stat1Label": "curated",
+    "card1Stat2Value": "12 models",
+    "card1Stat2Label": "in stock",
+    "card2Title": "Choose configuration",
+    "card2Desc": "Choose a Courier+ protection plan and select add-on hardware accessories tailored to your daily needs.",
+    "addonRack": "Heavy Cargo Rack",
+    "addonBattery": "Extended Battery",
+    "addonMount": "Phone Mount & USB",
+    "card2Stat1Value": "3 plans",
+    "card2Stat1Label": "available",
+    "addonsSuffix": "add-ons",
+    "card2Stat2Label": "configured",
+    "card3Title": "Book appointment",
+    "card3Desc": "Select a flexible time slot at our central Budapest service workshop for inspection, tutorial, and setup.",
+    "card3Stat1Label": "selected day",
+    "card3Stat2Label": "confirmed slot",
+    "card4Title": "Sign & ride",
+    "card4Desc": "Review the lease terms. You will sign the official lease agreement on-site at the workshop during your scheduled appointment time.",
+    "docTitle": "Lease Agreement",
+    "docStatus": "ON-SITE SIGNING",
+    "docTermsLabel": "E-Renty Lease Terms:",
+    "docModelLabel": "Model:",
+    "docAddonsLabel": "Add-ons:",
+    "docAppointmentLabel": "Appointment:",
+    "docNone": "none",
+    "card4Stat1Value": "On-site sign",
+    "card4Stat1Label": "at appointment",
+    "card4Stat2Value": "Instant",
+    "card4Stat2Label": "handover",
+    "cta": "Confirm booking",
+    "stepAria": "Go to step"
+  },
+  "journeyPartner": {
+    "eyebrow": "Your Journey Partner",
+    "rentPrefix": "Rent",
+    "viewAll": "View All",
+    "perMonth": "/month",
+    "categories": {
+      "cargo": "Cargo Fleet",
+      "courier": "Courier Fleet",
+      "urban": "Urban Fleet",
+      "scooter": "Scooter Fleet"
+    },
+    "specs": {
+      "c29": [
+        "Motor: 750W Peak High-Torque Brushless",
+        "Range: Up to 100 km (Dual-Battery option)",
+        "Battery: 48V 15Ah (720Wh) LG cells",
+        "Smart Features: Telemetry, GPS & App lock"
+      ],
+      "cargo": [
+        "Cargo Volume: 250 Liters / 120 kg capacity",
+        "Range: Up to 100 km per charge",
+        "Battery: Dual 1.5 kWh Li-ion (Removable)",
+        "Safety: Heavy-duty hydraulic disc brakes"
+      ],
+      "courier": [
+        "Range: Up to 125 km (Pedal Assist)",
+        "Motor: 250W Brushless (57Nm torque)",
+        "Transmission: Shimano 24-Speed gears",
+        "Suspension: Lockout hydraulic front fork"
+      ],
+      "scooter": [
+        "Power: Dual 1200W Hub Motors",
+        "Max Speed: 65 km/h (limited for public)",
+        "Climbing: Up to 30-degree slopes",
+        "Braking: Front and rear oil disc brakes"
+      ]
+    },
+    "slideAria": "Go to slide"
+  },
+  "weHandleItAll": {
+    "title": "We Handle It All",
+    "subtitle": "With our nationwide service partner network, every operational burden is lifted from your shoulders.",
+    "services": [
+      {
+        "title": "Always in top shape",
+        "description": "Periodic servicing, detailed inspections, electrical system repairs, tire replacement & seasonal storage are fully managed."
+      },
+      {
+        "title": "Zero downtime guarantee",
+        "description": "We keep you moving. If your bike needs off-site service, we provide an immediate replacement bike to eliminate downtime."
+      },
+      {
+        "title": "Worry-free protection",
+        "description": "Fully covered with mandatory insurance, detailed damage assessment, and liability settlement included in one package."
+      },
+      {
+        "title": "Smart theft monitoring",
+        "description": "Every fleet bike features integrated high-precision GPS tracking, active theft monitoring, and remote security controls."
+      },
+      {
+        "title": "Always there to help",
+        "description": "Reach our support team anytime via the digital customer portal for real-time fleet assistance and diagnostics."
+      },
+      {
+        "title": "Nationwide partner network",
+        "description": "Access our certified service partner network of mobile mechanics and local workshops across Hungary."
+      }
+    ]
+  },
+  "locations": {
+    "selectorLabel": "Find certified workshop:",
+    "workshopSingular": "workshop",
+    "workshopPlural": "workshops",
+    "headline": "Certified Repair Network",
+    "subline": "Select a city pin or use the search dropdown above to book an appointment.",
+    "courierPlus": "Courier+",
+    "bookService": "Book a service",
+    "drawerTabText": "Find Certified Workshop",
+    "serviceHub": "Service Hub",
+    "certifiedRepair": "certified repair",
+    "partnerSingular": "partner",
+    "partnerPlural": "partners",
+    "found": "found",
+    "filterAll": "All Partners",
+    "filterPriority": "Priority / Featured",
+    "filterStandard": "Standard",
+    "emptyState": "No workshops match the selected filters.",
+    "featured": "Featured",
+    "freeCoverage": "Free repair coverage",
+    "businessHours": "Business Hours",
+    "contact": "Contact",
+    "viewOnMap": "View on Map ↗",
+    "openDirectory": "Open workshop directory",
+    "closeDirectory": "Close directory"
+  },
+  "trustedBy": {
+    "headingLine1": "Trusted by",
+    "headingLine2": "leading companies",
+    "forBusiness": "For Business",
+    "rentNow": "Rent now"
+  },
+  "faq": {
+    "eyebrow": "Support & Help",
+    "title": "Frequently Asked Questions",
+    "subtitle": "Have questions about account setup, document verification, or payments? Find quick answers below.",
+    "viewAll": "View all FAQs",
+    "items": [
+      {
+        "question": "How do I create an account?",
+        "answer": "Visit e-renty.com, click Sign In, then choose to register. Enter your name, email and a password of at least 8 characters. We'll send a 6-digit verification code to your inbox — enter it to activate your account."
+      },
+      {
+        "question": "What documents do I need to rent?",
+        "answer": "All customers must pass identity verification before renting. You need to upload an ID card or residence permit, a selfie, a proof-of-address card, and a business registration certificate. Each document is reviewed individually and you'll be notified once approved."
+      },
+      {
+        "question": "What payment methods are accepted?",
+        "answer": "We accept Visa/Mastercard, Google Pay, Apple Pay, and bank transfer. Card and wallet payments are processed securely through Stripe — your card details are never stored on our servers."
+      },
+      {
+        "question": "Can I pay monthly instead of upfront?",
+        "answer": "Yes. At checkout you choose Monthly (only the first month is charged now, future months appear in your Payments tab with due dates) or Upfront (pay the full period at a discounted rate shown live in the checkout summary)."
+      },
+      {
+        "question": "What is the minimum rental period?",
+        "answer": "The platform minimum is typically 3 months, though this can vary. The checkout flow clearly shows the minimum — period buttons below it are greyed out and not selectable."
+      }
+    ]
+  },
+  "footer": {
+    "tagline": "Fuel-Free. Stress-Free.",
+    "stayUpdated": "Stay Updated",
+    "emailPlaceholder": "Your email address",
+    "subscribe": "Subscribe",
+    "subscribeSuccess": "Subscribed successfully!",
+    "legalNote": "By submitting, you agree to our Privacy Policy.",
+    "companyHeader": "Company",
+    "servicesHeader": "Services",
+    "contactHeader": "Contact",
+    "aboutUs": "About Us",
+    "howItWorks": "How It Works",
+    "forBusiness": "For Business",
+    "blog": "Blog",
+    "careers": "Careers",
+    "fleetSubs": "Fleet Subscriptions",
+    "courierPlus": "Courier+",
+    "insurance": "Insurance & Coverage",
+    "maintenance": "Maintenance",
+    "damageProtection": "Damage Protection",
+    "location": "Budapest, Hungary",
+    "viewOnMaps": "View on Maps ↗",
+    "ourFleetPartners": "OUR FLEET PARTNERS",
+    "acceptedPayments": "Accepted Payments",
+    "card": "Card",
+    "googlePay": "Google Pay",
+    "applePay": "Apple Pay",
+    "bankTransfer": "Bank Transfer",
+    "rights": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "cookies": "Cookie Policy"
   }
 }

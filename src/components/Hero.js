@@ -3,23 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { localeFromPathname, defaultLocale, localizeHref } from "@/lib/i18n";
 import styles from "./Hero.module.css";
 
 export default function Hero({ dict }) {
   const pathname = usePathname();
-  
-  // Extract language from URL path
-  const pathParts = pathname ? pathname.split("/") : [];
-  const currentLang = pathParts[1] && ["en", "hu"].includes(pathParts[1].toLowerCase())
-    ? pathParts[1].toLowerCase()
-    : "en";
-
-  const localizePath = (path) => {
-    if (path.startsWith("/en") || path.startsWith("/hu")) {
-      return path;
-    }
-    return `/${currentLang}${path === "/" ? "" : path}`;
-  };
+  const currentLang = localeFromPathname(pathname) || defaultLocale;
+  const localizePath = (path) => localizeHref(currentLang, path);
 
   const t = dict || {
     titleLine1: "Your Team.",

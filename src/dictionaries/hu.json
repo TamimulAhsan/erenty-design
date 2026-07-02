@@ -1,4 +1,8 @@
 {
+  "meta": {
+    "title": "E-Renty — Üzemanyagmentes, stresszmentes flottamegoldások",
+    "description": "Találja meg és bérelje a tökéletes e-bike flottát vállalkozása vagy személyes használatához."
+  },
   "navbar": {
     "fleets": "Flották",
     "seeAllFleets": "Összes flotta megtekintése",
@@ -21,5 +25,204 @@
     "statDeployed": "Üzemben",
     "statAvgMo": "ÁTLAG/HÓ",
     "statUpTime": "RENDELKEZÉSRE ÁLLÁS"
+  },
+  "startJourney": {
+    "title": "Kezdje el az utat",
+    "card1Title": "Válasszon flottát",
+    "card1Desc": "Böngésszen ellenőrzött DUOTTS, Neuzer, MyEsel és Mamba modellek között. Szűrjön hatótáv, motorteljesítmény és felhasználási cél szerint.",
+    "card1Stat1Value": "4 márka",
+    "card1Stat1Label": "válogatott",
+    "card1Stat2Value": "12 modell",
+    "card1Stat2Label": "raktáron",
+    "card2Title": "Válasszon konfigurációt",
+    "card2Desc": "Válasszon Futár+ védelmi csomagot, és állítson össze a napi igényeihez igazított kiegészítő hardvertartozékokat.",
+    "addonRack": "Nagy teherbírású csomagtartó",
+    "addonBattery": "Kiterjesztett akkumulátor",
+    "addonMount": "Telefontartó és USB",
+    "card2Stat1Value": "3 csomag",
+    "card2Stat1Label": "elérhető",
+    "addonsSuffix": "tartozék",
+    "card2Stat2Label": "beállítva",
+    "card3Title": "Foglaljon időpontot",
+    "card3Desc": "Válasszon rugalmas időpontot központi budapesti szervizműhelyünkben átvizsgálásra, betanításra és beállításra.",
+    "card3Stat1Label": "kiválasztott nap",
+    "card3Stat2Label": "megerősített időpont",
+    "card4Title": "Aláírás és indulás",
+    "card4Desc": "Tekintse át a bérleti feltételeket. A hivatalos bérleti szerződést a foglalt időpontban, helyben, a műhelyben írja alá.",
+    "docTitle": "Bérleti szerződés",
+    "docStatus": "HELYSZÍNI ALÁÍRÁS",
+    "docTermsLabel": "E-Renty bérleti feltételek:",
+    "docModelLabel": "Modell:",
+    "docAddonsLabel": "Tartozékok:",
+    "docAppointmentLabel": "Időpont:",
+    "docNone": "nincs",
+    "card4Stat1Value": "Helyszíni aláírás",
+    "card4Stat1Label": "az időpontban",
+    "card4Stat2Value": "Azonnali",
+    "card4Stat2Label": "átadás",
+    "cta": "Foglalás megerősítése",
+    "stepAria": "Ugrás a lépéshez"
+  },
+  "journeyPartner": {
+    "eyebrow": "Az Ön útitársa",
+    "rentPrefix": "Bérlés:",
+    "viewAll": "Összes megtekintése",
+    "perMonth": "/hó",
+    "categories": {
+      "cargo": "Teherszállító flotta",
+      "courier": "Futárflotta",
+      "urban": "Városi flotta",
+      "scooter": "Robogó flotta"
+    },
+    "specs": {
+      "c29": [
+        "Motor: 750W csúcs, nagy nyomatékú kefe nélküli",
+        "Hatótáv: akár 100 km (dupla akkumulátoros opció)",
+        "Akkumulátor: 48V 15Ah (720Wh) LG cellák",
+        "Okosfunkciók: telemetria, GPS és alkalmazászár"
+      ],
+      "cargo": [
+        "Raktér: 250 liter / 120 kg teherbírás",
+        "Hatótáv: akár 100 km töltésenként",
+        "Akkumulátor: dupla 1,5 kWh Li-ion (kivehető)",
+        "Biztonság: nagy teherbírású hidraulikus tárcsafékek"
+      ],
+      "courier": [
+        "Hatótáv: akár 125 km (pedálrásegítés)",
+        "Motor: 250W kefe nélküli (57 Nm nyomaték)",
+        "Váltó: Shimano 24 sebességes",
+        "Rugózás: zárható hidraulikus első villa"
+      ],
+      "scooter": [
+        "Teljesítmény: dupla 1200W agymotorok",
+        "Végsebesség: 65 km/h (közúton korlátozva)",
+        "Kapaszkodás: akár 30 fokos emelkedő",
+        "Fékezés: első és hátsó olajtárcsafékek"
+      ]
+    },
+    "slideAria": "Ugrás a diára"
+  },
+  "weHandleItAll": {
+    "title": "Mindent elintézünk",
+    "subtitle": "Országos szervizpartner-hálózatunknak köszönhetően minden üzemeltetési teher lekerül a válláról.",
+    "services": [
+      {
+        "title": "Mindig kifogástalan állapotban",
+        "description": "A rendszeres karbantartást, részletes átvizsgálásokat, az elektromos rendszer javítását, gumicserét és szezonális tárolást teljes körűen kezeljük."
+      },
+      {
+        "title": "Nulla állásidő garancia",
+        "description": "Nem hagyjuk megállni. Ha kerékpárja külső szervizt igényel, azonnal cserekerékpárt biztosítunk, hogy elkerülje az állásidőt."
+      },
+      {
+        "title": "Gondtalan védelem",
+        "description": "Teljes körű fedezet kötelező biztosítással, részletes kárfelméréssel és felelősségrendezéssel, mindez egyetlen csomagban."
+      },
+      {
+        "title": "Okos lopásfigyelés",
+        "description": "Minden flottakerékpár beépített, nagy pontosságú GPS-követéssel, aktív lopásfigyeléssel és távoli biztonsági vezérléssel rendelkezik."
+      },
+      {
+        "title": "Mindig segítünk",
+        "description": "Érje el ügyfélszolgálatunkat bármikor a digitális ügyfélportálon valós idejű flottatámogatásért és diagnosztikáért."
+      },
+      {
+        "title": "Országos partnerhálózat",
+        "description": "Férjen hozzá tanúsított szervizpartner-hálózatunkhoz, amely mobil szerelőkből és helyi műhelyekből áll egész Magyarországon."
+      }
+    ]
+  },
+  "locations": {
+    "selectorLabel": "Tanúsított műhely keresése:",
+    "workshopSingular": "műhely",
+    "workshopPlural": "műhely",
+    "headline": "Tanúsított javítóhálózat",
+    "subline": "Válasszon egy várost a térképen, vagy használja a fenti keresőt időpont foglalásához.",
+    "courierPlus": "Futár+",
+    "bookService": "Szerviz foglalása",
+    "drawerTabText": "Tanúsított műhely keresése",
+    "serviceHub": "Szervizközpont",
+    "certifiedRepair": "tanúsított javítópartner",
+    "partnerSingular": "",
+    "partnerPlural": "",
+    "found": "található",
+    "filterAll": "Összes partner",
+    "filterPriority": "Kiemelt",
+    "filterStandard": "Normál",
+    "emptyState": "Nincs a szűrőknek megfelelő műhely.",
+    "featured": "Kiemelt",
+    "freeCoverage": "Ingyenes javítási fedezet",
+    "businessHours": "Nyitvatartás",
+    "contact": "Kapcsolat",
+    "viewOnMap": "Megtekintés a térképen ↗",
+    "openDirectory": "Műhelyjegyzék megnyitása",
+    "closeDirectory": "Jegyzék bezárása"
+  },
+  "trustedBy": {
+    "headingLine1": "Vezető cégek",
+    "headingLine2": "bizalmát élvezzük",
+    "forBusiness": "Üzleti ügyfeleknek",
+    "rentNow": "Béreljen most"
+  },
+  "faq": {
+    "eyebrow": "Támogatás és segítség",
+    "title": "Gyakran Ismételt Kérdések",
+    "subtitle": "Kérdése van a fiók létrehozásáról, a dokumentumok ellenőrzéséről vagy a fizetésről? Az alábbiakban gyors válaszokat talál.",
+    "viewAll": "Összes kérdés megtekintése",
+    "items": [
+      {
+        "question": "Hogyan hozhatok létre fiókot?",
+        "answer": "Látogasson el az e-renty.com oldalra, kattintson a Bejelentkezés gombra, majd válassza a regisztrációt. Adja meg a nevét, e-mail-címét és egy legalább 8 karakteres jelszót. Egy 6 jegyű ellenőrző kódot küldünk a postaládájába — írja be a fiók aktiválásához."
+      },
+      {
+        "question": "Milyen dokumentumok kellenek a bérléshez?",
+        "answer": "Minden ügyfélnek át kell esnie a személyazonosság-ellenőrzésen a bérlés előtt. Fel kell töltenie egy személyi igazolványt vagy tartózkodási engedélyt, egy szelfit, egy lakcímkártyát és egy cégkivonatot. Minden dokumentumot egyenként ellenőrzünk, és értesítjük a jóváhagyásról."
+      },
+      {
+        "question": "Milyen fizetési módokat fogadnak el?",
+        "answer": "Elfogadunk Visa/Mastercard kártyát, Google Payt, Apple Payt és banki átutalást. A kártyás és pénztárcás fizetéseket a Stripe biztonságosan dolgozza fel — kártyaadatait soha nem tároljuk szervereinken."
+      },
+      {
+        "question": "Fizethetek havonta az előre fizetés helyett?",
+        "answer": "Igen. A pénztárnál választhat Havi (csak az első hónapot terheljük most, a további hónapok a Fizetések fülön jelennek meg a határidőkkel) vagy Előre fizetés (a teljes időszakot kedvezményes díjjal fizeti, amelyet a pénztár összegzésében élőben lát) lehetőséget."
+      },
+      {
+        "question": "Mennyi a minimális bérlési időszak?",
+        "answer": "A platform minimuma jellemzően 3 hónap, bár ez változhat. A pénztár folyamata egyértelműen mutatja a minimumot — az alatta lévő időszakgombok kiszürkítettek és nem választhatók."
+      }
+    ]
+  },
+  "footer": {
+    "tagline": "Üzemanyagmentes. Stresszmentes.",
+    "stayUpdated": "Maradjon naprakész",
+    "emailPlaceholder": "Az Ön e-mail-címe",
+    "subscribe": "Feliratkozás",
+    "subscribeSuccess": "Sikeres feliratkozás!",
+    "legalNote": "A beküldéssel elfogadja Adatvédelmi szabályzatunkat.",
+    "companyHeader": "Vállalat",
+    "servicesHeader": "Szolgáltatások",
+    "contactHeader": "Kapcsolat",
+    "aboutUs": "Rólunk",
+    "howItWorks": "Hogyan működik",
+    "forBusiness": "Üzleti ügyfeleknek",
+    "blog": "Blog",
+    "careers": "Karrier",
+    "fleetSubs": "Flotta-előfizetések",
+    "courierPlus": "Futár+",
+    "insurance": "Biztosítás és fedezet",
+    "maintenance": "Karbantartás",
+    "damageProtection": "Kárvédelem",
+    "location": "Budapest, Magyarország",
+    "viewOnMaps": "Megtekintés a térképen ↗",
+    "ourFleetPartners": "FLOTTAPARTNEREINK",
+    "acceptedPayments": "Elfogadott fizetési módok",
+    "card": "Kártya",
+    "googlePay": "Google Pay",
+    "applePay": "Apple Pay",
+    "bankTransfer": "Banki átutalás",
+    "rights": "Minden jog fenntartva.",
+    "privacy": "Adatvédelmi szabályzat",
+    "terms": "Felhasználási feltételek",
+    "cookies": "Cookie-szabályzat"
   }
 }

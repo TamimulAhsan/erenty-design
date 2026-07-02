@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/LocalizedLink";
 import styles from "./StartYourJourney.module.css";
 
 const FLEET_CATEGORIES = [
@@ -74,7 +74,12 @@ const APPOINTMENT_DAYS = [
 
 const APPOINTMENT_TIMES = ["09:00", "11:30", "14:00", "16:30"];
 
-export default function StartYourJourney() {
+export default function StartYourJourney({ dict }) {
+  const addonNames = {
+    rack: dict.addonRack,
+    battery: dict.addonBattery,
+    mount: dict.addonMount,
+  };
   const [activeModel, setActiveModel] = useState(FLEET_CATEGORIES[0]);
   const [selectedAddons, setSelectedAddons] = useState(["rack"]); // default selected addon
   const [selectedDay, setSelectedDay] = useState("Mon");
@@ -117,7 +122,7 @@ export default function StartYourJourney() {
     <section id="how-it-works" className={styles.wrapper}>
       <div className={styles.container}>
         {/* Section Headline */}
-        <h2 className={`${styles.headerTitle} h2`}>Start your journey</h2>
+        <h2 className={`${styles.headerTitle} h2`}>{dict.title}</h2>
 
         {/* Four Separate Cards Grid */}
         <div className={styles.grid} ref={gridRef} onScroll={handleScroll}>
@@ -126,9 +131,9 @@ export default function StartYourJourney() {
             <div className={styles.badgeWrapper}>
               <div className={styles.stepBadge}>01</div>
             </div>
-            <h3 className={`${styles.cardTitle} h3`}>Choose fleet</h3>
+            <h3 className={`${styles.cardTitle} h3`}>{dict.card1Title}</h3>
             <p className={`${styles.cardDesc} body-sm`}>
-              Browse vetted DUOTTS, Neuzer, MyEsel and Mamba models. Filter by range, motor power, and intended use.
+              {dict.card1Desc}
             </p>
 
             {/* Scrollable list of 7 fleets */}
@@ -174,12 +179,12 @@ export default function StartYourJourney() {
             {/* Metric Footer for Card 1 */}
             <div className={styles.cardStats}>
               <div className={styles.statBlock}>
-                <span className={styles.statValue}>4 brands</span>
-                <span className={styles.statLabel}>curated</span>
+                <span className={styles.statValue}>{dict.card1Stat1Value}</span>
+                <span className={styles.statLabel}>{dict.card1Stat1Label}</span>
               </div>
               <div className={styles.statBlock}>
-                <span className={styles.statValue}>12 models</span>
-                <span className={styles.statLabel}>in stock</span>
+                <span className={styles.statValue}>{dict.card1Stat2Value}</span>
+                <span className={styles.statLabel}>{dict.card1Stat2Label}</span>
               </div>
             </div>
           </div>
@@ -189,9 +194,9 @@ export default function StartYourJourney() {
             <div className={styles.badgeWrapper}>
               <div className={styles.stepBadge}>02</div>
             </div>
-            <h3 className={`${styles.cardTitle} h3`}>Choose configuration</h3>
+            <h3 className={`${styles.cardTitle} h3`}>{dict.card2Title}</h3>
             <p className={`${styles.cardDesc} body-sm`}>
-              Choose a Courier+ protection plan and select add-on hardware accessories tailored to your daily needs.
+              {dict.card2Desc}
             </p>
 
             {/* Configuration Selectors */}
@@ -206,7 +211,7 @@ export default function StartYourJourney() {
                     }`}
                     onClick={() => handleToggleAddon(addon.id)}
                   >
-                    <span className={styles.configLabel}>{addon.name}</span>
+                    <span className={styles.configLabel}>{addonNames[addon.id] || addon.name}</span>
                     <span className={styles.configPrice}>{addon.price}</span>
                   </button>
                 );
@@ -216,12 +221,12 @@ export default function StartYourJourney() {
             {/* Metric Footer for Card 2 */}
             <div className={styles.cardStats}>
               <div className={styles.statBlock}>
-                <span className={styles.statValue}>3 plans</span>
-                <span className={styles.statLabel}>available</span>
+                <span className={styles.statValue}>{dict.card2Stat1Value}</span>
+                <span className={styles.statLabel}>{dict.card2Stat1Label}</span>
               </div>
               <div className={styles.statBlock}>
-                <span className={styles.statValue}>{selectedAddons.length} add-ons</span>
-                <span className={styles.statLabel}>configured</span>
+                <span className={styles.statValue}>{selectedAddons.length} {dict.addonsSuffix}</span>
+                <span className={styles.statLabel}>{dict.card2Stat2Label}</span>
               </div>
             </div>
 
@@ -243,9 +248,9 @@ export default function StartYourJourney() {
             <div className={styles.badgeWrapper}>
               <div className={styles.stepBadge}>03</div>
             </div>
-            <h3 className={`${styles.cardTitle} h3`}>Book appointment</h3>
+            <h3 className={`${styles.cardTitle} h3`}>{dict.card3Title}</h3>
             <p className={`${styles.cardDesc} body-sm`}>
-              Select a flexible time slot at our central Budapest service workshop for inspection, tutorial, and setup.
+              {dict.card3Desc}
             </p>
 
             {/* Mini Scheduler Component */}
@@ -286,11 +291,11 @@ export default function StartYourJourney() {
             <div className={styles.cardStats}>
               <div className={styles.statBlock}>
                 <span className={styles.statValue}>{selectedDay}day</span>
-                <span className={styles.statLabel}>selected day</span>
+                <span className={styles.statLabel}>{dict.card3Stat1Label}</span>
               </div>
               <div className={styles.statBlock}>
                 <span className={styles.statValue}>{selectedTime}</span>
-                <span className={styles.statLabel}>confirmed slot</span>
+                <span className={styles.statLabel}>{dict.card3Stat2Label}</span>
               </div>
             </div>
           </div>
@@ -300,36 +305,36 @@ export default function StartYourJourney() {
             <div className={styles.badgeWrapper}>
               <div className={styles.stepBadge}>04</div>
             </div>
-            <h3 className={`${styles.cardTitle} h3`}>Sign & ride</h3>
+            <h3 className={`${styles.cardTitle} h3`}>{dict.card4Title}</h3>
             <p className={`${styles.cardDesc} body-sm`}>
-              Review the lease terms. You will sign the official lease agreement on-site at the workshop during your scheduled appointment time.
+              {dict.card4Desc}
             </p>
 
             {/* Mock Digital Contract & Signature Pad */}
             <div className={styles.documentMock}>
               <div className={styles.docHeader}>
-                <span className={styles.docTitle}>Lease Agreement</span>
+                <span className={styles.docTitle}>{dict.docTitle}</span>
                 <span className={styles.docStatus}>
-                  ON-SITE SIGNING
+                  {dict.docStatus}
                 </span>
               </div>
               <div className={styles.docBody}>
-                <p>E-Renty Lease Terms:</p>
-                <p>Model: {activeModel.name}</p>
-                <p>Add-ons: {selectedAddons.length > 0 ? selectedAddons.join(", ") : "none"}</p>
-                <p>Appointment: {selectedDay} @ {selectedTime}</p>
+                <p>{dict.docTermsLabel}</p>
+                <p>{dict.docModelLabel} {activeModel.name}</p>
+                <p>{dict.docAddonsLabel} {selectedAddons.length > 0 ? selectedAddons.map((id) => addonNames[id] || id).join(", ") : dict.docNone}</p>
+                <p>{dict.docAppointmentLabel} {selectedDay} @ {selectedTime}</p>
               </div>
             </div>
 
             {/* Metric Footer for Card 4 */}
             <div className={styles.cardStats}>
               <div className={styles.statBlock}>
-                <span className={styles.statValue}>On-site sign</span>
-                <span className={styles.statLabel}>at appointment</span>
+                <span className={styles.statValue}>{dict.card4Stat1Value}</span>
+                <span className={styles.statLabel}>{dict.card4Stat1Label}</span>
               </div>
               <div className={styles.statBlock}>
-                <span className={styles.statValue}>Instant</span>
-                <span className={styles.statLabel}>handover</span>
+                <span className={styles.statValue}>{dict.card4Stat2Value}</span>
+                <span className={styles.statLabel}>{dict.card4Stat2Label}</span>
               </div>
             </div>
 
@@ -339,7 +344,7 @@ export default function StartYourJourney() {
                 href="/fleets"
                 className={styles.primaryPillBtn}
               >
-                Confirm booking
+                {dict.cta}
                 <svg
                   width="18"
                   height="18"
@@ -365,7 +370,7 @@ export default function StartYourJourney() {
               key={idx}
               className={`${styles.dot} ${activeCardIndex === idx ? styles.dotActive : ""}`}
               onClick={() => scrollToCard(idx)}
-              aria-label={`Go to step ${idx + 1}`}
+              aria-label={`${dict.stepAria} ${idx + 1}`}
             />
           ))}
         </div>

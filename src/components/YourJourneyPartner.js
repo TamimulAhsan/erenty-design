@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/LocalizedLink";
 import styles from "./YourJourneyPartner.module.css";
 
 const SHOWCASE_BIKES = [
@@ -60,7 +60,9 @@ const SHOWCASE_BIKES = [
   }
 ];
 
-export default function YourJourneyPartner() {
+const CATEGORY_KEY = { c29: "urban", cargo: "cargo", courier: "courier", scooter: "scooter" };
+
+export default function YourJourneyPartner({ dict }) {
   const sectionRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -121,7 +123,7 @@ export default function YourJourneyPartner() {
       <div className={styles.stickyContainer}>
         <div className={styles.container}>
           {/* Eyebrow - Static at the top */}
-          <span className={`${styles.eyebrow} eyebrow`}>Your Journey Partner</span>
+          <span className={`${styles.eyebrow} eyebrow`}>{dict.eyebrow}</span>
 
           {/* Slider Viewport Container */}
           <div className={styles.sliderContainer}>
@@ -135,13 +137,13 @@ export default function YourJourneyPartner() {
                     {/* Top Left: Fleet Name and Category */}
                     <div className={styles.topLeft}>
                       <h2 className={`${styles.fleetName} h2`}>{bike.name}</h2>
-                      <span className={`${styles.category} body-default`}>{bike.category}</span>
+                      <span className={`${styles.category} body-default`}>{dict.categories[CATEGORY_KEY[bike.id]] || bike.category}</span>
                     </div>
 
                     {/* Top Right: Specifications List */}
                     <div className={styles.topRight}>
                       <ul className={styles.specsList}>
-                        {bike.specs.map((spec, specIdx) => (
+                        {(dict.specs[bike.id] || bike.specs).map((spec, specIdx) => (
                           <li key={specIdx} className="body-sm">
                             <span className={styles.bullet}></span>
                             {spec}
@@ -165,7 +167,7 @@ export default function YourJourneyPartner() {
 
                       <div className={styles.ctaContainer}>
                         <Link href={`/fleets/${bike.id === "cargo" ? "vok-s" : bike.id === "courier" ? "eleglide-m2" : bike.id === "scooter" ? "kukirin-g3-pro" : "duotts-c29-pro"}`} className="btn-primary">
-                          Rent {bike.name}
+                          {dict.rentPrefix} {bike.name}
                           <svg
                             width="18"
                             height="18"
@@ -181,7 +183,7 @@ export default function YourJourneyPartner() {
                           </svg>
                         </Link>
                         <Link href="/fleets" className="btn-ghost">
-                          View All
+                          {dict.viewAll}
                         </Link>
                       </div>
                     </div>
@@ -190,7 +192,7 @@ export default function YourJourneyPartner() {
                     <div className={styles.bottomLeft}>
                       <div className={styles.priceContainer}>
                         <span className={`${styles.price} price mono-num`}>{bike.price}</span>
-                        <span className={`${styles.period} caption`}>/month</span>
+                        <span className={`${styles.period} caption`}>{dict.perMonth}</span>
                       </div>
                     </div>
                   </div>
@@ -207,7 +209,7 @@ export default function YourJourneyPartner() {
                 className={`${styles.indicatorDot} ${activeIndex === idx ? styles.indicatorDotActive : ""
                   }`}
                 onClick={() => scrollToSlide(idx)}
-                aria-label={`Go to slide ${idx + 1}`}
+                aria-label={`${dict.slideAria} ${idx + 1}`}
               />
             ))}
           </div>

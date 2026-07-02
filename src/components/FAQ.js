@@ -1,33 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import Link from "@/components/LocalizedLink";
 import styles from "./FAQ.module.css";
 
-const FAQ_ITEMS = [
-  {
-    question: "How do I create an account?",
-    answer: "Visit e-renty.com, click Sign In, then choose to register. Enter your name, email and a password of at least 8 characters. We'll send a 6-digit verification code to your inbox — enter it to activate your account."
-  },
-  {
-    question: "What documents do I need to rent?",
-    answer: "All customers must pass identity verification before renting. You need to upload an ID card or residence permit, a selfie, a proof-of-address card, and a business registration certificate. Each document is reviewed individually and you'll be notified once approved."
-  },
-  {
-    question: "What payment methods are accepted?",
-    answer: "We accept Visa/Mastercard, Google Pay, Apple Pay, and bank transfer. Card and wallet payments are processed securely through Stripe — your card details are never stored on our servers."
-  },
-  {
-    question: "Can I pay monthly instead of upfront?",
-    answer: "Yes. At checkout you choose Monthly (only the first month is charged now, future months appear in your Payments tab with due dates) or Upfront (pay the full period at a discounted rate shown live in the checkout summary)."
-  },
-  {
-    question: "What is the minimum rental period?",
-    answer: "The platform minimum is typically 3 months, though this can vary. The checkout flow clearly shows the minimum — period buttons below it are greyed out and not selectable."
-  }
-];
-
-export default function FAQ() {
+export default function FAQ({ dict }) {
   const [activeIndex, setActiveIndex] = useState(null);
 
   const toggleIndex = (index) => {
@@ -38,15 +15,15 @@ export default function FAQ() {
     <section className={styles.section} id="faq">
       <div className={styles.container}>
         <div className={styles.header}>
-          <span className={`${styles.eyebrow} eyebrow`}>Support & Help</span>
-          <h2 className={`${styles.title} h2`}>Frequently Asked Questions</h2>
+          <span className={`${styles.eyebrow} eyebrow`}>{dict.eyebrow}</span>
+          <h2 className={`${styles.title} h2`}>{dict.title}</h2>
           <p className={styles.subtitle}>
-            Have questions about account setup, document verification, or payments? Find quick answers below.
+            {dict.subtitle}
           </p>
         </div>
 
         <div className={styles.faqList}>
-          {FAQ_ITEMS.map((item, index) => {
+          {dict.items.map((item, index) => {
             const isOpen = activeIndex === index;
             return (
               <div 
@@ -88,7 +65,7 @@ export default function FAQ() {
 
         <div className={styles.viewAllContainer}>
           <Link href="/faq" className={styles.viewAllLink}>
-            View all FAQs
+            {dict.viewAll}
             <svg 
               width="16" 
               height="16" 

@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import Link from '@/components/LocalizedLink';
 import styles from './TrustedBy.module.css';
 
 const outerLogos = [
@@ -29,15 +29,15 @@ const innerLogos = [
   { name: 'R73', src: '/companies/r73.webp' }
 ];
 
-export default function TrustedBy() {
+export default function TrustedBy({ dict }) {
   return (
     <section className={styles.trustedBySection}>
       <div className={styles.container}>
         <div className={styles.textContent}>
-          <h2 className={styles.heading}>Trusted by<br/>leading companies</h2>
+          <h2 className={styles.heading}>{dict.headingLine1}<br/>{dict.headingLine2}</h2>
           <div className={styles.buttonGroup}>
             <Link href="/business" className={styles.primaryButton}>
-              For Business
+              {dict.forBusiness}
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
                 <polyline points="15 3 21 3 21 9" />
@@ -45,7 +45,7 @@ export default function TrustedBy() {
               </svg>
             </Link>
             <Link href="/fleets" className={styles.secondaryButton}>
-              Rent now
+              {dict.rentNow}
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>

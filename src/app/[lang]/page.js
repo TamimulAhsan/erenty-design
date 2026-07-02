@@ -1,4 +1,3 @@
-import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import StartYourJourney from "@/components/StartYourJourney";
 import YourJourneyPartner from "@/components/YourJourneyPartner";
@@ -6,7 +5,6 @@ import WeHandleItAll from "@/components/WeHandleItAll";
 import LocationsWorkshops from "@/components/LocationsWorkshops";
 import TrustedBy from "@/components/TrustedBy";
 import FAQ from "@/components/FAQ";
-import Footer from "@/components/Footer";
 
 import { getDictionary, hasLocale } from "./dictionaries";
 import { notFound } from "next/navigation";
@@ -21,19 +19,15 @@ export default async function Home({ params }) {
   const dict = await getDictionary(lang);
 
   return (
-    <>
-      <Navbar dict={dict.navbar} />
-      <main>
-        <Hero dict={dict.hero} />
-        <StartYourJourney />
-        <YourJourneyPartner />
-        <WeHandleItAll />
-        <LocationsWorkshops />
-        <TrustedBy />
-        <FAQ />
-        <Footer />
-      </main>
-    </>
+    <main>
+      <Hero dict={dict.hero} />
+      <StartYourJourney dict={dict.startJourney} />
+      <YourJourneyPartner dict={dict.journeyPartner} />
+      <WeHandleItAll dict={dict.weHandleItAll} />
+      <LocationsWorkshops dict={dict.locations} />
+      <TrustedBy dict={dict.trustedBy} />
+      <FAQ dict={dict.faq} />
+    </main>
   );
 }
 

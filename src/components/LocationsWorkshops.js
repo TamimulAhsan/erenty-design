@@ -1,12 +1,12 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Link from "next/link";
+import Link from "@/components/LocalizedLink";
 import styles from "./LocationsWorkshops.module.css";
 import { WORKSHOPS, CITIES, CITY_COORDINATES, getInitialsBg } from "@/data/workshops";
 import BookingForm from "@/components/BookingForm";
 
-export default function LocationsWorkshops() {
+export default function LocationsWorkshops({ dict }) {
   const [selectedCity, setSelectedCity] = useState("Budapest");
   const [hoveredCity, setHoveredCity] = useState(null);
   const [filterPriority, setFilterPriority] = useState("All");
@@ -124,7 +124,7 @@ export default function LocationsWorkshops() {
           <div className={styles.mapHero}>
             {/* Top Floating Selector Panel for clear UX direction */}
             <div className={styles.topSelectorPanel}>
-              <span className={styles.selectorLabel}>Find certified workshop:</span>
+              <span className={styles.selectorLabel}>{dict.selectorLabel}</span>
               <div className={styles.customSelectWrapper} ref={dropdownRef}>
                 <button
                   className={styles.dropdownToggleBtn}
@@ -132,7 +132,7 @@ export default function LocationsWorkshops() {
                   type="button"
                 >
                   <span>
-                    {selectedCity} ({CITIES.find(c => c.name === selectedCity)?.count} {CITIES.find(c => c.name === selectedCity)?.count === 1 ? 'workshop' : 'workshops'})
+                    {selectedCity} ({CITIES.find(c => c.name === selectedCity)?.count} {CITIES.find(c => c.name === selectedCity)?.count === 1 ? dict.workshopSingular : dict.workshopPlural})
                   </span>
                   <svg className={`${styles.selectChevron} ${isDropdownOpen ? styles.chevronRotated : ''}`} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="6 9 12 15 18 9" />
@@ -152,7 +152,7 @@ export default function LocationsWorkshops() {
                       >
                         <span className={styles.optionCityName}>{c.name}</span>
                         <span className={styles.optionCount}>
-                          {c.count} {c.count === 1 ? 'workshop' : 'workshops'}
+                          {c.count} {c.count === 1 ? dict.workshopSingular : dict.workshopPlural}
                         </span>
                       </div>
                     ))}
@@ -256,14 +256,14 @@ export default function LocationsWorkshops() {
           {/* ========================================================================= */}
           <div className={styles.heroFooter}>
             <div className={styles.footerText}>
-              <h2 className={`${styles.headline} h2`}>Certified Repair Network</h2>
+              <h2 className={`${styles.headline} h2`}>{dict.headline}</h2>
               <p className={`${styles.subline} body-sm`}>
-                Select a city pin or use the search dropdown above to book an appointment.
+                {dict.subline}
               </p>
             </div>
             <div className={styles.footerActions}>
               <Link href="/courier-plus" className="btn-primary">
-                Courier+
+                {dict.courierPlus}
                 <svg
                   width="16"
                   height="16"
@@ -279,7 +279,7 @@ export default function LocationsWorkshops() {
                 </svg>
               </Link>
               <Link href="/repair-partners" className="btn-outline">
-                Book a service
+                {dict.bookService}
               </Link>
             </div>
           </div>
@@ -291,14 +291,14 @@ export default function LocationsWorkshops() {
       <button
         className={`${styles.drawerTab} ${(isSectionInView && !isDrawerOpen) ? styles.drawerTabVisible : ""}`}
         onClick={() => setIsDrawerOpen(true)}
-        aria-label="Open workshop directory"
+        aria-label={dict.openDirectory}
       >
         <span className={styles.drawerTabChevron}>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="15 18 9 12 15 6" />
           </svg>
         </span>
-        <span className={styles.drawerTabText}>Find Certified Workshop</span>
+        <span className={styles.drawerTabText}>{dict.drawerTabText}</span>
       </button>
 
       <div
@@ -318,7 +318,7 @@ export default function LocationsWorkshops() {
             ref={closeDrawerBtnRef}
             className={styles.backBtn}
             onClick={closeDrawer}
-            aria-label="Close directory"
+            aria-label={dict.closeDirectory}
           >
             <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <line x1="19" y1="12" x2="5" y2="12" />
@@ -327,10 +327,10 @@ export default function LocationsWorkshops() {
           </button>
 
           <div className={styles.drawerHeaderMeta}>
-            <span className={`${styles.drawerEyebrow} eyebrow`}>Service Hub</span>
+            <span className={`${styles.drawerEyebrow} eyebrow`}>{dict.serviceHub}</span>
             <h3 id="drawer-title" className={`${styles.drawerTitle} h3`}>{selectedCity}</h3>
             <p className={styles.drawerSubtitle}>
-              <span className="mono-num">{filteredWorkshops.length}</span> certified repair {filteredWorkshops.length === 1 ? "partner" : "partners"} found
+              <span className="mono-num">{filteredWorkshops.length}</span> {dict.certifiedRepair}{filteredWorkshops.length === 1 ? dict.partnerSingular : dict.partnerPlural} {dict.found}
             </p>
           </div>
         </div>
@@ -339,20 +339,20 @@ export default function LocationsWorkshops() {
 
           <div className={styles.drawerFilters}>
             <button onClick={() => setFilterPriority("All")} className={`${styles.drawerToggleBtn} ${filterPriority === "All" ? styles.drawerToggleBtnActive : ""}`}>
-              All Partners
+              {dict.filterAll}
             </button>
             <button onClick={() => setFilterPriority("Priority")} className={`${styles.drawerToggleBtn} ${filterPriority === "Priority" ? styles.drawerToggleBtnActive : ""}`}>
-              Priority / Featured
+              {dict.filterPriority}
             </button>
             <button onClick={() => setFilterPriority("Standard")} className={`${styles.drawerToggleBtn} ${filterPriority === "Standard" ? styles.drawerToggleBtnActive : ""}`}>
-              Standard
+              {dict.filterStandard}
             </button>
           </div>
 
           <div className={styles.drawerWorkshopsList}>
             {filteredWorkshops.length === 0 ? (
               <div className={styles.emptyState}>
-                <p>No workshops match the selected filters.</p>
+                <p>{dict.emptyState}</p>
               </div>
             ) : (
               filteredWorkshops.map((workshop) => {
@@ -380,7 +380,7 @@ export default function LocationsWorkshops() {
                       <div className={styles.drawerCardMeta}>
                         <div className={styles.drawerTitleRow}>
                           <h4 className={styles.drawerWorkshopTitle}>{workshop.title}</h4>
-                          {workshop.featured && <span className={styles.featuredBadge}>Featured</span>}
+                          {workshop.featured && <span className={styles.featuredBadge}>{dict.featured}</span>}
                         </div>
                         <p className={styles.drawerWorkshopSubtitle}>{workshop.type}</p>
                       </div>
@@ -401,7 +401,7 @@ export default function LocationsWorkshops() {
                         <div className={styles.coverageBlock}>
                           <h5 className={styles.coverageTitle}>
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
-                            Free repair coverage
+                            {dict.freeCoverage}
                           </h5>
                           <div className={styles.coverageGrid}>
                             {workshop.freeCoverage?.map((cov, idx) => (
@@ -416,7 +416,7 @@ export default function LocationsWorkshops() {
                         {/* Business Hours & Location Split */}
                         <div className={styles.infoSplit}>
                           <div className={styles.hoursBlock}>
-                            <h5 className={`${styles.blockTitle} eyebrow`}>Business Hours</h5>
+                            <h5 className={`${styles.blockTitle} eyebrow`}>{dict.businessHours}</h5>
                             {workshop.businessHours ? (
                               <div className={styles.hoursTable}>
                                 {workshop.businessHours.map((bh, idx) => (
@@ -432,13 +432,13 @@ export default function LocationsWorkshops() {
                           </div>
 
                            <div className={styles.contactBlock}>
-                            <h5 className={`${styles.blockTitle} eyebrow`}>Contact</h5>
+                            <h5 className={`${styles.blockTitle} eyebrow`}>{dict.contact}</h5>
                             <div className={styles.detailRow}>
                               <svg className={styles.detailIcon} width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></svg>
                               <div style={{display: 'flex', flexDirection: 'column', gap: '4px'}}>
                                 <span className={styles.detailText}>{workshop.address}</span>
                                 <Link href={`https://maps.google.com/?q=${encodeURIComponent(workshop.address)}`} target="_blank" className={styles.mapLink}>
-                                  View on Map ↗
+                                  {dict.viewOnMap}
                                 </Link>
                               </div>
                             </div>
