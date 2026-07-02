@@ -6,7 +6,7 @@ import styles from "./repair-partners.module.css";
 import { WORKSHOPS, CITIES, WORKSHOP_TYPES, getInitialsBg } from "@/data/workshops";
 import BookingForm from "@/components/BookingForm";
 
-export default function RepairPartnersClient() {
+export default function RepairPartnersClient({ dict = {}, lang = "en" }) {
   const [selectedCity, setSelectedCity] = useState("All");
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -122,35 +122,57 @@ export default function RepairPartnersClient() {
 
   const hasActiveFilters = selectedCity !== "All" || selectedTypes.length > 0 || searchQuery !== "";
 
+  const getCapacityText = (text) => {
+    if (!text) return "";
+    if (lang === "hu") {
+      return text
+        .replace("Accepts up to", "Maximum")
+        .replace("repair appointment per hour", "javítási időpontot fogad óránként")
+        .replace("repair appointments per hour", "javítási időpontot fogad óránként");
+    }
+    return text;
+  };
+
+  const formatHours = (hoursStr) => {
+    if (!hoursStr) return "";
+    if (lang === "hu") {
+      return hoursStr
+        .replace("Mon - Fri", "Hé - Pé")
+        .replace("Sat", "Szo")
+        .replace("Sun", "Vas")
+        .replace("Emergency Dispatch", "Sürgősségi kiszállás");
+    }
+    return hoursStr.split(" | ")[0];
+  };
+
   return (
     <div className={styles.pageWrapper}>
       {/* 1. Hero */}
       <section className={styles.hero}>
         <div className={styles.heroTextContainer}>
-          <span className={styles.heroPre}>Certified Repair Network</span>
-          <h1 className={styles.heroTitle}>Service & Repair Partners</h1>
+          <span className={styles.heroPre}>{dict.heroPre || "Certified Repair Network"}</span>
+          <h1 className={styles.heroTitle}>{dict.heroTitle || "Service & Repair Partners"}</h1>
           <p className={styles.heroSubtitle}>
-            Book standard repairs, battery diagnostics, or emergency mobile service with our certified
-            partner workshops across the country.
+            {dict.heroSubtitle || "Book standard repairs, battery diagnostics, or emergency mobile service with our certified partner workshops across the country."}
           </p>
         </div>
 
         <div className={styles.heroStats}>
           <div className={styles.heroStat}>
             <span className={`${styles.heroStatValue} mono-num`}>{filteredWorkshops.length}</span>
-            <span className={styles.heroStatLabel}>Certified partners</span>
+            <span className={styles.heroStatLabel}>{dict.statPartners || "Certified partners"}</span>
           </div>
           <div className={styles.heroStat}>
             <span className={`${styles.heroStatValue} mono-num`}>
               {new Set(filteredWorkshops.map(w => w.location)).size}
             </span>
-            <span className={styles.heroStatLabel}>Cities covered</span>
+            <span className={styles.heroStatLabel}>{dict.statCities || "Cities covered"}</span>
           </div>
           <div className={styles.heroStat}>
             <span className={`${styles.heroStatValue} mono-num`}>
               {new Set(filteredWorkshops.map(w => w.type)).size}
             </span>
-            <span className={styles.heroStatLabel}>Specialties</span>
+            <span className={styles.heroStatLabel}>{dict.statSpecialties || "Specialties"}</span>
           </div>
         </div>
       </section>
@@ -163,7 +185,7 @@ export default function RepairPartnersClient() {
               className={`${styles.tabBtn} ${selectedCity === "All" ? styles.tabBtnActive : ""}`}
               onClick={() => setSelectedCity("All")}
             >
-              All Cities
+              {dict.allCities || "All Cities"}
               <span className={styles.tabCount}>{getCityCount("All")}</span>
             </button>
             {CITIES.map((city) => (
@@ -187,7 +209,7 @@ export default function RepairPartnersClient() {
               <input
                 type="text"
                 className={styles.searchInput}
-                placeholder="Search by name or city"
+                placeholder={dict.searchPlaceholder || "Search by name or city"}
                 value={searchQuery}
                 onChange={(e) => {
                   setSearchQuery(e.target.value);
@@ -201,7 +223,7 @@ export default function RepairPartnersClient() {
                 className={`${styles.dropdownTrigger} ${selectedTypes.length > 0 ? styles.activeTrigger : ""}`}
                 onClick={() => setIsTypeDropdownOpen((prev) => !prev)}
               >
-                Specialty {selectedTypes.length > 0 ? `(${selectedTypes.length})` : ""}
+                {dict.specialty || "Specialty"} {selectedTypes.length > 0 ? `(${selectedTypes.length})` : ""}
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <polyline points="6 9 12 15 18 9" />
                 </svg>
@@ -209,7 +231,7 @@ export default function RepairPartnersClient() {
 
               {isTypeDropdownOpen && (
                 <div className={styles.glassPopover}>
-                  <div className={styles.popoverHeader}>Filter by Specialty</div>
+                  <div className={styles.popoverHeader}>{dict.filterBySpecialty || "Filter by Specialty"}</div>
                   <div className={styles.popoverList}>
                     {WORKSHOP_TYPES.map((type) => (
                       <label key={type} className={styles.popoverCheckboxLabel}>
@@ -219,7 +241,7 @@ export default function RepairPartnersClient() {
                           checked={selectedTypes.includes(type)}
                           onChange={() => handleTypeToggle(type)}
                         />
-                        <span>{type}</span>
+                        <span>{dict.types?.[type] || type}</span>
                       </label>
                     ))}
                   </div>
@@ -232,7 +254,7 @@ export default function RepairPartnersClient() {
                 <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" />
                 </svg>
-                <span className={styles.clearBtnText}>Reset</span>
+                <span className={styles.clearBtnText}>{dict.reset || "Reset"}</span>
               </button>
             )}
           </div>
@@ -242,18 +264,18 @@ export default function RepairPartnersClient() {
       {/* 3. Partner Grid */}
       <section className={styles.gridSection}>
         <div className={styles.resultsSummary}>
-          {filteredWorkshops.length} {filteredWorkshops.length === 1 ? "partner" : "partners"} found
+          {filteredWorkshops.length} {filteredWorkshops.length === 1 ? (dict.partner || "partner") : (dict.partners || "partners")} {dict.found || "found"}
         </div>
 
         <div className={styles.partnerGrid}>
           {filteredWorkshops.length === 0 ? (
             <div className={styles.emptyState}>
-              <h3 className={styles.emptyStateTitle}>No partners match this search</h3>
+              <h3 className={styles.emptyStateTitle}>{dict.noPartnersFound || "No partners match this search"}</h3>
               <p className={styles.emptyStateDetail}>
-                Try adjusting your city, specialty, or search filters.
+                {dict.adjustFilters || "Try adjusting your city, specialty, or search filters."}
               </p>
               <button className={styles.emptyStateBtn} onClick={handleClearFilters}>
-                Reset filters
+                {dict.resetFilters || "Reset filters"}
               </button>
             </div>
           ) : (
@@ -278,10 +300,10 @@ export default function RepairPartnersClient() {
                   <div className={styles.cardTitleBlock}>
                     <div className={styles.cardTitleRow}>
                       <h3 className={styles.cardTitle}>{workshop.title}</h3>
-                      {workshop.featured && <span className={styles.featuredBadge}>Featured</span>}
+                      {workshop.featured && <span className={styles.featuredBadge}>{dict.featured || "Featured"}</span>}
                     </div>
                     <div className={styles.cardMeta}>
-                      <span>{workshop.type}</span>
+                      <span>{dict.types?.[workshop.type] || workshop.type}</span>
                       <span className={styles.cardMetaDot}>·</span>
                       <span>{workshop.location}</span>
                     </div>
@@ -292,17 +314,19 @@ export default function RepairPartnersClient() {
 
                 <div className={styles.tierChips}>
                   {workshop.tiers.map((tier) => (
-                    <span key={tier} className={styles.tierChip}>{tier}</span>
+                    <span key={tier} className={styles.tierChip}>
+                      {lang === "hu" ? tier.replace("Tier", "szint") : tier}
+                    </span>
                   ))}
                 </div>
 
                 <div className={styles.cardFooter}>
                   <span className={styles.cardHours}>
                     <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
-                    {workshop.hours.split(" | ")[0]}
+                    {formatHours(workshop.hours)}
                   </span>
                   <span className={styles.viewDetailsLink}>
-                    View details
+                    {dict.viewDetails || "View details"}
                     <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                       <line x1="5" y1="12" x2="19" y2="12" />
                       <polyline points="12 5 19 12 12 19" />
@@ -319,21 +343,21 @@ export default function RepairPartnersClient() {
       <section className={styles.ctaBanner}>
         <div className={styles.ctaInner}>
           <div className={styles.ctaText}>
-            <h2 className="h2">Riding a Courier fleet?</h2>
+            <h2 className="h2">{dict.ridingCourierFleet || "Riding a Courier fleet?"}</h2>
             <p className="body-default">
-              Courier+ subscribers get free repair coverage at every partner workshop on this page.
+              {dict.ridingCourierFleetDesc || "Courier+ subscribers get free repair coverage at every partner workshop on this page."}
             </p>
           </div>
           <div className={styles.ctaActions}>
             <Link href="/courier-plus" className="btn-primary">
-              Explore Courier+
+              {dict.exploreCourierPlus || "Explore Courier+"}
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="7" y1="17" x2="17" y2="7" />
                 <polyline points="7 7 17 7 17 17" />
               </svg>
             </Link>
             <Link href="/contact" className="btn-secondary dark">
-              Contact Us
+              {dict.contactUs || "Contact Us"}
             </Link>
           </div>
         </div>
@@ -369,8 +393,8 @@ export default function RepairPartnersClient() {
 
               <div>
                 <div className={styles.modalBadgeRow}>
-                  <span className={styles.modalTypeBadge}>{activeWorkshop.type}</span>
-                  {activeWorkshop.featured && <span className={styles.featuredBadge}>Featured</span>}
+                  <span className={styles.modalTypeBadge}>{dict.types?.[activeWorkshop.type] || activeWorkshop.type}</span>
+                  {activeWorkshop.featured && <span className={styles.featuredBadge}>{dict.featured || "Featured"}</span>}
                 </div>
                 <h2 id="modal-title" className={styles.modalTitle}>{activeWorkshop.title}</h2>
               </div>
@@ -385,7 +409,7 @@ export default function RepairPartnersClient() {
                       target="_blank"
                       className={styles.mapLink}
                     >
-                      View on Map ↗
+                      {dict.viewOnMap || "View on Map ↗"}
                     </Link>
                   </div>
                 </div>
@@ -400,10 +424,12 @@ export default function RepairPartnersClient() {
               </div>
 
               <div className={styles.modalTiers}>
-                <h5 className={`${styles.blockTitle} eyebrow`}>Repair tiers covered</h5>
+                <h5 className={`${styles.blockTitle} eyebrow`}>{dict.repairTiersCovered || "Repair tiers covered"}</h5>
                 <div className={styles.tierChips}>
                   {activeWorkshop.tiers.map((tier) => (
-                    <span key={tier} className={styles.tierChip}>{tier}</span>
+                    <span key={tier} className={styles.tierChip}>
+                      {lang === "hu" ? tier.replace("Tier", "szint") : tier}
+                    </span>
                   ))}
                 </div>
               </div>
@@ -415,32 +441,34 @@ export default function RepairPartnersClient() {
               <div className={styles.coverageBlock}>
                 <h5 className={styles.coverageTitle}>
                   <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
-                  Free repair coverage
+                  {dict.freeRepairCoverage || "Free repair coverage"}
                 </h5>
                 <div className={styles.coverageGrid}>
                   {activeWorkshop.freeCoverage?.map((cov, idx) => (
                     <div key={idx} className={styles.coverageRow}>
-                      <span className={styles.coverageType}>{cov.type}</span>
-                      <span className={styles.coverageTiers}>{cov.tiers.join(", ")}</span>
+                      <span className={styles.coverageType}>{dict.types?.[cov.type] || cov.type}</span>
+                      <span className={styles.coverageTiers}>
+                        {cov.tiers.map(t => lang === "hu" ? t.replace("Tier", "szint") : t).join(", ")}
+                      </span>
                     </div>
                   ))}
                 </div>
               </div>
 
               <div>
-                <h5 className={`${styles.blockTitle} eyebrow`}>Business Hours</h5>
+                <h5 className={`${styles.blockTitle} eyebrow`}>{dict.businessHours || "Business Hours"}</h5>
                 <div className={styles.hoursTable}>
                   {activeWorkshop.businessHours?.map((bh, idx) => (
                     <div key={idx} className={`${styles.hourRow} ${bh.hours === "Closed" ? styles.hourClosed : ""}`}>
-                      <span className={styles.hourDay}>{bh.day}</span>
-                      <span>{bh.hours}</span>
+                      <span className={styles.hourDay}>{dict.days?.[bh.day] || bh.day}</span>
+                      <span>{bh.hours === "Closed" ? (dict.days?.Closed || "Closed") : bh.hours}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
               {activeWorkshop.capacity && (
-                <p className={styles.capacityText}>{activeWorkshop.capacity}</p>
+                <p className={styles.capacityText}>{getCapacityText(activeWorkshop.capacity)}</p>
               )}
 
               <BookingForm
@@ -458,6 +486,8 @@ export default function RepairPartnersClient() {
                     [activeWorkshop.id]: null
                   }));
                 }}
+                dict={dict}
+                lang={lang}
               />
             </div>
           </div>

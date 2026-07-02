@@ -3,12 +3,12 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "./BookingForm.module.css";
 
-const MONTHS = [
+const MONTHS_DEFAULT = [
   "January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];
 
-const WEEKDAYS = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
+const WEEKDAYS_DEFAULT = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
 
 const TIME_SLOTS = [
   { value: "08:00", label: "08:00 AM" },
@@ -24,7 +24,7 @@ const TIME_SLOTS = [
   { value: "18:00", label: "06:00 PM" }
 ];
 
-export default function BookingForm({ workshop, booking, onBookingSuccess, onResetBooking }) {
+export default function BookingForm({ workshop, booking, onBookingSuccess, onResetBooking, dict = {}, lang = "en" }) {
   const [bookingError, setBookingError] = useState(null);
   
   // Selection States
@@ -47,6 +47,9 @@ export default function BookingForm({ workshop, booking, onBookingSuccess, onRes
   const dateRef = useRef(null);
   const timeRef = useRef(null);
 
+  const monthsList = dict.months || MONTHS_DEFAULT;
+  const weekdaysList = dict.weekdays || WEEKDAYS_DEFAULT;
+
   useEffect(() => {
     function handleClickOutside(event) {
       if (tierRef.current && !tierRef.current.contains(event.target)) {
@@ -66,6 +69,17 @@ export default function BookingForm({ workshop, booking, onBookingSuccess, onRes
   const formatDate = (dateStr) => {
     if (!dateStr) return "";
     const date = new Date(dateStr);
+    if (lang === "hu") {
+      const monthsHU = [
+        "január", "február", "március", "április", "május", "június",
+        "július", "augusztus", "szeptember", "október", "november", "december"
+      ];
+      const weekdaysHU = ["Vasárnap", "Hétfő", "Kedd", "Szerda", "Csütörtök", "Péntek", "Szombat"];
+      const day = date.getDate();
+      const monthName = monthsHU[date.getMonth()];
+      const weekdayName = weekdaysHU[date.getDay()];
+      return `${date.getFullYear()}. ${monthName} ${day}. (${weekdayName})`;
+    }
     return date.toLocaleDateString("en-US", {
       weekday: "short",
       day: "numeric",
@@ -77,15 +91,15 @@ export default function BookingForm({ workshop, booking, onBookingSuccess, onRes
   const handleBookingSubmit = (e) => {
     e.preventDefault();
     if (!selectedTier) {
-      setBookingError("Please select a service tier.");
+      setBookingError(dict.errorTier || "Please select a service tier.");
       return;
     }
     if (!selectedDate) {
-      setBookingError("Please select an appointment date.");
+      setBookingError(dict.errorDate || "Please select an appointment date.");
       return;
     }
     if (!selectedTime) {
-      setBookingError("Please select an appointment time.");
+      setBookingError(dict.errorTime || "Please select an appointment time.");
       return;
     }
     setBookingError(null);
@@ -182,8 +196,15 @@ export default function BookingForm({ workshop, booking, onBookingSuccess, onRes
 
   // Human friendly label for selected date
   const getDateTriggerLabel = () => {
-    if (!selectedDate) return "Select Date";
+    if (!selectedDate) return dict.selectDate || "Select Date";
     const dateObj = new Date(selectedDate);
+    if (lang === "hu") {
+      const monthsHU = [
+        "jan.", "febr.", "márc.", "ápr.", "máj.", "jún.",
+        "júl.", "aug.", "szept.", "okt.", "nov.", "dec."
+      ];
+      return `${dateObj.getFullYear()}. ${monthsHU[dateObj.getMonth()]} ${dateObj.getDate()}.`;
+    }
     return dateObj.toLocaleDateString("en-US", {
       day: "numeric",
       month: "short",
@@ -192,9 +213,12 @@ export default function BookingForm({ workshop, booking, onBookingSuccess, onRes
   };
 
   const getTimeTriggerLabel = () => {
-    if (!selectedTime) return "Select Time";
-    const foundSlot = TIME_SLOTS.find(slot => slot.value === selectedTime);
-    return foundSlot ? foundSlot.label : selectedTime;
+    if (!selectedTime) return dict.selectTime || "Select Time";
+    return dict.timeSlots?.[selectedTime] || selectedTime;
+  };
+
+  const getTierDisplayName = (tier) => {
+    return lang === "hu" ? `${tier} szerviz` : `${tier} Service`;
   };
 
   return (
@@ -207,34 +231,34 @@ export default function BookingForm({ workshop, booking, onBookingSuccess, onRes
             </svg>
           </div>
           <div className={styles.successHeader}>
-            <h5>Appointment Confirmed</h5>
+            <h5>{dict.bookingConfirmed || "Appointment Confirmed"}</h5>
             <span className={styles.ticketNumber}>
               {booking.ticketNumber || "ERT-7732"}
             </span>
           </div>
           <div className={styles.ticketBody}>
             <div className={styles.ticketRow}>
-              <span className={styles.ticketLabel}>Workshop</span>
+              <span className={styles.ticketLabel}>{dict.workshop || "Workshop"}</span>
               <span className={styles.ticketValue}>{workshop.title}</span>
             </div>
             <div className={styles.ticketRow}>
-              <span className={styles.ticketLabel}>Tier</span>
-              <span className={styles.tierTag}>{booking.serviceType} Service</span>
+              <span className={styles.ticketLabel}>{dict.tier || "Tier"}</span>
+              <span className={styles.tierTag}>{getTierDisplayName(booking.serviceType)}</span>
             </div>
             <div className={styles.ticketRow}>
-              <span className={styles.ticketLabel}>Date</span>
+              <span className={styles.ticketLabel}>{dict.date || "Date"}</span>
               <span className={styles.ticketValue}>{formatDate(booking.date)}</span>
             </div>
             <div className={styles.ticketRow}>
-              <span className={styles.ticketLabel}>Time</span>
+              <span className={styles.ticketLabel}>{dict.time || "Time"}</span>
               <span className={styles.ticketValue}>
-                {TIME_SLOTS.find(slot => slot.value === booking.time)?.label || booking.time}
+                {dict.timeSlots?.[booking.time] || booking.time}
               </span>
             </div>
           </div>
           <div className={styles.ticketFooter}>
             <button onClick={handleReset} className={styles.rescheduleBtn}>
-              Reschedule Appointment
+              {dict.reschedule || "Reschedule Appointment"}
             </button>
           </div>
         </div>
@@ -247,7 +271,7 @@ export default function BookingForm({ workshop, booking, onBookingSuccess, onRes
               <line x1="8" y1="2" x2="8" y2="6" />
               <line x1="3" y1="10" x2="21" y2="10" />
             </svg>
-            <span className={styles.bookingFormHeaderTitle}>Schedule Appointment</span>
+            <span className={styles.bookingFormHeaderTitle}>{dict.scheduleAppointment || "Schedule Appointment"}</span>
           </div>
           <form onSubmit={handleBookingSubmit} className={styles.bookingForm}>
             
@@ -270,7 +294,7 @@ export default function BookingForm({ workshop, booking, onBookingSuccess, onRes
                 }}
               >
                 <span style={{ color: selectedTier ? "var(--brand-darker)" : "var(--muted-foreground)" }}>
-                  {selectedTier ? `${selectedTier} Service` : "Select Service Tier"}
+                  {selectedTier ? getTierDisplayName(selectedTier) : (dict.selectServiceTier || "Select Service Tier")}
                 </span>
                 <svg
                   style={{
@@ -302,7 +326,7 @@ export default function BookingForm({ workshop, booking, onBookingSuccess, onRes
                         setTierOpen(false);
                       }}
                     >
-                      <span>{tier} Service</span>
+                      <span>{getTierDisplayName(tier)}</span>
                       {selectedTier === tier && (
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ color: "var(--primary)" }}>
                           <polyline points="20 6 9 17 4 12" />
@@ -358,7 +382,7 @@ export default function BookingForm({ workshop, booking, onBookingSuccess, onRes
                         &larr;
                       </button>
                       <span className={styles.calendarTitle}>
-                        {MONTHS[currentMonth]} {currentYear}
+                        {lang === "hu" ? `${currentYear}. ${monthsList[currentMonth]}` : `${monthsList[currentMonth]} ${currentYear}`}
                       </span>
                       <button
                         type="button"
@@ -369,7 +393,7 @@ export default function BookingForm({ workshop, booking, onBookingSuccess, onRes
                       </button>
                     </div>
                     <div className={styles.calendarWeekdays}>
-                      {WEEKDAYS.map(day => (
+                      {weekdaysList.map(day => (
                         <div key={day} className={styles.calendarWeekday}>{day}</div>
                       ))}
                     </div>
@@ -433,7 +457,7 @@ export default function BookingForm({ workshop, booking, onBookingSuccess, onRes
                           setTimeOpen(false);
                         }}
                       >
-                        <span>{slot.label}</span>
+                        <span>{dict.timeSlots?.[slot.value] || slot.label}</span>
                         {selectedTime === slot.value && (
                           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ color: "var(--primary)" }}>
                             <polyline points="20 6 9 17 4 12" />
@@ -450,7 +474,7 @@ export default function BookingForm({ workshop, booking, onBookingSuccess, onRes
             {bookingError && <p className={styles.bookingError}>{bookingError}</p>}
             
             <button type="submit" className="btn-primary" style={{ width: "100%", marginTop: "4px" }}>
-              Confirm Appointment
+              {dict.confirmAppointment || "Confirm Appointment"}
               <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12" />
                 <polyline points="12 5 19 12 12 19" />
