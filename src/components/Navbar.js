@@ -20,7 +20,10 @@ const fleetList = [
   { name: "DUOTTS C29 Pro", isElectric: true, image: "/images/c29_pro.png", slug: "duotts-c29-pro" },
 ];
 
-// Routes whose hero is light, so the navbar sits transparent over a light background.
+// Routes with dark hero sections where navbar sits transparent over dark backgrounds.
+const DARK_HERO_ROUTES = ["/", "/courier-plus"];
+
+// Routes with hero is light, so the navbar sits transparent over a light background.
 const LIGHT_HERO_ROUTES = ["/fleets", "/repair-partners"];
 
 export default function Navbar({ dict }) {
@@ -31,7 +34,8 @@ export default function Navbar({ dict }) {
   // Strip the locale segment to get the app route (e.g. "/en/fleets" -> "/fleets").
   const routePath = "/" + pathname.split("/").slice(2).join("/");
   const forceSolid = false;
-  const transparentLight = LIGHT_HERO_ROUTES.includes(routePath);
+  const isDarkHeroRoute = DARK_HERO_ROUTES.includes(routePath);
+  const isLightHeroRoute = LIGHT_HERO_ROUTES.includes(routePath);
 
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const [hoverTimeout, setHoverTimeout] = useState(null);
@@ -121,8 +125,8 @@ export default function Navbar({ dict }) {
   };
 
   // Safe checks to avoid hydration mismatches
-  const isTransparentDark = !forceSolid && !transparentLight && (mounted ? isAtTop : true);
-  const isTransparentLight = !forceSolid && transparentLight && (mounted ? isAtTop : true);
+  const isTransparentDark = !forceSolid && isDarkHeroRoute && (mounted ? isAtTop : true);
+  const isTransparentLight = !forceSolid && isLightHeroRoute && (mounted ? isAtTop : true);
   const isNavbarScrolled = mounted ? !isAtTop : false;
   const showMegaMenu = mounted ? !hasScrolled : true;
   const showBusinessBtnLeft = mounted ? hasScrolled : false;
@@ -150,6 +154,10 @@ export default function Navbar({ dict }) {
     e.stopPropagation();
     setIsMobileFleetsOpen(!isMobileFleetsOpen);
   };
+
+  if (routePath.startsWith("/checkout")) {
+    return null;
+  }
 
   return (
     <header className={`${styles.header} ${transitionsReady ? "" : styles.headerBooting} ${isTransparentDark ? styles.headerTransparent : ""} ${isTransparentLight ? styles.headerTransparentLight : ""} ${isNavbarScrolled ? styles.headerScrolled : ""}`}>
@@ -292,7 +300,7 @@ export default function Navbar({ dict }) {
               <line x1="2" y1="12" x2="22" y2="12" />
               <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
             </svg>
-            <span style={{ fontSize: '11px', fontWeight: '800', color: 'var(--brand-dark)' }}>{currentLang}</span>
+            <span style={{ fontSize: '11px', fontWeight: '800' }}>{currentLang}</span>
           </button>
 
           {/* Help Center */}
