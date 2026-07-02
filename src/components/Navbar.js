@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
 import styles from "./Navbar.module.css";
 
 const fleetList = [
@@ -13,31 +14,54 @@ const fleetList = [
   { name: "DUOTTS C29 Pro", isElectric: true, image: "/images/c29_pro.png", slug: "duotts-c29-pro" },
 ];
 
-export default function Navbar({ forceSolid = false, transparentLight = false }) {
+export default function Navbar({ forceSolid = false, transparentLight = false, dict }) {
+  const pathname = usePathname();
+  const router = useRouter();
+  
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const [hoverTimeout, setHoverTimeout] = useState(null);
   const [isAtTop, setIsAtTop] = useState(true);
   const [hasScrolled, setHasScrolled] = useState(false);
   const [footerNear, setFooterNear] = useState(false);
-  const [language, setLanguage] = useState("EN");
   const [mounted, setMounted] = useState(false);
 
   // Mobile drawer states
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileFleetsOpen, setIsMobileFleetsOpen] = useState(false);
 
+  // Extract language from URL path
+  const pathParts = pathname ? pathname.split("/") : [];
+  const currentLang = pathParts[1] && ["en", "hu"].includes(pathParts[1].toLowerCase())
+    ? pathParts[1].toUpperCase()
+    : "EN";
+
+  // Localization dictionary fallback
+  const t = dict || {
+    fleets: "Fleets",
+    seeAllFleets: "See all fleets",
+    courierPlus: "Courier+",
+    howItWorks: "How it works",
+    forBusiness: "For Business",
+    seeFleetsBtn: "See Fleets",
+    tagline: "Fuel-Free. Stress-Free.",
+    selectLanguage: "Select Language",
+    help: "Help",
+    profile: "Profile"
+  };
+
+  const localizePath = (path) => {
+    const langPrefix = currentLang.toLowerCase();
+    if (path.startsWith("/#")) {
+      return `/${langPrefix}${path.substring(1)}`;
+    }
+    if (path.startsWith("/en") || path.startsWith("/hu")) {
+      return path;
+    }
+    return `/${langPrefix}${path === "/" ? "" : path}`;
+  };
+
   useEffect(() => {
     setMounted(true);
-
-    // Hydration safe load of language
-    try {
-      const savedLanguage = localStorage.getItem("language");
-      if (savedLanguage) {
-        setLanguage(savedLanguage);
-      }
-    } catch (e) {
-      console.warn("Could not read language from localStorage:", e);
-    }
 
     const handleScroll = () => {
       const y = window.scrollY;
@@ -51,7 +75,6 @@ export default function Navbar({ forceSolid = false, transparentLight = false })
       }
     };
 
-    // Sync on mount in case the page was reloaded mid-scroll
     handleScroll();
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -59,15 +82,26 @@ export default function Navbar({ forceSolid = false, transparentLight = false })
   }, []);
 
   const toggleLanguage = () => {
-    setLanguage((prev) => {
-      const next = prev === "EN" ? "HU" : "EN";
-      try {
-        localStorage.setItem("language", next);
-      } catch (e) {
-        console.warn("Could not write language to localStorage:", e);
+    const nextLang = currentLang.toLowerCase() === "en" ? "hu" : "en";
+    
+    try {
+      document.cookie = `NEXT_LOCALE=${nextLang}; path=/; max-age=31536000; SameSite=Lax`;
+    } catch (e) {
+      console.warn("Could not set NEXT_LOCALE cookie:", e);
+    }
+
+    if (pathParts.length > 1) {
+      const newParts = [...pathParts];
+      if (["en", "hu"].includes(newParts[1].toLowerCase())) {
+        newParts[1] = nextLang;
+      } else {
+        newParts.splice(1, 0, nextLang);
       }
-      return next;
-    });
+      const newPath = newParts.join("/");
+      router.push(newPath || "/");
+    } else {
+      router.push(`/${nextLang}`);
+    }
   };
 
   // Safe checks to avoid hydration mismatches
@@ -88,7 +122,7 @@ export default function Navbar({ forceSolid = false, transparentLight = false })
   const handleMouseLeave = () => {
     const timeout = setTimeout(() => {
       setIsMegaMenuOpen(false);
-    }, 200); // 200ms grace period for moving between trigger and menu
+    }, 200);
     setHoverTimeout(timeout);
   };
 
@@ -107,14 +141,13 @@ export default function Navbar({ forceSolid = false, transparentLight = false })
         {/* Left Side: Desktop Navigation Links */}
         <nav className={styles.nav}>
           {showMegaMenu && (
-            /* Wraps both trigger and megaMenu so the mouse never leaves the hover boundary */
             <div
               className={styles.navLinkWrapper}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
               <div className={`${styles.navLink} ${isMegaMenuOpen ? styles.navLinkActive : ""}`}>
-                Fleets
+                {t.fleets}
                 <svg
                   className={styles.chevron}
                   fill="none"
@@ -126,13 +159,12 @@ export default function Navbar({ forceSolid = false, transparentLight = false })
                 </svg>
               </div>
 
-              {/* Mega Menu Dropdown (Nested to retain hover context) */}
+              {/* Mega Menu Dropdown */}
               <div className={`${styles.megaMenu} ${isMegaMenuOpen ? styles.megaMenuOpen : ""}`}>
                 <div className={styles.megaMenuContent}>
-                  {/* Grid of 5 bike models */}
                   <div className={styles.fleetGrid}>
                     {fleetList.map((bike, idx) => (
-                      <Link key={idx} href={`/fleets/${bike.slug}`} className={styles.fleetItem}>
+                      <Link key={idx} href={localizePath(`/fleets/${bike.slug}`)} className={styles.fleetItem}>
                         <div className={styles.bikeImageWrapper}>
                           <Image
                             src={bike.image}
@@ -150,14 +182,13 @@ export default function Navbar({ forceSolid = false, transparentLight = false })
                     ))}
                   </div>
 
-                  {/* Quick Links on the right */}
                   <div className={styles.quickLinks}>
-                    <Link href="/fleets" className={styles.quickLinkItem}>
-                      See all fleets
+                    <Link href={localizePath("/fleets")} className={styles.quickLinkItem}>
+                      {t.seeAllFleets}
                       <span className={styles.arrowIcon}>→</span>
                     </Link>
-                    <Link href="/courier-plus" className={styles.quickLinkItem}>
-                      Courier+
+                    <Link href={localizePath("/courier-plus")} className={styles.quickLinkItem}>
+                      {t.courierPlus}
                       <span className={styles.arrowIcon}>→</span>
                     </Link>
                   </div>
@@ -166,16 +197,16 @@ export default function Navbar({ forceSolid = false, transparentLight = false })
             </div>
           )}
 
-          <Link href="/courier-plus" className={styles.navLink}>
-            Courier+
+          <Link href={localizePath("/courier-plus")} className={styles.navLink}>
+            {t.courierPlus}
           </Link>
-          <Link href="/#how-it-works" className={styles.navLink}>
-            How it works
+          <Link href={localizePath("/#how-it-works")} className={styles.navLink}>
+            {t.howItWorks}
           </Link>
 
           {showBusinessBtnLeft && (
-            <Link href="/business" className={styles.businessBtnLeft}>
-              For Business
+            <Link href={localizePath("/business")} className={styles.businessBtnLeft}>
+              {t.forBusiness}
               <svg
                 width="14"
                 height="14"
@@ -195,18 +226,18 @@ export default function Navbar({ forceSolid = false, transparentLight = false })
         </nav>
 
         {/* Middle Side: Text Logo */}
-        <Link href="/" className={styles.logoArea}>
+        <Link href={localizePath("/")} className={styles.logoArea}>
           E-RENTY
           <span className={`${styles.logoTagline} ${showLogoTagline ? styles.logoTaglineVisible : ""}`}>
-            Fuel-Free. Stress-Free.
+            {t.tagline}
           </span>
         </Link>
 
         {/* Right Side: Utilities */}
         <div className={styles.rightArea}>
           {showBusinessBtn && (
-            <Link href="/business" className={styles.businessBtn}>
-              For Business
+            <Link href={localizePath("/business")} className={styles.businessBtn}>
+              {t.forBusiness}
               <svg
                 width="14"
                 height="14"
@@ -224,10 +255,10 @@ export default function Navbar({ forceSolid = false, transparentLight = false })
             </Link>
           )}
 
-          {/* Language icon */}
+          {/* Language Toggle Button */}
           <button 
             className={styles.iconButton} 
-            aria-label="Select Language"
+            aria-label={t.selectLanguage}
             onClick={toggleLanguage}
             style={{ display: 'flex', alignItems: 'center', gap: '4px' }}
           >
@@ -245,11 +276,11 @@ export default function Navbar({ forceSolid = false, transparentLight = false })
               <line x1="2" y1="12" x2="22" y2="12" />
               <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
             </svg>
-            <span style={{ fontSize: '11px', fontWeight: '800', color: 'var(--brand-dark)' }}>{language}</span>
+            <span style={{ fontSize: '11px', fontWeight: '800', color: 'var(--brand-dark)' }}>{currentLang}</span>
           </button>
 
-          {/* Help icon */}
-          <Link href="/contact" className={styles.iconButton} aria-label="Help Center">
+          {/* Help Center */}
+          <Link href={localizePath("/contact")} className={styles.iconButton} aria-label={t.help}>
             <svg
               width="20"
               height="20"
@@ -266,8 +297,8 @@ export default function Navbar({ forceSolid = false, transparentLight = false })
             </svg>
           </Link>
 
-          {/* Profile icon */}
-          <Link href="/profile/user-123" className={styles.iconButton} aria-label="User Profile">
+          {/* Profile */}
+          <Link href={localizePath("/profile/user-123")} className={styles.iconButton} aria-label={t.profile}>
             <svg
               width="20"
               height="20"
@@ -284,8 +315,8 @@ export default function Navbar({ forceSolid = false, transparentLight = false })
           </Link>
 
           {showSeeFleetsBtn && (
-            <Link href="/fleets" className={styles.seeFleetsBtn}>
-              See Fleets
+            <Link href={localizePath("/fleets")} className={styles.seeFleetsBtn}>
+              {t.seeFleetsBtn}
               <svg
                 width="14"
                 height="14"
@@ -354,10 +385,10 @@ export default function Navbar({ forceSolid = false, transparentLight = false })
             {/* Accordion item for Fleets */}
             <div className={styles.mobileAccordion}>
               <button
-                 className={`${styles.mobileNavLink} ${isMobileFleetsOpen ? styles.mobileAccordionActive : ""}`}
+                className={`${styles.mobileNavLink} ${isMobileFleetsOpen ? styles.mobileAccordionActive : ""}`}
                 onClick={toggleMobileFleets}
               >
-                <span>Fleets</span>
+                <span>{t.fleets}</span>
                 <svg
                   className={`${styles.drawerChevron} ${isMobileFleetsOpen ? styles.rotateChevron : ""}`}
                   width="18"
@@ -375,7 +406,7 @@ export default function Navbar({ forceSolid = false, transparentLight = false })
                 {fleetList.map((bike, idx) => (
                   <Link
                     key={idx}
-                    href={`/fleets/${bike.slug}`}
+                    href={localizePath(`/fleets/${bike.slug}`)}
                     className={styles.mobileFleetItem}
                     onClick={toggleMobileMenu}
                   >
@@ -394,27 +425,27 @@ export default function Navbar({ forceSolid = false, transparentLight = false })
                     </span>
                   </Link>
                 ))}
-                <Link href="/fleets" className={styles.mobileFleetItemAll} onClick={toggleMobileMenu}>
-                  See all fleets →
+                <Link href={localizePath("/fleets")} className={styles.mobileFleetItemAll} onClick={toggleMobileMenu}>
+                  {t.seeAllFleets} →
                 </Link>
               </div>
             </div>
 
-            <Link href="/courier-plus" className={styles.mobileNavLink} onClick={toggleMobileMenu}>
-              Courier+
+            <Link href={localizePath("/courier-plus")} className={styles.mobileNavLink} onClick={toggleMobileMenu}>
+              {t.courierPlus}
             </Link>
-            <Link href="/#how-it-works" className={styles.mobileNavLink} onClick={toggleMobileMenu}>
-              How it works
+            <Link href={localizePath("/#how-it-works")} className={styles.mobileNavLink} onClick={toggleMobileMenu}>
+              {t.howItWorks}
             </Link>
-            <Link href="/business" className={styles.mobileBusinessLink} onClick={toggleMobileMenu}>
-              For Business
+            <Link href={localizePath("/business")} className={styles.mobileBusinessLink} onClick={toggleMobileMenu}>
+              {t.forBusiness}
             </Link>
           </div>
 
           <div className={styles.drawerFooter}>
             <button 
               className={styles.footerIconButton} 
-              aria-label="Select Language"
+              aria-label={t.selectLanguage}
               onClick={toggleLanguage}
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -422,24 +453,24 @@ export default function Navbar({ forceSolid = false, transparentLight = false })
                 <line x1="2" y1="12" x2="22" y2="12" />
                 <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
               </svg>
-              <span>{language === "EN" ? "English" : "Hungarian (HU)"}</span>
+              <span>{currentLang === "EN" ? "English" : "Hungarian (HU)"}</span>
             </button>
 
-            <Link href="/contact" className={styles.footerIconButton} aria-label="Help Center" onClick={toggleMobileMenu}>
+            <Link href={localizePath("/contact")} className={styles.footerIconButton} aria-label={t.help} onClick={toggleMobileMenu}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="12" cy="12" r="10" />
                 <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
                 <line x1="12" y1="17" x2="12.01" y2="17" />
               </svg>
-              <span>Help</span>
+              <span>{t.help}</span>
             </Link>
 
-            <Link href="/profile/user-123" className={styles.footerIconButton} aria-label="User Profile" onClick={toggleMobileMenu}>
+            <Link href={localizePath("/profile/user-123")} className={styles.footerIconButton} aria-label={t.profile} onClick={toggleMobileMenu}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                 <circle cx="12" cy="7" r="4" />
               </svg>
-              <span>Profile</span>
+              <span>{t.profile}</span>
             </Link>
           </div>
         </div>

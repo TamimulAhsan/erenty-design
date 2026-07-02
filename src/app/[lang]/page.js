@@ -8,12 +8,23 @@ import TrustedBy from "@/components/TrustedBy";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 
-export default function Home() {
+import { getDictionary, hasLocale } from "./dictionaries";
+import { notFound } from "next/navigation";
+
+export default async function Home({ params }) {
+  const { lang } = await params;
+
+  if (!hasLocale(lang)) {
+    notFound();
+  }
+
+  const dict = await getDictionary(lang);
+
   return (
     <>
-      <Navbar />
+      <Navbar dict={dict.navbar} />
       <main>
-        <Hero />
+        <Hero dict={dict.hero} />
         <StartYourJourney />
         <YourJourneyPartner />
         <WeHandleItAll />

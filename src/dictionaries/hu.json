@@ -1,0 +1,25 @@
+{
+  "navbar": {
+    "fleets": "Flották",
+    "seeAllFleets": "Összes flotta megtekintése",
+    "courierPlus": "Futár+",
+    "howItWorks": "Hogyan működik",
+    "forBusiness": "Üzleti ügyfeleknek",
+    "seeFleetsBtn": "Flották megtekintése",
+    "tagline": "Üzemanyagmentes. Stresszmentes.",
+    "selectLanguage": "Nyelv kiválasztása",
+    "help": "Segítség",
+    "profile": "Profil"
+  },
+  "hero": {
+    "titleLine1": "Csapata.",
+    "titleLine2": "Flottája.",
+    "titleHighlight": "Az Ön E-Rent Megoldása.",
+    "ctaSeeFleets": "Flották megtekintése",
+    "ctaCourierPlus": "Futár+",
+    "statCustomers": "Ügyfél",
+    "statDeployed": "Üzemben",
+    "statAvgMo": "ÁTLAG/HÓ",
+    "statUpTime": "RENDELKEZÉSRE ÁLLÁS"
+  }
+}

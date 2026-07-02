@@ -1,0 +1,25 @@
+{
+  "navbar": {
+    "fleets": "Fleets",
+    "seeAllFleets": "See all fleets",
+    "courierPlus": "Courier+",
+    "howItWorks": "How it works",
+    "forBusiness": "For Business",
+    "seeFleetsBtn": "See Fleets",
+    "tagline": "Fuel-Free. Stress-Free.",
+    "selectLanguage": "Select Language",
+    "help": "Help",
+    "profile": "Profile"
+  },
+  "hero": {
+    "titleLine1": "Your Team.",
+    "titleLine2": "Your Fleet.",
+    "titleHighlight": "Your E-Rent Solution.",
+    "ctaSeeFleets": "See Fleets",
+    "ctaCourierPlus": "Courier+",
+    "statCustomers": "Customers",
+    "statDeployed": "Deployed",
+    "statAvgMo": "AVG/MO",
+    "statUpTime": "UP TIME"
+  }
+}

@@ -24,9 +24,14 @@ export const metadata = {
   description: "Find and lease the perfect e-bike fleet for your business or personal use.",
 };
 
-export default function RootLayout({ children }) {
+export async function generateStaticParams() {
+  return [{ lang: "en" }, { lang: "hu" }];
+}
+
+export default async function RootLayout({ children, params }) {
+  const { lang } = await params;
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} ${cruiser.variable}`} suppressHydrationWarning>
+    <html lang={lang || "en"} className={`${inter.variable} ${jetbrainsMono.variable} ${cruiser.variable}`} suppressHydrationWarning>
       <body suppressHydrationWarning>{children}</body>
     </html>
   );

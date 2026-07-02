@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell($r = Invoke-WebRequest -Uri \"https://e-renty.com/\" -UseBasicParsing; $srcs = [regex]::Matches\\($r.Content, 'src=\"\\([^\"]+\\)\"'\\) | ForEach-Object { $_.Groups[1].Value }; $srcs -join \"`n\")",
+      "PowerShell($dir = \"C:\\\\Users\\\\Lenovo\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\e--project-erenty\\\\d9d48a38-32bd-444d-aa2b-dccdb34a3b57\\\\scratchpad\"; Invoke-WebRequest -Uri \"https://e-renty.com/assets/index-DbhEIMeP.js\" -OutFile \"$dir\\\\index.js\" -UseBasicParsing; \\(Get-Item \"$dir\\\\index.js\"\\).Length)"
+    ]
+  }
+}
