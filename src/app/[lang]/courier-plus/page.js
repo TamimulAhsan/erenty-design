@@ -1,5 +1,3 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import CourierPlusClient from "./CourierPlusClient";
 
 export const metadata = {
@@ -11,11 +9,9 @@ export const metadata = {
 export default function CourierPlusPage() {
   return (
     <>
-      <Navbar />
       <main style={{ minHeight: "100vh" }}>
         <CourierPlusClient />
       </main>
-      <Footer />
     </>
   );
 }

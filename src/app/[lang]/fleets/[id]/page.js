@@ -1,6 +1,4 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import Link from "next/link";
+import Link from "@/components/LocalizedLink";
 
 export default async function FleetDetailPage({ params }) {
   const { id } = await params;
@@ -13,7 +11,6 @@ export default async function FleetDetailPage({ params }) {
 
   return (
     <>
-      <Navbar />
       <main style={{ minHeight: "60vh", padding: "120px 24px 80px", maxWidth: "1280px", margin: "0 auto" }}>
         <h1 className="h2" style={{ marginBottom: "16px", color: "var(--brand-dark)" }}>{displayName} Details</h1>
         <p className="body-default" style={{ marginBottom: "32px", color: "var(--muted-foreground)" }}>
@@ -23,7 +20,6 @@ export default async function FleetDetailPage({ params }) {
           ← Back to Fleets
         </Link>
       </main>
-      <Footer />
     </>
   );
 }

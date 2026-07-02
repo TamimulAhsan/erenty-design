@@ -1,5 +1,3 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import RepairPartnersClient from "./RepairPartnersClient";
 
 export const metadata = {
@@ -10,11 +8,9 @@ export const metadata = {
 export default function RepairPartnersPage() {
   return (
     <>
-      <Navbar transparentLight={true} />
       <main>
         <RepairPartnersClient />
       </main>
-      <Footer />
     </>
   );
 }

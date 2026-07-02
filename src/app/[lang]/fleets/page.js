@@ -1,5 +1,3 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import FleetsClient from "./FleetsClient";
 
 export const metadata = {
@@ -10,11 +8,9 @@ export const metadata = {
 export default function FleetsPage() {
   return (
     <>
-      <Navbar transparentLight={true} />
       <main>
         <FleetsClient />
       </main>
-      <Footer />
     </>
   );
 }

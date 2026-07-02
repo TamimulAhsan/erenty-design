@@ -2,7 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import Link from "@/components/LocalizedLink";
 import styles from "./invoice.module.css";
 
 const PLANS = {

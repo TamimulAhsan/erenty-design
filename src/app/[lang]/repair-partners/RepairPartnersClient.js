@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Link from "next/link";
+import Link from "@/components/LocalizedLink";
 import styles from "./repair-partners.module.css";
 import { WORKSHOPS, CITIES, WORKSHOP_TYPES, getInitialsBg } from "@/data/workshops";
 import BookingForm from "@/components/BookingForm";

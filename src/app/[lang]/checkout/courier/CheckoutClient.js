@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import Link from "next/link";
+import Link from "@/components/LocalizedLink";
 import styles from "./checkout.module.css";
 
 const PLANS = {
