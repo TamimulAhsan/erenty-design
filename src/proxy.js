@@ -1,7 +1,5 @@
 import { NextResponse } from "next/server";
-
-const locales = ["en", "hu"];
-const defaultLocale = "en";
+import { locales, defaultLocale } from "@/lib/i18n";
 
 function getLocale(request) {
   // 1. Check persistent cookie first

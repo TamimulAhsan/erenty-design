@@ -1,10 +1,16 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect, useTransition } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
+import { localeFromPathname, defaultLocale, isLocale, localizeHref } from "@/lib/i18n";
 import styles from "./Navbar.module.css";
+
+// Run the initial scroll-state sync before the browser paints (avoids a
+// visible snap when a page loads already scrolled, e.g. after a language toggle).
+// Falls back to useEffect on the server to skip React's SSR warning.
+const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 const fleetList = [
   { name: "VOK S", isElectric: true, image: "/images/S.png", slug: "vok-s" },
@@ -14,26 +20,34 @@ const fleetList = [
   { name: "DUOTTS C29 Pro", isElectric: true, image: "/images/c29_pro.png", slug: "duotts-c29-pro" },
 ];
 
-export default function Navbar({ forceSolid = false, transparentLight = false, dict }) {
+// Routes whose hero is light, so the navbar sits transparent over a light background.
+const LIGHT_HERO_ROUTES = ["/fleets", "/repair-partners"];
+
+export default function Navbar({ dict }) {
   const pathname = usePathname();
   const router = useRouter();
-  
+  const [isPending, startTransition] = useTransition();
+
+  // Strip the locale segment to get the app route (e.g. "/en/fleets" -> "/fleets").
+  const routePath = "/" + pathname.split("/").slice(2).join("/");
+  const forceSolid = false;
+  const transparentLight = LIGHT_HERO_ROUTES.includes(routePath);
+
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const [hoverTimeout, setHoverTimeout] = useState(null);
   const [isAtTop, setIsAtTop] = useState(true);
   const [hasScrolled, setHasScrolled] = useState(false);
   const [footerNear, setFooterNear] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [transitionsReady, setTransitionsReady] = useState(false);
 
   // Mobile drawer states
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileFleetsOpen, setIsMobileFleetsOpen] = useState(false);
 
   // Extract language from URL path
-  const pathParts = pathname ? pathname.split("/") : [];
-  const currentLang = pathParts[1] && ["en", "hu"].includes(pathParts[1].toLowerCase())
-    ? pathParts[1].toUpperCase()
-    : "EN";
+  const currentLangLower = localeFromPathname(pathname) || defaultLocale;
+  const currentLang = currentLangLower.toUpperCase();
 
   // Localization dictionary fallback
   const t = dict || {
@@ -49,20 +63,9 @@ export default function Navbar({ forceSolid = false, transparentLight = false, d
     profile: "Profile"
   };
 
-  const localizePath = (path) => {
-    const langPrefix = currentLang.toLowerCase();
-    if (path.startsWith("/#")) {
-      return `/${langPrefix}${path.substring(1)}`;
-    }
-    if (path.startsWith("/en") || path.startsWith("/hu")) {
-      return path;
-    }
-    return `/${langPrefix}${path === "/" ? "" : path}`;
-  };
+  const localizePath = (path) => localizeHref(currentLangLower, path);
 
-  useEffect(() => {
-    setMounted(true);
-
+  useIsomorphicLayoutEffect(() => {
     const handleScroll = () => {
       const y = window.scrollY;
       setIsAtTop(y < 10);
@@ -75,33 +78,46 @@ export default function Navbar({ forceSolid = false, transparentLight = false, d
       }
     };
 
+    // Sync the real scroll state before paint so the first painted frame is correct.
     handleScroll();
+    setMounted(true);
+
+    // Re-enable transitions/animations only after the corrected state has painted,
+    // so the initial top→scrolled correction snaps instantly instead of animating.
+    const raf = requestAnimationFrame(() => setTransitionsReady(true));
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   const toggleLanguage = () => {
-    const nextLang = currentLang.toLowerCase() === "en" ? "hu" : "en";
-    
+    if (isPending) return;
+    const nextLang = currentLangLower === "en" ? "hu" : "en";
+
     try {
       document.cookie = `NEXT_LOCALE=${nextLang}; path=/; max-age=31536000; SameSite=Lax`;
     } catch (e) {
       console.warn("Could not set NEXT_LOCALE cookie:", e);
     }
 
-    if (pathParts.length > 1) {
-      const newParts = [...pathParts];
-      if (["en", "hu"].includes(newParts[1].toLowerCase())) {
-        newParts[1] = nextLang;
-      } else {
-        newParts.splice(1, 0, nextLang);
-      }
-      const newPath = newParts.join("/");
-      router.push(newPath || "/");
+    // Swap (or insert) the locale segment, preserving query + hash and scroll position.
+    const segments = pathname.split("/");
+    if (isLocale(segments[1])) {
+      segments[1] = nextLang;
     } else {
-      router.push(`/${nextLang}`);
+      segments.splice(1, 0, nextLang);
     }
+    const suffix = typeof window !== "undefined"
+      ? window.location.search + window.location.hash
+      : "";
+    const newPath = (segments.join("/") || `/${nextLang}`) + suffix;
+
+    startTransition(() => {
+      router.replace(newPath, { scroll: false });
+    });
   };
 
   // Safe checks to avoid hydration mismatches
@@ -136,7 +152,7 @@ export default function Navbar({ forceSolid = false, transparentLight = false, d
   };
 
   return (
-    <header className={`${styles.header} ${isTransparentDark ? styles.headerTransparent : ""} ${isTransparentLight ? styles.headerTransparentLight : ""} ${isNavbarScrolled ? styles.headerScrolled : ""}`}>
+    <header className={`${styles.header} ${transitionsReady ? "" : styles.headerBooting} ${isTransparentDark ? styles.headerTransparent : ""} ${isTransparentLight ? styles.headerTransparentLight : ""} ${isNavbarScrolled ? styles.headerScrolled : ""}`}>
       <div className={styles.container}>
         {/* Left Side: Desktop Navigation Links */}
         <nav className={styles.nav}>
@@ -256,11 +272,11 @@ export default function Navbar({ forceSolid = false, transparentLight = false, d
           )}
 
           {/* Language Toggle Button */}
-          <button 
-            className={styles.iconButton} 
+          <button
+            className={styles.iconButton}
             aria-label={t.selectLanguage}
             onClick={toggleLanguage}
-            style={{ display: 'flex', alignItems: 'center', gap: '4px' }}
+            style={{ display: 'flex', alignItems: 'center', gap: '4px', minWidth: '54px', justifyContent: 'center' }}
           >
             <svg
               width="20"
@@ -443,8 +459,8 @@ export default function Navbar({ forceSolid = false, transparentLight = false, d
           </div>
 
           <div className={styles.drawerFooter}>
-            <button 
-              className={styles.footerIconButton} 
+            <button
+              className={styles.footerIconButton}
               aria-label={t.selectLanguage}
               onClick={toggleLanguage}
             >

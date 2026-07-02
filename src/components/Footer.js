@@ -1,8 +1,9 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/LocalizedLink";
 import Image from "next/image";
 import { CreditCard, Smartphone, Landmark, Wallet } from "lucide-react";
+import enDict from "@/dictionaries/en.json";
 import styles from "./Footer.module.css";
 
 const PARTNER_LOGOS = [
@@ -25,10 +26,13 @@ const PARTNER_LOGOS = [
   { src: "/fleetpartnerlogos/unnamed.png", alt: "Fleet Partner" }
 ];
 
-export default function Footer() {
+export default function Footer({ dict }) {
+  // Footer renders on many pages; until each is migrated it falls back to English.
+  const t = dict || enDict.footer;
+
   const handleSubscribe = (e) => {
     e.preventDefault();
-    alert("Subscribed successfully!");
+    alert(t.subscribeSuccess);
   };
 
   return (
@@ -42,24 +46,24 @@ export default function Footer() {
           <div className={styles.brandZone}>
             <Link href="/" className={styles.logo}>
               E-RENTY
-              <span className={styles.tagline}>Fuel-Free. Stress-Free.</span>
+              <span className={styles.tagline}>{t.tagline}</span>
             </Link>
           </div>
 
           {/* Zone 2 — Subscribe */}
           <div className={styles.subscribeZone}>
-            <span className={styles.subscribeLabel}>Stay Updated</span>
+            <span className={styles.subscribeLabel}>{t.stayUpdated}</span>
             <form className={styles.subscribeForm} onSubmit={handleSubscribe}>
               <input
                 type="email"
-                placeholder="Your email address"
+                placeholder={t.emailPlaceholder}
                 required
                 className={styles.subscribeInput}
               />
-              <button type="submit" className={styles.subscribeBtn}>Subscribe</button>
+              <button type="submit" className={styles.subscribeBtn}>{t.subscribe}</button>
             </form>
             <p className={styles.legalNote}>
-              By submitting, you agree to our Privacy Policy.
+              {t.legalNote}
             </p>
           </div>
 
@@ -71,38 +75,38 @@ export default function Footer() {
           {/* Nav Grid */}
           <div className={styles.navGrid}>
             <div className={styles.navCol}>
-              <span className={styles.navHeader}>Company</span>
+              <span className={styles.navHeader}>{t.companyHeader}</span>
               <ul className={styles.navList}>
-                <li><Link href="/about">About Us</Link></li>
-                <li><Link href="/#how-it-works">How It Works</Link></li>
-                <li><Link href="/business">For Business</Link></li>
-                <li><Link href="/blog">Blog</Link></li>
-                <li><Link href="/careers">Careers</Link></li>
+                <li><Link href="/about">{t.aboutUs}</Link></li>
+                <li><Link href="/#how-it-works">{t.howItWorks}</Link></li>
+                <li><Link href="/business">{t.forBusiness}</Link></li>
+                <li><Link href="/blog">{t.blog}</Link></li>
+                <li><Link href="/careers">{t.careers}</Link></li>
               </ul>
             </div>
             <div className={styles.navCol}>
-              <span className={styles.navHeader}>Services</span>
+              <span className={styles.navHeader}>{t.servicesHeader}</span>
               <ul className={styles.navList}>
-                <li><Link href="/fleets">Fleet Subscriptions</Link></li>
-                <li><Link href="/courier-plus">Courier+</Link></li>
-                <li><Link href="/insurance">Insurance &amp; Coverage</Link></li>
-                <li><Link href="/repair-partners">Maintenance</Link></li>
-                <li><Link href="/insurance">Damage Protection</Link></li>
+                <li><Link href="/fleets">{t.fleetSubs}</Link></li>
+                <li><Link href="/courier-plus">{t.courierPlus}</Link></li>
+                <li><Link href="/insurance">{t.insurance}</Link></li>
+                <li><Link href="/repair-partners">{t.maintenance}</Link></li>
+                <li><Link href="/insurance">{t.damageProtection}</Link></li>
               </ul>
             </div>
             <div className={styles.navCol}>
-              <span className={styles.navHeader}>Contact</span>
+              <span className={styles.navHeader}>{t.contactHeader}</span>
               <ul className={styles.navList}>
                 <li><a href="mailto:hello@e-renty.hu">hello@e-renty.hu</a></li>
                 <li><a href="tel:+3612345678">+36 1 234 5678</a></li>
-                <li><span className={styles.contactText}>Budapest, Hungary</span></li>
+                <li><span className={styles.contactText}>{t.location}</span></li>
                 <li>
                   <a
                     href="https://maps.google.com/?q=Budapest,Hungary"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    View on Maps ↗
+                    {t.viewOnMaps}
                   </a>
                 </li>
               </ul>
@@ -116,7 +120,7 @@ export default function Footer() {
       <div className={styles.partnersSection}>
         <div className={styles.partnersBg} />
         <div className={styles.partnersContent}>
-          <span className={styles.partnersLabel}>OUR FLEET PARTNERS</span>
+          <span className={styles.partnersLabel}>{t.ourFleetPartners}</span>
           <div className={styles.tickerContainer}>
             <div className={styles.tickerTrack}>
               {PARTNER_LOGOS.map((logo, index) => (
@@ -151,34 +155,34 @@ export default function Footer() {
       {/* Bottom Legal Bar */}
       <div className={styles.bottomBar}>
         <div className={styles.badgeRow}>
-          <span className={styles.paymentLabel}>Accepted Payments</span>
+          <span className={styles.paymentLabel}>{t.acceptedPayments}</span>
           <div className={styles.paymentIcons}>
             <div className={styles.paymentChip}>
               <CreditCard size={15} strokeWidth={1.8} />
-              <span>Card</span>
+              <span>{t.card}</span>
             </div>
             <div className={styles.paymentChip}>
               <Smartphone size={15} strokeWidth={1.8} />
-              <span>Google Pay</span>
+              <span>{t.googlePay}</span>
             </div>
             <div className={styles.paymentChip}>
               <Wallet size={15} strokeWidth={1.8} />
-              <span>Apple Pay</span>
+              <span>{t.applePay}</span>
             </div>
             <div className={styles.paymentChip}>
               <Landmark size={15} strokeWidth={1.8} />
-              <span>Bank Transfer</span>
+              <span>{t.bankTransfer}</span>
             </div>
           </div>
         </div>
         <div className={styles.legalRow}>
           <span className={styles.copyright}>
-            &copy; {new Date().getFullYear()} E-Renty. All rights reserved.
+            &copy; {new Date().getFullYear()} E-Renty. {t.rights}
           </span>
           <div className={styles.legalLinks}>
-            <Link href="/privacy">Privacy Policy</Link>
-            <Link href="/terms">Terms of Service</Link>
-            <Link href="/cookies">Cookie Policy</Link>
+            <Link href="/privacy">{t.privacy}</Link>
+            <Link href="/terms">{t.terms}</Link>
+            <Link href="/cookies">{t.cookies}</Link>
           </div>
         </div>
       </div>
