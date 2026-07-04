@@ -321,7 +321,7 @@
     width: fit-content;
     max-width: calc(100% - 48px);
     grid-template-columns: 1fr 1fr;
-    gap: var(--space-5) var(--space-7);
+    gap: var(--space-5) var(--space-6);
     padding: 20px 28px;
     background: rgba(10, 22, 24, 0.45);
     backdrop-filter: blur(12px);

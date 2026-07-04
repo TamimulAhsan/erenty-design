@@ -28,7 +28,7 @@ export function proxy(request) {
   );
 
   if (pathnameHasLocale) {
-    return;
+    return NextResponse.next();
   }
 
   // Redirect if there is no locale in the path
