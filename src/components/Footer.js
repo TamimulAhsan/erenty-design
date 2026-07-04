@@ -91,8 +91,6 @@ export default function Footer({ dict }) {
                 <li><Link href="/about">{t.aboutUs}</Link></li>
                 <li><Link href="/#how-it-works">{t.howItWorks}</Link></li>
                 <li><Link href="/business">{t.forBusiness}</Link></li>
-                <li><Link href="/blog">{t.blog}</Link></li>
-                <li><Link href="/careers">{t.careers}</Link></li>
               </ul>
             </div>
             <div className={styles.navCol}>

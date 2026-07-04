@@ -32,7 +32,7 @@ const LIGHT_HERO_ROUTES = ["/fleets", "/repair-partners"];
 // transparent treatment as the other DARK_HERO_ROUTES.
 const KNOWN_ROUTES = [
   "/", "/about", "/contact", "/faq", "/privacy", "/terms", "/cookies",
-  "/business", "/blog", "/careers", "/insurance", "/login", "/signup",
+  "/business", "/insurance", "/login", "/signup",
   "/courier-plus", "/fleets", "/repair-partners", "/checkout", "/profile",
 ];
 
@@ -315,7 +315,7 @@ export default function Navbar({ dict }) {
           </button>
 
           {/* Help Center */}
-          <Link href={localizePath("/contact")} className={styles.iconButton} aria-label={t.help}>
+          <Link href={localizePath("/faq")} className={styles.iconButton} aria-label={t.help}>
             <svg
               width="20"
               height="20"
@@ -491,7 +491,7 @@ export default function Navbar({ dict }) {
               <span>{currentLang === "EN" ? "English" : "Hungarian (HU)"}</span>
             </button>
 
-            <Link href={localizePath("/contact")} className={styles.footerIconButton} aria-label={t.help} onClick={toggleMobileMenu}>
+            <Link href={localizePath("/faq")} className={styles.footerIconButton} aria-label={t.help} onClick={toggleMobileMenu}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="12" cy="12" r="10" />
                 <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
