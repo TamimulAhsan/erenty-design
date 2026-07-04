@@ -43,3 +43,6 @@ next-env.d.ts
 # documentation plan
 /plan
 
+# claude local settings (personal, per-machine)
+.claude/settings.local.json
+
