@@ -1113,7 +1113,10 @@
     "heroEyebrow": "Legal",
     "heroTitle": "Terms & Conditions",
     "lastUpdated": "Last updated: 12 June 2026",
-    "intro": "These Terms and Conditions (\"T&C\" or \"ÁSZF\") govern the use of the e-bike rental services and online platform provided by E-Renty Kft. By placing an order, renting a vehicle, or signing a contract, you accept these terms in full.",
+    "intro": "These Terms and Conditions (\"T&C\" or \"ÁSZF\") govern the use of the e-bike rental services and online platform provided by E-Renty Kft. By placing an order, renting a vehicle, or signing a contract, you accept these terms in full. The summary below highlights the key points — the complete, legally binding document is available as a PDF.",
+    "fullDocTitle": "Full General Terms and Conditions",
+    "fullDocDesc": "The sections below are a plain-language summary. For the complete and legally binding General Terms and Conditions (GTC / ÁSZF), please refer to the official document.",
+    "fullDocBtn": "Download the full GTC (PDF)",
     "sections": [
       {
         "title": "1. Contractual Parties",

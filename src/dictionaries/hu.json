@@ -1113,7 +1113,10 @@
     "heroEyebrow": "Jogi információk",
     "heroTitle": "Általános Szerződési Feltételek",
     "lastUpdated": "Utolsó frissítés: 2026. június 12.",
-    "intro": "A jelen Általános Szerződési Feltételek („ÁSZF”) szabályozzák az E-Renty Kft. által nyújtott elektromos kerékpár-bérlési szolgáltatások és az online platform használatát. Megrendelés leadásával, bérléssel vagy a szerződés aláírásával Ön teljes egészében elfogadja ezen feltételeket.",
+    "intro": "A jelen Általános Szerződési Feltételek („ÁSZF”) szabályozzák az E-Renty Kft. által nyújtott elektromos kerékpár-bérlési szolgáltatások és az online platform használatát. Megrendelés leadásával, bérléssel vagy a szerződés aláírásával Ön teljes egészében elfogadja ezen feltételeket. Az alábbi összefoglaló a legfontosabb pontokat emeli ki — a teljes, jogilag kötelező érvényű dokumentum PDF formátumban érhető el.",
+    "fullDocTitle": "Teljes Általános Szerződési Feltételek",
+    "fullDocDesc": "Az alábbi szakaszok közérthető összefoglalót nyújtanak. A teljes és jogilag kötelező érvényű Általános Szerződési Feltételekért (ÁSZF) kérjük, tekintse meg a hivatalos dokumentumot.",
+    "fullDocBtn": "A teljes ÁSZF letöltése (PDF)",
     "sections": [
       {
         "title": "1. Szerződő felek",
