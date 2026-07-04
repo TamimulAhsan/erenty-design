@@ -1,17 +1,25 @@
-import Link from "@/components/LocalizedLink";
+import FaqClient from "./FaqClient";
+import { getDictionary, hasLocale } from "../dictionaries";
+import { notFound } from "next/navigation";
 
-export default function FAQPage() {
+export async function generateMetadata({ params }) {
+  const { lang } = await params;
+  if (!hasLocale(lang)) return {};
+  const dict = await getDictionary(lang);
+  return {
+    title: dict.faqPage?.metaTitle || "FAQ | E-Renty — Frequently Asked Questions",
+    description: dict.faqPage?.metaDesc || "Find answers about E-Renty rentals, Courier+ subscriptions, identity verification, payments, and fleet management.",
+  };
+}
+
+export default async function FAQPage({ params }) {
+  const { lang } = await params;
+  if (!hasLocale(lang)) notFound();
+  const dict = await getDictionary(lang);
+
   return (
-    <>
-      <main style={{ minHeight: "60vh", padding: "120px 24px 80px", maxWidth: "1280px", margin: "0 auto" }}>
-        <h1 className="h2" style={{ marginBottom: "16px", color: "var(--brand-dark)" }}>Frequently Asked Questions</h1>
-        <p className="body-default" style={{ marginBottom: "32px", color: "var(--muted-foreground)" }}>
-          Find detailed answers about subscriptions, identity verification, custom setups, payment terms, and vehicle maintenance policies.
-        </p>
-        <Link href="/" className="btn-primary">
-          ← Back to Homepage
-        </Link>
-      </main>
-    </>
+    <main style={{ minHeight: "100vh" }}>
+      <FaqClient dict={dict.faqPage} />
+    </main>
   );
 }

@@ -21,7 +21,7 @@ const fleetList = [
 ];
 
 // Routes with dark hero sections where navbar sits transparent over dark backgrounds.
-const DARK_HERO_ROUTES = ["/", "/courier-plus", "/privacy"];
+const DARK_HERO_ROUTES = ["/", "/courier-plus", "/privacy", "/faq"];
 
 // Routes with hero is light, so the navbar sits transparent over a light background.
 const LIGHT_HERO_ROUTES = ["/fleets", "/repair-partners"];
