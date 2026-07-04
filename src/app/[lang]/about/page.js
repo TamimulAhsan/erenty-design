@@ -1,17 +1,31 @@
-import Link from "@/components/LocalizedLink";
+import AboutClient from "./AboutClient";
+import { getDictionary, hasLocale } from "../dictionaries";
+import { notFound } from "next/navigation";
 
-export default function AboutPage() {
+export async function generateMetadata({ params }) {
+  const { lang } = await params;
+  if (!hasLocale(lang)) return {};
+  const dict = await getDictionary(lang);
+  return {
+    title: dict.aboutPage?.metaTitle || "About E-Renty | Smarter Fleets, Greener Cities",
+    description:
+      dict.aboutPage?.metaDesc ||
+      "E-Renty is a Budapest-based e-bike fleet management company helping Hungarian businesses cut costs, reduce emissions, and keep their teams moving sustainably.",
+  };
+}
+
+export default async function AboutPage({ params }) {
+  const { lang } = await params;
+
+  if (!hasLocale(lang)) {
+    notFound();
+  }
+
+  const dict = await getDictionary(lang);
+
   return (
-    <>
-      <main style={{ minHeight: "60vh", padding: "120px 24px 80px", maxWidth: "1280px", margin: "0 auto" }}>
-        <h1 className="h2" style={{ marginBottom: "16px", color: "var(--brand-dark)" }}>About E-Renty</h1>
-        <p className="body-default" style={{ marginBottom: "32px", color: "var(--muted-foreground)" }}>
-          We are committed to delivering premium, eco-friendly fleet leasing services across Hungary with zero hassle and full support coverage.
-        </p>
-        <Link href="/" className="btn-primary">
-          ← Back to Homepage
-        </Link>
-      </main>
-    </>
+    <main style={{ minHeight: "100vh" }}>
+      <AboutClient dict={dict.aboutPage} />
+    </main>
   );
 }
