@@ -249,8 +249,8 @@
 .formPanel {
   display: flex;
   align-items: flex-start;
-  justify-content: flex-start;
-  padding: calc(72px + var(--space-10)) var(--space-8) var(--space-10) 10%;
+  justify-content: center;
+  padding: calc(72px + var(--space-10)) var(--space-8) var(--space-10);
 }
 
 .formInner {
