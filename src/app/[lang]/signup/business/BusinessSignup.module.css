@@ -1,0 +1,531 @@
+/* Business Signup Wizard Styles */
+
+.page {
+  min-height: 100vh;
+  background: var(--background);
+  padding: calc(72px + var(--space-10)) var(--space-6) var(--space-16);
+}
+
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--space-8);
+}
+
+.headerTitle {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--brand-darker);
+  margin-bottom: var(--space-2);
+}
+
+.headerSubtitle {
+  font-size: 15px;
+  color: var(--muted-foreground);
+  line-height: 1.5;
+}
+
+/* ── Step indicator ──────────────────────────────────────────────────── */
+
+.steps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-8);
+  gap: var(--space-3);
+  width: 100%;
+  transform: translateX(var(--steps-translate, 0px));
+  transition: transform 0.3s ease;
+}
+
+.stepItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.stepLine {
+  flex: 1;
+  height: 2px;
+  background: var(--border);
+  min-width: 12px;
+  transition: background 0.3s ease;
+}
+
+.stepLineDone {
+  background: var(--primary);
+}
+
+.stepBadge {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  background: var(--card);
+  border: 2px solid var(--border);
+  color: var(--muted-foreground);
+  transition: all 0.25s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.stepItemActive .stepBadge {
+  border-color: var(--primary);
+  color: var(--brand-dark);
+  box-shadow: 0 0 0 4px rgba(0, 216, 164, 0.12);
+}
+
+.stepItemDone .stepBadge {
+  background: var(--gradient-primary);
+  border-color: transparent;
+  color: var(--brand-darker);
+}
+
+.stepText {
+  display: none;
+}
+
+.stepLabel {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--foreground);
+  line-height: 1.2;
+}
+
+.stepDesc {
+  font-size: 11px;
+  color: var(--muted-foreground);
+  line-height: 1.2;
+}
+
+.stepItemActive .stepLabel {
+  color: var(--brand-dark);
+}
+
+/* Show step labels only where the row has room (desktop split layout); on the
+   stacked mobile/tablet layout the indicator stays a clean numbered stepper so
+   the labels can't overflow the narrow form column. */
+@media (min-width: 901px) {
+  .stepText {
+    display: block;
+  }
+}
+
+/* ── Card / form ─────────────────────────────────────────────────────── */
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-elevated);
+}
+
+.embeddedCard {
+  background: transparent;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+}
+
+.cardTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--brand-darker);
+  margin-bottom: var(--space-1);
+}
+
+.cardSubtitle {
+  font-size: 14px;
+  color: var(--muted-foreground);
+  margin-bottom: var(--space-6);
+  line-height: 1.5;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.fieldFull {
+  grid-column: 1 / -1;
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fieldLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.fieldHelper {
+  font-size: 12px;
+  color: var(--muted-foreground);
+  margin-top: 2px;
+}
+
+.fieldInput,
+.fieldTextarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--background);
+  color: var(--foreground);
+  font-family: inherit;
+  font-size: 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+
+.fieldTextarea {
+  resize: vertical;
+  min-height: 72px;
+}
+
+.fieldInput:focus,
+.fieldTextarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(0, 216, 164, 0.12);
+}
+
+.fieldInput::placeholder,
+.fieldTextarea::placeholder {
+  color: var(--muted-foreground);
+  opacity: 0.6;
+}
+
+.passwordWrapper {
+  position: relative;
+}
+
+.passwordWrapper .fieldInput {
+  padding-right: 44px;
+}
+
+.passwordToggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: var(--muted-foreground);
+  display: flex;
+  align-items: center;
+}
+
+.passwordToggle:hover {
+  color: var(--brand-dark);
+}
+
+/* ── Documents step ──────────────────────────────────────────────────── */
+
+.dropzone {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-10) var(--space-6);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: var(--secondary);
+}
+
+.dropzone:hover,
+.dropzoneActive {
+  border-color: var(--primary);
+  background: rgba(0, 216, 164, 0.05);
+}
+
+.dropzoneIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background: rgba(0, 216, 164, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-3);
+  color: var(--brand-dark);
+}
+
+.dropzoneLabel {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 4px;
+}
+
+.dropzoneHint {
+  font-size: 13px;
+  color: var(--muted-foreground);
+}
+
+.hiddenFileInput {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.filePreview {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--secondary);
+}
+
+.fileIcon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: rgba(0, 216, 164, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-dark);
+}
+
+.fileName {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--foreground);
+  word-break: break-all;
+}
+
+.fileSize {
+  font-size: 12px;
+  color: var(--muted-foreground);
+}
+
+.fileRemove {
+  margin-left: auto;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--destructive, #d64545);
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.consentText {
+  font-size: 13px;
+  color: var(--muted-foreground);
+  line-height: 1.5;
+  margin-top: var(--space-5);
+}
+
+.consentText a {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* ── Verify email step ───────────────────────────────────────────────── */
+
+.verifyIcon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background: rgba(0, 216, 164, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-4);
+  color: var(--brand-dark);
+}
+
+.verifyCenter {
+  text-align: center;
+}
+
+.verifyEmail {
+  font-weight: 700;
+  color: var(--brand-darker);
+}
+
+.otpRow {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-3);
+  margin: var(--space-6) 0 var(--space-4);
+}
+
+.otpInput {
+  width: 46px;
+  height: 54px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--background);
+  color: var(--foreground);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.otpInput:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(0, 216, 164, 0.12);
+}
+
+.otpError {
+  font-size: 13px;
+  color: var(--destructive, #d64545);
+  margin-bottom: var(--space-4);
+  text-align: center;
+}
+
+.resendRow {
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted-foreground);
+  margin-bottom: var(--space-6);
+}
+
+.resendBtn {
+  font-weight: 600;
+  color: var(--primary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-family: inherit;
+}
+
+.resendBtn:disabled {
+  color: var(--muted-foreground);
+  cursor: default;
+}
+
+.statusText {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--brand-dark);
+  padding: var(--space-6) 0;
+}
+
+/* ── Nav buttons ─────────────────────────────────────────────────────── */
+
+.actionsRow {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+}
+
+.backBtn {
+  padding: 13px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--foreground);
+  background: var(--secondary);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.backBtn:hover {
+  background: var(--muted);
+}
+
+.nextBtn {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--gradient-primary);
+  color: var(--brand-darker);
+  font-weight: 700;
+  font-size: 14px;
+  padding: 13px 28px;
+  border: none;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  font-family: inherit;
+}
+
+.nextBtn:hover {
+  box-shadow: var(--shadow-btn-primary-hover);
+  transform: translateY(-1px);
+}
+
+.nextBtn:disabled {
+  opacity: 0.6;
+  cursor: default;
+  transform: none;
+  box-shadow: none;
+}
+
+/*
+ * The embedded (login-page) step row is nudged left via --steps-translate to
+ * keep the last step in view inside the narrow form column. Once the layout
+ * stacks (≤900px) that nudge can push the row off-screen, so reset it here.
+ */
+@media (max-width: 900px) {
+  .steps {
+    transform: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: calc(72px + var(--space-6)) var(--space-4) var(--space-10);
+  }
+
+  .card {
+    padding: var(--space-5);
+  }
+
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .fieldFull {
+    grid-column: auto;
+  }
+
+  .stepDesc {
+    display: none;
+  }
+
+  .otpInput {
+    width: 38px;
+    height: 46px;
+    font-size: 18px;
+  }
+}

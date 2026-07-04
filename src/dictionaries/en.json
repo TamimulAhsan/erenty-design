@@ -876,10 +876,19 @@
     "loginBtn": "Sign in",
     "signupTitle": "Create an account",
     "signupSubtitle": "Choose your account type to get started.",
+    "panelLoginHeading": "Manage your fleet in one place.",
+    "panelLoginSub": "Sign in to reach your rentals, subscriptions, and support — all from a single dashboard.",
+    "panelSignupHeading": "Join E-Renty.",
+    "panelSignupSub": "Create an account to rent electric bikes, or set up a business fleet.",
+    "accountTypeLabel": "I'm signing up as",
+    "individualSubtitle": "Personal rental account. Get started in minutes.",
+    "benefit1": "GPS-tracked, fully insured fleet",
+    "benefit2": "Maintenance & 24/7 support included",
+    "benefit3": "Flexible monthly or upfront billing",
     "typeIndividual": "Individual",
     "typeIndividualDesc": "Personal rental account. Get started in minutes.",
     "typeBusiness": "Business",
-    "typeBusinessDesc": "Fleet management for companies. 3-step setup.",
+    "typeBusinessDesc": "Fleet management for companies. 4-step setup.",
     "nameLabel": "Full Name",
     "namePlaceholder": "Your full name",
     "phoneLabel": "Phone number",
@@ -894,8 +903,85 @@
     "signupBtn": "Create account",
     "noAccount": "Don't have an account?",
     "hasAccount": "Already have an account?",
-    "businessComingTitle": "Business signup coming soon",
-    "businessComingDesc": "Business registration with fleet management will be available shortly. Contact us for early access."
+    "businessSetupTitle": "Set up your business account",
+    "businessSetupDesc": "Business registration takes about 3 minutes and includes company and document verification. We'll review and email you within 1 business day.",
+    "businessSetupBtn": "Start business setup"
+  },
+  "businessSignupPage": {
+    "metaTitle": "Business Signup | E-Renty",
+    "metaDesc": "Set up your E-Renty business account for fleet management, invoicing, and courier subscriptions.",
+    "headerTitle": "Set up your business",
+    "headerSubtitle": "Takes about 3 minutes. We'll review and email you within 1 business day.",
+    "steps": [
+      { "label": "Contact Details", "desc": "Tell us about you." },
+      { "label": "Company Details", "desc": "Your legal entity." },
+      { "label": "Documents", "desc": "Specimen signature." },
+      { "label": "Verify Email", "desc": "Confirm your address." }
+    ],
+    "back": "Back",
+    "continue": "Continue",
+    "submit": "Submit",
+    "step1": {
+      "title": "Contact details",
+      "subtitle": "This is the person who'll manage the account.",
+      "fullNameLabel": "Full name",
+      "fullNamePlaceholder": "Anna Manager",
+      "designationLabel": "Designation / Job title",
+      "designationPlaceholder": "Fleet Operations Lead",
+      "phoneLabel": "Phone number",
+      "phonePlaceholder": "+36 20 123 4567",
+      "emailLabel": "Email address",
+      "emailPlaceholder": "ops@company.com",
+      "emailHelper": "We'll send a verification link to this address.",
+      "passwordLabel": "Password",
+      "confirmLabel": "Confirm password",
+      "confirmPlaceholder": "Repeat your password",
+      "passwordMismatch": "Passwords don't match.",
+      "addressLabel": "Mailing address",
+      "addressPlaceholder": "Street, city, post code"
+    },
+    "step2": {
+      "title": "Company details",
+      "subtitle": "Legal entity information for contracts and invoicing.",
+      "companyNameLabel": "Company name (legal entity)",
+      "companyNamePlaceholder": "Company A Holdings Ltd.",
+      "postCodeLabel": "Post code",
+      "postCodePlaceholder": "1052",
+      "cityLabel": "City",
+      "cityPlaceholder": "Budapest",
+      "streetLabel": "Street address",
+      "streetPlaceholder": "Váci út 1.",
+      "regNumberLabel": "Company registration number",
+      "regNumberPlaceholder": "REG-000-000",
+      "taxNumberLabel": "Business Tax Number",
+      "taxNumberPlaceholder": "12345678-1-41",
+      "taxNumberHelper": "This will appear on your invoices.",
+      "repNameLabel": "Name of authorized representative",
+      "repNamePlaceholder": "Full legal name",
+      "repNameHelper": "The person legally empowered to sign contracts."
+    },
+    "step3": {
+      "title": "Specimen signature document",
+      "subtitle": "Upload a document signed by your authorized representative.",
+      "dropLabel": "Drop file here or browse",
+      "fileTypes": "PDF, PNG or JPG · up to 10 MB",
+      "invalidFile": "Please upload a PDF, PNG or JPG under 10 MB.",
+      "removeFile": "Remove",
+      "consentPrefix": "By submitting you agree to our",
+      "consentTermsLink": "Terms",
+      "consentSuffix": "and acknowledge that approval may take up to 1 business day."
+    },
+    "step4": {
+      "title": "Check your email",
+      "subtitle": "We sent a 6-digit code to",
+      "resendPrompt": "Didn't receive it?",
+      "resendBtn": "Resend code",
+      "resendCountdown": "Resend in {s}s",
+      "verifyBtn": "Verify & finish",
+      "verifying": "Verifying…",
+      "redirecting": "Redirecting to your dashboard…",
+      "invalidCode": "Enter all 6 digits"
+    }
   },
   "privacyPage": {
     "metaTitle": "Privacy Policy | E-Renty",
@@ -1018,6 +1104,78 @@
       {
         "title": "11. Changes to This Policy",
         "paragraphs": ["We may update this Privacy Policy from time to time. Material changes will be communicated via email or a prominent notice in the platform at least 14 days before taking effect. The date at the top of this page always reflects the most recent revision."]
+      }
+    ]
+  },
+  "termsPage": {
+    "metaTitle": "Terms and Conditions | E-Renty",
+    "metaDesc": "Terms and Conditions (ÁSZF) of E-Renty Kft. for e-bike rental and fleet management services.",
+    "heroEyebrow": "Legal",
+    "heroTitle": "Terms & Conditions",
+    "lastUpdated": "Last updated: 12 June 2026",
+    "intro": "These Terms and Conditions (\"T&C\" or \"ÁSZF\") govern the use of the e-bike rental services and online platform provided by E-Renty Kft. By placing an order, renting a vehicle, or signing a contract, you accept these terms in full.",
+    "sections": [
+      {
+        "title": "1. Contractual Parties",
+        "paragraphs": [
+          "The rental agreement is concluded between the Customer (individual or business) and E-Renty Kft. (registered address: 1012 Budapest, Kuny Domokos utca 13-15, Hungary; company registration number: 01-09-437591; tax number: 32690370-2-41)."
+        ]
+      },
+      {
+        "title": "2. Subscription & Rental Conditions",
+        "items": [
+          "Minimum age: The renter must be at least 18 years of age.",
+          "Identity verification: Renters must provide valid government-issued ID or passport, selfie photograph, and proof of address before vehicle handover.",
+          "Security Deposit: A security deposit may be required, which will be fully refunded within 5 business days after returning the bike in undamaged condition.",
+          "Payment: Subscription fees are billed monthly in advance via Stripe. Late payments may result in remote locking of the vehicle."
+        ]
+      },
+      {
+        "title": "3. Vehicle Usage Rules",
+        "paragraphs": [
+          "The renter agrees to use the vehicle with due diligence and comply with all local traffic laws (KRESZ in Hungary).",
+          "The renter is prohibited from: sub-leasing the vehicle, modifying the vehicle's hardware, or operating the vehicle under the influence of alcohol or drugs.",
+          "Courier+ users must keep the GPS telemetry module active at all times. Tampering with telemetry will trigger a breach of contract fee."
+        ]
+      },
+      {
+        "title": "4. Damage, Theft, and Insurance",
+        "paragraphs": [
+          "All E-Renty bikes are insured against theft and third-party liability, subject to a deductible (self-risk) fee of 15% of the replacement value or a fixed amount specified in the individual contract.",
+          "In case of theft, the renter must report the incident to E-Renty and the Police immediately (within 2 hours) and provide the police report number.",
+          "Normal wear and tear is covered under E-Renty's maintenance plan, but damages due to improper use, vandalism, or neglect are the sole financial responsibility of the renter."
+        ]
+      }
+    ]
+  },
+  "cookiesPage": {
+    "metaTitle": "Cookie Policy | E-Renty",
+    "metaDesc": "Information about how E-Renty uses cookies and tracking technologies to improve our fleet management system.",
+    "heroEyebrow": "Legal",
+    "heroTitle": "Cookie Policy",
+    "lastUpdated": "Last updated: 12 June 2026",
+    "intro": "This Cookie Policy explains how E-Renty Kft. uses cookies and similar tracking technologies on our website and dashboards. You can manage your preferences at any time.",
+    "sections": [
+      {
+        "title": "1. What Are Cookies?",
+        "paragraphs": [
+          "Cookies are small text files stored on your device when you visit websites. They help us recognize your browser, remember settings, and optimize your navigation experience."
+        ]
+      },
+      {
+        "title": "2. Types of Cookies We Use",
+        "items": [
+          "Necessary Cookies: Essential for basic site features (login sessions, CSRF protection, and lang routing). These cannot be disabled.",
+          "Functional & Preference Cookies: Remember your choices (such as your language setting) to personalize your experience.",
+          "Performance & Analytics Cookies (Google Analytics 4): Collect anonymous data on how visitors interact with our site, helping us identify bugs and improve loading speeds.",
+          "Marketing & Pixel Cookies (Meta Pixel): Used to track the efficacy of our advertising campaigns."
+        ]
+      },
+      {
+        "title": "3. How to Manage Cookies",
+        "paragraphs": [
+          "You can change or withdraw your consent using our cookie banner, or configure your browser settings to block or delete cookies entirely. Note that blocking necessary cookies will prevent you from logging into your account."
+        ]
       }
     ]
   }

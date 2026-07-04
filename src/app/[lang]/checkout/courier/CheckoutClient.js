@@ -959,7 +959,7 @@ export default function CheckoutClient({ dict = {}, lang = "en" }) {
                   {(dict.planActiveSubtitle || "Your {planName} plan is now active. Our team will be in touch within 24 hours to get you started.").replace("{planName}", selectedPlan.name)}
                 </p>
                 <div className={styles.confirmActions}>
-                  <Link href="/profile/user-123" className="btn-primary">
+                  <Link href="/login" className="btn-primary">
                     {dict.goToDashboard || "Go to dashboard ➔"}
                   </Link>
                   <button
@@ -1092,7 +1092,7 @@ export default function CheckoutClient({ dict = {}, lang = "en" }) {
                   </p>
                 </div>
                 <div>
-                  <Link href="/profile/user-123" className={styles.addMoreLink}>
+                  <Link href="/login" className={styles.addMoreLink}>
                     {dict.goToDashboard || "Go to dashboard ➔"}
                   </Link>
                 </div>

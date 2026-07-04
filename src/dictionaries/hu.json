@@ -876,10 +876,19 @@
     "loginBtn": "Bejelentkezés",
     "signupTitle": "Fiók létrehozása",
     "signupSubtitle": "Kezdésként válassza ki a fióktípust.",
+    "panelLoginHeading": "Kezelje flottáját egy helyen.",
+    "panelLoginSub": "Jelentkezzen be, hogy egyetlen felületről elérje bérléseit, előfizetéseit és támogatását.",
+    "panelSignupHeading": "Csatlakozzon az E-Rentyhez.",
+    "panelSignupSub": "Hozzon létre fiókot elektromos kerékpárok bérléséhez, vagy állítson be vállalati flottát.",
+    "accountTypeLabel": "Regisztráció mint",
+    "individualSubtitle": "Személyes bérlési fiók. Kezdés percek alatt.",
+    "benefit1": "GPS-követett, teljes körűen biztosított flotta",
+    "benefit2": "Karbantartás és 0–24 támogatás",
+    "benefit3": "Rugalmas havi vagy előre fizetés",
     "typeIndividual": "Egyéni",
     "typeIndividualDesc": "Személyes bérlési fiók. Kezdés percek alatt.",
     "typeBusiness": "Vállalati",
-    "typeBusinessDesc": "Flottakezelés cégeknek. 3 lépéses beállítás.",
+    "typeBusinessDesc": "Flottakezelés cégeknek. 4 lépéses beállítás.",
     "nameLabel": "Teljes név",
     "namePlaceholder": "Az Ön teljes neve",
     "phoneLabel": "Telefonszám",
@@ -894,8 +903,85 @@
     "signupBtn": "Fiók létrehozása",
     "noAccount": "Még nincs fiókja?",
     "hasAccount": "Már van fiókja?",
-    "businessComingTitle": "A vállalati regisztráció hamarosan elérhető",
-    "businessComingDesc": "A flottakezeléssel egybekötött vállalati regisztráció rövidesen elérhető lesz. Korai hozzáférésért vegye fel velünk a kapcsolatot."
+    "businessSetupTitle": "Állítsa be vállalati fiókját",
+    "businessSetupDesc": "A vállalati regisztráció körülbelül 3 percet vesz igénybe, és cég- és dokumentumellenőrzést is tartalmaz. Ellenőrizzük, és 1 munkanapon belül e-mailben értesítjük.",
+    "businessSetupBtn": "Vállalati beállítás indítása"
+  },
+  "businessSignupPage": {
+    "metaTitle": "Vállalati regisztráció | E-Renty",
+    "metaDesc": "Állítsa be E-Renty vállalati fiókját flottakezeléshez, számlázáshoz és Futár+ előfizetésekhez.",
+    "headerTitle": "Állítsa be vállalkozását",
+    "headerSubtitle": "Körülbelül 3 percet vesz igénybe. Ellenőrizzük, és 1 munkanapon belül e-mailben értesítjük.",
+    "steps": [
+      { "label": "Kapcsolattartási adatok", "desc": "Meséljen magáról." },
+      { "label": "Cégadatok", "desc": "Jogi entitása." },
+      { "label": "Dokumentumok", "desc": "Aláírás-minta." },
+      { "label": "E-mail megerősítése", "desc": "Erősítse meg címét." }
+    ],
+    "back": "Vissza",
+    "continue": "Tovább",
+    "submit": "Beküldés",
+    "step1": {
+      "title": "Kapcsolattartási adatok",
+      "subtitle": "Ő fogja kezelni a fiókot.",
+      "fullNameLabel": "Teljes név",
+      "fullNamePlaceholder": "Anna Manager",
+      "designationLabel": "Beosztás / munkakör",
+      "designationPlaceholder": "Flottaüzemeltetési vezető",
+      "phoneLabel": "Telefonszám",
+      "phonePlaceholder": "+36 20 123 4567",
+      "emailLabel": "E-mail cím",
+      "emailPlaceholder": "ops@company.com",
+      "emailHelper": "Ellenőrző linket küldünk erre a címre.",
+      "passwordLabel": "Jelszó",
+      "confirmLabel": "Jelszó megerősítése",
+      "confirmPlaceholder": "Ismételje meg a jelszavát",
+      "passwordMismatch": "A jelszavak nem egyeznek.",
+      "addressLabel": "Levelezési cím",
+      "addressPlaceholder": "Utca, város, irányítószám"
+    },
+    "step2": {
+      "title": "Cégadatok",
+      "subtitle": "Jogi entitás adatai a szerződésekhez és számlázáshoz.",
+      "companyNameLabel": "Cégnév (jogi entitás)",
+      "companyNamePlaceholder": "Company A Holdings Kft.",
+      "postCodeLabel": "Irányítószám",
+      "postCodePlaceholder": "1052",
+      "cityLabel": "Város",
+      "cityPlaceholder": "Budapest",
+      "streetLabel": "Utca, házszám",
+      "streetPlaceholder": "Váci út 1.",
+      "regNumberLabel": "Cégjegyzékszám",
+      "regNumberPlaceholder": "REG-000-000",
+      "taxNumberLabel": "Adószám",
+      "taxNumberPlaceholder": "12345678-1-41",
+      "taxNumberHelper": "Ez fog szerepelni a számláin.",
+      "repNameLabel": "Meghatalmazott képviselő neve",
+      "repNamePlaceholder": "Teljes jogi név",
+      "repNameHelper": "A szerződések aláírására jogosult személy."
+    },
+    "step3": {
+      "title": "Aláírás-minta dokumentum",
+      "subtitle": "Töltse fel a meghatalmazott képviselő által aláírt dokumentumot.",
+      "dropLabel": "Húzza ide a fájlt, vagy tallózzon",
+      "fileTypes": "PDF, PNG vagy JPG · max. 10 MB",
+      "invalidFile": "Kérjük, töltsön fel egy PDF, PNG vagy JPG fájlt, legfeljebb 10 MB méretben.",
+      "removeFile": "Eltávolítás",
+      "consentPrefix": "A beküldéssel elfogadja",
+      "consentTermsLink": "Felhasználási feltételeinket",
+      "consentSuffix": "és tudomásul veszi, hogy a jóváhagyás akár 1 munkanapot is igénybe vehet."
+    },
+    "step4": {
+      "title": "Nézze meg e-mailjét",
+      "subtitle": "6 jegyű kódot küldtünk erre a címre:",
+      "resendPrompt": "Nem érkezett meg?",
+      "resendBtn": "Kód újraküldése",
+      "resendCountdown": "Újraküldés {s} mp múlva",
+      "verifyBtn": "Megerősítés és befejezés",
+      "verifying": "Megerősítés…",
+      "redirecting": "Átirányítás az irányítópultra…",
+      "invalidCode": "Adja meg mind a 6 számjegyet"
+    }
   },
   "privacyPage": {
     "metaTitle": "Adatvédelmi Tájékoztató | E-Renty",
@@ -1018,6 +1104,78 @@
       {
         "title": "11. Változások az Adatvédelmi Tájékoztatóban",
         "paragraphs": ["Ezt az Adatvédelmi Tájékoztatót időről időre frissíthetjük. Lényeges változások esetén — e-mailben vagy a platformon megjelenő figyelemfelkeltő értesítés formájában — legalább 14 nappal a hatálybalépés előtt értesítjük Önt. Az oldal tetején található dátum mindig a legutóbbi felülvizsgálatot tükrözi."]
+      }
+    ]
+  },
+  "termsPage": {
+    "metaTitle": "Általános Szerződési Feltételek (ÁSZF) | E-Renty",
+    "metaDesc": "Az E-Renty Kft. Általános Szerződési Feltételei (ÁSZF) elektromos kerékpárok bérlésére és flottakezelési szolgáltatásokra vonatkozóan.",
+    "heroEyebrow": "Jogi információk",
+    "heroTitle": "Általános Szerződési Feltételek",
+    "lastUpdated": "Utolsó frissítés: 2026. június 12.",
+    "intro": "A jelen Általános Szerződési Feltételek („ÁSZF”) szabályozzák az E-Renty Kft. által nyújtott elektromos kerékpár-bérlési szolgáltatások és az online platform használatát. Megrendelés leadásával, bérléssel vagy a szerződés aláírásával Ön teljes egészében elfogadja ezen feltételeket.",
+    "sections": [
+      {
+        "title": "1. Szerződő felek",
+        "paragraphs": [
+          "A bérleti szerződés a Bérlő (magánszemély vagy vállalkozás) és az E-Renty Kft. (székhely: 1012 Budapest, Kuny Domokos utca 13-15, Magyarország; cégjegyzékszám: 01-09-437591; adószám: 32690370-2-41) között jön létre."
+        ]
+      },
+      {
+        "title": "2. Előfizetési és bérlési feltételek",
+        "items": [
+          "Minimális életkor: A bérlőnek legalább 18 évesnek kell lennie.",
+          "Személyazonosság igazolása: A bérlőknek a jármű átadása előtt érvényes fényképes igazolványt, szelfit és lakcímkártyát kell bemutatniuk.",
+          "Kaució: Biztonsági kaució bérléstől függően előírható, amely a kerékpár sérülésmentes visszaszállítását követő 5 munkanapon belül visszajár.",
+          "Fizetés: A bérleti díjak számlázása havonta előre történik a Stripe-on keresztül. Késedelmes fizetés a jármű távoli lezárását vonhatja maga után."
+        ]
+      },
+      {
+        "title": "3. Járműhasználat szabályai",
+        "paragraphs": [
+          "A bérlő vállalja, hogy a járművet kellő gondossággal használja, és betartja a hatályos KRESZ szabályokat.",
+          "A bérlőnek tilos: a járművet albérletbe adni, a hardvert módosítani, vagy alkohol, illetve drog befolyása alatt vezetni.",
+          "A Courier+ felhasználóknak a GPS telemetriai modult folyamatosan aktívan kell tartaniuk. A telemetria megkerülése szerződésszegési kötbért von maga után."
+        ]
+      },
+      {
+        "title": "4. Károk, lopás és biztosítás",
+        "paragraphs": [
+          "Minden E-Renty kerékpár biztosítva van lopás és felelősségbiztosítás ellen, a szerződésben meghatározott önrész (általában a pótlási érték 15%-a) megfizetése mellett.",
+          "Lopás esetén a bérlőnek haladéktalanul (2 órán belül) értesítenie kell az E-Renty-t és a rendőrséget, majd át kell adnia a feljelentési jegyzőkönyv számát.",
+          "A rendeltetésszerű használatból eredő kopást az E-Renty karbantartási terve fedezi, a nem rendeltetésszerű használatból, vandalizmusból vagy hanyag kezelésből eredő károk azonban teljes mértékben a bérlő anyagi felelősségét képezik."
+        ]
+      }
+    ]
+  },
+  "cookiesPage": {
+    "metaTitle": "Süti (Cookie) Szabályzat | E-Renty",
+    "metaDesc": "Tájékoztatás arról, hogyan használja az E-Renty a sütiket és a nyomkövetési technológiákat a rendszer optimalizálására.",
+    "heroEyebrow": "Jogi információk",
+    "heroTitle": "Süti Szabályzat",
+    "lastUpdated": "Utolsó frissítés: 2026. június 12.",
+    "intro": "Ez a Süti Szabályzat elmagyarázza, hogyan használja az E-Renty Kft. a sütiket és a hasonló nyomon követési technológiákat a weboldalán és dashboardjain. Ön bármikor módosíthatja hozzájárulását.",
+    "sections": [
+      {
+        "title": "1. Mik azok a sütik (cookie-k)?",
+        "paragraphs": [
+          "A sütik kis méretű szöveges fájlok, amelyek a weboldalak látogatása során a böngészőjében tárolódnak. Segítenek felismerni a látogatót, megjegyezni a beállításokat és javítani a felhasználói élményt."
+        ]
+      },
+      {
+        "title": "2. Az általunk használt sütik típusai",
+        "items": [
+          "Szükséges sütik: Elengedhetetlenek a webhely alapvető működéséhez (bejelentkezések, CSRF-védelem és nyelvválasztás). Nem kikapcsolhatók.",
+          "Funkcionális és kényelmi sütik: Megjegyzik az Ön választásait (például a nyelvet) a személyre szabott élmény érdekében.",
+          "Teljesítmény és elemzési sütik (Google Analytics 4): Névtelen adatokat gyűjtenek a látogatók interakcióiról, segítve minket a hibák feltárásában és a sebesség növelésében.",
+          "Marketing és képpont sütik (Meta Pixel): A hirdetési kampányaink hatékonyságának mérésére szolgálnak."
+        ]
+      },
+      {
+        "title": "3. Sütik kezelése és kikapcsolása",
+        "paragraphs": [
+          "Hozzájárulását bármikor módosíthatja vagy visszavonhatja a süti-bannerünkben, vagy beállíthatja a böngészőjét a sütik teljes letiltására. Vegye figyelembe, hogy a szükséges sütik letiltása esetén a fiókjába való bejelentkezés sikertelen lesz."
+        ]
       }
     ]
   }

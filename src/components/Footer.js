@@ -2,9 +2,13 @@
 
 import Link from "@/components/LocalizedLink";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { CreditCard, Smartphone, Landmark, Wallet } from "lucide-react";
 import enDict from "@/dictionaries/en.json";
 import styles from "./Footer.module.css";
+
+// Focused pages (auth flows) hide the marketing footer.
+const HIDE_FOOTER_ROUTES = ["/login", "/signup"];
 
 const PARTNER_LOGOS = [
   { src: "/fleetpartnerlogos/logo_vok-bikes.png", alt: "Vok Bikes" },
@@ -27,8 +31,15 @@ const PARTNER_LOGOS = [
 ];
 
 export default function Footer({ dict }) {
+  const pathname = usePathname();
+
   // Footer renders on many pages; until each is migrated it falls back to English.
   const t = dict || enDict.footer;
+
+  const routePath = "/" + (pathname || "").split("/").slice(2).join("/");
+  if (HIDE_FOOTER_ROUTES.some((r) => routePath === r || routePath.startsWith(`${r}/`))) {
+    return null;
+  }
 
   const handleSubscribe = (e) => {
     e.preventDefault();

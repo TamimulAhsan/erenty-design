@@ -26,6 +26,16 @@ const DARK_HERO_ROUTES = ["/", "/courier-plus", "/privacy", "/faq"];
 // Routes with hero is light, so the navbar sits transparent over a light background.
 const LIGHT_HERO_ROUTES = ["/fleets", "/repair-partners"];
 
+// Every real top-level route. Anything NOT matching one of these is, by
+// definition, the not-found page (it can be reached from any bad URL, so it
+// has no fixed path of its own) — its hero is dark, so it gets the same
+// transparent treatment as the other DARK_HERO_ROUTES.
+const KNOWN_ROUTES = [
+  "/", "/about", "/contact", "/faq", "/privacy", "/terms", "/cookies",
+  "/business", "/blog", "/careers", "/insurance", "/login", "/signup",
+  "/courier-plus", "/fleets", "/repair-partners", "/checkout", "/profile",
+];
+
 export default function Navbar({ dict }) {
   const pathname = usePathname();
   const router = useRouter();
@@ -34,7 +44,8 @@ export default function Navbar({ dict }) {
   // Strip the locale segment to get the app route (e.g. "/en/fleets" -> "/fleets").
   const routePath = "/" + pathname.split("/").slice(2).join("/");
   const forceSolid = false;
-  const isDarkHeroRoute = DARK_HERO_ROUTES.includes(routePath);
+  const isKnownRoute = KNOWN_ROUTES.some((r) => routePath === r || routePath.startsWith(`${r}/`));
+  const isDarkHeroRoute = DARK_HERO_ROUTES.includes(routePath) || !isKnownRoute;
   const isLightHeroRoute = LIGHT_HERO_ROUTES.includes(routePath);
 
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
@@ -322,7 +333,7 @@ export default function Navbar({ dict }) {
           </Link>
 
           {/* Profile */}
-          <Link href={localizePath("/profile/user-123")} className={styles.iconButton} aria-label={t.profile}>
+          <Link href={localizePath("/login")} className={styles.iconButton} aria-label={t.profile}>
             <svg
               width="20"
               height="20"
@@ -489,7 +500,7 @@ export default function Navbar({ dict }) {
               <span>{t.help}</span>
             </Link>
 
-            <Link href={localizePath("/profile/user-123")} className={styles.footerIconButton} aria-label={t.profile} onClick={toggleMobileMenu}>
+            <Link href={localizePath("/login")} className={styles.footerIconButton} aria-label={t.profile} onClick={toggleMobileMenu}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                 <circle cx="12" cy="7" r="4" />
