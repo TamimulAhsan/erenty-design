@@ -1178,5 +1178,21 @@
         ]
       }
     ]
+  },
+  "cookieConsent": {
+    "title": "Értékeljük a magánéletét",
+    "description": "Sütiket használunk a böngészési élmény javítására, a webhely forgalmának elemzésére és marketing tevékenységeink támogatására. Az „Összes elfogadása” gombra kattintva hozzájárul a sütik használatához a Süti Szabályzatunkban leírtak szerint.",
+    "cookiePolicyLink": "Süti Szabályzat",
+    "acceptAll": "Összes elfogadása",
+    "decline": "Elutasítás",
+    "customize": "Testreszabás",
+    "save": "Mentés",
+    "necessary": "Szükséges",
+    "necessaryDesc": "A biztonságos bejelentkezéshez, a nyelvi irányításhoz és az alapvető működéshez szükséges.",
+    "necessaryWarning": "Ezen cookie-k teljes letiltása a böngésző beállításaiban bejelentkezési problémákat okozhat.",
+    "analytics": "Elemzés",
+    "analyticsDesc": "Segít javítani a teljesítményt és megérteni, hogyan lép kapcsolatba oldalainkkal.",
+    "marketing": "Marketing",
+    "marketingDesc": "Lehetővé teszi a hirdetési teljesítmény mérését és a tartalom személyre szabását."
   }
 }

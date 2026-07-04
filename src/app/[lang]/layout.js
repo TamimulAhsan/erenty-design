@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import CookieConsent from "@/components/CookieConsent";
 import { getDictionary } from "./dictionaries";
 import { locales, defaultLocale } from "@/lib/i18n";
 import "./globals.css";
@@ -55,6 +56,7 @@ export default async function RootLayout({ children, params }) {
         <Navbar dict={dict.navbar} />
         {children}
         <Footer dict={dict.footer} />
+        <CookieConsent dict={dict.cookieConsent} />
       </body>
     </html>
   );

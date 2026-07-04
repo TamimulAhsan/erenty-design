@@ -1178,6 +1178,22 @@
         ]
       }
     ]
+  },
+  "cookieConsent": {
+    "title": "We value your privacy",
+    "description": "We use cookies to improve your browsing experience, analyze site traffic, and support our marketing efforts. By clicking \"Accept All\", you consent to our use of cookies as described in our Cookie Policy.",
+    "cookiePolicyLink": "Cookie Policy",
+    "acceptAll": "Accept All",
+    "decline": "Decline",
+    "customize": "Customize",
+    "save": "Save Preferences",
+    "necessary": "Necessary",
+    "necessaryDesc": "Required for secure log-in, language routing, and core functionality.",
+    "necessaryWarning": "Disabling these cookies fully via browser settings may cause issues with logging in.",
+    "analytics": "Analytics",
+    "analyticsDesc": "Helps us improve performance and understand how you interact with our pages.",
+    "marketing": "Marketing",
+    "marketingDesc": "Allows us to measure advertising performance and personalize content."
   }
 }
 
