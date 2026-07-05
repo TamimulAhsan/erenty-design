@@ -107,12 +107,12 @@ export default function Footer({ dict }) {
               <span className={styles.navHeader}>{t.contactHeader}</span>
               <ul className={styles.navList}>
                 <li><Link href="/contact">{t.contactUs}</Link></li>
-                <li><a href="mailto:hello@e-renty.hu">hello@e-renty.hu</a></li>
-                <li><a href="tel:+3612345678">+36 1 234 5678</a></li>
+                <li><a href="mailto:info@e-renty.com">info@e-renty.com</a></li>
+                <li><a href="tel:+36204340771">+36 20 434 0771</a></li>
                 <li><span className={styles.contactText}>{t.location}</span></li>
                 <li>
                   <a
-                    href="https://maps.google.com/?q=Budapest,Hungary"
+                    href="https://maps.google.com/?q=1012+Budapest,+Kuny+Domokos+utca+13-15"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
