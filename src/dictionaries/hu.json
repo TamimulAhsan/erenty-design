@@ -679,6 +679,153 @@
     "ctaFleetBtn": "Flotta böngészése",
     "ctaContactBtn": "Kapcsolatfelvétel"
   },
+  "businessPage": {
+    "metaTitle": "E-Renty cégeknek | Elektromos kerékpár flották és futármegoldások",
+    "metaDesc": "Teljeskörűen menedzselt elektromos kerékpár- és rollerflották magyar cégeknek — az adómentes munkavállalói mobilitástól a folyamatosan üzemelő futárflottákig. GPS-nyomkövetés, lopásbiztosítás, 24 órán belüli szerviz, egyetlen fix havidíjas számla.",
+    "heroEyebrow": "E-Renty cégeknek",
+    "heroTitleLine1": "Prémium e-bike flották,",
+    "heroTitleLine2": "teljeskörűen menedzselve az Ön cégének.",
+    "heroDesc": "Az adómentes munkavállalói mobilitástól a folyamatosan üzemelő futárflottákig az E-Renty kulcsrakész elektromos flottát ad a magyar cégeknek — GPS-nyomkövetéssel, biztosítással és szervizzel — egyetlen fix havidíjért kerékpáronként.",
+    "ctaPrimary": "Beszéljen flottacsapatunkkal",
+    "ctaSecondary": "Flotta böngészése",
+    "stats": [
+      { "value": "25 000 Ft-tól", "label": "Kerékpáronként, havonta" },
+      { "value": "100%", "label": "Visszaigényelhető áfa" },
+      { "value": "0%", "label": "SZJA az e-bike juttatásra" },
+      { "value": "< 24 óra", "label": "Szervizreakció" }
+    ],
+    "logosTitle": "Szállítóplatformok, szállodák és nagyvállalatok bizalmát élvezzük szerte Magyarországon",
+    "whyEyebrow": "Miért az E-Renty",
+    "whyTitle": "A céges flotta, amely megtermeli az árát.",
+    "whySubtitle": "Az autók drágák, lassúak a városban és terhelik a környezetet. Egy E-Renty e-bike flotta olcsóbb üzemeltetni, gyorsabb ajtótól ajtóig, és az első naptól adóelőnyös.",
+    "why": [
+      {
+        "title": "Egyetlen kiszámítható díj",
+        "desc": "Egyetlen fix havi számla cégenként fedezi a kerékpárt, a GPS-t, a biztosítást és a szervizt. Nincs váratlan javítási számla, értékcsökkenés vagy flottaadminisztráció."
+      },
+      {
+        "title": "Adóelőnyös felépítés",
+        "desc": "A bérleti díj teljes egészében elszámolható, az áfa visszaigényelhető, 2022 óta pedig a dolgozóknak adott e-bike SZJA-mentes — olyan juttatás, amelyet valóban használnak."
+      },
+      {
+        "title": "Olcsóbb, mint a céges autó",
+        "desc": "Egy e-bike töltése havonta nagyjából 900–1 800 Ft. Nincs üzemanyag, parkolás vagy váratlan szervizköltség — a céges autó teljes költségének töredéke."
+      },
+      {
+        "title": "Nulla flottagond",
+        "desc": "Mi intézzük a beszerzést, regisztrációt, szervizt, biztosítási kárügyintézést és a cseréket. Az Ön csapata csak teker; a kerekeket mi tartjuk mozgásban."
+      }
+    ],
+    "benefitsEyebrow": "Az üzleti érv",
+    "benefitsTitle": "A magyar adószabályokra építve, amelyek az e-bike-ot díjazzák.",
+    "benefitsDesc": "2022 januárja óta a jogszabály erősen jutalmazza a cégeket, amelyek elektromos kerékpárra ültetik a munkavállalóikat. Az E-Renty úgy van felépítve, hogy minden előnyt tisztán és jogszerűen kihasználhasson.",
+    "benefitsBullets": [
+      "Az adóköteles tevékenységhez használt e-bike áfája teljes egészében visszaigényelhető.",
+      "A magáncélra, ingázásra is biztosított, legfeljebb 300 W-os e-bike SZJA-mentes.",
+      "A teljes havi bérleti díj költségként elszámolható — szociális hozzájárulási kötelezettség nélkül.",
+      "A beszerzési, szerviz- és karbantartási költségek csökkentik a társasági adó (TAO) alapját.",
+      "Nincs önerő és nincs maradványérték-kockázat — Ön bérel, nem vásárol."
+    ],
+    "benefitsNote": "Az E-Renty nem adótanácsadó — szívesen átbeszéljük a részleteket a pénzügyi csapatával.",
+    "benefitsMetrics": [
+      { "value": "100%", "label": "Visszaigényelhető áfa", "sub": "megfelelő flottákra" },
+      { "value": "0 Ft", "label": "Személyi jövedelemadó", "sub": "az e-bike juttatásra" },
+      { "value": "1–3 év", "label": "Rugalmas szerződések", "sub": "fix havidíjjal" },
+      { "value": "~1 500 Ft", "label": "Havi töltési költség", "sub": "kerékpáronként, átlagosan" }
+    ],
+    "solutionsEyebrow": "Flottamegoldások",
+    "solutionsTitle": "Egyetlen partner minden flottatípushoz.",
+    "solutionsSubtitle": "Akár futárokat, ingázókat vagy vendégeket mozgat, a flottát az köré építjük, ahogyan a cége valóban működik.",
+    "solutions": [
+      {
+        "title": "Munkavállalói mobilitási flották",
+        "desc": "Adómentes, egészséges közlekedést adjon a dolgozóknak az ingázáshoz és a telephelyek közötti mozgáshoz. Segítünk minden munkatársnak kiválasztani a megfelelő kerékpárt, betanítjuk őket, és többnyelvű útmutatót adunk.",
+        "points": ["Adómentes munkavállalói juttatás", "Telephelyek közötti és utolsó kilométeres ingázás", "Kerékpárválasztás és sofőrbetanítás"]
+      },
+      {
+        "title": "Futár- és szállítóflották",
+        "desc": "Kifejezetten olyan szállítási műveletekre, amelyek nem engedhetik meg maguknak az állásidőt. A GPS-nyomkövetés, a lopásbiztosítás és a 24 órán belüli javítás mozgásban tartja a futárokat. A Foodora hivatalos bérlőpartnere.",
+        "points": ["GPS-nyomkövetés + lopásbiztosítás", "24 órán belüli szerviz és cserekerékpár", "Foodora futárpartner — 10% futárkedvezmény"]
+      },
+      {
+        "title": "Egyedi arculatú flották",
+        "desc": "Változtassa flottáját mozgó hirdetőfelületté. A kerékpárokat az Ön arculatába öltöztetjük, így minden kiszállítás és ingázás egyben reklám is.",
+        "points": ["Teljes fóliázás és arculat", "Reklámüzenet a vázon", "Egységes, professzionális flottakép"]
+      },
+      {
+        "title": "Szezonális és rendezvényflották",
+        "desc": "Rövid távú flották fesztiválokra, turisztikai csúcsidőszakokra és kampuszokra — gyorsan kiszállítva, és összegyűjtve, amikor végzett. A téli szettek és esővédők járnak hozzá.",
+        "points": ["Rugalmas rövid távú feltételek", "Fesztiválra, szállodára, kampuszra kész", "Minden időjárásra felszerelve"]
+      }
+    ],
+    "industriesEyebrow": "Kiket szolgálunk ki",
+    "industriesTitle": "Úton a magyar cégekkel.",
+    "industriesSubtitle": "Az ételkiszállítástól az ötcsillagos szállodákig már ma is számos magyar cég épít az E-Renty-re.",
+    "industries": [
+      { "name": "Szállítás és futárszolgálat", "desc": "Étel- és élelmiszerplatformok, valamint önálló futárok — a városi utolsó kilométeres kiszállítás gerince." },
+      { "name": "Szállodák és vendéglátás", "desc": "Vendég- és személyzeti mobilitás szállodáknak, fürdőknek és üdülőknek, amelyek zöldebb, emlékezetesebb élményt szeretnének." },
+      { "name": "Turizmus és szabadidő", "desc": "Utazásszervezők és turisztikai irodák, amelyek könnyed módot kínálnak a látogatóknak a város felfedezésére." },
+      { "name": "Rendezvények és fesztiválok", "desc": "Gyors, kibocsátásmentes közlekedés a stáb és a személyzet számára a nagy fesztivál- és rendezvényhelyszíneken." },
+      { "name": "Vállalati és létesítményi", "desc": "Nagykereskedők és több telephelyes munkáltatók, akik épületek, raktárak és üzemek között mozgatják a csapatokat." },
+      { "name": "Ingatlan és kampuszok", "desc": "Ingatlancsoportok és kampuszok, amelyek közös, fenntartható mikromobilitást adnak a lakóknak és a személyzetnek." }
+    ],
+    "howEyebrow": "Hogyan működik",
+    "howTitle": "Az első hívástól egy héten belül a nyeregben.",
+    "howSubtitle": "Nincs márkakereskedés, nincs beszerzési útvesztő — egyszerű, jórészt digitális út a flotta elindításához.",
+    "steps": [
+      { "title": "Beszéljen flottacsapatunkkal", "desc": "Mondja el a létszámot, az útvonalakat és a célokat. Javaslunk megfelelő kerékpárokat, csomagot és flottaméretet — kötelezettség nélkül." },
+      { "title": "Válassza ki a flottát és a csomagot", "desc": "Válasszon modelleket a kínálatunkból és egy támogatási szintet. Megerősítjük a mennyiségi árat és a fix havi ajánlatot." },
+      { "title": "Írja alá elektronikusan", "desc": "Teljesen digitális azonosítás és e-aláírás. A legtöbb flotta egyetlen papírlap nélkül jut el a megállapodástól a kiszállításig." },
+      { "title": "Kiszállítás és beüzemelés", "desc": "Kiszállítjuk, arculatozzuk és regisztráljuk a kerékpárokat, beállítjuk a töltést, és többnyelvű útmutatókkal betanítjuk a sofőröket." },
+      { "title": "Ön teker — a többit mi intézzük", "desc": "A GPS-telemetriát, a biztosítást, a szervizt és a cseréket mi kezeljük, egyetlen kapcsolattartón keresztül." }
+    ],
+    "includedEyebrow": "Minden benne van",
+    "includedTitle": "Flotta, amely magát menedzseli.",
+    "includedSubtitle": "Minden E-Renty céges flotta teljes felszereltséggel érkezik — nincs felár, nincs apró betűs rész.",
+    "included": [
+      { "title": "GPS-nyomkövetés és telemetria", "desc": "Minden kerékpár élőben követhető, kerékpáronkénti analitikával a flottakezelőnek." },
+      { "title": "Lopásbiztosítás", "desc": "A kerékpárok 0–24 órában biztosítva vannak lopás ellen, a kárügyintézést mi végezzük." },
+      { "title": "24 órán belüli szerviz", "desc": "Az országos szervizpartner-hálózat minimálisra csökkenti az állásidőt, bárhol is működik." },
+      { "title": "Cserekerékpárok", "desc": "A prémium csomagok cserejárművet tartalmaznak, hogy a munka soha ne álljon le." },
+      { "title": "Töltés kiépítése", "desc": "Segítünk töltőpontok és biztonságos kerékpártárolók telepítésében a telephelyein." },
+      { "title": "Sofőrbetanítás és útmutatók", "desc": "Gyakorlati betanítás és több nyelven elérhető használati útmutatók." },
+      { "title": "Minden időjárásra felszerelés", "desc": "Az esővédők és fűtött téli kabátok egész évben kényelmet adnak a sofőröknek." },
+      { "title": "Egyetlen gyűjtőszámla", "desc": "Egyetlen havi, áfás számla cégenként, amely exportálható az ERP-rendszerébe." },
+      { "title": "Dedikált kapcsolattartó", "desc": "A 10 kerékpár feletti flották névre szóló kapcsolattartót és online hibabejelentést kapnak." }
+    ],
+    "sustainEyebrow": "Fenntarthatóság",
+    "sustainTitle": "Csökkentse a költségeket és a szén-dioxidot egy mozdulattal.",
+    "sustainDesc": "Minden kilométer, amelyet E-Renty kerékpáron tesz meg autó helyett, nagyjából 180 g CO₂-t tart távol a levegőtől. Ezt flottaszinten mérjük és jelentjük Önnek — bizonyíték az ESG-céljaihoz, nem csupán egy szép gondolat.",
+    "sustainBullets": [
+      "Nulla kipufogógáz-kibocsátás a teljes flottában",
+      "Negyedéves, cégenkénti CO₂-megtakarítási jelentés",
+      "Kevesebb torlódás, zaj és városi parkolási nyomás",
+      "Látható, hiteles jelzése a zöld elköteleződésének"
+    ],
+    "sustainMetrics": [
+      { "value": "18,4 t", "label": "Évente megtakarított CO₂ a flottánkon" },
+      { "value": "502e", "label": "Megtett zöld kilométer" },
+      { "value": "0 g", "label": "Kipufogógáz-kibocsátás kilométerenként" }
+    ],
+    "faqEyebrow": "Céges GYIK",
+    "faqTitle": "Kérdések a pénzügyi, flotta- és HR-csapatoktól.",
+    "faqSubtitle": "Minden, amire szüksége van, mielőtt az E-Renty-t a következő tervezési megbeszélésre viszi.",
+    "faqs": [
+      { "q": "Mennyibe kerül egy céges flotta?", "a": "A munkavállalói mobilitási kerékpárok nagyjából 25 000 Ft-tól indulnak kerékpáronként havonta, a flotta növekedésével mennyiségi árazással. A futártámogatási csomagok alacsonyabbról indulnak. Mindig egyetlen fix havi ajánlatot kap — rejtett díjak nélkül." },
+      { "q": "Megvásároljuk vagy béreljük a kerékpárokat?", "a": "Ön bérel. Nincs önerő és nincs maradványérték-kockázat. A teljes havidíj elszámolható, a flottát pedig igény szerint bővítheti vagy csökkentheti." },
+      { "q": "Pontosan mik az adóelőnyök?", "a": "Az áfa a megfelelő használatra visszaigényelhető, a havidíj teljes egészében elszámolható szociális hozzájárulás nélkül, a dolgozóknak adott, legfeljebb 300 W-os e-bike pedig SZJA-mentes. Szívesen tájékoztatjuk a könyvelőjét a részletekről." },
+      { "q": "Mi történik, ha elromlik egy kerékpár?", "a": "Jelentse be online, és országos szervizhálózatunk 24 órán belül reagál. A prémium csomagok cserekerékpárt tartalmaznak, hogy a működése ne álljon le." },
+      { "q": "Le tudják a kerékpárokat arculatozni nekünk?", "a": "Igen. A flottákat az Ön arculatába fóliázzuk, és reklámüzenetet is elhelyezhetünk a vázon — így minden út egyben reklám is." },
+      { "q": "Milyen hosszúak a szerződések?", "a": "A céges flották esetében jellemzően egy-három év, a szezonális és rendezvényigényekhez pedig rugalmas rövid távú lehetőségekkel." },
+      { "q": "Hol működnek?", "a": "Budapesten és Kecskeméten vagyunk jelen, országos szervizpartner-hálózattal, így bárhol Magyarországon támogatni tudjuk a flottákat." }
+    ],
+    "viewAllFaq": "Összes GYIK megtekintése",
+    "ctaTitle": "Építsük meg a flottáját.",
+    "ctaDesc": "Mesélje el, milyen a csapata és az útvonalai, mi pedig visszatérünk a megfelelő kerékpárokkal, egy fix havi ajánlattal, és egy héten belül kerekekkel az ajtaja előtt.",
+    "ctaPrimaryBtn": "Kapcsolat az értékesítéssel",
+    "ctaSecondaryBtn": "Flotta böngészése",
+    "ctaNote": "Emberrel beszél — nincs bot, nincs kötelezettség."
+  },
   "contactPage": {
     "metaTitle": "Kapcsolat | E-Renty — Beszéljünk flottastratégiáról",
     "metaDesc": "Vegye fel a kapcsolatot az E-Renty csapatával. Akár az első e-bike pilotprogramját tervezi, akár egy meglévő flottát bővít, segítünk.",

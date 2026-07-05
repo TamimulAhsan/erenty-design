@@ -679,6 +679,153 @@
     "ctaFleetBtn": "Browse the fleet",
     "ctaContactBtn": "Contact us"
   },
+  "businessPage": {
+    "metaTitle": "E-Renty for Business | Corporate E-Bike Fleets & Courier Solutions",
+    "metaDesc": "Fully managed electric bike and scooter fleets for Hungarian businesses — from tax-free employee mobility to always-on courier fleets. GPS tracking, theft insurance, sub-24h maintenance, one fixed monthly invoice.",
+    "heroEyebrow": "E-Renty for Business",
+    "heroTitleLine1": "Premium e-bike fleets,",
+    "heroTitleLine2": "fully managed for your business.",
+    "heroDesc": "From tax-free employee mobility to always-on courier fleets, E-Renty gives Hungarian companies a turnkey electric fleet — GPS-tracked, insured and maintained — for one fixed monthly fee per bike.",
+    "ctaPrimary": "Talk to our fleet team",
+    "ctaSecondary": "Browse the fleet",
+    "stats": [
+      { "value": "from 25 000 Ft", "label": "Per rider, per month" },
+      { "value": "100%", "label": "VAT reclaimable" },
+      { "value": "0%", "label": "Income tax on the e-bike benefit" },
+      { "value": "< 24h", "label": "Maintenance response" }
+    ],
+    "logosTitle": "Trusted by delivery platforms, hotels and enterprises across Hungary",
+    "whyEyebrow": "Why E-Renty",
+    "whyTitle": "The company fleet that pays for itself.",
+    "whySubtitle": "Cars are expensive, slow in the city and hard on the planet. An E-Renty e-bike fleet is cheaper to run, faster door-to-door and tax-advantaged from day one.",
+    "why": [
+      {
+        "title": "One predictable fee",
+        "desc": "A single fixed monthly invoice per company covers the bike, GPS, insurance and maintenance. No surprise repair bills, no depreciation, no fleet admin."
+      },
+      {
+        "title": "Tax-advantaged by design",
+        "desc": "Rental fees are fully expensable, VAT is reclaimable, and since 2022 e-bikes given to staff are exempt from personal income tax — a benefit employees actually use."
+      },
+      {
+        "title": "Cheaper than a company car",
+        "desc": "Charging an e-bike costs roughly 900–1 800 Ft a month. No fuel, no parking, no servicing surprises — a fraction of the total cost of a company car."
+      },
+      {
+        "title": "Zero fleet headaches",
+        "desc": "We handle procurement, registration, servicing, insurance claims and replacements. Your team rides; we keep the wheels turning."
+      }
+    ],
+    "benefitsEyebrow": "The business case",
+    "benefitsTitle": "Built around the Hungarian tax rules that favour e-bikes.",
+    "benefitsDesc": "Since January 2022, the law strongly rewards companies that put employees on electric bikes. E-Renty is structured to help you capture every advantage — cleanly and compliantly.",
+    "benefitsBullets": [
+      "VAT on e-bikes used for taxable activity is fully reclaimable.",
+      "E-bikes up to 300 W provided for private use, including commuting, are exempt from personal income tax (SZJA).",
+      "The full monthly rental fee is deductible as a business cost — with no social contribution obligation.",
+      "Purchase, service and maintenance costs reduce your corporate tax (TAO) base.",
+      "No down payment and no residual-value risk — you rent, you don't own."
+    ],
+    "benefitsNote": "E-Renty is not a tax advisor — we're happy to walk your finance team through the details.",
+    "benefitsMetrics": [
+      { "value": "100%", "label": "VAT reclaimable", "sub": "on qualifying fleets" },
+      { "value": "0 Ft", "label": "Personal income tax", "sub": "on the e-bike benefit" },
+      { "value": "1–3 yr", "label": "Flexible contracts", "sub": "fixed monthly fee" },
+      { "value": "~1 500 Ft", "label": "Monthly charging", "sub": "per bike, on average" }
+    ],
+    "solutionsEyebrow": "Fleet solutions",
+    "solutionsTitle": "One partner for every kind of fleet.",
+    "solutionsSubtitle": "Whether you're moving couriers, commuters or guests, we build the fleet around how your business actually operates.",
+    "solutions": [
+      {
+        "title": "Employee mobility fleets",
+        "desc": "Give staff a tax-free, healthy way to commute and move between sites. We help each employee pick the right bike, train them, and hand over multilingual manuals.",
+        "points": ["Tax-free employee benefit", "Site-to-site & last-mile commuting", "Bike selection & rider training"]
+      },
+      {
+        "title": "Courier & delivery fleets",
+        "desc": "Purpose-built for delivery operations that can't afford downtime. GPS tracking, theft insurance and sub-24h repairs keep riders earning. Official rental partner of Foodora.",
+        "points": ["GPS tracking + theft insurance", "Sub-24h maintenance & replacement bikes", "Foodora courier partner — 10% rider discount"]
+      },
+      {
+        "title": "Custom-branded fleets",
+        "desc": "Turn your fleet into moving billboards. We wrap and brand bikes in your identity so every delivery and commute doubles as advertising.",
+        "points": ["Full livery & branding", "Marketing messaging on the frames", "A consistent, professional fleet look"]
+      },
+      {
+        "title": "Seasonal & event fleets",
+        "desc": "Short-term fleets for festivals, tourism peaks and campuses — deployed fast and collected when you're done. Winter kits and rain covers included.",
+        "points": ["Flexible short-term terms", "Festival, hotel & campus ready", "All-weather equipment supplied"]
+      }
+    ],
+    "industriesEyebrow": "Who we serve",
+    "industriesTitle": "On the road with Hungarian businesses.",
+    "industriesSubtitle": "From food delivery to five-star hotels, companies across Hungary already run on E-Renty.",
+    "industries": [
+      { "name": "Delivery & courier", "desc": "Food and grocery platforms and independent couriers — the backbone of urban last-mile delivery." },
+      { "name": "Hotels & hospitality", "desc": "Guest and staff mobility for hotels, spas and resorts that want a greener, more memorable experience." },
+      { "name": "Tourism & leisure", "desc": "Tour operators and tourism offices offering visitors an effortless way to explore the city." },
+      { "name": "Events & festivals", "desc": "Fast, emission-free transport for crews and staff across large festival and event sites." },
+      { "name": "Corporate & facilities", "desc": "Distributors and multi-site employers moving teams between buildings, warehouses and plants." },
+      { "name": "Real estate & campuses", "desc": "Property groups and campuses giving residents and staff shared, sustainable micro-mobility." }
+    ],
+    "howEyebrow": "How it works",
+    "howTitle": "From first call to riding in under a week.",
+    "howSubtitle": "No dealerships, no procurement maze — a simple, mostly-digital path to a fleet on the road.",
+    "steps": [
+      { "title": "Talk to our fleet team", "desc": "Tell us your headcount, routes and goals. We recommend the right bikes, plan and fleet size — no obligation." },
+      { "title": "Choose your fleet & plan", "desc": "Pick models from our catalogue and a support level. We confirm volume pricing and a fixed monthly quote." },
+      { "title": "E-sign your contract", "desc": "Fully digital KYC and e-signature. Most fleets go from agreement to delivery without a single sheet of paper." },
+      { "title": "Deploy & onboard", "desc": "We deliver, brand and register the bikes, set up charging, and train your riders with multilingual guides." },
+      { "title": "Ride — we manage the rest", "desc": "GPS telemetry, insurance, servicing and replacements are handled for you, reported through one account manager." }
+    ],
+    "includedEyebrow": "Everything included",
+    "includedTitle": "A fleet that manages itself.",
+    "includedSubtitle": "Every E-Renty business fleet comes fully loaded — no add-ons, no fine print.",
+    "included": [
+      { "title": "GPS tracking & telemetry", "desc": "Every bike is tracked live, with per-bike analytics for your fleet admin." },
+      { "title": "Theft insurance", "desc": "Bikes are insured against theft 24/7, with claims handled by us." },
+      { "title": "Sub-24h maintenance", "desc": "Nationwide service partners keep downtime to a minimum, wherever you operate." },
+      { "title": "Replacement bikes", "desc": "Priority plans include a replacement vehicle so work never stops." },
+      { "title": "Charging setup", "desc": "We help install charging points and secure bike storage at your sites." },
+      { "title": "Rider training & manuals", "desc": "Hands-on onboarding plus user manuals in multiple languages." },
+      { "title": "All-weather kit", "desc": "Rain covers and heated winter jackets keep riders comfortable year-round." },
+      { "title": "One master invoice", "desc": "A single monthly, VAT-compliant invoice per company, exportable to your ERP." },
+      { "title": "Dedicated account manager", "desc": "Fleets over 10 bikes get a named contact and online fault reporting." }
+    ],
+    "sustainEyebrow": "Sustainability",
+    "sustainTitle": "Cut costs and carbon in the same move.",
+    "sustainDesc": "Every kilometre ridden on an E-Renty bike instead of a car keeps roughly 180 g of CO₂ out of the air. We track it fleet-wide and report it to you — evidence for your ESG goals, not just a nice idea.",
+    "sustainBullets": [
+      "Zero tailpipe emissions across your fleet",
+      "Quarterly CO₂-saved reporting, per company",
+      "Less congestion, noise and city parking pressure",
+      "A visible, credible signal of your green commitment"
+    ],
+    "sustainMetrics": [
+      { "value": "18.4 t", "label": "CO₂ saved per year across our fleet" },
+      { "value": "502k", "label": "Green kilometres ridden" },
+      { "value": "0 g", "label": "Tailpipe emissions per kilometre" }
+    ],
+    "faqEyebrow": "Business FAQ",
+    "faqTitle": "Questions from finance, fleet and HR teams.",
+    "faqSubtitle": "Everything you need before you bring E-Renty to your next planning meeting.",
+    "faqs": [
+      { "q": "How much does a business fleet cost?", "a": "Employee-mobility bikes start from around 25 000 Ft per rider per month, with volume pricing as your fleet grows. Courier support plans start lower. You always get one fixed monthly quote — no hidden fees." },
+      { "q": "Do we buy or rent the bikes?", "a": "You rent. There's no down payment and no residual-value risk. The full monthly fee is expensable, and you can scale the fleet up or down as your needs change." },
+      { "q": "What are the tax benefits exactly?", "a": "VAT is reclaimable on qualifying use, the monthly fee is fully deductible with no social contribution, and e-bikes up to 300 W given to employees are exempt from personal income tax. We're glad to brief your accountant on the details." },
+      { "q": "What happens when a bike breaks down?", "a": "Report it online and our nationwide service network responds within 24 hours. Priority plans include a replacement bike so your operation keeps moving." },
+      { "q": "Can you brand the bikes for us?", "a": "Yes. We wrap and brand fleets in your identity and can add marketing messaging to the frames — turning every ride into advertising." },
+      { "q": "How long are the contracts?", "a": "Typically one to three years for corporate fleets, with flexible short-term options for seasonal and event needs." },
+      { "q": "Where do you operate?", "a": "We're based in Budapest and Kecskemét with a nationwide service-partner network, so we can support fleets anywhere in Hungary." }
+    ],
+    "viewAllFaq": "View all FAQs",
+    "ctaTitle": "Let's build your fleet.",
+    "ctaDesc": "Tell us about your team and routes, and we'll come back with the right bikes, a fixed monthly quote, and wheels at your door within a week.",
+    "ctaPrimaryBtn": "Contact sales",
+    "ctaSecondaryBtn": "Browse the fleet",
+    "ctaNote": "Talk to a human — no bots, no obligation."
+  },
   "contactPage": {
     "metaTitle": "Contact E-Renty | Let's Talk Fleet Strategy",
     "metaDesc": "Get in touch with the E-Renty team. Whether you're exploring your first e-bike pilot or scaling an existing fleet, we're here to help.",

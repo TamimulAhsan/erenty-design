@@ -1,6 +1,7 @@
-"use client";
+'use client';
 
-import { useState, useRef } from "react";
+// Force compiler rebuild
+import { useState, useRef, useEffect } from "react";
 import Link from "@/components/LocalizedLink";
 import styles from "./Faq.module.css";
 
@@ -33,11 +34,26 @@ const TAB_ICONS = {
   ),
 };
 
-export default function FaqClient({ dict }) {
+export default function FaqClient({ dict, initialTab }) {
   const t = dict;
-  const [activeTab, setActiveTab] = useState(0);
+  const tabKeys = ["customers", "couriers", "businesses"];
+  const initialTabIdx = tabKeys.indexOf(initialTab);
+  const [activeTab, setActiveTab] = useState(initialTabIdx !== -1 ? initialTabIdx : 0);
   const [openItems, setOpenItems] = useState({});
   const tabRefs = useRef([]);
+
+  useEffect(() => {
+    if (initialTab) {
+      const idx = tabKeys.indexOf(initialTab);
+      if (idx !== -1) {
+        setActiveTab(idx);
+        setOpenItems({});
+        setTimeout(() => {
+          tabRefs.current[idx]?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+        }, 100);
+      }
+    }
+  }, [initialTab]);
 
   const toggleItem = (key) => {
     setOpenItems((prev) => ({ ...prev, [key]: !prev[key] }));
@@ -49,8 +65,6 @@ export default function FaqClient({ dict }) {
     // Keep the tapped tab in view — the mobile bar scrolls horizontally.
     tabRefs.current[idx]?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
   };
-
-  const tabKeys = ["customers", "couriers", "businesses"];
 
   return (
     <>

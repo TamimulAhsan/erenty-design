@@ -1,3 +1,4 @@
+// Force rebuild of page importing client component
 import FaqClient from "./FaqClient";
 import { getDictionary, hasLocale } from "../dictionaries";
 import { notFound } from "next/navigation";
@@ -12,14 +13,16 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function FAQPage({ params }) {
+export default async function FAQPage({ params, searchParams }) {
   const { lang } = await params;
+  const resolvedSearchParams = await searchParams;
+  const tab = resolvedSearchParams?.tab || "";
   if (!hasLocale(lang)) notFound();
   const dict = await getDictionary(lang);
 
   return (
     <main style={{ minHeight: "100vh" }}>
-      <FaqClient dict={dict.faqPage} />
+      <FaqClient dict={dict.faqPage} initialTab={tab} />
     </main>
   );
 }
