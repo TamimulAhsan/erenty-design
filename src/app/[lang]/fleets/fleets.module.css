@@ -741,6 +741,9 @@
   margin-top: 8px;
   width: 100%; /* Stretch button to fill the card */
   box-sizing: border-box;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
 }
 
 .portfolioRentLink:hover {
@@ -821,7 +824,12 @@
   overflow: hidden;
   box-shadow: 0 30px 60px -15px rgba(30, 45, 47, 0.2);
   display: flex;
+  transition: max-width 0.3s ease;
   animation: modalSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modalWrapperLarge {
+  max-width: 1024px;
 }
 
 @keyframes modalSlideUp {
@@ -846,7 +854,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 10;
+  z-index: 101;
   transition: all 0.2s ease;
 }
 
@@ -864,13 +872,73 @@
   background: rgba(0, 0, 0, 0.02);
   overflow: hidden;
   display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+/* Vertical Thumbnails Column */
+.thumbnailColumn {
+  width: 80px;
+  background: rgba(0, 0, 0, 0.01);
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 16px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.thumbnailBtn {
+  background: #FFFFFF;
+  border: 1.5px solid rgba(0, 0, 0, 0.08);
+  padding: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.thumbnailBtn:hover {
+  border-color: var(--primary, #10B981);
+}
+
+.activeThumbnail {
+  border-color: var(--primary, #10B981);
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.15);
+}
+
+.thumbnailImgWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.thumbnailImg {
+  object-fit: contain;
+  padding: 4px;
+}
+
+.mainImageContainer {
+  position: relative;
+  flex: 1;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .modalBikeImage {
   object-fit: contain;
-  padding: 24px;
+  padding: 24px 64px; /* Generous side padding to prevent overlapping with navigation arrows */
 }
 
 /* Nav arrows on modal */
@@ -1043,6 +1111,10 @@
   border-radius: 16px;
   text-align: center;
   transition: background-color 0.2s ease;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.95rem;
 }
 
 .modalRentBtn:hover {
@@ -1068,6 +1140,677 @@
 .modalCourierBtn:hover {
   background: rgba(0, 0, 0, 0.02);
   border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* 5.1 Multi-step Checkout Flow Layouts */
+.flowContainer {
+  width: 100%;
+  padding: 32px 40px;
+  display: flex;
+  flex-direction: column;
+  min-height: 580px;
+  position: relative;
+}
+
+/* Test State Toggle styling */
+.testStateToggle {
+  position: absolute;
+  top: 20px;
+  left: 40px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  color: var(--muted-foreground, #6B7280);
+  background: rgba(0, 0, 0, 0.02);
+  padding: 4px 10px;
+  border-radius: 20px;
+  z-index: 10;
+}
+
+.togglePill {
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.togglePillUnverified {
+  color: #EF4444;
+  border-color: rgba(239, 68, 68, 0.3);
+  background: rgba(239, 68, 68, 0.05);
+}
+
+.togglePillVerified {
+  color: var(--primary, #10B981);
+  border-color: rgba(16, 185, 129, 0.3);
+  background: rgba(16, 185, 129, 0.05);
+}
+
+/* Shared Header for steps */
+.flowHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding-bottom: 20px;
+  margin-top: 16px; /* Avoid overlapping title text with toggle pill */
+  margin-bottom: 24px;
+}
+
+.flowHeaderMain {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.flowHeaderImgWrapper {
+  position: relative;
+  width: 50px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.flowHeaderImg {
+  object-fit: contain;
+}
+
+.flowHeaderTitle {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--brand-dark, #1E2D2F);
+  margin: 0;
+}
+
+.flowHeaderSubtitle {
+  font-size: 0.85rem;
+  color: var(--muted-foreground, #6B7280);
+  margin: 2px 0 0 0;
+}
+
+/* Plan Selection Step */
+.flowPlansView {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.plansGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.planCard {
+  background: #FFFFFF;
+  border: 2px solid rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  padding: 24px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.planCard:hover {
+  border-color: rgba(16, 185, 129, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.02);
+}
+
+.planCardSelected {
+  border-color: var(--primary, #10B981);
+  background: rgba(16, 185, 129, 0.02);
+  box-shadow: 0 12px 30px -10px rgba(16, 185, 129, 0.12);
+}
+
+.planCardPopular {
+  border-color: var(--brand-dark, #1E2D2F);
+}
+
+.planCardPopular.planCardSelected {
+  border-color: var(--primary, #10B981);
+}
+
+.popularBadge {
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  background: var(--brand-dark, #1E2D2F);
+  color: #FFFFFF;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 30px;
+  letter-spacing: 0.05em;
+}
+
+.selectedCheckIcon {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: var(--primary, #10B981);
+  color: #FFFFFF;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.planLabel {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--muted-foreground, #6B7280);
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.planName {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--brand-dark, #1E2D2F);
+  margin: 0 0 6px 0;
+}
+
+.planDesc {
+  font-size: 0.75rem;
+  color: var(--muted-foreground, #6B7280);
+  margin: 0 0 20px 0;
+  line-height: 1.3;
+}
+
+.planPriceRow {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.planPrice {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--brand-dark, #1E2D2F);
+  font-family: var(--font-mono, monospace);
+}
+
+.planPeriod {
+  font-size: 0.85rem;
+  color: var(--muted-foreground, #6B7280);
+  margin-left: 2px;
+}
+
+.planFeatures {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.planFeatureItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  color: var(--brand-dark, #1E2D2F);
+  font-weight: 500;
+}
+
+.featureExcluded {
+  color: var(--muted-foreground, #9CA3AF);
+  text-decoration: line-through;
+  opacity: 0.65;
+}
+
+.featureCheckIcon {
+  color: var(--primary, #10B981);
+  flex-shrink: 0;
+}
+
+.featureCrossIcon {
+  color: #EF4444;
+  flex-shrink: 0;
+}
+
+/* Navigation Footers */
+.flowFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  padding-top: 24px;
+  margin-top: auto;
+}
+
+.flowBackBtn {
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: var(--brand-dark, #1E2D2F);
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 12px 24px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.flowBackBtn:hover {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.selectedPlanSummary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.summaryLabel {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--muted-foreground, #6B7280);
+  letter-spacing: 0.05em;
+}
+
+.summaryValue {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--brand-dark, #1E2D2F);
+  margin-top: 2px;
+}
+
+.flowContinueBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--brand-dark, #1E2D2F);
+  color: #FFFFFF;
+  border: none;
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 12px 28px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.flowContinueBtn:hover {
+  background: var(--primary, #10B981);
+}
+
+.flowContinueBtn:disabled {
+  background: #E5E7EB;
+  color: #9CA3AF;
+  cursor: not-allowed;
+  border-color: transparent;
+}
+
+.flowFinishBtn {
+  background: var(--primary, #10B981);
+  color: #FFFFFF;
+  border: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 14px 48px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.flowFinishBtn:hover {
+  background: #059669;
+}
+
+/* Verification Review Page */
+.flowVerificationView {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.verificationBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 40px 20px;
+  background: rgba(239, 68, 68, 0.02);
+  border: 1px dashed rgba(239, 68, 68, 0.15);
+  border-radius: 16px;
+  margin-bottom: 24px;
+}
+
+.verificationIconWrapper {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(239, 68, 68, 0.05);
+  color: #EF4444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.verificationIcon {
+  stroke-width: 1.5;
+}
+
+.verificationTitle {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--brand-dark, #1E2D2F);
+  margin: 0 0 8px 0;
+}
+
+.verificationDesc {
+  font-size: 0.925rem;
+  color: var(--muted-foreground, #6B7280);
+  max-width: 480px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* E-signing Step */
+.flowEsignView {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.esignBody {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.esignInstructions {
+  font-size: 0.9rem;
+  color: var(--muted-foreground, #6B7280);
+  margin: 0;
+}
+
+.contractPreview {
+  background: #F9FAFB;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  padding: 20px;
+  max-height: 180px;
+  overflow-y: auto;
+  font-size: 0.8rem;
+  color: #4B5563;
+  line-height: 1.5;
+}
+
+.contractPreview h5 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--brand-dark, #1E2D2F);
+  margin: 0 0 10px 0;
+}
+
+.contractPreview p {
+  margin: 0 0 10px 0;
+}
+
+.signatureInputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.esignLabel {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--brand-dark, #1E2D2F);
+}
+
+.esignInput {
+  background: #FFFFFF;
+  border: 1.5px solid rgba(0, 0, 0, 0.1);
+  padding: 14px 16px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.2s ease;
+  color: var(--brand-dark, #1E2D2F);
+}
+
+.esignInput:focus {
+  border-color: var(--primary, #10B981);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.digitalSignatureBox {
+  margin-top: 12px;
+  background: rgba(16, 185, 129, 0.03);
+  border: 1px dashed rgba(16, 185, 129, 0.3);
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.signedLabel {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--muted-foreground, #6B7280);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.scriptSignature {
+  font-family: 'Playfair Display', 'Georgia', cursive, serif;
+  font-style: italic;
+  font-size: 1.5rem;
+  color: var(--primary, #10B981);
+}
+
+/* Workshop Appointment Booking Step */
+.flowBookingView {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.bookingBody {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.bookingInstructions {
+  font-size: 0.9rem;
+  color: var(--muted-foreground, #6B7280);
+  margin: 0;
+}
+
+.sectionTitle {
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--brand-dark, #1E2D2F);
+  margin: 0 0 12px 0;
+}
+
+.dateGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+.dateCard {
+  background: #FFFFFF;
+  border: 1.5px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  padding: 14px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dateCard:hover {
+  border-color: var(--primary, #10B981);
+  background: rgba(16, 185, 129, 0.01);
+}
+
+.dateCardSelected {
+  border-color: var(--primary, #10B981);
+  background: rgba(16, 185, 129, 0.05);
+  box-shadow: 0 8px 20px -5px rgba(16, 185, 129, 0.1);
+}
+
+.dateWeekday {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--muted-foreground, #6B7280);
+  margin-bottom: 4px;
+}
+
+.dateDay {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--brand-dark, #1E2D2F);
+}
+
+.dateMonth {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--muted-foreground, #6B7280);
+  margin-top: 2px;
+}
+
+.timeGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.timeCard {
+  background: #FFFFFF;
+  border: 1.5px solid rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--brand-dark, #1E2D2F);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.timeCard:hover {
+  border-color: var(--primary, #10B981);
+  background: rgba(16, 185, 129, 0.01);
+}
+
+.timeCardSelected {
+  border-color: var(--primary, #10B981);
+  background: rgba(16, 185, 129, 0.05);
+  color: var(--primary, #10B981);
+}
+
+/* Booking Success Screen */
+.flowSuccessView {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+  padding: 24px 0 0 0;
+}
+
+.successBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.successIconWrapper {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.08);
+  color: var(--primary, #10B981);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.15);
+}
+
+.successCheckmark {
+  stroke-width: 3;
+}
+
+.successTitle {
+  font-size: 1.75rem;
+  font-weight: 850;
+  color: var(--brand-dark, #1E2D2F);
+  margin: 0 0 10px 0;
+}
+
+.successSubtitle {
+  font-size: 0.95rem;
+  color: var(--muted-foreground, #6B7280);
+  max-width: 480px;
+  line-height: 1.5;
+  margin: 0 0 28px 0;
+}
+
+.bookingReceiptCard {
+  background: #F9FAFB;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  padding: 20px 24px;
+  width: 100%;
+  max-width: 420px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.receiptRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--brand-dark, #1E2D2F);
+}
+
+.receiptRow span {
+  color: var(--muted-foreground, #6B7280);
+}
+
+.receiptRow strong {
+  font-weight: 700;
+}
+
+.successEmailNotice {
+  font-size: 0.75rem;
+  color: var(--muted-foreground, #9CA3AF);
+  margin: 0;
 }
 
 /* 6. Responsive Breakpoints */
@@ -1211,11 +1954,59 @@
   .modalImageArea {
     min-height: 250px;
     flex: none;
+    flex-direction: column;
+  }
+
+  .thumbnailColumn {
+    width: 100%;
+    height: 72px;
+    flex-direction: row;
+    border-right: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 8px 16px;
+    justify-content: flex-start;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .thumbnailBtn {
+    width: 48px;
+    height: 48px;
+  }
+
+  .modalBikeImage {
+    padding: 16px 48px;
   }
 
   .modalInfoArea {
     padding: 24px;
     max-height: none;
+  }
+
+  .flowContainer {
+    padding: 24px 20px;
+    min-height: auto;
+  }
+
+  .plansGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .dateGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .timeGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .testStateToggle {
+    position: static;
+    margin-bottom: 16px;
+    justify-content: center;
   }
 }
 
