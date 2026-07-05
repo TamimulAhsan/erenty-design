@@ -1,17 +1,31 @@
-import Link from "@/components/LocalizedLink";
+import ContactClient from "./ContactClient";
+import { getDictionary, hasLocale } from "../dictionaries";
+import { notFound } from "next/navigation";
 
-export default function ContactPage() {
+export async function generateMetadata({ params }) {
+  const { lang } = await params;
+  if (!hasLocale(lang)) return {};
+  const dict = await getDictionary(lang);
+  return {
+    title: dict.contactPage?.metaTitle || "Contact E-Renty | Let's Talk Fleet Strategy",
+    description:
+      dict.contactPage?.metaDesc ||
+      "Get in touch with the E-Renty team. Whether you're exploring your first e-bike pilot or scaling an existing fleet, we're here to help.",
+  };
+}
+
+export default async function ContactPage({ params }) {
+  const { lang } = await params;
+
+  if (!hasLocale(lang)) {
+    notFound();
+  }
+
+  const dict = await getDictionary(lang);
+
   return (
-    <>
-      <main style={{ minHeight: "60vh", padding: "120px 24px 80px", maxWidth: "1280px", margin: "0 auto" }}>
-        <h1 className="h2" style={{ marginBottom: "16px", color: "var(--brand-dark)" }}>Contact & Help Center</h1>
-        <p className="body-default" style={{ marginBottom: "32px", color: "var(--muted-foreground)" }}>
-          Have questions or need assistance? Reach out to our support team or find diagnostic help here.
-        </p>
-        <Link href="/" className="btn-primary">
-          ← Back to Homepage
-        </Link>
-      </main>
-    </>
+    <main style={{ minHeight: "100vh" }}>
+      <ContactClient dict={dict.contactPage} />
+    </main>
   );
 }

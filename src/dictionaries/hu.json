@@ -202,6 +202,7 @@
     "companyHeader": "Vállalat",
     "servicesHeader": "Szolgáltatások",
     "contactHeader": "Kapcsolat",
+    "contactUs": "Kapcsolatfelvétel",
     "aboutUs": "Rólunk",
     "howItWorks": "Hogyan működik",
     "forBusiness": "Üzleti ügyfeleknek",
@@ -722,6 +723,7 @@
     "mapSubtitle": "Budapest szívében vagyunk, rövid sétára az M1 metróvonaltól.",
     "openInMaps": "Megnyitás a térképen",
     "faqTitle": "Gyakran ismételt kérdések",
+    "faqViewAll": "Összes GYIK megtekintése",
     "faqs": [
       {
         "q": "Milyen gyorsan tudunk elkezdeni?",

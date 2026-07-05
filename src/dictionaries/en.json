@@ -202,6 +202,7 @@
     "companyHeader": "Company",
     "servicesHeader": "Services",
     "contactHeader": "Contact",
+    "contactUs": "Contact Us",
     "aboutUs": "About Us",
     "howItWorks": "How It Works",
     "forBusiness": "For Business",
@@ -722,6 +723,7 @@
     "mapSubtitle": "We're in the heart of Budapest, a short walk from the M1 metro line.",
     "openInMaps": "Open in maps",
     "faqTitle": "Frequently asked questions",
+    "faqViewAll": "View all FAQs",
     "faqs": [
       {
         "q": "How quickly can we get started?",

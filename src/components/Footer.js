@@ -106,6 +106,7 @@ export default function Footer({ dict }) {
             <div className={styles.navCol}>
               <span className={styles.navHeader}>{t.contactHeader}</span>
               <ul className={styles.navList}>
+                <li><Link href="/contact">{t.contactUs}</Link></li>
                 <li><a href="mailto:hello@e-renty.hu">hello@e-renty.hu</a></li>
                 <li><a href="tel:+3612345678">+36 1 234 5678</a></li>
                 <li><span className={styles.contactText}>{t.location}</span></li>
