@@ -17,7 +17,6 @@
   align-items: center;
   text-align: center;
   background: linear-gradient(180deg, #E2ECE5 0%, #EDF3EF 100%);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
 }
 
 .heroTextContainer {
@@ -110,15 +109,17 @@
   top: 72px;
   z-index: 40;
   width: 100%;
-  background: #FFFFFF;
-  border-top: 1px solid rgba(0, 0, 0, 0.04);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-  transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: #EDF3EF; /* Blends with bottom of hero */
+  border-bottom: none;
+  box-shadow: none;
+  transition: top 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-.scrolled {
+.stickyBarWrapperScrolled {
   top: 56px;
+  background: var(--card); /* Transitions to navbar background */
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
 }
 
 .stickyBar {
@@ -126,25 +127,38 @@
   margin: 0 auto;
   padding: 16px 24px;
   display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: stretch;
+}
+
+/* Row 1: Full-width Search */
+.stickyBarSearchRow {
+  display: flex;
+  width: 100%;
+  order: 1;
+}
+
+/* Row 2: Tabs + Specialty Dropdown + Reset */
+.stickyBarControlsRow {
+  display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+  order: 2;
 }
 
 .cityTabs {
   display: flex;
   gap: 4px;
-  background: rgba(0, 0, 0, 0.03);
-  padding: 4px 12px;
+  background: var(--brand-dark, #005B45);
+  padding: 4px;
   border-radius: 30px;
   overflow-x: auto;
   scrollbar-width: none;
-  width: 100%;
-  min-width: 0;
+  width: auto;
   max-width: 100%;
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 12px, #000 calc(100% - 12px), transparent 100%);
-  mask-image: linear-gradient(to right, transparent 0%, #000 12px, #000 calc(100% - 12px), transparent 100%);
 }
 
 .cityTabs::-webkit-scrollbar {
@@ -158,7 +172,7 @@
   border-radius: 20px;
   font-size: 0.875rem;
   font-weight: 600;
-  color: rgba(20, 49, 50, 0.65);
+  color: rgba(255, 255, 255, 0.7);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -169,19 +183,14 @@
 }
 
 .tabBtn:hover {
-  color: var(--brand-darker);
-  background: rgba(20, 49, 50, 0.04);
+  color: #FFFFFF;
 }
 
-.tabBtnActive {
-  background: #FFFFFF;
-  color: var(--brand-darker);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-}
-
+.tabBtnActive,
 .tabBtnActive:hover {
   background: #FFFFFF;
-  color: var(--brand-darker);
+  color: var(--brand-dark, #005B45);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .tabCount {
@@ -200,33 +209,62 @@
   position: relative;
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
 .searchIcon {
   position: absolute;
-  left: 14px;
-  color: var(--muted-foreground);
+  left: 16px;
+  color: rgba(255, 255, 255, 0.6);
   pointer-events: none;
 }
 
 .searchInput {
-  background: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  padding: 10px 14px 10px 38px;
-  border-radius: 20px;
-  font-size: 0.875rem;
+  width: 100%;
+  height: 42px;
+  background: var(--brand-dark, #005B45);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0 44px 0 44px;
+  border-radius: 21px;
+  font-size: 0.9rem;
   font-weight: 500;
-  color: var(--brand-dark);
+  color: #FFFFFF;
   outline: none;
-  width: 200px;
-  transition: all 0.2s ease;
   font-family: inherit;
+  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.searchInput::placeholder {
+  color: rgba(255, 255, 255, 0.55);
+  font-weight: 500;
 }
 
 .searchInput:focus {
-  border-color: var(--primary);
-  background: rgba(16, 185, 129, 0.03);
-  width: 230px;
+  border-color: var(--primary, #00D8A4);
+  background: var(--brand-darker, #143132);
+  box-shadow: 0 0 0 3px rgba(0, 216, 164, 0.15);
+}
+
+.searchClearBtn {
+  position: absolute;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.searchClearBtn:hover {
+  background: rgba(255, 255, 255, 0.28);
+  color: #FFFFFF;
 }
 
 .dropdownWrapper {
@@ -234,13 +272,13 @@
 }
 
 .dropdownTrigger {
-  background: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: var(--brand-dark, #005B45);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 10px 16px;
   border-radius: 20px;
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--brand-dark);
+  color: #FFFFFF;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -250,24 +288,24 @@
 
 @media (hover: hover) {
   .dropdownTrigger:hover {
-    border-color: var(--primary);
-    background: rgba(16, 185, 129, 0.03);
+    border-color: rgba(255, 255, 255, 0.3);
+    background: var(--brand-darker, #143132);
   }
 }
 
-.activeTrigger {
-  border-color: var(--primary);
-  background: rgba(16, 185, 129, 0.03);
+.activeTrigger,
+.activeTrigger:hover {
+  border-color: var(--primary, #00D8A4);
+  background: rgba(0, 216, 164, 0.2);
+  color: #FFFFFF;
 }
 
 .glassPopover {
   position: absolute;
   top: calc(100% + 8px);
   right: 0;
-  width: 230px;
-  background: rgba(255, 255, 255, 0.97);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  width: 220px;
+  background: #FFFFFF;
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
@@ -286,7 +324,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--muted-foreground);
+  color: var(--muted-foreground, #6B7280);
   margin-bottom: 12px;
   padding-bottom: 8px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
@@ -304,7 +342,7 @@
   gap: 10px;
   font-size: 0.875rem;
   font-weight: 500;
-  color: var(--brand-dark);
+  color: var(--brand-dark, #1E2D2F);
   cursor: pointer;
   user-select: none;
 }
@@ -312,7 +350,7 @@
 .checkboxInput {
   width: 16px;
   height: 16px;
-  accent-color: var(--primary);
+  accent-color: var(--primary, #10B981);
   cursor: pointer;
 }
 
@@ -320,11 +358,11 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(239, 68, 68, 0.03);
-  border: 1px solid rgba(239, 68, 68, 0.1);
+  background: rgba(255, 118, 118, 0.16);
+  border: 1px solid rgba(255, 118, 118, 0.3);
   font-size: 0.875rem;
   font-weight: 700;
-  color: var(--destructive);
+  color: #FF9B9B;
   cursor: pointer;
   padding: 8px 16px;
   border-radius: 20px;
@@ -333,8 +371,8 @@
 
 @media (hover: hover) {
   .clearBtnClean:hover {
-    background: rgba(239, 68, 68, 0.08);
-    border-color: rgba(239, 68, 68, 0.25);
+    background: rgba(255, 118, 118, 0.26);
+    border-color: rgba(255, 118, 118, 0.5);
     transform: translateY(-1px);
   }
 }
@@ -974,6 +1012,28 @@
   }
 }
 
+@media (min-width: 769px) {
+  .stickyBarWrapperScrolled .stickyBar {
+    padding: 8px 24px;
+    gap: 10px;
+  }
+
+  .stickyBarWrapperScrolled .searchInput {
+    height: 38px;
+    font-size: 0.85rem;
+  }
+
+  .stickyBarWrapperScrolled .tabBtn {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+
+  .stickyBarWrapperScrolled .dropdownTrigger {
+    padding: 8px 14px;
+    font-size: 0.8rem;
+  }
+}
+
 @media (max-width: 768px) {
   .hero {
     padding: calc(72px + 24px) 20px 32px;
@@ -987,23 +1047,58 @@
     gap: var(--space-6);
   }
 
-  .stickyBar {
-    padding: 12px 16px;
-    flex-direction: column;
-    align-items: stretch;
+  .stickyBarWrapper {
+    top: 56px !important;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
   }
 
-  .controlsRight {
+  .stickyBar {
+    position: relative;
+    padding: 12px 16px;
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
     gap: 8px;
-    flex-wrap: nowrap;
+    transition: none !important;
+  }
+
+  .stickyBarControlsRow {
+    display: contents;
+  }
+
+  .cityTabs {
+    order: 2;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 4px;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    gap: 4px;
+    scrollbar-width: none;
+  }
+
+  .cityTabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cityTabs .tabBtn {
+    flex-shrink: 0;
+    transition: none !important;
+  }
+
+  .stickyBarSearchRow {
+    order: 1;
+    display: flex;
+    width: 100%;
   }
 
   .searchWrapper {
-    flex: 1;
+    flex: 1 1 100%;
+    min-width: 0;
+    max-width: none;
+    width: 100%;
   }
 
   .searchInput,
@@ -1011,32 +1106,80 @@
     width: 100%;
   }
 
-  .dropdownWrapper {
-    flex: 0 0 auto;
+  .controlsRight {
+    order: 3;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 6px;
+    margin-top: 4px;
+    width: 100%;
   }
 
-  .dropdownTrigger {
-    width: auto;
-    padding: 10px 12px;
-    font-size: 13px;
+  .controlsRight .dropdownWrapper {
+    flex: 1 1 0px;
+    min-width: 0;
+    position: static;
   }
 
-  .glassPopover {
-    width: 260px;
-    right: 0;
+  .controlsRight .dropdownTrigger {
+    width: 100%;
+    height: 38px;
+    padding: 0 10px;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    transition: none !important;
   }
 
-  .clearBtnText {
+  .controlsRight .dropdownTrigger span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    text-align: left;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .controlsRight .dropdownTrigger svg {
+    flex-shrink: 0;
+    margin-left: 2px;
+  }
+
+  .controlsRight .clearBtnClean {
+    flex: 0 0 38px;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-sizing: border-box;
+    transition: none !important;
+  }
+
+  .controlsRight .clearBtnText {
     display: none;
   }
 
-  .clearBtnClean {
-    padding: 10px;
-    aspect-ratio: 1;
-    width: 38px;
-    height: 38px;
-    justify-content: center;
-    flex-shrink: 0;
+  .controlsRight .dropdownWrapper .glassPopover {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    width: auto !important;
+    max-width: none;
+    top: 100%;
+    transform: none;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    margin-top: 8px;
+    box-sizing: border-box;
   }
 
   .gridSection {

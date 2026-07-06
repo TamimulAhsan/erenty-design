@@ -601,6 +601,7 @@
     "statSpecialties": "Szakterület",
     "allCities": "Minden város",
     "searchPlaceholder": "Keresés név vagy város alapján",
+    "searchClear": "Keresés törlése",
     "specialty": "Szakterület",
     "filterBySpecialty": "Szűrés szakterület szerint",
     "reset": "Visszaállítás",

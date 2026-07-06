@@ -111,11 +111,16 @@ export default function RepairPartnersClient({ dict = {}, lang = "en" }) {
     return matchesCity && matchesType && matchesSearch;
   }).sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
 
-  const [isNavbarScrolled, setIsNavbarScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsNavbarScrolled(window.scrollY >= 10);
+      const currentScroll = window.scrollY;
+      setIsScrolled((prev) => {
+        if (currentScroll > 80) return true;
+        if (currentScroll < 40) return false;
+        return prev;
+      });
     };
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -191,31 +196,12 @@ export default function RepairPartnersClient({ dict = {}, lang = "en" }) {
       </section>
 
       {/* 2. Sticky Filter Bar */}
-      <div className={`${styles.stickyBarWrapper} ${isNavbarScrolled ? styles.scrolled : ""}`}>
+      <div className={`${styles.stickyBarWrapper} ${isScrolled ? styles.stickyBarWrapperScrolled : ""}`}>
         <div className={styles.stickyBar}>
-          <div className={styles.cityTabs}>
-            <button
-              className={`${styles.tabBtn} ${selectedCity === "All" ? styles.tabBtnActive : ""}`}
-              onClick={() => setSelectedCity("All")}
-            >
-              {dict.allCities || "All Cities"}
-              <span className={styles.tabCount}>{getCityCount("All")}</span>
-            </button>
-            {CITIES.map((city) => (
-              <button
-                key={city.name}
-                className={`${styles.tabBtn} ${selectedCity === city.name ? styles.tabBtnActive : ""}`}
-                onClick={() => setSelectedCity(city.name)}
-              >
-                {city.name}
-                <span className={styles.tabCount}>{getCityCount(city.name)}</span>
-              </button>
-            ))}
-          </div>
-
-          <div className={styles.controlsRight}>
+          {/* Row 1: Full-width Search */}
+          <div className={styles.stickyBarSearchRow}>
             <div className={styles.searchWrapper}>
-              <svg className={styles.searchIcon} width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg className={styles.searchIcon} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="11" cy="11" r="8" />
                 <line x1="21" y1="21" x2="16.65" y2="16.65" />
               </svg>
@@ -229,47 +215,92 @@ export default function RepairPartnersClient({ dict = {}, lang = "en" }) {
                   setIsTypeDropdownOpen(false);
                 }}
               />
-            </div>
-
-            <div ref={typeRef} className={styles.dropdownWrapper}>
-              <button
-                className={`${styles.dropdownTrigger} ${selectedTypes.length > 0 ? styles.activeTrigger : ""}`}
-                onClick={() => setIsTypeDropdownOpen((prev) => !prev)}
-              >
-                {dict.specialty || "Specialty"} {selectedTypes.length > 0 ? `(${selectedTypes.length})` : ""}
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <polyline points="6 9 12 15 18 9" />
-                </svg>
-              </button>
-
-              {isTypeDropdownOpen && (
-                <div className={styles.glassPopover}>
-                  <div className={styles.popoverHeader}>{dict.filterBySpecialty || "Filter by Specialty"}</div>
-                  <div className={styles.popoverList}>
-                    {WORKSHOP_TYPES.map((type) => (
-                      <label key={type} className={styles.popoverCheckboxLabel}>
-                        <input
-                          type="checkbox"
-                          className={styles.checkboxInput}
-                          checked={selectedTypes.includes(type)}
-                          onChange={() => handleTypeToggle(type)}
-                        />
-                        <span>{dict.types?.[type] || type}</span>
-                      </label>
-                    ))}
-                  </div>
-                </div>
+              {searchQuery && (
+                <button
+                  className={styles.searchClearBtn}
+                  onClick={() => setSearchQuery("")}
+                  aria-label={dict.searchClear || "Clear search"}
+                  type="button"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                  </svg>
+                </button>
               )}
             </div>
+          </div>
 
-            {hasActiveFilters && (
-              <button className={styles.clearBtnClean} onClick={handleClearFilters}>
-                <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" />
-                </svg>
-                <span className={styles.clearBtnText}>{dict.reset || "Reset"}</span>
+          {/* Row 2: City Tabs + Specialty + Reset */}
+          <div className={styles.stickyBarControlsRow}>
+            {/* City Tabs */}
+            <div className={styles.cityTabs}>
+              <button
+                className={`${styles.tabBtn} ${selectedCity === "All" ? styles.tabBtnActive : ""}`}
+                onClick={() => setSelectedCity("All")}
+                type="button"
+              >
+                {dict.allCities || "All Cities"}
+                <span className={styles.tabCount}>{getCityCount("All")}</span>
               </button>
-            )}
+              {CITIES.map((city) => (
+                <button
+                  key={city.name}
+                  className={`${styles.tabBtn} ${selectedCity === city.name ? styles.tabBtnActive : ""}`}
+                  onClick={() => setSelectedCity(city.name)}
+                  type="button"
+                >
+                  {city.name}
+                  <span className={styles.tabCount}>{getCityCount(city.name)}</span>
+                </button>
+              ))}
+            </div>
+
+            {/* Specialty + Reset */}
+            <div className={styles.controlsRight}>
+              <div ref={typeRef} className={styles.dropdownWrapper}>
+                <button
+                  className={`${styles.dropdownTrigger} ${selectedTypes.length > 0 ? styles.activeTrigger : ""}`}
+                  onClick={() => setIsTypeDropdownOpen((prev) => !prev)}
+                  type="button"
+                >
+                  <span>
+                    {dict.specialty || "Specialty"} {selectedTypes.length > 0 ? `(${selectedTypes.length})` : ""}
+                  </span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
+                </button>
+
+                {isTypeDropdownOpen && (
+                  <div className={styles.glassPopover}>
+                    <div className={styles.popoverHeader}>{dict.filterBySpecialty || "Filter by Specialty"}</div>
+                    <div className={styles.popoverList}>
+                      {WORKSHOP_TYPES.map((type) => (
+                        <label key={type} className={styles.popoverCheckboxLabel}>
+                          <input
+                            type="checkbox"
+                            className={styles.checkboxInput}
+                            checked={selectedTypes.includes(type)}
+                            onChange={() => handleTypeToggle(type)}
+                          />
+                          <span>{dict.types?.[type] || type}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {hasActiveFilters && (
+                <button className={styles.clearBtnClean} onClick={handleClearFilters} type="button">
+                  <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" />
+                  </svg>
+                  <span className={styles.clearBtnText}>{dict.reset || "Reset"}</span>
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>

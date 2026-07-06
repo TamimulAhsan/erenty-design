@@ -601,6 +601,7 @@
     "statSpecialties": "Specialties",
     "allCities": "All Cities",
     "searchPlaceholder": "Search by name or city",
+    "searchClear": "Clear search",
     "specialty": "Specialty",
     "filterBySpecialty": "Filter by Specialty",
     "reset": "Reset",
