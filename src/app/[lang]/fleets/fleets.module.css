@@ -1403,11 +1403,58 @@
 }
 
 .planCardPopular {
-  border-color: var(--brand-dark, #1E2D2F);
+  border-color: var(--brand-dark, #005B45);
+  background: linear-gradient(135deg, var(--brand-darker, #143132), var(--brand-dark, #005B45));
+  color: #ffffff;
+  box-shadow: 0 12px 32px rgba(20, 49, 50, 0.25);
+  margin-top: -16px;
+  margin-bottom: -16px;
+  padding: 36px 24px;
+  z-index: 5;
+}
+
+.planCardPopular:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(20, 49, 50, 0.35);
 }
 
 .planCardPopular.planCardSelected {
   border-color: var(--primary, #10B981);
+  box-shadow: 0 0 0 2px var(--primary, #10B981), 0 16px 40px rgba(20, 49, 50, 0.35);
+}
+
+.planCardPopular .planName {
+  color: #ffffff;
+}
+
+.planCardPopular .planDesc {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.planCardPopular .planPrice {
+  color: #ffffff;
+}
+
+.planCardPopular .planPeriod {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.planCardPopular .planFeatureItem {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.planCardPopular .featureCheckIcon {
+  color: var(--primary, #10B981);
+}
+
+.planCardPopular .planLabel {
+  color: var(--primary, #10B981);
+}
+
+.planCardPopular .popularBadge {
+  background: var(--primary, #10B981);
+  color: var(--brand-darker, #143132);
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2);
 }
 
 .popularBadge {
