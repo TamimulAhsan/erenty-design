@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import styles from "./BookingForm.module.css";
+import { CURRENT_USER, getAccountTypeLabel } from "@/data/currentUser";
 
 const MONTHS_DEFAULT = [
   "January", "February", "March", "April", "May", "June",
@@ -26,14 +27,15 @@ const TIME_SLOTS = [
 
 export default function BookingForm({ workshop, booking, onBookingSuccess, onResetBooking, dict = {}, lang = "en" }) {
   const [bookingError, setBookingError] = useState(null);
-  
+
+  // Service tier is auto-detected from the logged-in user's rental/Courier+ account, not chosen manually.
+  const selectedTier = CURRENT_USER.tier;
+
   // Selection States
-  const [selectedTier, setSelectedTier] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
 
   // Dropdown UI States
-  const [tierOpen, setTierOpen] = useState(false);
   const [dateOpen, setDateOpen] = useState(false);
   const [timeOpen, setTimeOpen] = useState(false);
 
@@ -43,7 +45,6 @@ export default function BookingForm({ workshop, booking, onBookingSuccess, onRes
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
 
   // Refs for click outside
-  const tierRef = useRef(null);
   const dateRef = useRef(null);
   const timeRef = useRef(null);
 
@@ -52,9 +53,6 @@ export default function BookingForm({ workshop, booking, onBookingSuccess, onRes
 
   useEffect(() => {
     function handleClickOutside(event) {
-      if (tierRef.current && !tierRef.current.contains(event.target)) {
-        setTierOpen(false);
-      }
       if (dateRef.current && !dateRef.current.contains(event.target)) {
         setDateOpen(false);
       }
@@ -90,10 +88,6 @@ export default function BookingForm({ workshop, booking, onBookingSuccess, onRes
 
   const handleBookingSubmit = (e) => {
     e.preventDefault();
-    if (!selectedTier) {
-      setBookingError(dict.errorTier || "Please select a service tier.");
-      return;
-    }
     if (!selectedDate) {
       setBookingError(dict.errorDate || "Please select an appointment date.");
       return;
@@ -115,7 +109,6 @@ export default function BookingForm({ workshop, booking, onBookingSuccess, onRes
   };
 
   const handleReset = () => {
-    setSelectedTier("");
     setSelectedDate("");
     setSelectedTime("");
     setBookingError(null);
@@ -218,7 +211,8 @@ export default function BookingForm({ workshop, booking, onBookingSuccess, onRes
   };
 
   const getTierDisplayName = (tier) => {
-    return lang === "hu" ? `${tier} szerviz` : `${tier} Service`;
+    const accountLabel = getAccountTypeLabel(CURRENT_USER.accountType, lang);
+    return `${accountLabel} ${tier}`;
   };
 
   return (
@@ -274,81 +268,19 @@ export default function BookingForm({ workshop, booking, onBookingSuccess, onRes
             <span className={styles.bookingFormHeaderTitle}>{dict.scheduleAppointment || "Schedule Appointment"}</span>
           </div>
           <form onSubmit={handleBookingSubmit} className={styles.bookingForm}>
-            
-            {/* 1. Custom Service Tier Dropdown */}
-            <div style={{ width: "100%", position: "relative" }} ref={tierRef}>
-              <button
-                type="button"
-                className={styles.bookingInput}
-                aria-haspopup="listbox"
-                aria-expanded={tierOpen}
-                aria-label={dict.selectServiceTier || "Select Service Tier"}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  textAlign: "left",
-                  background: "#FFFFFF"
-                }}
-                onClick={() => {
-                  setTierOpen(!tierOpen);
-                  setDateOpen(false);
-                  setTimeOpen(false);
-                }}
-              >
-                <span style={{ color: selectedTier ? "var(--brand-darker)" : "var(--muted-foreground)" }}>
-                  {selectedTier ? getTierDisplayName(selectedTier) : (dict.selectServiceTier || "Select Service Tier")}
-                </span>
-                <svg
-                  style={{
-                    transform: tierOpen ? "rotate(180deg)" : "rotate(0deg)",
-                    transition: "transform 0.2s ease",
-                    color: "var(--muted-foreground)"
-                  }}
-                  width="12"
-                  height="12"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <polyline points="6 9 12 15 18 9" />
+
+            {/* 1. Auto-Detected Service Tier (from the logged-in user's account) */}
+            <div className={styles.detectedTierBox}>
+              <span className={styles.detectedTierIcon}>
+                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  <polyline points="9 11 11 13 15 9" />
                 </svg>
-              </button>
-              
-              {tierOpen && (
-                <ul className={styles.customDropdownOptions} role="listbox" aria-label={dict.selectServiceTier || "Select Service Tier"}>
-                  {workshop.tiers.map((tier) => (
-                    <li
-                      key={tier}
-                      role="option"
-                      tabIndex={0}
-                      aria-selected={selectedTier === tier}
-                      className={`${styles.customDropdownOption} ${selectedTier === tier ? styles.activeOption : ""}`}
-                      onClick={() => {
-                        setSelectedTier(tier);
-                        setTierOpen(false);
-                      }}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter" || e.key === " ") {
-                          e.preventDefault();
-                          setSelectedTier(tier);
-                          setTierOpen(false);
-                        }
-                      }}
-                    >
-                      <span>{getTierDisplayName(tier)}</span>
-                      {selectedTier === tier && (
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ color: "var(--primary)" }}>
-                          <polyline points="20 6 9 17 4 12" />
-                        </svg>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              )}
+              </span>
+              <div className={styles.detectedTierInfo}>
+                <span className={styles.detectedTierLabel}>{dict.bookingAsLabel || "Booking as"}</span>
+                <span className={styles.detectedTierValue}>{getTierDisplayName(selectedTier)}</span>
+              </div>
             </div>
 
             {/* 2. Custom Date & Time Picker Row */}
@@ -371,7 +303,6 @@ export default function BookingForm({ workshop, booking, onBookingSuccess, onRes
                   }}
                   onClick={() => {
                     setDateOpen(!dateOpen);
-                    setTierOpen(false);
                     setTimeOpen(false);
                   }}
                 >
@@ -452,7 +383,6 @@ export default function BookingForm({ workshop, booking, onBookingSuccess, onRes
                   }}
                   onClick={() => {
                     setTimeOpen(!timeOpen);
-                    setTierOpen(false);
                     setDateOpen(false);
                   }}
                 >

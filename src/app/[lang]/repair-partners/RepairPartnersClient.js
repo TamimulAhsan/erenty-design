@@ -5,6 +5,7 @@ import Link from "@/components/LocalizedLink";
 import styles from "./repair-partners.module.css";
 import { WORKSHOPS, CITIES, WORKSHOP_TYPES, getInitialsBg } from "@/data/workshops";
 import BookingForm from "@/components/BookingForm";
+import PartnerApplicationModal from "@/components/PartnerApplicationModal";
 
 export default function RepairPartnersClient({ dict = {}, lang = "en" }) {
   const [selectedCity, setSelectedCity] = useState("All");
@@ -13,6 +14,7 @@ export default function RepairPartnersClient({ dict = {}, lang = "en" }) {
   const [isTypeDropdownOpen, setIsTypeDropdownOpen] = useState(false);
   const [activeWorkshop, setActiveWorkshop] = useState(null);
   const [bookingStatus, setBookingStatus] = useState({});
+  const [isPartnerModalOpen, setIsPartnerModalOpen] = useState(false);
 
   const typeRef = useRef(null);
   const closeModalBtnRef = useRef(null);
@@ -133,16 +135,20 @@ export default function RepairPartnersClient({ dict = {}, lang = "en" }) {
     return text;
   };
 
-  const formatHours = (hoursStr) => {
-    if (!hoursStr) return "";
+  const formatHoursParts = (hoursStr) => {
+    if (!hoursStr) return { main: "", extra: "" };
+    let text = hoursStr;
     if (lang === "hu") {
-      return hoursStr
+      text = text
         .replace("Mon - Fri", "Hé - Pé")
         .replace("Sat", "Szo")
         .replace("Sun", "Vas")
         .replace("Emergency Dispatch", "Sürgősségi kiszállás");
+    } else {
+      text = text.split(" | ")[0];
     }
-    return hoursStr.split(" | ")[0];
+    const match = text.match(/^(.*)\s(\([^)]*\))$/);
+    return match ? { main: match[1], extra: match[2] } : { main: text, extra: "" };
   };
 
   return (
@@ -150,7 +156,6 @@ export default function RepairPartnersClient({ dict = {}, lang = "en" }) {
       {/* 1. Hero */}
       <section className={styles.hero}>
         <div className={styles.heroTextContainer}>
-          <span className={styles.heroPre}>{dict.heroPre || "Certified Repair Network"}</span>
           <h1 className={styles.heroTitle}>{dict.heroTitle || "Service & Repair Partners"}</h1>
           <p className={styles.heroSubtitle}>
             {dict.heroSubtitle || "Book standard repairs, battery diagnostics, or emergency mobile service with our certified partner workshops across the country."}
@@ -175,6 +180,14 @@ export default function RepairPartnersClient({ dict = {}, lang = "en" }) {
             <span className={styles.heroStatLabel}>{dict.statSpecialties || "Specialties"}</span>
           </div>
         </div>
+
+        <button type="button" className={styles.heroPartnerLink} onClick={() => setIsPartnerModalOpen(true)}>
+          {dict.partnerApplyHeroLink || "Own a repair shop? Become a partner"}
+          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </button>
       </section>
 
       {/* 2. Sticky Filter Bar */}
@@ -279,7 +292,9 @@ export default function RepairPartnersClient({ dict = {}, lang = "en" }) {
               </button>
             </div>
           ) : (
-            filteredWorkshops.map((workshop) => (
+            filteredWorkshops.map((workshop) => {
+              const hoursParts = formatHoursParts(workshop.hours);
+              return (
               <div
                 key={workshop.id}
                 role="button"
@@ -300,7 +315,12 @@ export default function RepairPartnersClient({ dict = {}, lang = "en" }) {
                   <div className={styles.cardTitleBlock}>
                     <div className={styles.cardTitleRow}>
                       <h3 className={styles.cardTitle}>{workshop.title}</h3>
-                      {workshop.featured && <span className={styles.featuredBadge}>{dict.featured || "Featured"}</span>}
+                      {workshop.featured && (
+                        <span className={styles.featuredBadge}>
+                          <svg aria-hidden="true" width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6L12 2z" /></svg>
+                          {dict.featured || "Featured"}
+                        </span>
+                      )}
                     </div>
                     <div className={styles.cardMeta}>
                       <span>{dict.types?.[workshop.type] || workshop.type}</span>
@@ -323,23 +343,54 @@ export default function RepairPartnersClient({ dict = {}, lang = "en" }) {
                 <div className={styles.cardFooter}>
                   <span className={styles.cardHours}>
                     <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
-                    {formatHours(workshop.hours)}
+                    <span className={styles.cardHoursText}>
+                      {hoursParts.main}
+                      {hoursParts.extra && (
+                        <span className={styles.cardHoursExtra}>{hoursParts.extra}</span>
+                      )}
+                    </span>
                   </span>
                   <span className={styles.viewDetailsLink}>
                     {dict.viewDetails || "View details"}
-                    <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                      <line x1="5" y1="12" x2="19" y2="12" />
-                      <polyline points="12 5 19 12 12 19" />
+                    <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="7" y1="17" x2="17" y2="7" />
+                      <polyline points="7 7 17 7 17 17" />
                     </svg>
                   </span>
                 </div>
               </div>
-            ))
+              );
+            })
           )}
         </div>
       </section>
 
-      {/* 4. CTA Banner */}
+      {/* 4. Repair Partner Application */}
+      <section className={styles.partnerApplySection}>
+        <div className={styles.partnerApplyCard}>
+          <div className={styles.partnerApplyIconWrap}>
+            <svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+            </svg>
+          </div>
+          <div className={styles.partnerApplyText}>
+            <span className={`${styles.partnerApplyEyebrow} eyebrow`}>{dict.partnerApplyEyebrow || "Workshop Partners"}</span>
+            <h2 className="h2">{dict.partnerApplyTitle || "Become a repair partner"}</h2>
+            <p className="body-default">
+              {dict.partnerApplyDesc || "Join the E-renty network and get featured in the directory. Tell us about your workshop."}
+            </p>
+          </div>
+          <button className={styles.partnerApplyBtn} onClick={() => setIsPartnerModalOpen(true)}>
+            {dict.partnerApplyCta || "Apply now"}
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      {/* 5. CTA Banner */}
       <section className={styles.ctaBanner}>
         <div className={styles.ctaInner}>
           <div className={styles.ctaText}>
@@ -363,7 +414,7 @@ export default function RepairPartnersClient({ dict = {}, lang = "en" }) {
         </div>
       </section>
 
-      {/* 5. Detail Modal */}
+      {/* 6. Detail Modal */}
       {activeWorkshop && (
         <div className={styles.modalOverlay} onClick={() => setActiveWorkshop(null)}>
           <div
@@ -394,7 +445,12 @@ export default function RepairPartnersClient({ dict = {}, lang = "en" }) {
               <div>
                 <div className={styles.modalBadgeRow}>
                   <span className={styles.modalTypeBadge}>{dict.types?.[activeWorkshop.type] || activeWorkshop.type}</span>
-                  {activeWorkshop.featured && <span className={styles.featuredBadge}>{dict.featured || "Featured"}</span>}
+                  {activeWorkshop.featured && (
+                    <span className={styles.featuredBadge}>
+                      <svg aria-hidden="true" width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6L12 2z" /></svg>
+                      {dict.featured || "Featured"}
+                    </span>
+                  )}
                 </div>
                 <h2 id="modal-title" className={styles.modalTitle}>{activeWorkshop.title}</h2>
               </div>
@@ -493,6 +549,14 @@ export default function RepairPartnersClient({ dict = {}, lang = "en" }) {
           </div>
         </div>
       )}
+
+      {/* 7. Partner Application Modal */}
+      <PartnerApplicationModal
+        isOpen={isPartnerModalOpen}
+        onClose={() => setIsPartnerModalOpen(false)}
+        dict={dict}
+        lang={lang}
+      />
     </div>
   );
 }

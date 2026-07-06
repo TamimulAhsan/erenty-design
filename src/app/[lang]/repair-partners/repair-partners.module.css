@@ -25,16 +25,6 @@
   z-index: 10;
 }
 
-.heroPre {
-  display: inline-block;
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--brand-dark);
-  margin-bottom: var(--space-3);
-}
-
 .heroTitle {
   font-size: 2.75rem;
   font-weight: 800;
@@ -79,6 +69,37 @@
   font-size: 0.75rem;
   color: var(--muted-foreground);
   margin-top: 2px;
+}
+
+.heroPartnerLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: var(--space-6);
+  background: none;
+  border: none;
+  padding: 4px 2px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--brand-dark);
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 91, 69, 0.35);
+  text-underline-offset: 3px;
+  cursor: pointer;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.heroPartnerLink svg {
+  transition: transform 0.2s ease;
+}
+
+.heroPartnerLink:hover {
+  color: var(--primary);
+  text-decoration-color: var(--primary);
+}
+
+.heroPartnerLink:hover svg {
+  transform: translateX(2px);
 }
 
 /* ========================================================================= */
@@ -361,7 +382,42 @@
 }
 
 .partnerFeaturedCard {
-  border-left: 4px solid var(--primary);
+  background: var(--brand-darker);
+  border: 1.5px solid var(--brand-darker);
+  box-shadow: 0 14px 36px -14px rgba(20, 49, 50, 0.5);
+}
+
+.partnerFeaturedCard:hover {
+  border-color: var(--brand-dark);
+  box-shadow: 0 20px 44px -14px rgba(20, 49, 50, 0.55);
+}
+
+.partnerFeaturedCard .cardTitle {
+  color: #FFFFFF;
+}
+
+.partnerFeaturedCard .cardMeta,
+.partnerFeaturedCard .cardHours {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.partnerFeaturedCard .cardDesc {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.partnerFeaturedCard .tierChip {
+  background: rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+}
+
+.partnerFeaturedCard .cardFooter {
+  border-top-color: rgba(255, 255, 255, 0.15);
+}
+
+.partnerFeaturedCard .featuredBadge {
+  background: var(--primary);
+  color: var(--brand-darker);
+  box-shadow: 0 2px 8px rgba(0, 216, 164, 0.4);
 }
 
 .cardHeader {
@@ -404,15 +460,19 @@
 }
 
 .featuredBadge {
-  font-size: 9px;
-  background: var(--brand-light);
-  color: var(--brand-dark);
-  font-weight: 700;
-  padding: 2px 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 9.5px;
+  background: var(--brand-darker);
+  color: #FFFFFF;
+  font-weight: 800;
+  padding: 3px 8px;
   border-radius: var(--radius-full);
   text-transform: uppercase;
   letter-spacing: 0.02em;
   flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(20, 49, 50, 0.45);
 }
 
 .cardMeta {
@@ -460,6 +520,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: var(--space-3);
   margin-top: var(--space-5);
   padding-top: var(--space-4);
   border-top: 1px dashed var(--border);
@@ -469,17 +530,34 @@
   font-size: 12px;
   color: var(--muted-foreground);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 5px;
+  min-width: 0;
+}
+
+.cardHours svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.cardHoursText {
+  display: flex;
+  flex-direction: column;
+}
+
+.cardHoursExtra {
+  white-space: nowrap;
 }
 
 .viewDetailsLink {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  flex-shrink: 0;
   font-size: 13px;
   font-weight: 700;
   color: var(--primary);
+  white-space: nowrap;
 }
 
 .viewDetailsLink svg {
@@ -528,7 +606,80 @@
 }
 
 /* ========================================================================= */
-/* 4. CTA BANNER                                                             */
+/* 4. PARTNER APPLICATION SECTION                                            */
+/* ========================================================================= */
+.partnerApplySection {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px 32px;
+}
+
+.partnerApplyCard {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  background: rgba(0, 216, 164, 0.04);
+  border: 1.5px dashed rgba(0, 216, 164, 0.35);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-8) var(--space-8);
+  flex-wrap: wrap;
+}
+
+.partnerApplyIconWrap {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background: var(--gradient-primary);
+  color: var(--brand-darker);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.partnerApplyText {
+  flex: 1;
+  min-width: 280px;
+}
+
+.partnerApplyEyebrow {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.partnerApplyText h2 {
+  color: var(--brand-darker);
+  margin-bottom: 6px;
+}
+
+.partnerApplyText p {
+  color: var(--muted-foreground);
+  max-width: 520px;
+}
+
+.partnerApplyBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  background: var(--brand-darker);
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 14.5px;
+  padding: 14px 26px;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.partnerApplyBtn:hover {
+  background: var(--primary);
+  transform: translateY(-1px);
+}
+
+/* ========================================================================= */
+/* 5. CTA BANNER                                                             */
 /* ========================================================================= */
 .ctaBanner {
   max-width: 1280px;
@@ -564,7 +715,7 @@
 }
 
 /* ========================================================================= */
-/* 5. DETAIL MODAL                                                            */
+/* 6. DETAIL MODAL                                                            */
 /* ========================================================================= */
 .modalOverlay {
   position: fixed;
@@ -811,7 +962,7 @@
 
 
 /* ========================================================================= */
-/* 6. RESPONSIVE                                                             */
+/* 7. RESPONSIVE                                                             */
 /* ========================================================================= */
 @media (max-width: 991px) {
   .partnerGrid {
@@ -894,6 +1045,18 @@
 
   .partnerGrid {
     grid-template-columns: 1fr;
+  }
+
+  .partnerApplyCard {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    padding: var(--space-6);
+  }
+
+  .partnerApplyBtn {
+    width: 100%;
+    justify-content: center;
   }
 
   .ctaInner {
