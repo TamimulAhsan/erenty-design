@@ -16,7 +16,6 @@
   align-items: center;
   text-align: center;
   background: linear-gradient(180deg, #E2ECE5 0%, #EDF3EF 100%);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
 }
 
 .heroTextContainer {
@@ -347,40 +346,125 @@
   margin: 0;
 }
 
-/* 3. Sticky Filters Control Bar */
+/* 3. Sticky Filters Control Bar (transitions from hero bg to card bg) */
 .stickyBarWrapper {
   position: sticky;
   top: 72px;
   z-index: 40;
   width: 100%;
-  background: #FFFFFF;
-  border-top: 1px solid rgba(0, 0, 0, 0.04);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+  background: #EDF3EF; /* Initially blends with bottom of cleanHero */
+  border-bottom: none;
+  box-shadow: none;
   transition: top 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .stickyBarWrapperScrolled {
   top: 56px; /* Align with shrunken navbar height */
+  background: var(--card); /* Transitions to navbar background */
+  border-bottom: 1px solid var(--border);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
-  border-top-color: transparent;
 }
 
 .stickyBar {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 16px 24px;
+  padding: 14px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  transition: padding 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Row 2: category tabs (left) + refine controls (right) */
+.stickyBarControlsRow {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
-  transition: padding 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  gap: 12px;
+  order: 2;
+}
+
+/* Row 1: full-width search */
+.stickyBarSearchRow {
+  display: flex;
+  width: 100%;
+  order: 1;
+}
+
+/* Search field */
+.searchWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  pointer-events: none;
+}
+
+.searchInput {
+  width: 100%;
+  height: 42px;
+  background: var(--brand-dark, #005B45);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0 44px 0 44px;
+  border-radius: 21px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #FFFFFF;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.searchInput::placeholder {
+  color: rgba(255, 255, 255, 0.55);
+  font-weight: 500;
+}
+
+.searchInput:focus {
+  border-color: var(--primary, #00D8A4);
+  background: var(--brand-darker, #143132);
+  box-shadow: 0 0 0 3px rgba(0, 216, 164, 0.15);
+}
+
+.searchClearBtn {
+  position: absolute;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.searchClearBtn:hover {
+  background: rgba(255, 255, 255, 0.28);
+  color: #FFFFFF;
 }
 
 @media (min-width: 769px) {
   .stickyBarWrapperScrolled .stickyBar {
     padding: 8px 24px; /* Shrunk padding on scroll */
+    gap: 10px;
+  }
+
+  .stickyBarWrapperScrolled .searchInput {
+    height: 38px;
+    font-size: 0.85rem;
   }
 
   .stickyBarWrapperScrolled .tabBtn {
@@ -404,7 +488,7 @@
 .categoryTabs {
   display: flex;
   gap: 4px;
-  background: rgba(0, 0, 0, 0.03);
+  background: var(--brand-dark, #005B45);
   padding: 4px;
   border-radius: 30px;
 }
@@ -416,7 +500,7 @@
   border-radius: 20px;
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--muted-foreground, #6B7280);
+  color: rgba(255, 255, 255, 0.7);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -424,10 +508,17 @@
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.tabBtnActive {
+@media (hover: hover) {
+  .tabBtn:hover {
+    color: #FFFFFF;
+  }
+}
+
+.tabBtnActive,
+.tabBtnActive:hover {
   background: #FFFFFF;
-  color: var(--brand-dark, #1E2D2F);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  color: var(--brand-dark, #005B45);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .tabCount {
@@ -448,13 +539,13 @@
 }
 
 .dropdownTrigger {
-  background: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: var(--brand-dark, #005B45);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 10px 16px;
   border-radius: 20px;
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--brand-dark, #1E2D2F);
+  color: #FFFFFF;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -464,25 +555,24 @@
 
 @media (hover: hover) {
   .dropdownTrigger:hover {
-    border-color: var(--primary, #10B981);
-    background: rgba(16, 185, 129, 0.03);
+    border-color: rgba(255, 255, 255, 0.3);
+    background: var(--brand-darker, #143132);
   }
 }
 
-.activeTrigger {
-  border-color: var(--primary, #10B981);
-  background: rgba(16, 185, 129, 0.03);
+.activeTrigger,
+.activeTrigger:hover {
+  border-color: var(--primary, #00D8A4);
+  background: rgba(0, 216, 164, 0.2);
+  color: #FFFFFF;
 }
 
-/* Floating Glass Popovers */
 .glassPopover {
   position: absolute;
   top: calc(100% + 8px);
   right: 0;
   width: 220px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: #FFFFFF;
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
@@ -665,11 +755,11 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(239, 68, 68, 0.03);
-  border: 1px solid rgba(239, 68, 68, 0.1);
+  background: rgba(255, 118, 118, 0.16);
+  border: 1px solid rgba(255, 118, 118, 0.3);
   font-size: 0.875rem;
   font-weight: 700;
-  color: #EF4444;
+  color: #FF9B9B;
   cursor: pointer;
   padding: 8px 16px;
   border-radius: 20px;
@@ -678,8 +768,8 @@
 
 @media (hover: hover) {
   .clearBtnClean:hover {
-    background: rgba(239, 68, 68, 0.08);
-    border-color: rgba(239, 68, 68, 0.25);
+    background: rgba(255, 118, 118, 0.26);
+    border-color: rgba(255, 118, 118, 0.5);
     transform: translateY(-1px);
   }
 }
@@ -2022,7 +2112,7 @@
 
   .stickyBarWrapper {
     top: 56px !important; /* Keep top position static on mobile to prevent touch jitter */
-    transition: none !important;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
   }
   
   .heroTitleCentered {
@@ -2039,13 +2129,21 @@
   }
 
   .stickyBar {
+    position: relative; /* Setup relative positioning for direct absolute popovers */
     padding: 12px 16px;
+    display: flex;
     flex-direction: column;
     align-items: stretch;
+    gap: 8px; /* Tighter gap between rows */
     transition: none !important;
   }
 
+  .stickyBarControlsRow {
+    display: contents; /* Break layout wrapper so children become direct flex items of stickyBar */
+  }
+
   .categoryTabs {
+    order: 2; /* Second Row: Category Tabs */
     overflow-x: auto;
     white-space: nowrap;
     padding: 4px;
@@ -2066,56 +2164,100 @@
     transition: none !important;
   }
 
-  .controlsRight {
+  .stickyBarSearchRow {
+    order: 1; /* First Row: Search input */
     display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 12px;
+    width: 100%;
+  }
+
+  .searchWrapper {
+    flex: 1 1 100%;
+    min-width: 0;
+    max-width: none;
+    width: 100%;
+  }
+
+  .controlsRight {
+    order: 3; /* Third Row: Filter Dropdowns side by side */
+    display: flex;
+    flex-wrap: nowrap; /* Force all in one single row */
+    gap: 6px; /* Narrow gaps to fit */
+    margin-top: 4px; /* Subtle spacing from tabs row */
     width: 100%;
   }
 
   .controlsRight .dropdownWrapper {
-    flex: 1 1 calc(50% - 4px);
-    min-width: 120px;
+    flex: 1 1 0px; /* Distribute space equally */
+    min-width: 0;
+    position: static; /* Make absolute popovers position relative to .stickyBarWrapper */
   }
 
   .controlsRight .sortDropdownWrapper {
-    flex: 1 1 100%;
+    flex: 1.3 1 0px; /* Give the sort dropdown slightly more room since labels are longer */
+    min-width: 0;
   }
 
   .controlsRight .dropdownTrigger {
     width: 100%;
+    height: 38px; /* Exact uniform height */
+    padding: 0 10px;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
     justify-content: space-between;
-    padding: 8px 12px;
-    font-size: 0.8rem;
+    box-sizing: border-box;
     transition: none !important;
+  }
+
+  /* Truncate long trigger texts gracefully */
+  .controlsRight .dropdownTrigger span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    text-align: left;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .controlsRight .dropdownTrigger svg {
+    flex-shrink: 0;
+    margin-left: 2px;
   }
 
   .controlsRight .clearBtnClean {
-    flex: 1 1 100%;
+    flex: 0 0 38px; /* Circular icon button on mobile to save space */
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    padding: 8px 16px;
-    font-size: 0.8rem;
-    margin-top: 4px;
+    border-radius: 50%;
+    box-sizing: border-box;
     transition: none !important;
   }
 
-  .controlsRight .dropdownWrapper:nth-child(1) .glassPopover {
-    left: 0;
-    right: auto;
+  .controlsRight .clearBtnText {
+    display: none; /* Hide 'Reset' text to only display the reset icon */
   }
 
-  .controlsRight .dropdownWrapper:nth-child(2) .glassPopover {
-    right: 0;
-    left: auto;
-  }
-
-  .controlsRight .sortDropdownWrapper .glassPopover {
-    left: 0;
-    right: 0;
+  /* Popover positioning: Stretch full width at the bottom of the sticky bar */
+  .controlsRight .dropdownWrapper .glassPopover {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    width: auto !important;
+    max-width: none;
+    top: 100%; /* Anchor right at the bottom edge of .stickyBarWrapper */
     transform: none;
-    width: 100%;
-    min-width: 100% !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    margin-top: 8px;
+    box-sizing: border-box;
   }
 
   .portfolioGrid {

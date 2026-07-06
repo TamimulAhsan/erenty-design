@@ -260,6 +260,8 @@
       "scooter": "Robogó",
       "urban": "Városi"
     },
+    "searchPlaceholder": "Keresés név, típus vagy jellemző alapján…",
+    "searchClear": "Keresés törlése",
     "filterBrand": "Márka",
     "filterBrandTitle": "Szűrés márka szerint",
     "selectAll": "Mindet kiválaszt",

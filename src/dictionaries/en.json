@@ -260,6 +260,8 @@
       "scooter": "Scooter",
       "urban": "Urban"
     },
+    "searchPlaceholder": "Search e-bikes by name, type, or spec…",
+    "searchClear": "Clear search",
     "filterBrand": "Brand",
     "filterBrandTitle": "Filter by Brand",
     "selectAll": "Select All",

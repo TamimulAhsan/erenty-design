@@ -69,6 +69,7 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
         : (dict.planPlus || "Plus");
 
   // Filter states
+  const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [priceMin, setPriceMin] = useState(40000);
@@ -191,10 +192,6 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
   const [isScrolled, setIsScrolled] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
-      if (window.innerWidth <= 768) {
-        setIsScrolled(false);
-        return;
-      }
       const currentScroll = window.scrollY;
       setIsScrolled((prev) => {
         if (currentScroll > 80) return true;
@@ -391,6 +388,7 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
   };
 
   const handleClearFilters = () => {
+    setSearchQuery("");
     setSelectedCategory("all");
     setSelectedBrands([]);
     setPriceMin(40000);
@@ -404,7 +402,15 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
   };
 
   // Filter bikes
+  const searchTerm = searchQuery.trim().toLowerCase();
   const filteredBikes = FLEET_BIKES.filter((bike) => {
+    if (searchTerm) {
+      const localizedCat = dict.categories?.[bike.category] || bike.category;
+      const haystack = `${bike.brand} ${bike.model} ${bike.category} ${localizedCat} ${bike.range} ${bike.topSpeed} ${bike.motor}`.toLowerCase();
+      if (!haystack.includes(searchTerm)) {
+        return false;
+      }
+    }
     if (selectedCategory !== "all" && bike.category !== selectedCategory) {
       return false;
     }
@@ -1122,6 +1128,8 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
       {/* 2. Top Navigation Control Filters Bar (Sticky) */}
       <div className={`${styles.stickyBarWrapper} ${isScrolled ? styles.stickyBarWrapperScrolled : ""}`}>
         <div className={styles.stickyBar}>
+          {/* Row 1: Category Tabs + Refine Controls */}
+          <div className={styles.stickyBarControlsRow}>
           {/* Category Tabs */}
           <div className={styles.categoryTabs}>
             {CATEGORIES.map((cat) => (
@@ -1137,7 +1145,7 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
             ))}
           </div>
 
-          {/* Action Filters Panel */}
+            {/* Action Filters Panel */}
           <div className={styles.controlsRight}>
             {/* Brand Dropdown Selector */}
             <div ref={brandRef} className={styles.dropdownWrapper}>
@@ -1314,14 +1322,45 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
             </div>
 
             {/* Clear Filters Button */}
-            {(selectedBrands.length > 0 || priceMin > 40000 || priceMax < 120000 || selectedCategory !== "all") && (
+            {(searchQuery !== "" || selectedBrands.length > 0 || priceMin > 40000 || priceMax < 120000 || selectedCategory !== "all") && (
               <button className={styles.clearBtnClean} onClick={handleClearFilters} aria-label="Reset all filters" type="button">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className={styles.resetIcon}>
                   <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67" />
                 </svg>
-                {dict.reset || "Reset"}
+                <span className={styles.clearBtnText}>{dict.reset || "Reset"}</span>
               </button>
             )}
+          </div>
+          </div>
+
+          {/* Row 2: Full-width Search */}
+          <div className={styles.stickyBarSearchRow}>
+            <div className={styles.searchWrapper}>
+              <svg className={styles.searchIcon} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
+              <input
+                type="text"
+                className={styles.searchInput}
+                placeholder={dict.searchPlaceholder || "Search e-bikes by name, type, or spec…"}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              {searchQuery && (
+                <button
+                  className={styles.searchClearBtn}
+                  onClick={() => setSearchQuery("")}
+                  aria-label={dict.searchClear || "Clear search"}
+                  type="button"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                  </svg>
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>
