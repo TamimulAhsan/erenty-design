@@ -292,6 +292,12 @@
   color: #005B45;
 }
 
+.paymentChip svg {
+  flex-shrink: 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+
 .legalRow {
   display: flex;
   justify-content: space-between;
