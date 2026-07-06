@@ -280,6 +280,9 @@ export default function BookingForm({ workshop, booking, onBookingSuccess, onRes
               <button
                 type="button"
                 className={styles.bookingInput}
+                aria-haspopup="listbox"
+                aria-expanded={tierOpen}
+                aria-label={dict.selectServiceTier || "Select Service Tier"}
                 style={{
                   display: "flex",
                   alignItems: "center",
@@ -316,14 +319,24 @@ export default function BookingForm({ workshop, booking, onBookingSuccess, onRes
               </button>
               
               {tierOpen && (
-                <ul className={styles.customDropdownOptions}>
+                <ul className={styles.customDropdownOptions} role="listbox" aria-label={dict.selectServiceTier || "Select Service Tier"}>
                   {workshop.tiers.map((tier) => (
                     <li
                       key={tier}
+                      role="option"
+                      tabIndex={0}
+                      aria-selected={selectedTier === tier}
                       className={`${styles.customDropdownOption} ${selectedTier === tier ? styles.activeOption : ""}`}
                       onClick={() => {
                         setSelectedTier(tier);
                         setTierOpen(false);
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          setSelectedTier(tier);
+                          setTierOpen(false);
+                        }
                       }}
                     >
                       <span>{getTierDisplayName(tier)}</span>
@@ -346,6 +359,9 @@ export default function BookingForm({ workshop, booking, onBookingSuccess, onRes
                 <button
                   type="button"
                   className={styles.bookingInput}
+                  aria-haspopup="dialog"
+                  aria-expanded={dateOpen}
+                  aria-label={dict.selectDate || "Select Date"}
                   style={{
                     display: "flex",
                     alignItems: "center",
@@ -424,6 +440,9 @@ export default function BookingForm({ workshop, booking, onBookingSuccess, onRes
                 <button
                   type="button"
                   className={styles.bookingInput}
+                  aria-haspopup="listbox"
+                  aria-expanded={timeOpen}
+                  aria-label={dict.selectTime || "Select Time"}
                   style={{
                     display: "flex",
                     alignItems: "center",
@@ -447,14 +466,24 @@ export default function BookingForm({ workshop, booking, onBookingSuccess, onRes
                 </button>
 
                 {timeOpen && (
-                  <ul className={`${styles.customDropdownOptions} ${styles.timeDropdownOptions}`} style={{ maxHeight: "200px" }}>
+                  <ul className={`${styles.customDropdownOptions} ${styles.timeDropdownOptions}`} role="listbox" aria-label={dict.selectTime || "Select Time"} style={{ maxHeight: "200px" }}>
                     {TIME_SLOTS.map((slot) => (
                       <li
                         key={slot.value}
+                        role="option"
+                        tabIndex={0}
+                        aria-selected={selectedTime === slot.value}
                         className={`${styles.customDropdownOption} ${selectedTime === slot.value ? styles.activeOption : ""}`}
                         onClick={() => {
                           setSelectedTime(slot.value);
                           setTimeOpen(false);
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            setSelectedTime(slot.value);
+                            setTimeOpen(false);
+                          }
                         }}
                       >
                         <span>{dict.timeSlots?.[slot.value] || slot.label}</span>

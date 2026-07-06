@@ -365,10 +365,55 @@
   text-align: right;
   margin-top: -2px;
   transition: color 0.2s ease;
+  /* Now rendered as a <button> — strip native chrome so it still reads as a link. */
+  align-self: flex-end;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
 }
 
 .forgotLink:hover {
   color: var(--primary-glow);
+}
+
+/* Forgot-password: back link + inline success */
+.backLink {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted-foreground);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: center;
+  transition: color 0.2s ease;
+}
+
+.backLink:hover {
+  color: var(--brand-darker);
+}
+
+.forgotSuccess {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+}
+
+.forgotSuccessIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--brand-darker);
+  margin-bottom: 4px;
 }
 
 .checkboxRow {

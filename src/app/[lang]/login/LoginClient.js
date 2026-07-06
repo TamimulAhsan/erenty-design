@@ -40,18 +40,32 @@ const BUILDING_ICON = (
 
 export default function LoginClient({ dict, businessDict }) {
   const t = dict;
-  const [mode, setMode] = useState("login"); // login | signup
+  const [mode, setMode] = useState("login"); // login | signup | forgot
   const [accountType, setAccountType] = useState("individual"); // individual | business
   const [showPass, setShowPass] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
+  const [forgotSent, setForgotSent] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Auth wiring deferred — UI only
   };
 
+  const handleForgotSubmit = (e) => {
+    e.preventDefault();
+    // Reset-email wiring deferred — show inline confirmation.
+    setForgotSent(true);
+  };
+
+  const goToLogin = () => {
+    setMode("login");
+    setForgotSent(false);
+  };
+
   const isLogin = mode === "login";
-  const isBusiness = mode === "signup" && accountType === "business";
+  const isSignup = mode === "signup";
+  const isForgot = mode === "forgot";
+  const isBusiness = isSignup && accountType === "business";
 
   return (
     <div className={styles.page}>
@@ -59,7 +73,7 @@ export default function LoginClient({ dict, businessDict }) {
       <aside className={styles.brandPanel}>
         <div className={styles.brandInner}>
           <div className={styles.panelHeader}>
-            <div className={`${styles.headerBlock} ${isLogin ? styles.headerBlockActive : ""}`}>
+            <div className={`${styles.headerBlock} ${isLogin || isForgot ? styles.headerBlockActive : ""}`}>
               <h1 className={styles.panelHeading}>
                 {t.panelLoginHeading}
               </h1>
@@ -67,7 +81,7 @@ export default function LoginClient({ dict, businessDict }) {
                 {t.panelLoginSub}
               </p>
             </div>
-            <div className={`${styles.headerBlock} ${!isLogin ? styles.headerBlockActive : ""}`}>
+            <div className={`${styles.headerBlock} ${isSignup ? styles.headerBlockActive : ""}`}>
               <h1 className={styles.panelHeading}>
                 {t.panelSignupHeading}
               </h1>
@@ -100,7 +114,7 @@ export default function LoginClient({ dict, businessDict }) {
           </div>
 
           {/* Account type (signup only) */}
-          {!isLogin && (
+          {isSignup && (
             <div className={styles.typeSection}>
               <div className={styles.typeLabel}>{t.accountTypeLabel}</div>
               <div className={styles.typeSelector}>
@@ -167,7 +181,7 @@ export default function LoginClient({ dict, businessDict }) {
                     </button>
                   </div>
                 </div>
-                <a href="#" className={styles.forgotLink}>{t.forgotPassword}</a>
+                <button type="button" className={styles.forgotLink} onClick={() => setMode("forgot")}>{t.forgotPassword}</button>
                 <button type="submit" className={styles.submitBtn}>
                   {t.loginBtn} {ARROW}
                 </button>
@@ -175,7 +189,7 @@ export default function LoginClient({ dict, businessDict }) {
             </>
           )}
 
-          {!isLogin && !isBusiness && (
+          {isSignup && !isBusiness && (
             <>
               <h2 className={styles.formTitle}>{t.signupTitle}</h2>
               <p className={styles.formSubtitle}>{t.individualSubtitle}</p>
@@ -224,6 +238,36 @@ export default function LoginClient({ dict, businessDict }) {
                 </button>
               </form>
             </>
+          )}
+
+          {isForgot && (
+            forgotSent ? (
+              <div className={styles.forgotSuccess}>
+                <span className={styles.forgotSuccessIcon}>
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </span>
+                <h2 className={styles.formTitle}>{t.forgotSuccessTitle}</h2>
+                <p className={styles.formSubtitle}>{t.forgotSuccessDesc}</p>
+                <button type="button" className={styles.backLink} onClick={goToLogin}>{t.backToLogin}</button>
+              </div>
+            ) : (
+              <>
+                <h2 className={styles.formTitle}>{t.forgotTitle}</h2>
+                <p className={styles.formSubtitle}>{t.forgotSubtitle}</p>
+                <form onSubmit={handleForgotSubmit} className={styles.formGrid}>
+                  <div className={styles.fieldGroup}>
+                    <label className={styles.fieldLabel} htmlFor="forgot-email">{t.emailLabel}</label>
+                    <input id="forgot-email" type="email" className={styles.fieldInput} placeholder={t.emailPlaceholder} required />
+                  </div>
+                  <button type="submit" className={styles.submitBtn}>
+                    {t.forgotSubmit} {ARROW}
+                  </button>
+                  <button type="button" className={styles.backLink} onClick={goToLogin}>{t.backToLogin}</button>
+                </form>
+              </>
+            )
           )}
 
           {isBusiness && (
