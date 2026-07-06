@@ -116,13 +116,17 @@ export default function CheckoutClient({ dict = {}, lang = "en" }) {
     setToastTimeout(timeout);
   };
 
+  // Client-only detection (navigator) + date/random invoice id generation.
+  // Must run after mount to avoid SSR/hydration mismatch, so seeding state here
+  // is the correct use of an effect.
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     if (typeof window !== "undefined" && window.navigator) {
       const platform = window.navigator.platform || "";
       const userAgent = window.navigator.userAgent || "";
-      const isMacOrIOS = 
-        /Mac|iPhone|iPad|iPod/.test(platform) || 
-        (/Macintosh/.test(userAgent) && 'ontouchend' in document) || 
+      const isMacOrIOS =
+        /Mac|iPhone|iPad|iPod/.test(platform) ||
+        (/Macintosh/.test(userAgent) && 'ontouchend' in document) ||
         /iPhone|iPad|iPod/.test(userAgent);
       setIsAppleDevice(!!isMacOrIOS);
     }
@@ -138,15 +142,20 @@ export default function CheckoutClient({ dict = {}, lang = "en" }) {
     const rand = Math.floor(1000 + Math.random() * 9000);
     setInvoiceNumber(`INV-${year}-${rand}`);
   }, [lang]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
+  // Keep the VIN input array length in sync with the vehicle count. Functional
+  // update returns the same reference when nothing changes, so React bails out
+  // instead of cascading.
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
-    if (vins.length < vehicles) {
-      const diff = vehicles - vins.length;
-      setVins([...vins, ...Array(diff).fill("")]);
-    } else if (vins.length > vehicles) {
-      setVins(vins.slice(0, vehicles));
-    }
+    setVins((prev) => {
+      if (prev.length < vehicles) return [...prev, ...Array(vehicles - prev.length).fill("")];
+      if (prev.length > vehicles) return prev.slice(0, vehicles);
+      return prev;
+    });
   }, [vehicles]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const localizedPlan = (id) => {
     const rawPlan = PLANS[id] || PLANS.extra;

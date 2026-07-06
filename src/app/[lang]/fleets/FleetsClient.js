@@ -245,7 +245,9 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
   }, [activeModalBike]);
   /* eslint-enable react-hooks/set-state-in-effect */
 
-  // Capture checkout redirect parameters on mount / search change
+  // Capture checkout redirect parameters on mount / search change. Reading the
+  // URL (an external system) and seeding modal state from it is a valid effect.
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
@@ -279,8 +281,8 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
         }, 100);
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [locale]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   // Synchronize browser URL with the open bike modal and its active step for deep-linking
   useEffect(() => {
@@ -316,7 +318,10 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
     }
   }, [activeModalBike, modalStep, locale]);
 
-  // Initialize modal step based on URL query parameters on mount
+  // Initialize modal step based on URL query parameters on mount. Seeding state
+  // from the URL on mount is a valid effect, so set-state-in-effect is a false
+  // positive here.
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
@@ -330,6 +335,7 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   // Listen to popstate event (browser back/forward navigation) to sync modal step
   useEffect(() => {

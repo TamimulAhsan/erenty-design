@@ -34,17 +34,22 @@ const TAB_ICONS = {
   ),
 };
 
+const TAB_KEYS = ["customers", "couriers", "businesses"];
+
 export default function FaqClient({ dict, initialTab }) {
   const t = dict;
-  const tabKeys = ["customers", "couriers", "businesses"];
-  const initialTabIdx = tabKeys.indexOf(initialTab);
+  const initialTabIdx = TAB_KEYS.indexOf(initialTab);
   const [activeTab, setActiveTab] = useState(initialTabIdx !== -1 ? initialTabIdx : 0);
   const [openItems, setOpenItems] = useState({});
   const tabRefs = useRef([]);
 
+  // Deep-link sync: when the ?tab= param changes without a remount, jump to that
+  // tab and scroll it into view. Syncing local state to the URL is a valid use
+  // of an effect, so the set-state-in-effect rule is a false positive here.
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     if (initialTab) {
-      const idx = tabKeys.indexOf(initialTab);
+      const idx = TAB_KEYS.indexOf(initialTab);
       if (idx !== -1) {
         setActiveTab(idx);
         setOpenItems({});
@@ -54,6 +59,7 @@ export default function FaqClient({ dict, initialTab }) {
       }
     }
   }, [initialTab]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const toggleItem = (key) => {
     setOpenItems((prev) => ({ ...prev, [key]: !prev[key] }));
@@ -94,7 +100,7 @@ export default function FaqClient({ dict, initialTab }) {
               className={`${styles.tabBtn} ${activeTab === i ? styles.tabBtnActive : ""}`}
               onClick={() => handleTabChange(i)}
             >
-              {TAB_ICONS[tabKeys[i]]}
+              {TAB_ICONS[TAB_KEYS[i]]}
               {tab.label}
             </button>
           ))}

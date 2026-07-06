@@ -7,8 +7,9 @@ import styles from "./CookieConsent.module.css";
 export default function CookieConsent({ dict }) {
   const [isVisible, setIsVisible] = useState(false);
   const [showCustomize, setShowCustomize] = useState(false);
-  const [analyticsAllowed, setAnalyticsAllowed] = useState(true);
-  const [marketingAllowed, setMarketingAllowed] = useState(true);
+  // GDPR: non-essential cookies must be opt-in, so these default to off.
+  const [analyticsAllowed, setAnalyticsAllowed] = useState(false);
+  const [marketingAllowed, setMarketingAllowed] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
 
   const t = dict || {

@@ -106,6 +106,9 @@ export default function InvoiceClient() {
   const [dueDate, setDueDate] = useState("");
   const [invoiceNumber, setInvoiceNumber] = useState("");
 
+  // Date + random invoice id are generated on the client after mount to avoid an
+  // SSR/hydration mismatch, so seeding state in this effect is correct.
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     // Generate date and random invoice ID once on client mount
     const d = new Date();
@@ -113,13 +116,14 @@ export default function InvoiceClient() {
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const monthName = months[d.getMonth()];
     const year = d.getFullYear();
-    
+
     setInvoiceDate(`${day} ${monthName} ${year}`);
     setDueDate(`${day} ${monthName} ${year}`);
 
     const rand = Math.floor(1000 + Math.random() * 9000);
     setInvoiceNumber(`INV-${year}-${rand}`);
   }, []);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const formatPrice = (val) => {
     return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
