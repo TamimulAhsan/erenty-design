@@ -13,7 +13,15 @@
     "tagline": "Fuel-Free. Stress-Free.",
     "selectLanguage": "Select Language",
     "help": "Help",
-    "profile": "Profile"
+    "profile": "Profile",
+    "services": "Services",
+    "company": "Company",
+    "repairPartners": "Repair Partners",
+    "about": "About",
+    "contact": "Contact",
+    "faq": "FAQ",
+    "toggleMenu": "Toggle menu",
+    "closeMenu": "Close menu"
   },
   "hero": {
     "titleLine1": "Your Team.",

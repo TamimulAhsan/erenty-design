@@ -13,7 +13,15 @@
     "tagline": "Üzemanyagmentes. Stresszmentes.",
     "selectLanguage": "Nyelv kiválasztása",
     "help": "Segítség",
-    "profile": "Profil"
+    "profile": "Profil",
+    "services": "Szolgáltatások",
+    "company": "Vállalat",
+    "repairPartners": "Javító partnerek",
+    "about": "Rólunk",
+    "contact": "Kapcsolat",
+    "faq": "GYIK",
+    "toggleMenu": "Menü megnyitása",
+    "closeMenu": "Menü bezárása"
   },
   "hero": {
     "titleLine1": "Csapata.",

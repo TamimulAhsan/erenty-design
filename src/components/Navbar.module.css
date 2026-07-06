@@ -226,7 +226,7 @@
 .nav {
   display: flex;
   align-items: center;
-  gap: var(--space-8);
+  gap: var(--space-6);
   justify-self: start;
   height: 100%;
 }
@@ -274,6 +274,58 @@
 
 .navLinkActive .chevron {
   transform: rotate(180deg);
+}
+
+/* ── Compact dropdowns (Services / Company) ─────────────────────────── */
+.dropdownWrapper {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  min-width: 220px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-elevated);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+  z-index: 999;
+}
+
+.dropdownOpen {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--foreground);
+  white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.dropdownItem:hover {
+  background: var(--muted);
+  color: var(--primary);
 }
 
 .rightArea {
@@ -746,6 +798,20 @@
 }
 
 .mobileFleetItemAll:hover {
+  color: var(--primary);
+}
+
+.mobileSubLink {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--foreground);
+  padding: var(--space-2);
+  border-radius: var(--radius-md);
+  display: block;
+}
+
+.mobileSubLink:hover {
+  background: var(--muted);
   color: var(--primary);
 }
 

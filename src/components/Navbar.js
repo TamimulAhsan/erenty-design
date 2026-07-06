@@ -48,7 +48,8 @@ export default function Navbar({ dict }) {
   const isDarkHeroRoute = DARK_HERO_ROUTES.includes(routePath) || !isKnownRoute;
   const isLightHeroRoute = LIGHT_HERO_ROUTES.includes(routePath);
 
-  const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
+  // Which desktop dropdown is open: "fleets" | "services" | "company" | null
+  const [openMenu, setOpenMenu] = useState(null);
   const [hoverTimeout, setHoverTimeout] = useState(null);
   const [isAtTop, setIsAtTop] = useState(true);
   const [hasScrolled, setHasScrolled] = useState(false);
@@ -59,6 +60,8 @@ export default function Navbar({ dict }) {
   // Mobile drawer states
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileFleetsOpen, setIsMobileFleetsOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+  const [isMobileCompanyOpen, setIsMobileCompanyOpen] = useState(false);
 
   // Close mega menu and mobile menu drawers upon navigation to new pages.
   // Adjusted during render (rather than in an effect) per React's guidance on
@@ -66,7 +69,7 @@ export default function Navbar({ dict }) {
   const [prevPathname, setPrevPathname] = useState(pathname);
   if (pathname !== prevPathname) {
     setPrevPathname(pathname);
-    setIsMegaMenuOpen(false);
+    setOpenMenu(null);
     setIsMobileMenuOpen(false);
   }
 
@@ -85,7 +88,15 @@ export default function Navbar({ dict }) {
     tagline: "Fuel-Free. Stress-Free.",
     selectLanguage: "Select Language",
     help: "Help",
-    profile: "Profile"
+    profile: "Profile",
+    services: "Services",
+    company: "Company",
+    repairPartners: "Repair Partners",
+    about: "About",
+    contact: "Contact",
+    faq: "FAQ",
+    toggleMenu: "Toggle menu",
+    closeMenu: "Close menu"
   };
 
   const localizePath = (path) => localizeHref(currentLangLower, path);
@@ -146,8 +157,9 @@ export default function Navbar({ dict }) {
   };
 
   // Safe checks to avoid hydration mismatches
-  const isTransparentDark = !forceSolid && isDarkHeroRoute && (mounted ? isAtTop : true) && !isMegaMenuOpen;
-  const isTransparentLight = !forceSolid && isLightHeroRoute && (mounted ? isAtTop : true) && !isMegaMenuOpen;
+  const isMegaMenuOpen = openMenu === "fleets";
+  const isTransparentDark = !forceSolid && isDarkHeroRoute && (mounted ? isAtTop : true) && !openMenu;
+  const isTransparentLight = !forceSolid && isLightHeroRoute && (mounted ? isAtTop : true) && !openMenu;
   const isNavbarScrolled = mounted ? !isAtTop : false;
   const showMegaMenu = mounted ? !hasScrolled : true;
   const showBusinessBtnLeft = mounted ? hasScrolled : false;
@@ -155,14 +167,14 @@ export default function Navbar({ dict }) {
   const showSeeFleetsBtn = mounted ? hasScrolled : false;
   const showLogoTagline = mounted ? footerNear : false;
 
-  const handleMouseEnter = () => {
+  const handleMouseEnter = (menu) => {
     if (hoverTimeout) clearTimeout(hoverTimeout);
-    setIsMegaMenuOpen(true);
+    setOpenMenu(menu);
   };
 
   const handleMouseLeave = () => {
     const timeout = setTimeout(() => {
-      setIsMegaMenuOpen(false);
+      setOpenMenu(null);
     }, 200);
     setHoverTimeout(timeout);
   };
@@ -174,6 +186,16 @@ export default function Navbar({ dict }) {
   const toggleMobileFleets = (e) => {
     e.stopPropagation();
     setIsMobileFleetsOpen(!isMobileFleetsOpen);
+  };
+
+  const toggleMobileServices = (e) => {
+    e.stopPropagation();
+    setIsMobileServicesOpen(!isMobileServicesOpen);
+  };
+
+  const toggleMobileCompany = (e) => {
+    e.stopPropagation();
+    setIsMobileCompanyOpen(!isMobileCompanyOpen);
   };
 
   if (routePath.startsWith("/checkout")) {
@@ -188,7 +210,7 @@ export default function Navbar({ dict }) {
           {showMegaMenu && (
             <div
               className={styles.navLinkWrapper}
-              onMouseEnter={handleMouseEnter}
+              onMouseEnter={() => handleMouseEnter("fleets")}
               onMouseLeave={handleMouseLeave}
             >
               <div className={`${styles.navLink} ${isMegaMenuOpen ? styles.navLinkActive : ""}`}>
@@ -242,12 +264,67 @@ export default function Navbar({ dict }) {
             </div>
           )}
 
-          <Link href={localizePath("/courier-plus")} className={styles.navLink}>
-            {t.courierPlus}
-          </Link>
-          <Link href={localizePath("/#how-it-works")} className={styles.navLink}>
-            {t.howItWorks}
-          </Link>
+          {/* Services dropdown */}
+          <div
+            className={styles.dropdownWrapper}
+            onMouseEnter={() => handleMouseEnter("services")}
+            onMouseLeave={handleMouseLeave}
+          >
+            <div className={`${styles.navLink} ${openMenu === "services" ? styles.navLinkActive : ""}`}>
+              {t.services}
+              <svg
+                className={styles.chevron}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+            <div className={`${styles.dropdown} ${openMenu === "services" ? styles.dropdownOpen : ""}`}>
+              <Link href={localizePath("/courier-plus")} className={styles.dropdownItem}>
+                {t.courierPlus}
+              </Link>
+              <Link href={localizePath("/repair-partners")} className={styles.dropdownItem}>
+                {t.repairPartners}
+              </Link>
+            </div>
+          </div>
+
+          {/* Company dropdown */}
+          <div
+            className={styles.dropdownWrapper}
+            onMouseEnter={() => handleMouseEnter("company")}
+            onMouseLeave={handleMouseLeave}
+          >
+            <div className={`${styles.navLink} ${openMenu === "company" ? styles.navLinkActive : ""}`}>
+              {t.company}
+              <svg
+                className={styles.chevron}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+            <div className={`${styles.dropdown} ${openMenu === "company" ? styles.dropdownOpen : ""}`}>
+              <Link href={localizePath("/about")} className={styles.dropdownItem}>
+                {t.about}
+              </Link>
+              <Link href={localizePath("/#how-it-works")} className={styles.dropdownItem}>
+                {t.howItWorks}
+              </Link>
+              <Link href={localizePath("/contact")} className={styles.dropdownItem}>
+                {t.contact}
+              </Link>
+              <Link href={localizePath("/faq")} className={styles.dropdownItem}>
+                {t.faq}
+              </Link>
+            </div>
+          </div>
 
           {showBusinessBtnLeft && (
             <Link href={localizePath("/business")} className={styles.businessBtnLeft}>
@@ -380,7 +457,7 @@ export default function Navbar({ dict }) {
           )}
 
           {/* Mobile menu trigger */}
-          <button className={styles.mobileMenuBtn} onClick={toggleMobileMenu} aria-label="Toggle Menu">
+          <button className={styles.mobileMenuBtn} onClick={toggleMobileMenu} aria-label={t.toggleMenu}>
             <svg
               width="24"
               height="24"
@@ -411,7 +488,7 @@ export default function Navbar({ dict }) {
             <span className={styles.drawerLogo}>E-RENTY</span>
             <span className={styles.drawerTagline}>{t.tagline}</span>
           </div>
-          <button className={styles.closeBtn} onClick={toggleMobileMenu} aria-label="Close Menu">
+          <button className={styles.closeBtn} onClick={toggleMobileMenu} aria-label={t.closeMenu}>
             <svg
               width="22"
               height="22"
@@ -480,12 +557,72 @@ export default function Navbar({ dict }) {
               </div>
             </div>
 
-            <Link href={localizePath("/courier-plus")} className={styles.mobileNavLink} onClick={toggleMobileMenu}>
-              {t.courierPlus}
-            </Link>
-            <Link href={localizePath("/#how-it-works")} className={styles.mobileNavLink} onClick={toggleMobileMenu}>
-              {t.howItWorks}
-            </Link>
+            {/* Accordion item for Services */}
+            <div className={styles.mobileAccordion}>
+              <button
+                className={`${styles.mobileNavLink} ${isMobileServicesOpen ? styles.mobileAccordionActive : ""}`}
+                onClick={toggleMobileServices}
+              >
+                <span>{t.services}</span>
+                <svg
+                  className={`${styles.drawerChevron} ${isMobileServicesOpen ? styles.rotateChevron : ""}`}
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </button>
+
+              <div className={`${styles.mobileAccordionContent} ${isMobileServicesOpen ? styles.mobileAccordionContentOpen : ""}`}>
+                <Link href={localizePath("/courier-plus")} className={styles.mobileSubLink} onClick={toggleMobileMenu}>
+                  {t.courierPlus}
+                </Link>
+                <Link href={localizePath("/repair-partners")} className={styles.mobileSubLink} onClick={toggleMobileMenu}>
+                  {t.repairPartners}
+                </Link>
+              </div>
+            </div>
+
+            {/* Accordion item for Company */}
+            <div className={styles.mobileAccordion}>
+              <button
+                className={`${styles.mobileNavLink} ${isMobileCompanyOpen ? styles.mobileAccordionActive : ""}`}
+                onClick={toggleMobileCompany}
+              >
+                <span>{t.company}</span>
+                <svg
+                  className={`${styles.drawerChevron} ${isMobileCompanyOpen ? styles.rotateChevron : ""}`}
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </button>
+
+              <div className={`${styles.mobileAccordionContent} ${isMobileCompanyOpen ? styles.mobileAccordionContentOpen : ""}`}>
+                <Link href={localizePath("/about")} className={styles.mobileSubLink} onClick={toggleMobileMenu}>
+                  {t.about}
+                </Link>
+                <Link href={localizePath("/#how-it-works")} className={styles.mobileSubLink} onClick={toggleMobileMenu}>
+                  {t.howItWorks}
+                </Link>
+                <Link href={localizePath("/contact")} className={styles.mobileSubLink} onClick={toggleMobileMenu}>
+                  {t.contact}
+                </Link>
+                <Link href={localizePath("/faq")} className={styles.mobileSubLink} onClick={toggleMobileMenu}>
+                  {t.faq}
+                </Link>
+              </div>
+            </div>
+
             <Link href={localizePath("/business")} className={styles.mobileBusinessLink} onClick={toggleMobileMenu}>
               {t.forBusiness}
             </Link>
