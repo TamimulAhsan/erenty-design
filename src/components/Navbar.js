@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useLayoutEffect, useTransition } from "react";
+import { useState, useEffect, useLayoutEffect, useTransition, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
@@ -51,6 +51,11 @@ export default function Navbar({ dict }) {
   // Which desktop dropdown is open: "fleets" | "services" | "company" | null
   const [openMenu, setOpenMenu] = useState(null);
   const [hoverTimeout, setHoverTimeout] = useState(null);
+  const isTouchDevice = useRef(false);
+
+  const handleTouchStart = () => {
+    isTouchDevice.current = true;
+  };
   const [isAtTop, setIsAtTop] = useState(true);
   const [hasScrolled, setHasScrolled] = useState(false);
   const [footerNear, setFooterNear] = useState(false);
@@ -129,6 +134,14 @@ export default function Navbar({ dict }) {
     };
   }, []);
 
+  useEffect(() => {
+    const handleDocumentClick = () => {
+      setOpenMenu(null);
+    };
+    document.addEventListener("click", handleDocumentClick);
+    return () => document.removeEventListener("click", handleDocumentClick);
+  }, []);
+
   const toggleLanguage = () => {
     if (isPending) return;
     const nextLang = currentLangLower === "en" ? "hu" : "en";
@@ -168,15 +181,22 @@ export default function Navbar({ dict }) {
   const showLogoTagline = mounted ? footerNear : false;
 
   const handleMouseEnter = (menu) => {
+    if (isTouchDevice.current) return;
     if (hoverTimeout) clearTimeout(hoverTimeout);
     setOpenMenu(menu);
   };
 
   const handleMouseLeave = () => {
+    if (isTouchDevice.current) return;
     const timeout = setTimeout(() => {
       setOpenMenu(null);
     }, 200);
     setHoverTimeout(timeout);
+  };
+
+  const handleTriggerClick = (e, menu) => {
+    e.stopPropagation();
+    setOpenMenu(openMenu === menu ? null : menu);
   };
 
   const toggleMobileMenu = () => {
@@ -210,8 +230,10 @@ export default function Navbar({ dict }) {
           {showMegaMenu && (
             <div
               className={styles.navLinkWrapper}
+              onTouchStart={handleTouchStart}
               onMouseEnter={() => handleMouseEnter("fleets")}
               onMouseLeave={handleMouseLeave}
+              onClick={(e) => handleTriggerClick(e, "fleets")}
             >
               <div className={`${styles.navLink} ${isMegaMenuOpen ? styles.navLinkActive : ""}`}>
                 {t.fleets}
@@ -227,7 +249,10 @@ export default function Navbar({ dict }) {
               </div>
 
               {/* Mega Menu Dropdown */}
-              <div className={`${styles.megaMenu} ${isMegaMenuOpen ? styles.megaMenuOpen : ""}`}>
+              <div 
+                className={`${styles.megaMenu} ${isMegaMenuOpen ? styles.megaMenuOpen : ""}`}
+                onClick={(e) => e.stopPropagation()}
+              >
                 <div className={styles.megaMenuContent}>
                   <div className={styles.fleetGrid}>
                     {fleetList.map((bike, idx) => (
@@ -267,8 +292,10 @@ export default function Navbar({ dict }) {
           {/* Services dropdown */}
           <div
             className={styles.dropdownWrapper}
+            onTouchStart={handleTouchStart}
             onMouseEnter={() => handleMouseEnter("services")}
             onMouseLeave={handleMouseLeave}
+            onClick={(e) => handleTriggerClick(e, "services")}
           >
             <div className={`${styles.navLink} ${openMenu === "services" ? styles.navLinkActive : ""}`}>
               {t.services}
@@ -282,7 +309,10 @@ export default function Navbar({ dict }) {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </div>
-            <div className={`${styles.dropdown} ${openMenu === "services" ? styles.dropdownOpen : ""}`}>
+            <div 
+              className={`${styles.dropdown} ${openMenu === "services" ? styles.dropdownOpen : ""}`}
+              onClick={(e) => e.stopPropagation()}
+            >
               <Link href={localizePath("/courier-plus")} className={styles.dropdownItem}>
                 {t.courierPlus}
               </Link>
@@ -295,8 +325,10 @@ export default function Navbar({ dict }) {
           {/* Company dropdown */}
           <div
             className={styles.dropdownWrapper}
+            onTouchStart={handleTouchStart}
             onMouseEnter={() => handleMouseEnter("company")}
             onMouseLeave={handleMouseLeave}
+            onClick={(e) => handleTriggerClick(e, "company")}
           >
             <div className={`${styles.navLink} ${openMenu === "company" ? styles.navLinkActive : ""}`}>
               {t.company}
@@ -310,7 +342,10 @@ export default function Navbar({ dict }) {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </div>
-            <div className={`${styles.dropdown} ${openMenu === "company" ? styles.dropdownOpen : ""}`}>
+            <div 
+              className={`${styles.dropdown} ${openMenu === "company" ? styles.dropdownOpen : ""}`}
+              onClick={(e) => e.stopPropagation()}
+            >
               <Link href={localizePath("/about")} className={styles.dropdownItem}>
                 {t.about}
               </Link>
