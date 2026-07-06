@@ -127,7 +127,7 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
     });
   };
 
-  // Close dropdowns on click outside
+  // Close dropdowns and hotspots on click outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (brandRef.current && !brandRef.current.contains(event.target)) {
@@ -139,9 +139,16 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
       if (sortRef.current && !sortRef.current.contains(event.target)) {
         setIsSortDropdownOpen(false);
       }
+      if (!event.target.closest("." + styles.hotspotWrapper)) {
+        setActiveHotspot(null);
+      }
     };
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
   }, []);
 
   // Update Price Slider track background when slider value changes
@@ -893,7 +900,6 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
       {/* 1. Immersive Typographic Hero Section */}
       <section className={styles.cleanHero}>
         <div className={styles.heroTextContainer}>
-          <span className={styles.heroPre}>{dict.heroPre || "E-Renty Fleets"}</span>
           <h1 className={styles.heroTitleCentered}>{dict.heroTitle || "Go Green. Go Electric."}</h1>
           <p className={styles.heroSubtitleCentered}>
             {dict.heroSubtitle || "Smart GPS, anti-theft insurance, and 24/7 service included. Pick the bike that fits your urban journey."}
@@ -912,6 +918,35 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
               priority
             />
 
+            {/* Desktop-only SVG Connector Lines */}
+            <svg className={styles.desktopConnectorSvg} viewBox="0 0 560 350" width="560" height="350" overflow="visible">
+              {/* Handlebars (0) */}
+              <path
+                d="M 600 60 C 500 60, 420 80.5, 324.8 80.5"
+                className={`${styles.connectorPath} ${activeHotspot === 0 ? styles.connectorPathActive : ""}`}
+              />
+              {/* Seat (1) */}
+              <path
+                d="M -50 60 C 50 60, 120 101.5, 218.4 101.5"
+                className={`${styles.connectorPath} ${activeHotspot === 1 ? styles.connectorPathActive : ""}`}
+              />
+              {/* Battery (2) */}
+              <path
+                d="M 280 380 C 280 280, 263.2 240, 263.2 164.5"
+                className={`${styles.connectorPath} ${activeHotspot === 2 ? styles.connectorPathActive : ""}`}
+              />
+              {/* Motor (3) */}
+              <path
+                d="M -50 270 C 20 270, 80 241.5, 162.4 241.5"
+                className={`${styles.connectorPath} ${activeHotspot === 3 ? styles.connectorPathActive : ""}`}
+              />
+              {/* Tires (4) */}
+              <path
+                d="M 600 270 C 530 270, 470 238, 397.6 238"
+                className={`${styles.connectorPath} ${activeHotspot === 4 ? styles.connectorPathActive : ""}`}
+              />
+            </svg>
+
             {/* Pulsing Hotspots */}
             {HERO_HOTSPOTS.map((hotspot, idx) => {
               const localizedTitle = dict.hotspots?.[hotspot.id]?.title || hotspot.title;
@@ -928,13 +963,17 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
                     className={`${styles.hotspotDot} ${activeHotspot === idx ? styles.hotspotDotActive : ""}`}
                     aria-label={`View details about ${localizedTitle}`}
                     type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActiveHotspot(prev => (prev === idx ? null : idx));
+                    }}
                   >
                     <span className={styles.hotspotPulse}></span>
                   </button>
 
                   {/* Tooltip Card */}
                   <div
-                    className={`${styles.hotspotTooltip} ${
+                    className={`${styles.hotspotTooltip} ${styles[`tooltip_${hotspot.id}`]} ${
                       activeHotspot === idx ? styles.tooltipVisible : ""
                     } ${hotspot.align === "right" ? styles.tooltipAlignRight : ""}`}
                   >

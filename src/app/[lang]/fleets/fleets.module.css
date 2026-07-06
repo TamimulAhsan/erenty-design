@@ -69,7 +69,8 @@
   position: relative;
   width: 100%;
   max-width: 560px;
-  height: 350px;
+  aspect-ratio: 560 / 350;
+  height: auto;
   pointer-events: auto; /* Re-enable pointer events for the bike and hotspots */
 }
 
@@ -167,22 +168,34 @@
 /* Tooltip popover for hotspots */
 .hotspotTooltip {
   position: absolute;
-  top: calc(100% + 12px);
+  bottom: calc(100% + 15px);
   left: 50%;
-  transform: translateX(-50%) translateY(10px);
+  transform: translateX(-50%) translateY(-5px);
   width: 250px;
   padding: 14px;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 12px;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 30;
   text-align: left;
+  pointer-events: none;
+}
+
+.hotspotTooltip::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1.5px;
+  height: 15px;
+  background: #EF4444;
   pointer-events: none;
 }
 
@@ -195,11 +208,128 @@
 .tooltipAlignRight {
   left: auto;
   right: 50%;
-  transform: translateX(50%) translateY(10px);
+  transform: translateX(50%) translateY(-5px);
+}
+
+.tooltipAlignRight::after {
+  left: auto !important;
+  right: 50% !important;
+  transform: translateX(50%) !important;
 }
 
 .tooltipAlignRight.tooltipVisible {
   transform: translateX(50%) translateY(0);
+}
+
+.desktopConnectorSvg {
+  display: none;
+}
+
+/* Desktop: always visible side cards with connection lines */
+@media (min-width: 1025px) {
+  .interactiveBikeFrame {
+    max-width: 1100px !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin: 2rem auto 8rem auto !important;
+  }
+
+  .hotspotTooltip {
+    position: absolute;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    pointer-events: auto;
+    width: 210px !important;
+    height: 80px !important;
+    padding: 10px 12px !important;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .hotspotTooltip::after {
+    display: none !important;
+  }
+
+  .hotspotTooltip:hover {
+    border-color: #EF4444;
+    box-shadow: 0 4px 20px rgba(239, 68, 68, 0.15);
+  }
+
+  .tooltipTitle {
+    font-size: 0.85rem !important;
+    margin-bottom: 2px !important;
+  }
+
+  .tooltipDesc {
+    font-size: 0.75rem !important;
+    line-height: 1.3 !important;
+  }
+
+  .tooltip_handlebars {
+    left: 275px !important;
+    top: -70px !important;
+    bottom: auto !important;
+    right: auto !important;
+  }
+  .tooltip_seat {
+    left: -468px !important;
+    top: -92px !important;
+    bottom: auto !important;
+    right: auto !important;
+  }
+  .tooltip_battery {
+    left: -88px !important;
+    top: 215px !important;
+    bottom: auto !important;
+    right: auto !important;
+  }
+  .tooltip_motor {
+    left: -412px !important;
+    top: 18px !important;
+    bottom: auto !important;
+    right: auto !important;
+  }
+  .tooltip_tires {
+    left: 202px !important;
+    top: 22px !important;
+    bottom: auto !important;
+    right: auto !important;
+  }
+
+  .desktopConnectorSvg {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+    z-index: 15;
+  }
+
+  .connectorPath {
+    fill: none;
+    stroke: #EF4444;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    opacity: 0.6;
+    transition: stroke-width 0.2s ease, stroke 0.2s ease, opacity 0.2s ease;
+  }
+
+  .connectorPathActive {
+    stroke-width: 2.5;
+    stroke: #EF4444;
+    filter: drop-shadow(0 0 3px rgba(239, 68, 68, 0.8));
+    opacity: 1;
+  }
 }
 
 .tooltipTitle {
@@ -1844,15 +1974,12 @@
   }
 
   .interactiveBikeFrame {
-    margin-bottom: -40px;
+    margin-top: 2.5rem !important;
+    margin-bottom: 2.5rem !important;
   }
 
   .showcaseBikeContainer {
-    height: 320px;
-  }
-  
-  .hotspotWrapper {
-    display: none; /* Hide hotspots on mobile to avoid overlapping taps */
+    height: auto !important;
   }
 
   .stickyBar {
