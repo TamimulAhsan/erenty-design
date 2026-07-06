@@ -11,7 +11,6 @@ const PLANS = [
     tagline: "Reliable coverage for everyday wear and tear.",
     price: 9990,
     featured: false,
-    maintenanceScope: "Wear & tear parts repairs (brakes, tyres, etc.)",
     features: [
       "GPS tracking",
       "Theft insurance",
@@ -26,7 +25,6 @@ const PLANS = [
     tagline: "A stronger package for riders who want broader repairs and faster support.",
     price: 16990,
     featured: true,
-    maintenanceScope: "Basic + electrical system repairs",
     features: [
       "GPS tracking",
       "Theft insurance",
@@ -42,7 +40,6 @@ const PLANS = [
     tagline: "Maximum protection for couriers who need the least possible downtime.",
     price: 24990,
     featured: false,
-    maintenanceScope: "Extra + puncture & flat tyre repair + replacement vehicle",
     features: [
       "GPS tracking",
       "Theft insurance",
@@ -184,7 +181,6 @@ export default function CourierPlusClient({ dict = {}, lang = "en" }) {
         <div className={styles.dotOverlay} />
         <div className={styles.heroContainer}>
           <div className={styles.heroContent}>
-            <span className={styles.heroPre}>{dict.heroPre || "Courier+ Subscription"}</span>
             <h1 className={`${styles.heroTitle} hero-display`}>{dict.heroTitle || "Courier+ for your fleet."}</h1>
             <p className={`${styles.heroSubtitle} body-lg`}>
               {dict.heroSubtitle || "Built for owner couriers riding their own E-Bikes. One fixed monthly fee covers maintenance, GPS tracking and theft insurance."}
@@ -193,9 +189,6 @@ export default function CourierPlusClient({ dict = {}, lang = "en" }) {
               <a href="#plans-section" className="btn-primary">
                 {dict.ctaSeePlans || "See Plans ↓"}
               </a>
-              <Link href="/contact" className="btn-secondary dark">
-                {dict.ctaContactSales || "Contact Sales"}
-              </Link>
             </div>
           </div>
 
@@ -222,14 +215,25 @@ export default function CourierPlusClient({ dict = {}, lang = "en" }) {
               {/* Status details */}
               <div className={styles.statusGrid}>
                 <div className={styles.statusItem}>
-                  <span className={styles.statusIcon}>⚡</span>
+                  <button className={`${styles.statusIconBtn} ${styles.statusIconBtnBattery}`} aria-label="Battery Status">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF9F43" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="2" y="7" width="17" height="10" rx="2" />
+                      <line x1="22" y1="10.5" x2="22" y2="13.5" />
+                      <rect x="4" y="9" width="12" height="6" rx="1" fill="#FF9F43" stroke="none" />
+                    </svg>
+                  </button>
                   <div className={styles.statusInfo}>
                     <span className={styles.statusVal}>92%</span>
                     <span className={styles.statusLabel}>{dict.battery || "Battery (84 km)"}</span>
                   </div>
                 </div>
                 <div className={styles.statusItem}>
-                  <span className={styles.statusIcon}>🛡️</span>
+                  <button className={`${styles.statusIconBtn} ${styles.statusIconBtnShield}`} aria-label="Insurance Status">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                      <polyline points="9 11 11 13 15 9" />
+                    </svg>
+                  </button>
                   <div className={styles.statusInfo}>
                     <span className={styles.statusVal}>{dict.covered || "Covered"}</span>
                     <span className={styles.statusLabel}>{dict.theftInsurance || "Theft Insurance"}</span>
@@ -342,19 +346,6 @@ export default function CourierPlusClient({ dict = {}, lang = "en" }) {
             </p>
           </div>
 
-          <div className={styles.discountBanner}>
-            <div className={styles.bannerIcon}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="10" />
-                <line x1="12" y1="16" x2="12" y2="12" />
-                <line x1="12" y1="8" x2="12.01" y2="8" />
-              </svg>
-            </div>
-            <div className={`${styles.bannerText} body-sm`}>
-              {dict.discountBanner || "Discounted rates apply when: 20+ bikes covered · 2-year contract · Annual payment"}
-            </div>
-          </div>
-
           <div
             ref={plansScrollRef}
             onScroll={handlePlansScroll}
@@ -363,7 +354,6 @@ export default function CourierPlusClient({ dict = {}, lang = "en" }) {
             {PLANS.map((plan, idx) => {
               const localizedPlanName = dict.plans?.[plan.id]?.name || plan.name;
               const localizedTagline = dict.plans?.[plan.id]?.tagline || plan.tagline;
-              const localizedScope = dict.plans?.[plan.id]?.maintenanceScope || plan.maintenanceScope;
               const localizedFeatures = dict.plans?.[plan.id]?.features || plan.features;
               const localizedCTA = dict.plans?.[plan.id]?.cta || plan.cta;
 
@@ -393,11 +383,6 @@ export default function CourierPlusClient({ dict = {}, lang = "en" }) {
                       Save {formatPrice(getPlanYearlySavings(plan))} Ft / year
                     </span>
                   )}
-
-                  <div className={styles.scopeWrapper}>
-                    <span className={styles.scopeTitle}>{dict.maintenanceScopeLabel || "Maintenance Scope"}</span>
-                    <p className={styles.scopeValue}>{localizedScope}</p>
-                  </div>
 
                   <div className={styles.cardDivider} />
 
@@ -576,44 +561,6 @@ export default function CourierPlusClient({ dict = {}, lang = "en" }) {
         </div>
       </section>
 
-      {/* E. Business / Fleet Section */}
-      <section className={styles.businessSection}>
-        <div className={styles.businessContainer}>
-          <div className={styles.businessCard}>
-            <div className={styles.businessContent}>
-              <span className={`${styles.businessEyebrow} eyebrow`}>{dict.businessPre || "Business · 20+ bikes"}</span>
-              <h2 className={`${styles.businessTitle} h2`}>{dict.businessTitle || "Manage your whole fleet from one dashboard."}</h2>
-              <p className={`${styles.businessBody} body-lg`}>
-                {dict.businessDesc || "Volume pricing kicks in automatically. Plus: master invoicing, employee provisioning, and a dedicated account manager."}
-              </p>
-              <Link href="/contact?type=business" className="btn-primary">
-                {dict.businessCta || "Request a custom quote →"}
-              </Link>
-            </div>
-
-            <div className={styles.businessStatsWrapper}>
-              <div className={styles.statsBlock}>
-                <div className={styles.statItem}>
-                  <span className={styles.statNum}>22%</span>
-                  <span className={styles.statLabel}>{dict.businessStatDiscount || "Volume discount up to"}</span>
-                </div>
-                <div className={styles.statItem}>
-                  <span className={styles.statNum}>{lang === "hu" ? "Havi" : "Monthly"}</span>
-                  <span className={styles.statLabel}>{dict.businessStatInvoicing || "Master invoicing"}</span>
-                </div>
-                <div className={styles.statItem}>
-                  <span className={styles.statNum}>&lt; 4h</span>
-                  <span className={styles.statLabel}>{dict.businessStatSLA || "SLA response"}</span>
-                </div>
-                <div className={styles.statItem}>
-                  <span className={styles.statNum}>50+</span>
-                  <span className={styles.statLabel}>{dict.businessStatAM || "Dedicated AM (50+ bk)"}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

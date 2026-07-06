@@ -15,6 +15,19 @@
   overflow: hidden;
 }
 
+@media (min-width: 993px) {
+  .hero {
+    min-height: 100vh;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 72px;
+    box-sizing: border-box;
+  }
+}
+
 .hero::before {
   content: '';
   position: absolute;
@@ -92,8 +105,6 @@
   border: 1px solid var(--border);
   box-shadow: var(--shadow-elevated);
   overflow: hidden;
-  opacity: 0;
-  animation: fadeInUpBiz 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.7s both;
 }
 
 .statItem {
@@ -104,7 +115,14 @@
   padding: var(--space-6) var(--space-3);
   gap: 4px;
   position: relative;
+  opacity: 0;
+  animation: fadeInUpBiz 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
+
+.statItem:nth-child(1) { animation-delay: 0.6s; }
+.statItem:nth-child(2) { animation-delay: 0.7s; }
+.statItem:nth-child(3) { animation-delay: 0.8s; }
+.statItem:nth-child(4) { animation-delay: 0.9s; }
 
 .statItem:not(:last-child)::after {
   content: '';
@@ -683,33 +701,17 @@
 /* ── Sustainability Band (dark) ──────────────────────────────────────── */
 
 .sustainSection {
-  padding: var(--space-16) var(--space-6);
+  background: var(--background);
+  padding: 0 var(--space-6) var(--space-20);
 }
 
 .sustainCard {
   max-width: 1280px;
   margin: 0 auto;
-  background: linear-gradient(160deg, #0a1618 0%, #143132 60%, #005b45 100%);
-  border-radius: var(--radius-2xl);
-  padding: var(--space-16) var(--space-12);
-  color: #ffffff;
-  position: relative;
-  overflow: hidden;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-12);
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--space-16);
   align-items: center;
-}
-
-.sustainCard::before {
-  content: '';
-  position: absolute;
-  top: -40%;
-  right: -10%;
-  width: 55%;
-  height: 180%;
-  background: radial-gradient(ellipse, rgba(0, 216, 164, 0.12) 0%, transparent 60%);
-  pointer-events: none;
 }
 
 .sustainContent {
@@ -718,83 +720,92 @@
 }
 
 .sustainEyebrow {
-  color: var(--primary);
+  color: var(--brand-dark);
   margin-bottom: var(--space-3);
 }
 
 .sustainTitle {
-  font-size: 32px;
+  font-size: 36px;
   font-weight: 700;
   letter-spacing: -0.01em;
   line-height: 1.2;
+  color: var(--brand-darker);
   margin-bottom: var(--space-4);
 }
 
 .sustainDesc {
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.72);
-  margin-bottom: var(--space-6);
+  color: var(--muted-foreground);
+  margin-bottom: var(--space-8);
 }
 
 .sustainBullets {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
 }
 
 .sustainBullets li {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--space-3);
   font-size: 15px;
-  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.55;
+  font-weight: 500;
+  color: var(--foreground);
 }
 
 .sustainBulletCheck {
   width: 22px;
   height: 22px;
   min-width: 22px;
+  margin-top: 1px;
   border-radius: var(--radius-full);
-  background: rgba(0, 216, 164, 0.18);
+  background: rgba(0, 216, 164, 0.12);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--primary);
+  color: var(--brand-dark);
 }
 
 .sustainMetrics {
-  position: relative;
-  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
 }
 
 .sustainMetric {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: var(--space-5) var(--space-6);
+  padding: var(--space-6);
   display: flex;
-  align-items: baseline;
-  gap: var(--space-4);
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sustainMetric:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
 }
 
 .sustainMetricValue {
-  font-size: 34px;
+  font-size: 30px;
   font-weight: 800;
-  color: var(--primary);
+  color: var(--brand-dark);
+  line-height: 1.1;
   letter-spacing: -0.02em;
-  line-height: 1;
-  min-width: 110px;
 }
 
 .sustainMetricLabel {
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.75);
-  line-height: 1.4;
+  font-size: 13px;
+  color: var(--foreground);
+  font-weight: 600;
 }
 
 /* ── FAQ Section ─────────────────────────────────────────────────────── */
@@ -969,6 +980,127 @@
   transform: scale(1) translateY(0);
 }
 
+/* ── B2B Dashboard Highlight Card ─────────────────────────────────────── */
+.b2bSection {
+  padding: 0 24px;
+  background-color: var(--background);
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--space-20);
+}
+
+.b2bContainer {
+  max-width: 1280px;
+  width: 100%;
+}
+
+.b2bCard {
+  background: var(--gradient-dark);
+  border-radius: var(--radius-2xl);
+  padding: 64px 48px;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--space-12);
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-elevated);
+}
+
+.b2bCard::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -20%;
+  width: 80%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(0, 216, 164, 0.05) 0%, rgba(0, 0, 0, 0) 70%);
+  pointer-events: none;
+}
+
+.b2bContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 5;
+}
+
+.b2bEyebrow {
+  color: var(--primary);
+  margin-bottom: var(--space-3);
+}
+
+.b2bTitle {
+  color: #FFFFFF;
+  margin-bottom: var(--space-4);
+}
+
+.b2bBody {
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: var(--space-8);
+}
+
+.b2bStatsWrapper {
+  z-index: 5;
+}
+
+.b2bStatsBlock {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-6) var(--space-8);
+  width: 100%;
+}
+
+.b2bStatItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.b2bStatNum {
+  font-size: 36px;
+  font-weight: 800;
+  color: #FFFFFF;
+  font-family: var(--font-mono), monospace;
+  line-height: 1;
+  margin-bottom: var(--space-2);
+}
+
+.b2bStatLabel {
+  font-size: 11px;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* B2B Card Media Queries */
+@media (max-width: 1200px) {
+  .b2bCard {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    padding: 48px 36px;
+  }
+
+  .b2bContent {
+    align-items: center;
+    text-align: center;
+  }
+
+  .b2bStatsWrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .b2bCard {
+    padding: 32px 20px;
+    border-radius: var(--radius-xl);
+  }
+}
+
 /* ── Responsive ──────────────────────────────────────────────────────── */
 
 @media (max-width: 1100px) {
@@ -1025,7 +1157,6 @@
   .sustainCard {
     grid-template-columns: 1fr;
     gap: var(--space-10);
-    padding: var(--space-12) var(--space-8);
   }
 }
 

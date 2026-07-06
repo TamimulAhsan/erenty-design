@@ -8,25 +8,21 @@ import styles from "./Business.module.css";
 /* Real E-Renty business customers (same asset set as the About page). */
 const COMPANY_LOGOS = [
   { name: "Foodora", src: "/companies/foodora.png" },
-  { name: "Wolt", src: "/companies/wolt.jpeg" },
-  { name: "Gorilla Delivery", src: "/companies/gorilla_delivery.png" },
-  { name: "Roksh", src: "/companies/roksh.webp" },
-  { name: "Wantop Futar", src: "/companies/wantop_futar.jpeg" },
-  { name: "Accent Hotels", src: "/companies/Accent_hotels.jpeg" },
-  { name: "Bukfurdo Spa", src: "/companies/Bukfurdo%20Thermal%20%26%20Spa.jpeg" },
+  { name: "Wolt", src: "/companies/wolt.png" },
+  { name: "Gorilla Delivery", src: "/companies/gorilladelivery.png" },
+  { name: "Wantop Futar", src: "/companies/wantopfutar.png" },
+  { name: "Accent Hotels", src: "/companies/accenthotels.png" },
+  { name: "Bukfurdo Spa", src: "/companies/bukfurdo.png" },
   { name: "Movenpick", src: "/companies/movenpick.png" },
-  { name: "Hotel Napfeny", src: "/companies/hotel_napfeny.png" },
-  { name: "Club Hotels", src: "/companies/club_hotels.jpeg" },
-  { name: "Cardoner Hotel", src: "/companies/cardoner_hotel.jpeg" },
-  { name: "Lele Hotel", src: "/companies/lele_hotel.png" },
-  { name: "Tourinform", src: "/companies/Tourinform.jpeg" },
-  { name: "Sziget", src: "/companies/sziget.png" },
-  { name: "Everness Festival", src: "/companies/everness_festival.png" },
-  { name: "Indotek Group", src: "/companies/indotek_group.webp" },
+  { name: "Hotel Napfeny", src: "/companies/hotelnapfeny.png" },
+  { name: "Club Hotels", src: "/companies/clubhotels.png" },
+  { name: "Cardoner Hotel", src: "/companies/cardoner.png" },
+  { name: "Lelle Hotel", src: "/companies/lelle%20hotel.png" },
+  { name: "Tourinform", src: "/companies/tourinform.png" },
+  { name: "Everness Festival", src: "/companies/evernessfestival.png" },
+  { name: "Indotek Group", src: "/companies/indotekgroup.png" },
   { name: "Sonepar", src: "/companies/sonepar.png" },
-  { name: "SDG", src: "/companies/Sdg.jpeg" },
-  { name: "R73", src: "/companies/r73.webp" },
-  { name: "Giggle", src: "/companies/giggle.png" },
+  { name: "SDG", src: "/companies/sdg.png" },
 ];
 
 /* ── Icon helpers ────────────────────────────────────────────────────── */
@@ -320,10 +316,9 @@ export default function BusinessClient({ dict = {}, lang = "en" }) {
         </div>
       </section>
 
-      {/* ── SUSTAINABILITY BAND ───────────────────────────────────────── */}
       <section className={styles.sustainSection}>
-        <div className={`${styles.sustainCard} ${styles.animateOnScroll}`}>
-          <div className={styles.sustainContent}>
+        <div className={styles.sustainCard}>
+          <div className={`${styles.sustainContent} ${styles.animateOnScroll}`}>
             <p className={`${styles.sustainEyebrow} eyebrow`}>{t.sustainEyebrow}</p>
             <h2 className={styles.sustainTitle}>{t.sustainTitle}</h2>
             <p className={styles.sustainDesc}>{t.sustainDesc}</p>
@@ -338,11 +333,50 @@ export default function BusinessClient({ dict = {}, lang = "en" }) {
           </div>
           <div className={styles.sustainMetrics}>
             {sustainMetrics.map((m, i) => (
-              <div key={i} className={styles.sustainMetric}>
+              <div key={i} className={`${styles.sustainMetric} ${styles.animateOnScroll} ${styles[`delay${(i % 3) + 1}`]}`}>
                 <span className={styles.sustainMetricValue}>{m.value}</span>
                 <span className={styles.sustainMetricLabel}>{m.label}</span>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── B2B DASHBOARD HIGHLIGHT CARD ──────────────────────────────── */}
+      <section className={styles.b2bSection}>
+        <div className={styles.b2bContainer}>
+          <div className={`${styles.b2bCard} ${styles.animateOnScroll}`}>
+            <div className={styles.b2bContent}>
+              <span className={`${styles.b2bEyebrow} eyebrow`}>{t.b2bPre || "Business · 20+ bikes"}</span>
+              <h2 className={`${styles.b2bTitle} h2`}>{t.b2bTitle || "Manage your whole fleet from one dashboard."}</h2>
+              <p className={`${styles.b2bBody} body-lg`}>
+                {t.b2bDesc || "Volume pricing kicks in automatically. Plus: master invoicing, employee provisioning, and a dedicated account manager."}
+              </p>
+              <Link href="/contact?type=business" className="btn-primary">
+                {t.b2bCta || "Request a custom quote →"}
+              </Link>
+            </div>
+
+            <div className={styles.b2bStatsWrapper}>
+              <div className={styles.b2bStatsBlock}>
+                <div className={styles.b2bStatItem}>
+                  <span className={styles.b2bStatNum}>22%</span>
+                  <span className={styles.b2bStatLabel}>{t.b2bStatDiscount || "Volume discount up to"}</span>
+                </div>
+                <div className={styles.b2bStatItem}>
+                  <span className={styles.b2bStatNum}>{lang === "hu" ? "Havi" : "Monthly"}</span>
+                  <span className={styles.b2bStatLabel}>{t.b2bStatInvoicing || "Master invoicing"}</span>
+                </div>
+                <div className={styles.b2bStatItem}>
+                  <span className={styles.b2bStatNum}>&lt; 4h</span>
+                  <span className={styles.b2bStatLabel}>{t.b2bStatSLA || "SLA response"}</span>
+                </div>
+                <div className={styles.b2bStatItem}>
+                  <span className={styles.b2bStatNum}>50+</span>
+                  <span className={styles.b2bStatLabel}>{t.b2bStatAM || "Dedicated AM (50+ bk)"}</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
