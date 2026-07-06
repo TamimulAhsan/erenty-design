@@ -97,10 +97,6 @@ export default function ContactClient({ dict }) {
       {/* ── HERO (dark) ───────────────────────────────────────────────── */}
       <section className={styles.hero}>
         <div className={styles.heroInner}>
-          <span className={`${styles.heroEyebrow} eyebrow`}>
-            {Icon.mailEyebrow}
-            {t.heroEyebrow}
-          </span>
           <h1 className={styles.heroTitle}>
             {t.heroTitleLine1}<br />
             <span className={styles.heroTitleHighlight}>{t.heroTitleLine2}</span>

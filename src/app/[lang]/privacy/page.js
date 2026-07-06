@@ -23,12 +23,6 @@ export default async function PrivacyPage({ params }) {
       {/* Hero */}
       <section className={styles.hero}>
         <div className={styles.heroInner}>
-          <div className={`${styles.heroEyebrow} eyebrow`}>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-            </svg>
-            {t.heroEyebrow}
-          </div>
           <h1 className={styles.heroTitle}>{t.heroTitle}</h1>
           <p className={styles.heroUpdated}>{t.lastUpdated}</p>
         </div>

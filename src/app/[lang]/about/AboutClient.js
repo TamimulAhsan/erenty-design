@@ -6,26 +6,22 @@ import Link from "@/components/LocalizedLink";
 import styles from "./About.module.css";
 
 const COMPANY_LOGOS = [
-  { name: "Accent Hotels", src: "/companies/Accent_hotels.jpeg" },
-  { name: "Bukfurdo Spa", src: "/companies/Bukfurdo%20Thermal%20%26%20Spa.jpeg" },
-  { name: "Gorilla Delivery", src: "/companies/gorilla_delivery.png" },
+  { name: "Accent Hotels", src: "/companies/accenthotels.png" },
+  { name: "Bukfurdo Spa", src: "/companies/bukfurdo.png" },
+  { name: "Gorilla Delivery", src: "/companies/gorilladelivery.png" },
   { name: "Foodora", src: "/companies/foodora.png" },
-  { name: "Wolt", src: "/companies/wolt.jpeg" },
-  { name: "Sziget", src: "/companies/sziget.png" },
+  { name: "Wolt", src: "/companies/wolt.png" },
   { name: "Movenpick", src: "/companies/movenpick.png" },
-  { name: "Tourinform", src: "/companies/Tourinform.jpeg" },
-  { name: "Indotek Group", src: "/companies/indotek_group.webp" },
-  { name: "Hotel Napfeny", src: "/companies/hotel_napfeny.png" },
-  { name: "SDG", src: "/companies/Sdg.jpeg" },
-  { name: "Everness Festival", src: "/companies/everness_festival.png" },
+  { name: "Tourinform", src: "/companies/tourinform.png" },
+  { name: "Indotek Group", src: "/companies/indotekgroup.png" },
+  { name: "Hotel Napfeny", src: "/companies/hotelnapfeny.png" },
+  { name: "SDG", src: "/companies/sdg.png" },
+  { name: "Everness Festival", src: "/companies/evernessfestival.png" },
   { name: "Sonepar", src: "/companies/sonepar.png" },
-  { name: "R73", src: "/companies/r73.webp" },
-  { name: "Lele Hotel", src: "/companies/lele_hotel.png" },
-  { name: "Club Hotels", src: "/companies/club_hotels.jpeg" },
-  { name: "Giggle", src: "/companies/giggle.png" },
-  { name: "Wantop Futar", src: "/companies/wantop_futar.jpeg" },
-  { name: "Roksh", src: "/companies/roksh.webp" },
-  { name: "Cardoner Hotel", src: "/companies/cardoner_hotel.jpeg" },
+  { name: "Lelle Hotel", src: "/companies/lelle%20hotel.png" },
+  { name: "Club Hotels", src: "/companies/clubhotels.png" },
+  { name: "Wantop Futar", src: "/companies/wantopfutar.png" },
+  { name: "Cardoner Hotel", src: "/companies/cardoner.png" },
 ];
 
 /* ── SVG Icon helpers ────────────────────────────────────────────────── */
@@ -117,14 +113,6 @@ export default function AboutClient({ dict }) {
       {/* ── HERO ──────────────────────────────────────────────────────── */}
       <section className={styles.hero}>
         <div className={styles.heroInner}>
-          <div className={`${styles.heroEyebrow} eyebrow`}>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="12" cy="12" r="10" />
-              <path d="M12 16v-4" />
-              <path d="M12 8h.01" />
-            </svg>
-            {t.heroEyebrow}
-          </div>
           <h1 className={styles.heroTitle}>
             {t.heroTitleLine1}<br />
             <span className={styles.heroTitleHighlight}>{t.heroTitleLine2}</span>
