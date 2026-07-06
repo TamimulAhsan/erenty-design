@@ -184,7 +184,7 @@
 }
 
 .imageWrapper {
-  max-width: 960px;
+  max-width: 640px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -232,7 +232,7 @@
   align-items: center;
   gap: var(--space-2);
   z-index: 10;
-  margin-top: 6vh;
+  margin-top: 8vh;
   /* Pushed lower on desktop */
   flex-shrink: 0;
 }

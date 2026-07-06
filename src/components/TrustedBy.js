@@ -4,29 +4,25 @@ import Link from '@/components/LocalizedLink';
 import styles from './TrustedBy.module.css';
 
 const outerLogos = [
-  { name: 'SDG', src: '/companies/Sdg.jpeg' },
+  { name: 'SDG', src: '/companies/sdg.png' },
   { name: 'Foodora', src: '/companies/foodora.png' },
-  { name: 'Gorilla Delivery', src: '/companies/gorilla_delivery.png' },
-  { name: 'Indotek Group', src: '/companies/indotek_group.webp' },
-  { name: 'Wolt', src: '/companies/wolt.jpeg' },
-  { name: 'Sziget', src: '/companies/sziget.png' },
-  { name: 'Everness Festival', src: '/companies/everness_festival.png' },
+  { name: 'Gorilla Delivery', src: '/companies/gorilladelivery.png' },
+  { name: 'Indotek Group', src: '/companies/indotekgroup.png' },
+  { name: 'Wolt', src: '/companies/wolt.png' },
+  { name: 'Everness Festival', src: '/companies/evernessfestival.png' },
   { name: 'Movenpick', src: '/companies/movenpick.png' },
-  { name: 'Tourinform', src: '/companies/Tourinform.jpeg' },
-  { name: 'Hotel Napfeny', src: '/companies/hotel_napfeny.png' },
-  { name: 'Accent Hotels', src: '/companies/Accent_hotels.jpeg' },
-  { name: 'Bukfurdo Spa', src: '/companies/Bukfurdo%20Thermal%20&%20Spa.jpeg' }
+  { name: 'Tourinform', src: '/companies/tourinform.png' },
+  { name: 'Hotel Napfeny', src: '/companies/hotelnapfeny.png' },
+  { name: 'Accent Hotels', src: '/companies/accenthotels.png' },
+  { name: 'Bukfurdo Spa', src: '/companies/bukfurdo.png' }
 ];
 
 const innerLogos = [
-  { name: 'Cardoner Hotel', src: '/companies/cardoner_hotel.jpeg' },
-  { name: 'Club Hotels', src: '/companies/club_hotels.jpeg' },
-  { name: 'Giggle', src: '/companies/giggle.png' },
-  { name: 'Lele Hotel', src: '/companies/lele_hotel.png' },
-  { name: 'Roksh', src: '/companies/roksh.webp' },
+  { name: 'Cardoner Hotel', src: '/companies/cardoner.png' },
+  { name: 'Club Hotels', src: '/companies/clubhotels.png' },
+  { name: 'Lelle Hotel', src: '/companies/lelle%20hotel.png' },
   { name: 'Sonepar', src: '/companies/sonepar.png' },
-  { name: 'Wantop Futar', src: '/companies/wantop_futar.jpeg' },
-  { name: 'R73', src: '/companies/r73.webp' }
+  { name: 'Wantop Futar', src: '/companies/wantopfutar.png' }
 ];
 
 export default function TrustedBy({ dict }) {

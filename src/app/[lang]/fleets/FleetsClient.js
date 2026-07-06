@@ -86,6 +86,15 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
   );
   const [activeHotspot, setActiveHotspot] = useState(null);
 
+  // Sync activeModalBike with initialBikeSlug prop when navigation changes the active route.
+  // Adjusted during render (rather than in an effect) per React's guidance on
+  // resetting state when a prop/value changes: https://react.dev/learn/you-might-not-need-an-effect
+  const [prevInitialBikeSlug, setPrevInitialBikeSlug] = useState(initialBikeSlug);
+  if (initialBikeSlug !== prevInitialBikeSlug) {
+    setPrevInitialBikeSlug(initialBikeSlug);
+    setActiveModalBike(initialBikeSlug ? FLEET_BIKES.find((b) => b.slug === initialBikeSlug) || null : null);
+  }
+
   // New modal multi-step states
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [modalStep, setModalStep] = useState("details"); // details | plans | verification | esign | booking | success
@@ -199,13 +208,13 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
   }, []);
 
   // Close the modal and, if we arrived on a deep-linked /fleets/[slug] URL,
-  // restore the bare /fleets URL without triggering a re-navigation/remount.
+  // restore the bare /fleets URL using router.replace.
   const closeModal = () => {
     setActiveModalBike(null);
     if (typeof window !== "undefined") {
       const base = localizeHref(locale, "/fleets");
       if (window.location.pathname !== base) {
-        window.history.replaceState(null, "", base);
+        router.replace(base, { scroll: false });
       }
     }
   };
@@ -277,11 +286,11 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
           cleanParams.delete("addons");
           const searchStr = cleanParams.toString();
           const base = window.location.pathname + (searchStr ? `?${searchStr}` : "");
-          window.history.replaceState(null, "", base);
+          router.replace(base, { scroll: false });
         }, 100);
       }
     }
-  }, [locale]);
+  }, [locale, router]);
   /* eslint-enable react-hooks/set-state-in-effect */
 
   // Synchronize browser URL with the open bike modal and its active step for deep-linking
@@ -307,16 +316,16 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
         const fullPath = localizeHref(locale, path) + (searchStr ? `?${searchStr}` : "");
         
         if (window.location.pathname + window.location.search !== fullPath) {
-          window.history.replaceState(null, "", fullPath);
+          router.replace(fullPath, { scroll: false });
         }
       } else {
         const base = localizeHref(locale, "/fleets");
         if (window.location.pathname !== base && !window.location.search.includes("checkout_status=success")) {
-          window.history.replaceState(null, "", base);
+          router.replace(base, { scroll: false });
         }
       }
     }
-  }, [activeModalBike, modalStep, locale]);
+  }, [activeModalBike, modalStep, locale, router]);
 
   // Initialize modal step based on URL query parameters on mount. Seeding state
   // from the URL on mount is a valid effect, so set-state-in-effect is a false
@@ -1036,6 +1045,7 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
               src="/images/c29_pro.png"
               alt="DUOTTS C29 Pro Showcase"
               fill
+              sizes="(max-width: 560px) 100vw, 560px"
               className={styles.heroShowcaseBike}
               priority
             />
@@ -1470,69 +1480,71 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
 
                 {/* Right Information Details Panel */}
                 <div className={styles.modalInfoArea}>
-                  <div className={styles.modalEyebrowRow}>
-                    <span className={styles.modalCategoryBadge}>{dict.categories?.[activeModalBike.category] || activeModalBike.category}</span>
-                    <span className={styles.modalBrand}>{activeModalBike.brand}</span>
-                  </div>
-                  <h2 className={styles.modalTitle}>{activeModalBike.model}</h2>
+                  <div className={styles.modalInfoScrollable}>
+                    <div className={styles.modalEyebrowRow}>
+                      <span className={styles.modalCategoryBadge}>{dict.categories?.[activeModalBike.category] || activeModalBike.category}</span>
+                      <span className={styles.modalBrand}>{activeModalBike.brand}</span>
+                    </div>
+                    <h2 className={styles.modalTitle}>{activeModalBike.model}</h2>
 
-                  <div className={styles.modalPriceRow}>
-                    <span className={styles.modalPriceLabel}>{dict.modalStartingFrom || "Starting From"}</span>
-                    <span className={styles.modalPriceValue}>{formatPrice(activeModalBike.price)} Ft</span>
-                    <span className={styles.modalPricePeriod}>{dict.modalPeriod || "/ month"}</span>
-                  </div>
+                    <div className={styles.modalPriceRow}>
+                      <span className={styles.modalPriceLabel}>{dict.modalStartingFrom || "Starting From"}</span>
+                      <span className={styles.modalPriceValue}>{formatPrice(activeModalBike.price)} Ft</span>
+                      <span className={styles.modalPricePeriod}>{dict.modalPeriod || "/ month"}</span>
+                    </div>
 
-                  <div className={styles.modalSpecsList}>
-                    <div className={styles.modalSpecItem}>
-                      <svg className={styles.modalSpecIcon} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                        <circle cx="12" cy="12" r="10" />
-                        <polyline points="12 6 12 12 16 14" />
-                      </svg>
-                      <span><strong>{dict.modalRange || "Range:"}</strong> {activeModalBike.range}{dict.modalRangeDetail || " (Pedal Assist / Dual mode options)"}</span>
+                    <div className={styles.modalSpecsList}>
+                      <div className={styles.modalSpecItem}>
+                        <svg className={styles.modalSpecIcon} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                          <circle cx="12" cy="12" r="10" />
+                          <polyline points="12 6 12 12 16 14" />
+                        </svg>
+                        <span><strong>{dict.modalRange || "Range:"}</strong> {activeModalBike.range}{dict.modalRangeDetail || " (Pedal Assist / Dual mode options)"}</span>
+                      </div>
+                      <div className={styles.modalSpecItem}>
+                        <svg className={styles.modalSpecIcon} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                        </svg>
+                        <span><strong>{dict.modalSpeed || "Top speed:"}</strong> {activeModalBike.topSpeed}{dict.modalSpeedDetail || " (Electronically optimized)"}</span>
+                      </div>
+                      <div className={styles.modalSpecItem}>
+                        <svg className={styles.modalSpecIcon} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                          <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                        </svg>
+                        <span><strong>{dict.modalMotor || "Motor capacity:"}</strong> {activeModalBike.motor}{dict.modalMotorDetail || " brushless peak output"}</span>
+                      </div>
+                      <div className={styles.modalSpecItem}>
+                        <svg className={styles.modalSpecIcon} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                          <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                          <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                        </svg>
+                        <span><strong>{dict.modalSecurity || "Security:"}</strong> {dict.modalSecurityDetail || "Smart GPS tracking + Remote anti-theft app lock"}</span>
+                      </div>
+                      <div className={styles.modalSpecItem}>
+                        <svg className={styles.modalSpecIcon} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        </svg>
+                        <span><strong>{dict.modalInsurance || "Insurance:"}</strong> {dict.modalInsuranceDetail || "Full comprehensive damages & third party liability"}</span>
+                      </div>
                     </div>
-                    <div className={styles.modalSpecItem}>
-                      <svg className={styles.modalSpecIcon} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-                      </svg>
-                      <span><strong>{dict.modalSpeed || "Top speed:"}</strong> {activeModalBike.topSpeed}{dict.modalSpeedDetail || " (Electronically optimized)"}</span>
-                    </div>
-                    <div className={styles.modalSpecItem}>
-                      <svg className={styles.modalSpecIcon} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-                      </svg>
-                      <span><strong>{dict.modalMotor || "Motor capacity:"}</strong> {activeModalBike.motor}{dict.modalMotorDetail || " brushless peak output"}</span>
-                    </div>
-                    <div className={styles.modalSpecItem}>
-                      <svg className={styles.modalSpecIcon} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                      </svg>
-                      <span><strong>{dict.modalSecurity || "Security:"}</strong> {dict.modalSecurityDetail || "Smart GPS tracking + Remote anti-theft app lock"}</span>
-                    </div>
-                    <div className={styles.modalSpecItem}>
-                      <svg className={styles.modalSpecIcon} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                      </svg>
-                      <span><strong>{dict.modalInsurance || "Insurance:"}</strong> {dict.modalInsuranceDetail || "Full comprehensive damages & third party liability"}</span>
-                    </div>
-                  </div>
 
-                  <div className={styles.modalFeaturesRow}>
-                    <span className={styles.modalFeatureBadge}>
-                      <svg className={styles.modalFeatureIcon} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                        <circle cx="12" cy="12" r="10" />
-                        <line x1="12" y1="8" x2="12" y2="12" />
-                        <line x1="12" y1="16" x2="12.01" y2="16" />
-                      </svg>
-                      {dict.modalServiceSupport || "24/7 Service Support"}
-                    </span>
-                    <span className={styles.modalFeatureBadge}>
-                      <svg className={styles.modalFeatureIcon} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                        <polyline points="22 4 12 14.01 9 11.01" />
-                      </svg>
-                      {dict.modalMaintenance || "Sub-24h Maintenance"}
-                    </span>
+                    <div className={styles.modalFeaturesRow}>
+                      <span className={styles.modalFeatureBadge}>
+                        <svg className={styles.modalFeatureIcon} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                          <circle cx="12" cy="12" r="10" />
+                          <line x1="12" y1="8" x2="12" y2="12" />
+                          <line x1="12" y1="16" x2="12.01" y2="16" />
+                        </svg>
+                        {dict.modalServiceSupport || "24/7 Service Support"}
+                      </span>
+                      <span className={styles.modalFeatureBadge}>
+                        <svg className={styles.modalFeatureIcon} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                          <polyline points="22 4 12 14.01 9 11.01" />
+                        </svg>
+                        {dict.modalMaintenance || "Sub-24h Maintenance"}
+                      </span>
+                    </div>
                   </div>
 
                   <div className={styles.modalActions}>
@@ -1541,15 +1553,12 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
                       className={styles.modalRentBtn}
                       type="button"
                     >
-                      {dict.modalRentBtn || "View rental plan"}
+                      {dict.modalRentBtn || "View rental plans"}
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                         <line x1="5" y1="12" x2="19" y2="12"></line>
                         <polyline points="12 5 19 12 12 19"></polyline>
                       </svg>
                     </button>
-                    <Link href="/courier-plus" className={styles.modalCourierBtn}>
-                      {dict.modalCourierBtn || "View courier+ plan"}
-                    </Link>
                   </div>
                 </div>
               </>

@@ -14,14 +14,14 @@ const HIDE_FOOTER_ROUTES = ["/login", "/signup"];
 const SOCIAL_LINKS = [
   {
     name: "Facebook",
-    href: "https://facebook.com/erenty",
+    href: "#",
     icon: (
       <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
     ),
   },
   {
     name: "Instagram",
-    href: "https://instagram.com/erenty",
+    href: "#",
     icon: (
       <>
         <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
@@ -32,7 +32,7 @@ const SOCIAL_LINKS = [
   },
   {
     name: "LinkedIn",
-    href: "https://linkedin.com/company/erenty",
+    href: "#",
     icon: (
       <>
         <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
@@ -44,23 +44,23 @@ const SOCIAL_LINKS = [
 ];
 
 const PARTNER_LOGOS = [
-  { src: "/fleetpartnerlogos/logo_vok-bikes.png", alt: "Vok Bikes" },
-  { src: "/fleetpartnerlogos/specialized-logo-png_seeklogo-130169.png", alt: "Specialized" },
-  { src: "/fleetpartnerlogos/znen_logo.jfif", alt: "ZNEN" },
-  { src: "/fleetpartnerlogos/Niu_Technologies_Logo.png", alt: "Niu Technologies" },
-  { src: "/fleetpartnerlogos/Koliken-nyeri-logo.png", alt: "Koliken" },
-  { src: "/fleetpartnerlogos/Merida_(Unternehmen)_logo.svg", alt: "Merida" },
-  { src: "/fleetpartnerlogos/Ridley_Bikes_Logo_.png", alt: "Ridley" },
-  { src: "/fleetpartnerlogos/Xiaomi-logo.jpg", alt: "Xiaomi" },
-  { src: "/fleetpartnerlogos/neuzer-logo350.png", alt: "Neuzer" },
-  { src: "/fleetpartnerlogos/tech2b_Logo_ESEL_2017.jpg", alt: "ESEL" },
-  { src: "/fleetpartnerlogos/479-4797688_bike-logo-png-for-kids-scott-bike-logo-png.png", alt: "Scott" },
-  { src: "/fleetpartnerlogos/duotts_logo.png", alt: "duotts" },
-  { src: "/fleetpartnerlogos/images.png", alt: "Fleet Partner" },
-  { src: "/fleetpartnerlogos/images (1).png", alt: "Fleet Partner" },
-  { src: "/fleetpartnerlogos/layout_hu_header_logo-300x80_1_default.png", alt: "Fleet Partner" },
-  { src: "/fleetpartnerlogos/logo.png", alt: "Fleet Partner" },
-  { src: "/fleetpartnerlogos/unnamed.png", alt: "Fleet Partner" }
+  { src: "/fleetpartnerlogos/vok.png", alt: "Vok Bikes" },
+  { src: "/fleetpartnerlogos/specialized.png", alt: "Specialized" },
+  { src: "/fleetpartnerlogos/znen.png", alt: "ZNEN" },
+  { src: "/fleetpartnerlogos/niu.png", alt: "Niu Technologies" },
+  { src: "/fleetpartnerlogos/koliken.png", alt: "Koliken" },
+  { src: "/fleetpartnerlogos/merida.png", alt: "Merida" },
+  { src: "/fleetpartnerlogos/ridley.png", alt: "Ridley" },
+  { src: "/fleetpartnerlogos/xiaomi.png", alt: "Xiaomi" },
+  { src: "/fleetpartnerlogos/neuzer.png", alt: "Neuzer" },
+  { src: "/fleetpartnerlogos/esel.png", alt: "ESEL" },
+  { src: "/fleetpartnerlogos/scott.png", alt: "Scott" },
+  { src: "/fleetpartnerlogos/duotts.png", alt: "duotts" },
+  { src: "/fleetpartnerlogos/csepel.png", alt: "Csepel" },
+  { src: "/fleetpartnerlogos/eleglide.png", alt: "Eleglide" },
+  { src: "/fleetpartnerlogos/kukirin.png", alt: "Kukirin" },
+  { src: "/fleetpartnerlogos/mamba.png", alt: "Mamba" },
+  { src: "/fleetpartnerlogos/segway.png", alt: "Segway" }
 ];
 
 export default function Footer({ dict }) {
@@ -167,20 +167,23 @@ export default function Footer({ dict }) {
                 </li>
               </ul>
               <div className={styles.socialRow} aria-label={t.followUs || "Follow us"}>
-                {SOCIAL_LINKS.map((s) => (
-                  <a
-                    key={s.name}
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.socialLink}
-                    aria-label={s.name}
-                  >
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      {s.icon}
-                    </svg>
-                  </a>
-                ))}
+                {SOCIAL_LINKS.map((s) => {
+                  const isBlank = s.href === "#" || !s.href;
+                  return (
+                    <a
+                      key={s.name}
+                      href={s.href}
+                      target={isBlank ? undefined : "_blank"}
+                      rel={isBlank ? undefined : "noopener noreferrer"}
+                      className={styles.socialLink}
+                      aria-label={s.name}
+                    >
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        {s.icon}
+                      </svg>
+                    </a>
+                  );
+                })}
               </div>
             </div>
           </div>

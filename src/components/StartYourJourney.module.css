@@ -691,12 +691,16 @@
   .card {
     flex: 0 0 85%;
     scroll-snap-align: start;
-    min-height: 460px;
+    height: 600px;
     padding: var(--space-6) var(--space-4) var(--space-5);
   }
 
   .scrollList {
-    max-height: 150px;
+    max-height: 340px;
+  }
+
+  .card2ScrollContainer {
+    max-height: 300px;
   }
 
   .imageContainer {

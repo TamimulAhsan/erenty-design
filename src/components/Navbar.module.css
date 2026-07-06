@@ -98,46 +98,56 @@
 }
 
 /* ── Hover on transparent state → restore solid appearance ──────────── */
-.headerTransparent:hover {
+.headerTransparent:hover,
+.headerTransparentLight:hover {
   background: var(--card);
   border-bottom-color: var(--border);
 }
 
-.headerTransparent:hover .logoArea {
+.headerTransparent:hover .logoArea,
+.headerTransparentLight:hover .logoArea {
   color: var(--foreground);
 }
 
-.headerTransparent:hover .navLink {
+.headerTransparent:hover .navLink,
+.headerTransparentLight:hover .navLink {
   color: var(--foreground);
 }
 
 .headerTransparent:hover .navLink:hover,
-.headerTransparent:hover .navLinkActive {
+.headerTransparentLight:hover .navLink:hover,
+.headerTransparent:hover .navLinkActive,
+.headerTransparentLight:hover .navLinkActive {
   color: var(--primary);
 }
 
-.headerTransparent:hover .iconButton {
+.headerTransparent:hover .iconButton,
+.headerTransparentLight:hover .iconButton {
   color: var(--muted-foreground);
 }
 
-.headerTransparent:hover .iconButton:hover {
+.headerTransparent:hover .iconButton:hover,
+.headerTransparentLight:hover .iconButton:hover {
   background: var(--muted);
   color: var(--foreground);
 }
 
-.headerTransparent:hover .businessBtn {
+.headerTransparent:hover .businessBtn,
+.headerTransparentLight:hover .businessBtn {
   background: var(--brand-light);
   color: var(--brand-dark);
   border-color: rgba(0, 91, 69, 0.2);
 }
 
-.headerTransparent:hover .businessBtn:hover {
+.headerTransparent:hover .businessBtn:hover,
+.headerTransparentLight:hover .businessBtn:hover {
   background: var(--accent);
   border-color: var(--brand-dark);
   box-shadow: 0 4px 12px rgba(0, 91, 69, 0.15);
 }
 
-.headerTransparent:hover .mobileMenuBtn {
+.headerTransparent:hover .mobileMenuBtn,
+.headerTransparentLight:hover .mobileMenuBtn {
   color: var(--foreground);
 }
 
@@ -163,6 +173,7 @@
 }
 
 .logoArea {
+  position: relative;
   justify-self: center;
   font-family: var(--font-cruiser), sans-serif;
   font-size: 24px;
@@ -186,6 +197,10 @@
 @media (max-width: 992px) {
   .logoTagline {
     display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 2px;
     font-family: var(--font-inter), sans-serif;
     font-size: 11px;
     font-weight: 500;
@@ -204,6 +219,7 @@
 @media (max-width: 992px) {
   .logoArea {
     justify-self: auto;
+    align-items: flex-start;
   }
 }
 
@@ -415,7 +431,11 @@
   z-index: 999;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out, top 0.3s ease;
+}
+
+.headerScrolled .megaMenu {
+  top: 56px;
 }
 
 .megaMenuOpen {
@@ -539,7 +559,7 @@
   top: 0;
   left: 0;
   height: 100%;
-  width: 320px;
+  width: 100%;
   max-width: 100%;
   background: var(--card);
   z-index: 1002;
@@ -559,6 +579,23 @@
   justify-content: space-between;
   padding: var(--space-5) var(--space-6);
   border-bottom: 1px solid var(--border);
+}
+
+.drawerLogoArea {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  line-height: 1;
+}
+
+.drawerTagline {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: #667370;
 }
 
 .drawerLogo {

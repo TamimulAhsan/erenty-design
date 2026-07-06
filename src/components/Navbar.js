@@ -60,6 +60,16 @@ export default function Navbar({ dict }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileFleetsOpen, setIsMobileFleetsOpen] = useState(false);
 
+  // Close mega menu and mobile menu drawers upon navigation to new pages.
+  // Adjusted during render (rather than in an effect) per React's guidance on
+  // resetting state when a prop/value changes: https://react.dev/learn/you-might-not-need-an-effect
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
+    setIsMegaMenuOpen(false);
+    setIsMobileMenuOpen(false);
+  }
+
   // Extract language from URL path
   const currentLangLower = localeFromPathname(pathname) || defaultLocale;
   const currentLang = currentLangLower.toUpperCase();
@@ -136,8 +146,8 @@ export default function Navbar({ dict }) {
   };
 
   // Safe checks to avoid hydration mismatches
-  const isTransparentDark = !forceSolid && isDarkHeroRoute && (mounted ? isAtTop : true);
-  const isTransparentLight = !forceSolid && isLightHeroRoute && (mounted ? isAtTop : true);
+  const isTransparentDark = !forceSolid && isDarkHeroRoute && (mounted ? isAtTop : true) && !isMegaMenuOpen;
+  const isTransparentLight = !forceSolid && isLightHeroRoute && (mounted ? isAtTop : true) && !isMegaMenuOpen;
   const isNavbarScrolled = mounted ? !isAtTop : false;
   const showMegaMenu = mounted ? !hasScrolled : true;
   const showBusinessBtnLeft = mounted ? hasScrolled : false;
@@ -397,7 +407,10 @@ export default function Navbar({ dict }) {
       {/* Mobile Drawer Panel */}
       <div className={`${styles.mobileDrawer} ${isMobileMenuOpen ? styles.mobileDrawerOpen : ""}`}>
         <div className={styles.drawerHeader}>
-          <span className={styles.drawerLogo}>E-RENTY</span>
+          <div className={styles.drawerLogoArea}>
+            <span className={styles.drawerLogo}>E-RENTY</span>
+            <span className={styles.drawerTagline}>{t.tagline}</span>
+          </div>
           <button className={styles.closeBtn} onClick={toggleMobileMenu} aria-label="Close Menu">
             <svg
               width="22"
@@ -438,28 +451,29 @@ export default function Navbar({ dict }) {
               </button>
 
               <div className={`${styles.mobileAccordionContent} ${isMobileFleetsOpen ? styles.mobileAccordionContentOpen : ""}`}>
-                {fleetList.map((bike, idx) => (
-                  <Link
-                    key={idx}
-                    href={localizePath(`/fleets/${bike.slug}`)}
-                    className={styles.mobileFleetItem}
-                    onClick={toggleMobileMenu}
-                  >
-                    <div className={styles.mobileFleetThumb}>
-                      <Image
-                        src={bike.image}
-                        alt={bike.name}
-                        width={48}
-                        height={32}
-                        className={styles.mobileFleetImg}
-                      />
-                    </div>
-                    <span className={styles.mobileFleetName}>
-                      {bike.isElectric && "⚡ "}
-                      {bike.name}
-                    </span>
-                  </Link>
-                ))}
+                {fleetList
+                  .filter((bike) => bike.slug !== "equickey-q8-pro")
+                  .map((bike, idx) => (
+                    <Link
+                      key={idx}
+                      href={localizePath(`/fleets/${bike.slug}`)}
+                      className={styles.mobileFleetItem}
+                      onClick={toggleMobileMenu}
+                    >
+                      <div className={styles.mobileFleetThumb}>
+                        <Image
+                          src={bike.image}
+                          alt={bike.name}
+                          width={48}
+                          height={32}
+                          className={styles.mobileFleetImg}
+                        />
+                      </div>
+                      <span className={styles.mobileFleetName}>
+                        {bike.name}
+                      </span>
+                    </Link>
+                  ))}
                 <Link href={localizePath("/fleets")} className={styles.mobileFleetItemAll} onClick={toggleMobileMenu}>
                   {t.seeAllFleets} →
                 </Link>
