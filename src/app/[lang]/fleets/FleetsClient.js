@@ -58,6 +58,7 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
   const pathname = usePathname();
   const router = useRouter();
   const locale = localeFromPathname(pathname) || defaultLocale;
+  const isHu = locale === "hu";
 
   // Localized name for the selected rental tier (basic | plus | max).
   const planLabelFor = (id) =>
@@ -90,6 +91,7 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
   const [modalStep, setModalStep] = useState("details"); // details | plans | verification | esign | booking | success
   const [verificationStatus, setVerificationStatus] = useState("verified"); // 'unsubmitted' | 'pending' | 'verified'
   const [selectedPlan, setSelectedPlan] = useState("plus");
+  const [selectedAddons, setSelectedAddons] = useState([]);
   const [esignName, setEsignName] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
@@ -232,6 +234,7 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
       setModalStep("details");
     }
     setEsignName("");
+    setSelectedAddons([]);
     if (bookingDates.length > 0) {
       setSelectedDate(formatDate(bookingDates[0]));
     }
@@ -249,12 +252,18 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
       const checkoutStatus = params.get("checkout_status");
       const bikeId = params.get("bike");
       const planId = params.get("plan");
+      const addonsId = params.get("addons");
 
       if (checkoutStatus === "success" && bikeId) {
         const bike = FLEET_BIKES.find(b => b.id === bikeId || b.slug === bikeId);
         if (bike) {
           setActiveModalBike(bike);
           setSelectedPlan(planId || "plus");
+          if (addonsId) {
+            setSelectedAddons(addonsId.split(",").filter(Boolean));
+          } else {
+            setSelectedAddons([]);
+          }
           setModalStep("esign");
         }
         // Clean query parameters from URL without page reload after a short delay
@@ -263,6 +272,7 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
           cleanParams.delete("checkout_status");
           cleanParams.delete("bike");
           cleanParams.delete("plan");
+          cleanParams.delete("addons");
           const searchStr = cleanParams.toString();
           const base = window.location.pathname + (searchStr ? `?${searchStr}` : "");
           window.history.replaceState(null, "", base);
@@ -421,8 +431,12 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
   };
 
   const handleContinueFromPlans = () => {
+    setModalStep("addons");
+  };
+
+  const handleContinueFromAddons = () => {
     if (activeModalBike) {
-      router.push(localizeHref(locale, `/checkout?bike=${activeModalBike.id}&plan=${selectedPlan}`));
+      router.push(localizeHref(locale, `/checkout?bike=${activeModalBike.id}&plan=${selectedPlan}&addons=${selectedAddons.join(",")}`));
     }
   };
 
@@ -536,6 +550,84 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
             </span>
           </div>
           <button className={styles.flowContinueBtn} onClick={handleContinueFromPlans} type="button">
+            {isHu ? "Kiegészítők kiválasztása" : "Select Add-ons"}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+    );
+  };
+
+  const renderAddonsView = () => {
+    const isHu = locale === "hu";
+    const addons = [
+      { id: "rack", name: dict.addonRack || (isHu ? "Nagy teherbírású csomagtartó" : "Heavy Cargo Rack"), desc: isHu ? "Masszív csomagtartó a hátsó részen." : "Heavy duty rear rack for deliveries.", price: 1200 },
+      { id: "battery", name: dict.addonBattery || (isHu ? "Kiterjesztett akkumulátor" : "Extended Battery"), desc: isHu ? "Dupla kapacitású, kiterjesztett akkumulátor." : "Double capacity battery pack.", price: 2500 },
+      { id: "mount", name: dict.addonMount || (isHu ? "Telefontartó és USB" : "Phone Mount & USB"), desc: isHu ? "Biztonságos telefontartó USB töltővel." : "Secure phone holder with USB charging port.", price: 500 }
+    ];
+
+    return (
+      <div className={styles.flowPlansView}>
+        <div className={styles.flowHeader}>
+          <div className={styles.flowHeaderMain}>
+            <div className={styles.flowHeaderImgWrapper}>
+              <Image src={activeModalBike.image} alt={activeModalBike.model} width={50} height={40} className={styles.flowHeaderImg} />
+            </div>
+            <div>
+              <h3 className={styles.flowHeaderTitle}>{activeModalBike.brand} {activeModalBike.model}</h3>
+              <p className={styles.flowHeaderSubtitle}>{isHu ? "Válasszon kiegészítőket a bérléshez" : "Select optional add-ons to customize your rental"}</p>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.plansGrid}>
+          {addons.map((addon) => {
+            const isSelected = selectedAddons.includes(addon.id);
+            return (
+              <div
+                key={addon.id}
+                className={`${styles.planCard} ${isSelected ? styles.planCardSelected : ""}`}
+                onClick={() => {
+                  setSelectedAddons((prev) =>
+                    prev.includes(addon.id)
+                      ? prev.filter((id) => id !== addon.id)
+                      : [...prev, addon.id]
+                  );
+                }}
+              >
+                {isSelected && (
+                  <div className={styles.selectedCheckIcon}>
+                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </div>
+                )}
+                <span className={styles.planLabel}>{isHu ? "KIEGÉSZÍTŐ" : "ADD-ON"}</span>
+                <h4 className={styles.planName}>{addon.name}</h4>
+                <p className={styles.planDesc}>{addon.desc}</p>
+                <div className={styles.planPriceRow}>
+                  <span className={styles.planPrice}>+{formatPrice(addon.price)} Ft</span>
+                  <span className={styles.planPeriod}>{dict.perMonthShort || "/ mo"}</span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className={styles.flowFooter}>
+          <button className={styles.flowBackBtn} onClick={() => setModalStep("plans")} type="button">
+            {isHu ? "Vissza a csomagokhoz" : "Back to plans"}
+          </button>
+          <div className={styles.selectedPlanSummary}>
+            <span className={styles.summaryLabel}>{isHu ? "KIVÁLASZTOTT" : "SELECTED"}:</span>
+            <span className={styles.summaryValue}>
+              {selectedAddons.length} {dict.addonsSuffix || (isHu ? "kiegészítő" : "add-ons")}
+            </span>
+          </div>
+          <button className={styles.flowContinueBtn} onClick={handleContinueFromAddons} type="button">
             {dict.rentNow || "Rent now"}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -715,6 +807,17 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
             </p>
             <p>
               <strong>{dict.contractSelectedPlan || "Selected Plan:"}</strong> {planLabelFor(selectedPlan)} ({formatPrice(rentPrice)} {dict.ftPerMonth || "Ft/mo"})<br />
+              {selectedAddons.length > 0 && (
+                <>
+                  <strong>{locale === "hu" ? "Kiválasztott kiegészítők:" : "Selected Add-ons:"}</strong>{" "}
+                  {selectedAddons.map(id => {
+                    if (id === "rack") return dict.addonRack || "Heavy Cargo Rack";
+                    if (id === "battery") return dict.addonBattery || "Extended Battery";
+                    if (id === "mount") return dict.addonMount || "Phone Mount & USB";
+                    return id;
+                  }).join(", ")}<br />
+                </>
+              )}
               <strong>{dict.contractIncludedServices || "Included Services:"}</strong> {dict.contractServicesList || "GPS anti-theft tracking, comprehensive theft and accident insurance, and maintenance service as per plan details."}
             </p>
             <p>
@@ -876,6 +979,19 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
               <span>{dict.receiptPlan || "Rental Plan:"}</span>
               <strong>{planLabelFor(selectedPlan)}</strong>
             </div>
+            {selectedAddons.length > 0 && (
+              <div className={styles.receiptRow}>
+                <span>{locale === "hu" ? "Kiegészítők:" : "Add-ons:"}</span>
+                <strong>
+                  {selectedAddons.map(id => {
+                    if (id === "rack") return dict.addonRack || "Heavy Cargo Rack";
+                    if (id === "battery") return dict.addonBattery || "Extended Battery";
+                    if (id === "mount") return dict.addonMount || "Phone Mount & USB";
+                    return id;
+                  }).join(", ")}
+                </strong>
+              </div>
+            )}
             <div className={styles.receiptRow}>
               <span>{dict.pickupAt || "Pickup date & time:"}</span>
               <strong>{selectedDate} @ {selectedTime}</strong>
@@ -1434,6 +1550,7 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
             ) : (
               <div className={styles.flowContainer}>
                 {modalStep === "plans" && renderPlansView()}
+                {modalStep === "addons" && renderAddonsView()}
                 {modalStep === "verification" && renderVerificationView()}
                 {modalStep === "esign" && renderEsignView()}
                 {modalStep === "booking" && renderBookingView()}

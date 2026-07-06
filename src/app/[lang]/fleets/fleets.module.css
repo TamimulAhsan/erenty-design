@@ -1278,7 +1278,6 @@
   padding: 32px 40px;
   display: flex;
   flex-direction: column;
-  min-height: 580px;
   position: relative;
 }
 
@@ -1710,6 +1709,9 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  max-height: 340px;
+  overflow-y: auto;
+  padding-right: 4px;
 }
 
 .esignInstructions {
@@ -2159,7 +2161,6 @@
 
   .flowContainer {
     padding: 24px 20px;
-    min-height: auto;
   }
 
   .plansGrid {

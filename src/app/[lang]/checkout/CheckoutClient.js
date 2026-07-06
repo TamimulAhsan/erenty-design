@@ -13,12 +13,20 @@ export default function CheckoutClient({ lang, dict = {} }) {
 
   const bikeId = searchParams.get("bike") || "kukirin-g3-pro";
   const planId = searchParams.get("plan") || "plus";
+  const addonsParam = searchParams.get("addons") || "";
+  const selectedAddons = addonsParam ? addonsParam.split(",").filter(Boolean) : [];
 
   const bike = FLEET_BIKES.find(b => b.id === bikeId || b.slug === bikeId) || FLEET_BIKES[0];
 
   // Price calculations
   const planPriceOffset = planId === "plus" ? 7000 : planId === "max" ? 14000 : 0;
-  const totalPrice = bike.price + planPriceOffset;
+
+  let addonsPrice = 0;
+  if (selectedAddons.includes("rack")) addonsPrice += 1200;
+  if (selectedAddons.includes("battery")) addonsPrice += 2500;
+  if (selectedAddons.includes("mount")) addonsPrice += 500;
+
+  const totalPrice = bike.price + planPriceOffset + addonsPrice;
 
   const isHu = lang === "hu";
 
@@ -35,7 +43,7 @@ export default function CheckoutClient({ lang, dict = {} }) {
   const handlePayment = (e) => {
     e.preventDefault();
     // Redirect to fleets with success flags
-    const returnUrl = `/fleets?checkout_status=success&bike=${bike.id}&plan=${planId}`;
+    const returnUrl = `/fleets?checkout_status=success&bike=${bike.id}&plan=${planId}${addonsParam ? `&addons=${addonsParam}` : ""}`;
     router.push(localizeHref(lang, returnUrl));
   };
 
@@ -84,10 +92,30 @@ export default function CheckoutClient({ lang, dict = {} }) {
                 <span className={styles.planName}>{planName}</span>
               </div>
               <div className={styles.planPriceInfo}>
-                <span className={styles.planPrice}>{formatPrice(totalPrice)} Ft</span>
+                <span className={styles.planPrice}>{formatPrice(bike.price + planPriceOffset)} Ft</span>
                 <span className={styles.planPeriod}>/ mo</span>
               </div>
             </div>
+
+            {selectedAddons.length > 0 && (
+              <div className={styles.planBadgeRow} style={{ marginTop: "12px", borderTop: "1px dashed rgba(255, 255, 255, 0.1)", paddingTop: "12px" }}>
+                <div className={styles.planInfo}>
+                  <span className={styles.planLabel}>{isHu ? "KIVÁLASZTOTT KIEGÉSZÍTŐK" : "SELECTED ADD-ONS"}</span>
+                  <span className={styles.planName} style={{ fontSize: "14px", opacity: 0.9 }}>
+                    {selectedAddons.map(id => {
+                      if (id === "rack") return isHu ? "Nagy teherbírású csomagtartó" : "Heavy Cargo Rack";
+                      if (id === "battery") return isHu ? "Kiterjesztett akkumulátor" : "Extended Battery";
+                      if (id === "mount") return isHu ? "Telefontartó és USB" : "Phone Mount & USB";
+                      return id;
+                    }).join(", ")}
+                  </span>
+                </div>
+                <div className={styles.planPriceInfo}>
+                  <span className={styles.planPrice}>+{formatPrice(addonsPrice)} Ft</span>
+                  <span className={styles.planPeriod}>/ mo</span>
+                </div>
+              </div>
+            )}
 
             <div className={styles.priceDivider} />
 
@@ -100,6 +128,12 @@ export default function CheckoutClient({ lang, dict = {} }) {
                 <span>{isHu ? "Csomag kiegészítés" : "Plan coverage addon"}</span>
                 <span>+{formatPrice(planPriceOffset)} Ft</span>
               </div>
+              {addonsPrice > 0 && (
+                <div className={styles.breakdownRow}>
+                  <span>{isHu ? "Kiegészítők" : "Add-ons"}</span>
+                  <span>+{formatPrice(addonsPrice)} Ft</span>
+                </div>
+              )}
               <div className={`${styles.breakdownRow} ${styles.totalRow}`}>
                 <span>{isHu ? "Fizetendő összeg (Havonta)" : "Total Due (Monthly)"}</span>
                 <span>{formatPrice(totalPrice)} Ft</span>
