@@ -20,6 +20,7 @@ export default function RepairPartnersClient({ dict = {}, lang = "en" }) {
   const closeModalBtnRef = useRef(null);
   const lastActiveElementRef = useRef(null);
   const modalRef = useRef(null);
+  const heroRef = useRef(null);
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -115,12 +116,14 @@ export default function RepairPartnersClient({ dict = {}, lang = "en" }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScroll = window.scrollY;
-      setIsScrolled((prev) => {
-        if (currentScroll > 80) return true;
-        if (currentScroll < 40) return false;
-        return prev;
-      });
+      if (heroRef.current) {
+        const heroRect = heroRef.current.getBoundingClientRect();
+        // The sticky bar docks when the bottom of the hero reaches the navbar.
+        setIsScrolled(heroRect.bottom <= 58);
+      } else {
+        const currentScroll = window.scrollY;
+        setIsScrolled(currentScroll > 450);
+      }
     };
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -159,7 +162,7 @@ export default function RepairPartnersClient({ dict = {}, lang = "en" }) {
   return (
     <div className={styles.pageWrapper}>
       {/* 1. Hero */}
-      <section className={styles.hero}>
+      <section ref={heroRef} className={styles.hero}>
         <div className={styles.heroTextContainer}>
           <h1 className={styles.heroTitle}>{dict.heroTitle || "Service & Repair Partners"}</h1>
           <p className={styles.heroSubtitle}>

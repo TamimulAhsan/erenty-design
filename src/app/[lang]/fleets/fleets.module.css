@@ -1,7 +1,7 @@
 /* Premium Editorial Fleets Stylesheet */
 
 .pageWrapper {
-  background-color: var(--background, #F7FAF7);
+  background-color: #EDF3EF;
   min-height: 100vh;
   color: var(--brand-dark, #1E2D2F);
   font-family: var(--font-sans, inherit);
@@ -352,7 +352,7 @@
   top: 72px;
   z-index: 40;
   width: 100%;
-  background: #EDF3EF; /* Initially blends with bottom of cleanHero */
+  background: #EDF3EF; /* Same as bottom of cleanHero gradient */
   border-bottom: none;
   box-shadow: none;
   transition: top 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
@@ -360,8 +360,8 @@
 
 .stickyBarWrapperScrolled {
   top: 56px; /* Align with shrunken navbar height */
-  background: var(--card); /* Transitions to navbar background */
-  border-bottom: 1px solid var(--border);
+  background: var(--card); /* Turns color same as navbar when scrolled/docked */
+  border-bottom: none;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
 }
 
@@ -404,34 +404,35 @@
 .searchIcon {
   position: absolute;
   left: 16px;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--brand-dark, #005B45); /* Green search icon inside */
   pointer-events: none;
+  z-index: 10;
 }
 
 .searchInput {
   width: 100%;
   height: 42px;
-  background: var(--brand-dark, #005B45);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #FFFFFF; /* White background to stand out properly */
+  border: 1.5px solid var(--brand-dark, #005B45); /* Green border */
   padding: 0 44px 0 44px;
   border-radius: 21px;
   font-size: 0.9rem;
   font-weight: 500;
-  color: #FFFFFF;
+  color: var(--foreground, #22191B); /* Black text inside */
   outline: none;
   font-family: inherit;
   transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .searchInput::placeholder {
-  color: rgba(255, 255, 255, 0.55);
+  color: var(--muted-foreground, #667370);
   font-weight: 500;
 }
 
 .searchInput:focus {
-  border-color: var(--primary, #00D8A4);
-  background: var(--brand-darker, #143132);
-  box-shadow: 0 0 0 3px rgba(0, 216, 164, 0.15);
+  border-color: var(--brand-dark, #005B45);
+  background: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(0, 91, 69, 0.15);
 }
 
 .searchClearBtn {
@@ -445,15 +446,15 @@
   padding: 0;
   border: none;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.15);
-  color: rgba(255, 255, 255, 0.85);
+  background: rgba(0, 91, 69, 0.08); /* light green tint */
+  color: var(--brand-dark, #005B45);
   cursor: pointer;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .searchClearBtn:hover {
-  background: rgba(255, 255, 255, 0.28);
-  color: #FFFFFF;
+  background: rgba(0, 91, 69, 0.16);
+  color: var(--brand-darker, #143132);
 }
 
 @media (min-width: 769px) {
@@ -488,7 +489,8 @@
 .categoryTabs {
   display: flex;
   gap: 4px;
-  background: var(--brand-dark, #005B45);
+  background: #FFFFFF; /* White background to stand out properly */
+  border: 1.5px solid var(--brand-dark, #005B45); /* Green border */
   padding: 4px;
   border-radius: 30px;
 }
@@ -500,7 +502,7 @@
   border-radius: 20px;
   font-size: 0.875rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--foreground, #22191B); /* Black text inside */
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -510,15 +512,16 @@
 
 @media (hover: hover) {
   .tabBtn:hover {
-    color: #FFFFFF;
+    color: var(--brand-dark, #005B45);
+    background: rgba(0, 91, 69, 0.05); /* subtle hover state */
   }
 }
 
 .tabBtnActive,
 .tabBtnActive:hover {
-  background: #FFFFFF;
-  color: var(--brand-dark, #005B45);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  background: var(--brand-dark, #005B45); /* Green for selected filter */
+  color: #FFFFFF; /* White text on selected */
+  box-shadow: 0 2px 8px rgba(0, 91, 69, 0.2);
 }
 
 .tabCount {
@@ -539,13 +542,13 @@
 }
 
 .dropdownTrigger {
-  background: var(--brand-dark, #005B45);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #FFFFFF; /* White background to stand out properly */
+  border: 1.5px solid var(--brand-dark, #005B45); /* Green border */
   padding: 10px 16px;
   border-radius: 20px;
   font-size: 0.875rem;
   font-weight: 600;
-  color: #FFFFFF;
+  color: var(--foreground, #22191B); /* Black text inside */
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -555,16 +558,17 @@
 
 @media (hover: hover) {
   .dropdownTrigger:hover {
-    border-color: rgba(255, 255, 255, 0.3);
-    background: var(--brand-darker, #143132);
+    border-color: var(--brand-dark, #005B45);
+    background: rgba(0, 91, 69, 0.05); /* subtle hover state */
+    color: var(--brand-dark, #005B45);
   }
 }
 
 .activeTrigger,
 .activeTrigger:hover {
-  border-color: var(--primary, #00D8A4);
-  background: rgba(0, 216, 164, 0.2);
-  color: #FFFFFF;
+  border-color: var(--brand-dark, #005B45);
+  background: var(--brand-dark, #005B45); /* Green background for active filter */
+  color: #FFFFFF; /* White text on selected */
 }
 
 .glassPopover {

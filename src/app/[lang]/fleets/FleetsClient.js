@@ -115,6 +115,7 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
   const sortRef = useRef(null);
   const trackRef = useRef(null);
   const plansGridRef = useRef(null);
+  const heroRef = useRef(null);
 
   // For detail image zoom on hover
   const [zoomStyle, setZoomStyle] = useState({});
@@ -222,12 +223,14 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
   const [isScrolled, setIsScrolled] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
-      const currentScroll = window.scrollY;
-      setIsScrolled((prev) => {
-        if (currentScroll > 80) return true;
-        if (currentScroll < 40) return false;
-        return prev;
-      });
+      if (heroRef.current) {
+        const heroRect = heroRef.current.getBoundingClientRect();
+        // The shrunken navbar height is 56px. The sticky bar docks when the bottom of the hero reaches it.
+        setIsScrolled(heroRect.bottom <= 58);
+      } else {
+        const currentScroll = window.scrollY;
+        setIsScrolled(currentScroll > 540);
+      }
     };
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -1088,7 +1091,7 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
   return (
     <div className={styles.pageWrapper}>
       {/* 1. Immersive Typographic Hero Section */}
-      <section className={styles.cleanHero}>
+      <section ref={heroRef} className={styles.cleanHero}>
         <div className={styles.heroTextContainer}>
           <h1 className={styles.heroTitleCentered}>{dict.heroTitle || "Go Green. Go Electric."}</h1>
           <p className={styles.heroSubtitleCentered}>
