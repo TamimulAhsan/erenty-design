@@ -116,6 +116,35 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
   const trackRef = useRef(null);
   const plansGridRef = useRef(null);
 
+  // For detail image zoom on hover
+  const [zoomStyle, setZoomStyle] = useState({});
+  const [isZoomed, setIsZoomed] = useState(false);
+
+  const handleMouseMove = (e) => {
+    if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) {
+      return;
+    }
+    const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - left) / width) * 100;
+    const y = ((e.clientY - top) / height) * 100;
+    setZoomStyle({
+      transformOrigin: `${x}% ${y}%`,
+      transform: "scale(2.2)",
+    });
+  };
+
+  const handleMouseEnter = () => {
+    if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) {
+      return;
+    }
+    setIsZoomed(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsZoomed(false);
+    setZoomStyle({});
+  };
+
   // Generate the next 5 working days (excluding Sunday) for booking
   const getBookingDates = () => {
     const dates = [];
@@ -235,6 +264,8 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
   /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     setActiveImageIndex(0);
+    setIsZoomed(false);
+    setZoomStyle({});
     if (typeof window !== "undefined" && window.location.search.includes("checkout_status=success")) {
       setModalStep("esign");
     } else {
@@ -1513,8 +1544,13 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
                   </div>
 
                   {/* Main Image Container */}
-                  <div className={styles.mainImageContainer}>
-                    {modalImages.length > 1 && (
+                  <div
+                    className={styles.mainImageContainer}
+                    onMouseMove={handleMouseMove}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                  >
+                    {modalImages.length > 1 && !isZoomed && (
                       <>
                         <button className={`${styles.navArrow} ${styles.prevArrow}`} onClick={handlePrevImage} type="button">
                           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -1528,14 +1564,19 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
                         </button>
                       </>
                     )}
-                    <Image
-                      src={modalImages[activeImageIndex]}
-                      alt={`${activeModalBike.brand} ${activeModalBike.model}`}
-                      fill
-                      className={styles.modalBikeImage}
-                      sizes="(max-width: 991px) 100vw, 55vw"
-                      priority
-                    />
+                    <div
+                      className={styles.zoomWrapper}
+                      style={isZoomed ? zoomStyle : {}}
+                    >
+                      <Image
+                        src={modalImages[activeImageIndex]}
+                        alt={`${activeModalBike.brand} ${activeModalBike.model}`}
+                        fill
+                        className={styles.modalBikeImage}
+                        sizes="(max-width: 991px) 100vw, 55vw"
+                        priority
+                      />
+                    </div>
                   </div>
                 </div>
 
