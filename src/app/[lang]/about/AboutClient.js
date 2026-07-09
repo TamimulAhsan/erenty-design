@@ -240,18 +240,20 @@ export default function AboutClient({ dict }) {
         <div className={`${styles.logosHeader} ${styles.animateOnScroll}`}>
           <p className={styles.logosTitle}>{t.logosTitle}</p>
         </div>
-        <div className={`${styles.marqueeTrack} ${styles.animateOnScroll} ${styles.delay1}`}>
-          {[...COMPANY_LOGOS, ...COMPANY_LOGOS].map((logo, i) => (
-            <div key={i} className={styles.logoItem}>
-              <Image
-                src={logo.src}
-                alt={logo.name}
-                width={72}
-                height={40}
-                className={styles.logoImg}
-              />
-            </div>
-          ))}
+        <div className={styles.marqueeContainer}>
+          <div className={`${styles.marqueeTrack} ${styles.animateOnScroll} ${styles.delay1}`}>
+            {[...COMPANY_LOGOS, ...COMPANY_LOGOS].map((logo, i) => (
+              <div key={i} className={styles.logoItem}>
+                <Image
+                  src={logo.src}
+                  alt={logo.name}
+                  width={130}
+                  height={60}
+                  className={styles.logoImg}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

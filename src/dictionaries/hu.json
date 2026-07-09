@@ -1456,9 +1456,9 @@
   },
   "cookieConsent": {
     "title": "Értékeljük a magánéletét",
-    "description": "Sütiket használunk a böngészési élmény javítására, a webhely forgalmának elemzésére és marketing tevékenységeink támogatására. Az „Összes elfogadása” gombra kattintva hozzájárul a sütik használatához a Süti Szabályzatunkban leírtak szerint.",
+    "description": "Sütiket használunk a böngészési élmény javítására, a webhely forgalmának elemzésére és marketing tevékenységeink támogatására. Az „Elfogadás” gombra kattintva hozzájárul a sütik használatához a Süti Szabályzatunkban leírtak szerint.",
     "cookiePolicyLink": "Süti Szabályzat",
-    "acceptAll": "Összes elfogadása",
+    "acceptAll": "Elfogadás",
     "decline": "Elutasítás",
     "customize": "Testreszabás",
     "save": "Mentés",

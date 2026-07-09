@@ -203,8 +203,8 @@ export default function Footer({ dict }) {
                   <Image
                     src={logo.src}
                     alt={logo.alt}
-                    width={120}
-                    height={40}
+                    width={144}
+                    height={48}
                     className={styles.partnerLogoImg}
                     style={{ objectFit: "contain" }}
                   />
@@ -215,8 +215,8 @@ export default function Footer({ dict }) {
                   <Image
                     src={logo.src}
                     alt={logo.alt}
-                    width={120}
-                    height={40}
+                    width={144}
+                    height={48}
                     className={styles.partnerLogoImg}
                     style={{ objectFit: "contain" }}
                   />

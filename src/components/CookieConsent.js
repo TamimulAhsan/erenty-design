@@ -14,9 +14,9 @@ export default function CookieConsent({ dict }) {
 
   const t = dict || {
     title: "We value your privacy",
-    description: "We use cookies to improve your browsing experience, analyze site traffic, and support our marketing efforts. By clicking \"Accept All\", you consent to our use of cookies as described in our Cookie Policy.",
+    description: "We use cookies to improve your browsing experience, analyze site traffic, and support our marketing efforts. By clicking \"Accept\", you consent to our use of cookies as described in our Cookie Policy.",
     cookiePolicyLink: "Cookie Policy",
-    acceptAll: "Accept All",
+    acceptAll: "Accept",
     decline: "Decline",
     customize: "Customize",
     save: "Save Preferences",
@@ -77,7 +77,7 @@ export default function CookieConsent({ dict }) {
         <div className={styles.mainContent}>
           <div className={styles.textContainer}>
             <h2 id="consent-title" className={styles.title}>
-              <span className={styles.sparkleIcon}>🛡️</span> {t.title}
+              {t.title}
             </h2>
             <p className={styles.description}>
               {parts.length > 1 ? (

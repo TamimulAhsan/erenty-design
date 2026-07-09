@@ -82,7 +82,7 @@ export default function TrustedBy({ dict }) {
                             src={logo.src} 
                             alt={logo.name} 
                             fill
-                            sizes="(max-width: 992px) 80px, 120px"
+                            sizes="(max-width: 992px) 105px, 150px"
                             className={styles.companyImage}
                           />
                         </div>
@@ -114,7 +114,7 @@ export default function TrustedBy({ dict }) {
                             src={logo.src} 
                             alt={logo.name} 
                             fill
-                            sizes="(max-width: 992px) 80px, 120px"
+                            sizes="(max-width: 992px) 105px, 150px"
                             className={styles.companyImage}
                           />
                         </div>

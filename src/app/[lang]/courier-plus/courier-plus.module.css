@@ -430,7 +430,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--brand-dark);
+  color: #000000;
   margin-bottom: var(--space-4);
 }
 

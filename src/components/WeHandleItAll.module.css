@@ -46,7 +46,7 @@
 }
 
 .cellIcon {
-  color: var(--primary);
+  color: #000000;
   margin-bottom: var(--space-4);
   display: flex;
   align-items: center;

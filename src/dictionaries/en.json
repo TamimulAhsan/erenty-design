@@ -1456,9 +1456,9 @@
   },
   "cookieConsent": {
     "title": "We value your privacy",
-    "description": "We use cookies to improve your browsing experience, analyze site traffic, and support our marketing efforts. By clicking \"Accept All\", you consent to our use of cookies as described in our Cookie Policy.",
+    "description": "We use cookies to improve your browsing experience, analyze site traffic, and support our marketing efforts. By clicking \"Accept\", you consent to our use of cookies as described in our Cookie Policy.",
     "cookiePolicyLink": "Cookie Policy",
-    "acceptAll": "Accept All",
+    "acceptAll": "Accept",
     "decline": "Decline",
     "customize": "Customize",
     "save": "Save Preferences",
