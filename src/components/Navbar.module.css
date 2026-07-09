@@ -255,6 +255,7 @@
   height: 72px; /* Occupy full height to avoid hover gaps */
   border-bottom: 2px solid transparent;
   transition: all 0.2s ease;
+  text-decoration: none;
 }
 
 .navLink:hover,
@@ -621,7 +622,7 @@
   flex-direction: column;
 }
 
-@media (min-width: 480px) {
+@media (min-width: 768px) {
   .mobileDrawer {
     max-width: 400px;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.15);
@@ -848,5 +849,73 @@
 .footerIconButton:hover {
   background: var(--muted);
   color: var(--foreground);
+}
+
+.logoImage {
+  transition: filter 0.3s ease;
+  display: block;
+}
+
+.headerTransparent .logoImage {
+  filter: brightness(0) invert(1);
+}
+
+.headerTransparent:hover .logoImage,
+.headerTransparentLight:hover .logoImage {
+  filter: none;
+}
+
+.drawerLogoArea {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.drawerLogoImage {
+  display: block;
+}
+
+.mobileDirectLink {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--foreground);
+  padding: var(--space-3) var(--space-2);
+  border-radius: var(--radius-md);
+  display: block;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.mobileDirectLink:hover {
+  background: var(--muted);
+  color: var(--primary);
+}
+
+.drawerLoginBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-size: 15px;
+  font-weight: 700;
+  background: var(--primary, #00D8A4);
+  color: var(--brand-darker, #143132) !important;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 216, 164, 0.15);
+  margin-top: var(--space-2);
+}
+
+.drawerLoginBtn:hover {
+  background: var(--primary-glow, #00FFCA);
+  box-shadow: 0 4px 16px rgba(0, 216, 164, 0.25);
+  transform: translateY(-1px);
 }
 

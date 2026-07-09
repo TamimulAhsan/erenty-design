@@ -48,7 +48,7 @@ export default async function RootLayout({ children, params }) {
   const { lang } = await params;
   const dict = await getDictionary(lang);
   return (
-    <html lang={lang || defaultLocale} className={`${inter.variable} ${jetbrainsMono.variable} ${cruiser.variable}`}>
+    <html lang={lang || defaultLocale} className={`${inter.variable} ${jetbrainsMono.variable} ${cruiser.variable}`} suppressHydrationWarning>
       {/* suppressHydrationWarning covers attributes injected by browser extensions (e.g. Grammarly) into <body>, not our own markup. */}
       <body suppressHydrationWarning>
         {/* Navbar + Footer live in the layout so they persist across navigation

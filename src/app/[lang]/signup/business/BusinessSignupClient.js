@@ -179,6 +179,10 @@ export default function BusinessSignupClient({ dict, isEmbedded = false }) {
     setTimeout(() => {
       setStatus("redirecting");
       const slug = slugify(form.companyName) || "business";
+      if (typeof window !== "undefined") {
+        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("username", slug);
+      }
       setTimeout(() => {
         router.push(localizeHref(locale, `/profile/${slug}`));
       }, 700);

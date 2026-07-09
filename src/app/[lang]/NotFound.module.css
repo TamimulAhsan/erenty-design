@@ -41,6 +41,7 @@
 }
 
 .buttons { display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap; }
+.buttons > a { min-width: 200px; justify-content: center; }
 
 @media (max-width: 576px) {
   .errorCode { font-size: 100px; }

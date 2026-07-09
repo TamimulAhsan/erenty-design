@@ -48,14 +48,10 @@ export default function Navbar({ dict }) {
   const isDarkHeroRoute = DARK_HERO_ROUTES.includes(routePath) || !isKnownRoute;
   const isLightHeroRoute = LIGHT_HERO_ROUTES.includes(routePath);
 
-  // Which desktop dropdown is open: "fleets" | "services" | "company" | null
+  // Which desktop dropdown is open: "fleets" | "explore" | null
   const [openMenu, setOpenMenu] = useState(null);
   const [hoverTimeout, setHoverTimeout] = useState(null);
-  const isTouchDevice = useRef(false);
 
-  const handleTouchStart = () => {
-    isTouchDevice.current = true;
-  };
   const [isAtTop, setIsAtTop] = useState(true);
   const [hasScrolled, setHasScrolled] = useState(false);
   const [footerNear, setFooterNear] = useState(false);
@@ -65,8 +61,20 @@ export default function Navbar({ dict }) {
   // Mobile drawer states
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileFleetsOpen, setIsMobileFleetsOpen] = useState(false);
-  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
-  const [isMobileCompanyOpen, setIsMobileCompanyOpen] = useState(false);
+  const [isMobileExploreOpen, setIsMobileExploreOpen] = useState(false);
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState("user");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+      setIsLoggedIn(loggedIn);
+      if (loggedIn) {
+        setUsername(localStorage.getItem("username") || "user");
+      }
+    }
+  }, [pathname]);
 
   // Close mega menu and mobile menu drawers upon navigation to new pages.
   // Adjusted during render (rather than in an effect) per React's guidance on
@@ -94,14 +102,14 @@ export default function Navbar({ dict }) {
     selectLanguage: "Select Language",
     help: "Help",
     profile: "Profile",
-    services: "Services",
-    company: "Company",
+    explore: "Explore",
     repairPartners: "Repair Partners",
     about: "About",
     contact: "Contact",
     faq: "FAQ",
     toggleMenu: "Toggle menu",
-    closeMenu: "Close menu"
+    closeMenu: "Close menu",
+    login: "Login"
   };
 
   const localizePath = (path) => localizeHref(currentLangLower, path);
@@ -180,14 +188,14 @@ export default function Navbar({ dict }) {
   const showSeeFleetsBtn = mounted ? hasScrolled : false;
   const showLogoTagline = mounted ? footerNear : false;
 
-  const handleMouseEnter = (menu) => {
-    if (isTouchDevice.current) return;
+  const handlePointerEnter = (e, menu) => {
+    if (e.pointerType === "touch") return;
     if (hoverTimeout) clearTimeout(hoverTimeout);
     setOpenMenu(menu);
   };
 
-  const handleMouseLeave = () => {
-    if (isTouchDevice.current) return;
+  const handlePointerLeave = (e) => {
+    if (e.pointerType === "touch") return;
     const timeout = setTimeout(() => {
       setOpenMenu(null);
     }, 200);
@@ -208,14 +216,9 @@ export default function Navbar({ dict }) {
     setIsMobileFleetsOpen(!isMobileFleetsOpen);
   };
 
-  const toggleMobileServices = (e) => {
+  const toggleMobileExplore = (e) => {
     e.stopPropagation();
-    setIsMobileServicesOpen(!isMobileServicesOpen);
-  };
-
-  const toggleMobileCompany = (e) => {
-    e.stopPropagation();
-    setIsMobileCompanyOpen(!isMobileCompanyOpen);
+    setIsMobileExploreOpen(!isMobileExploreOpen);
   };
 
   if (routePath.startsWith("/checkout")) {
@@ -230,9 +233,8 @@ export default function Navbar({ dict }) {
           {showMegaMenu && (
             <div
               className={styles.navLinkWrapper}
-              onTouchStart={handleTouchStart}
-              onMouseEnter={() => handleMouseEnter("fleets")}
-              onMouseLeave={handleMouseLeave}
+              onPointerEnter={(e) => handlePointerEnter(e, "fleets")}
+              onPointerLeave={handlePointerLeave}
               onClick={(e) => handleTriggerClick(e, "fleets")}
             >
               <div className={`${styles.navLink} ${isMegaMenuOpen ? styles.navLinkActive : ""}`}>
@@ -289,16 +291,23 @@ export default function Navbar({ dict }) {
             </div>
           )}
 
-          {/* Services dropdown */}
+          {/* Courier+ Direct Link */}
+          <Link
+            href={localizePath("/courier-plus")}
+            className={`${styles.navLink} ${routePath === "/courier-plus" ? styles.navLinkActive : ""}`}
+          >
+            {t.courierPlus}
+          </Link>
+
+          {/* Explore dropdown */}
           <div
             className={styles.dropdownWrapper}
-            onTouchStart={handleTouchStart}
-            onMouseEnter={() => handleMouseEnter("services")}
-            onMouseLeave={handleMouseLeave}
-            onClick={(e) => handleTriggerClick(e, "services")}
+            onPointerEnter={(e) => handlePointerEnter(e, "explore")}
+            onPointerLeave={handlePointerLeave}
+            onClick={(e) => handleTriggerClick(e, "explore")}
           >
-            <div className={`${styles.navLink} ${openMenu === "services" ? styles.navLinkActive : ""}`}>
-              {t.services}
+            <div className={`${styles.navLink} ${openMenu === "explore" ? styles.navLinkActive : ""}`}>
+              {t.explore}
               <svg
                 className={styles.chevron}
                 fill="none"
@@ -310,47 +319,17 @@ export default function Navbar({ dict }) {
               </svg>
             </div>
             <div 
-              className={`${styles.dropdown} ${openMenu === "services" ? styles.dropdownOpen : ""}`}
+              className={`${styles.dropdown} ${openMenu === "explore" ? styles.dropdownOpen : ""}`}
               onClick={(e) => e.stopPropagation()}
             >
-              <Link href={localizePath("/courier-plus")} className={styles.dropdownItem}>
-                {t.courierPlus}
+              <Link href={localizePath("/#how-it-works")} className={styles.dropdownItem}>
+                {t.howItWorks}
               </Link>
               <Link href={localizePath("/repair-partners")} className={styles.dropdownItem}>
                 {t.repairPartners}
               </Link>
-            </div>
-          </div>
-
-          {/* Company dropdown */}
-          <div
-            className={styles.dropdownWrapper}
-            onTouchStart={handleTouchStart}
-            onMouseEnter={() => handleMouseEnter("company")}
-            onMouseLeave={handleMouseLeave}
-            onClick={(e) => handleTriggerClick(e, "company")}
-          >
-            <div className={`${styles.navLink} ${openMenu === "company" ? styles.navLinkActive : ""}`}>
-              {t.company}
-              <svg
-                className={styles.chevron}
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </div>
-            <div 
-              className={`${styles.dropdown} ${openMenu === "company" ? styles.dropdownOpen : ""}`}
-              onClick={(e) => e.stopPropagation()}
-            >
               <Link href={localizePath("/about")} className={styles.dropdownItem}>
                 {t.about}
-              </Link>
-              <Link href={localizePath("/#how-it-works")} className={styles.dropdownItem}>
-                {t.howItWorks}
               </Link>
               <Link href={localizePath("/contact")} className={styles.dropdownItem}>
                 {t.contact}
@@ -382,9 +361,16 @@ export default function Navbar({ dict }) {
           )}
         </nav>
 
-        {/* Middle Side: Text Logo */}
+        {/* Middle Side: Image Logo */}
         <Link href={localizePath("/")} className={styles.logoArea}>
-          E-RENTY
+          <Image
+            src="/erenty-logo-green.svg"
+            alt="E-Renty Logo"
+            width={130}
+            height={14}
+            className={styles.logoImage}
+            priority
+          />
           <span className={`${styles.logoTagline} ${showLogoTagline ? styles.logoTaglineVisible : ""}`}>
             {t.tagline}
           </span>
@@ -455,7 +441,11 @@ export default function Navbar({ dict }) {
           </Link>
 
           {/* Profile */}
-          <Link href={localizePath("/login")} className={styles.iconButton} aria-label={t.profile}>
+          <Link 
+            href={isLoggedIn ? localizePath(`/profile/${username}`) : localizePath("/login")} 
+            className={styles.iconButton} 
+            aria-label={isLoggedIn ? (t.profile || "Profile") : (t.login || "Login")}
+          >
             <svg
               width="20"
               height="20"
@@ -519,10 +509,17 @@ export default function Navbar({ dict }) {
       {/* Mobile Drawer Panel */}
       <div className={`${styles.mobileDrawer} ${isMobileMenuOpen ? styles.mobileDrawerOpen : ""}`}>
         <div className={styles.drawerHeader}>
-          <div className={styles.drawerLogoArea}>
-            <span className={styles.drawerLogo}>E-RENTY</span>
+          <Link href={localizePath("/")} className={styles.drawerLogoArea} onClick={toggleMobileMenu}>
+            <Image
+              src="/erenty-logo-green.svg"
+              alt="E-Renty Logo"
+              width={110}
+              height={12}
+              className={styles.drawerLogoImage}
+              priority
+            />
             <span className={styles.drawerTagline}>{t.tagline}</span>
-          </div>
+          </Link>
           <button className={styles.closeBtn} onClick={toggleMobileMenu} aria-label={t.closeMenu}>
             <svg
               width="22"
@@ -592,15 +589,24 @@ export default function Navbar({ dict }) {
               </div>
             </div>
 
-            {/* Accordion item for Services */}
+            {/* Courier+ Direct Link */}
+            <Link
+              href={localizePath("/courier-plus")}
+              className={styles.mobileDirectLink}
+              onClick={toggleMobileMenu}
+            >
+              {t.courierPlus}
+            </Link>
+
+            {/* Accordion item for Explore */}
             <div className={styles.mobileAccordion}>
               <button
-                className={`${styles.mobileNavLink} ${isMobileServicesOpen ? styles.mobileAccordionActive : ""}`}
-                onClick={toggleMobileServices}
+                className={`${styles.mobileNavLink} ${isMobileExploreOpen ? styles.mobileAccordionActive : ""}`}
+                onClick={toggleMobileExplore}
               >
-                <span>{t.services}</span>
+                <span>{t.explore}</span>
                 <svg
-                  className={`${styles.drawerChevron} ${isMobileServicesOpen ? styles.rotateChevron : ""}`}
+                  className={`${styles.drawerChevron} ${isMobileExploreOpen ? styles.rotateChevron : ""}`}
                   width="18"
                   height="18"
                   viewBox="0 0 24 24"
@@ -612,42 +618,15 @@ export default function Navbar({ dict }) {
                 </svg>
               </button>
 
-              <div className={`${styles.mobileAccordionContent} ${isMobileServicesOpen ? styles.mobileAccordionContentOpen : ""}`}>
-                <Link href={localizePath("/courier-plus")} className={styles.mobileSubLink} onClick={toggleMobileMenu}>
-                  {t.courierPlus}
+              <div className={`${styles.mobileAccordionContent} ${isMobileExploreOpen ? styles.mobileAccordionContentOpen : ""}`}>
+                <Link href={localizePath("/#how-it-works")} className={styles.mobileSubLink} onClick={toggleMobileMenu}>
+                  {t.howItWorks}
                 </Link>
                 <Link href={localizePath("/repair-partners")} className={styles.mobileSubLink} onClick={toggleMobileMenu}>
                   {t.repairPartners}
                 </Link>
-              </div>
-            </div>
-
-            {/* Accordion item for Company */}
-            <div className={styles.mobileAccordion}>
-              <button
-                className={`${styles.mobileNavLink} ${isMobileCompanyOpen ? styles.mobileAccordionActive : ""}`}
-                onClick={toggleMobileCompany}
-              >
-                <span>{t.company}</span>
-                <svg
-                  className={`${styles.drawerChevron} ${isMobileCompanyOpen ? styles.rotateChevron : ""}`}
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                >
-                  <polyline points="6 9 12 15 18 9" />
-                </svg>
-              </button>
-
-              <div className={`${styles.mobileAccordionContent} ${isMobileCompanyOpen ? styles.mobileAccordionContentOpen : ""}`}>
                 <Link href={localizePath("/about")} className={styles.mobileSubLink} onClick={toggleMobileMenu}>
                   {t.about}
-                </Link>
-                <Link href={localizePath("/#how-it-works")} className={styles.mobileSubLink} onClick={toggleMobileMenu}>
-                  {t.howItWorks}
                 </Link>
                 <Link href={localizePath("/contact")} className={styles.mobileSubLink} onClick={toggleMobileMenu}>
                   {t.contact}
@@ -686,13 +665,24 @@ export default function Navbar({ dict }) {
               <span>{t.help}</span>
             </Link>
 
-            <Link href={localizePath("/login")} className={styles.footerIconButton} aria-label={t.profile} onClick={toggleMobileMenu}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                <circle cx="12" cy="7" r="4" />
-              </svg>
-              <span>{t.profile}</span>
-            </Link>
+            {isLoggedIn ? (
+              <Link href={localizePath(`/profile/${username}`)} className={styles.footerIconButton} style={{ fontWeight: '600', color: 'var(--foreground)' }} onClick={toggleMobileMenu}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+                <span>{t.profile || "Profile"}</span>
+              </Link>
+            ) : (
+              <Link href={localizePath("/login")} className={styles.drawerLoginBtn} onClick={toggleMobileMenu}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                  <polyline points="10 17 15 12 10 7" />
+                  <line x1="15" y1="12" x2="3" y2="12" />
+                </svg>
+                <span>{t.login}</span>
+              </Link>
+            )}
           </div>
         </div>
       </div>

@@ -16,12 +16,14 @@
     "profile": "Profil",
     "services": "Szolgáltatások",
     "company": "Vállalat",
+    "explore": "Felfedezés",
     "repairPartners": "Javító partnerek",
     "about": "Rólunk",
     "contact": "Kapcsolat",
     "faq": "GYIK",
     "toggleMenu": "Menü megnyitása",
-    "closeMenu": "Menü bezárása"
+    "closeMenu": "Menü bezárása",
+    "login": "Bejelentkezés"
   },
   "hero": {
     "titleLine1": "Üzemanyagmentes",

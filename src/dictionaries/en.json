@@ -16,12 +16,14 @@
     "profile": "Profile",
     "services": "Services",
     "company": "Company",
+    "explore": "Explore",
     "repairPartners": "Repair Partners",
     "about": "About",
     "contact": "Contact",
     "faq": "FAQ",
     "toggleMenu": "Toggle menu",
-    "closeMenu": "Close menu"
+    "closeMenu": "Close menu",
+    "login": "Login"
   },
   "hero": {
     "titleLine1": "Fuel Free",
