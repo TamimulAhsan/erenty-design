@@ -137,9 +137,6 @@ export default function BusinessClient({ dict = {}, lang = "en" }) {
       {/* ── HERO ──────────────────────────────────────────────────────── */}
       <section className={styles.hero}>
         <div className={styles.heroInner}>
-          <div className={`${styles.heroEyebrow} eyebrow`}>
-            {t.heroEyebrow}
-          </div>
           <h1 className={styles.heroTitle}>
             {t.heroTitleLine1}<br />
             <span className={styles.heroTitleHighlight}>{t.heroTitleLine2}</span>
@@ -154,16 +151,30 @@ export default function BusinessClient({ dict = {}, lang = "en" }) {
             </Link>
           </div>
         </div>
+
+        {/* ── Mobile-Only stats strip ── */}
+        <div className={`${styles.statsStrip} ${styles.mobileOnlyStats}`}>
+          <div className={styles.statsContainer}>
+            {stats.map((s, i) => (
+              <div key={i} className={styles.statItem}>
+                <span className={styles.statNum}>{s.value}</span>
+                <span className={styles.statLabel}>{s.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
-      {/* ── STATS BAR ─────────────────────────────────────────────────── */}
-      <div className={styles.statsBar}>
-        {stats.map((s, i) => (
-          <div key={i} className={styles.statItem}>
-            <span className={styles.statValue}>{s.value}</span>
-            <span className={styles.statLabel}>{s.label}</span>
-          </div>
-        ))}
+      {/* ── Desktop-Only Bleeding stats strip ── */}
+      <div className={`${styles.statsStrip} ${styles.desktopOnlyStats}`}>
+        <div className={styles.statsContainer}>
+          {stats.map((s, i) => (
+            <div key={i} className={styles.statItem}>
+              <span className={styles.statNum}>{s.value}</span>
+              <span className={styles.statLabel}>{s.label}</span>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* ── LOGO MARQUEE ──────────────────────────────────────────────── */}
