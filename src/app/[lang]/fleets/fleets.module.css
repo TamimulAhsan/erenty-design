@@ -1476,7 +1476,7 @@
 
 .planCard {
   background: #FFFFFF;
-  border: 2px solid rgba(0, 0, 0, 0.05);
+  border: 2px solid rgba(0, 0, 0, 0.08);
   border-radius: 16px;
   padding: 24px;
   position: relative;
@@ -1484,6 +1484,7 @@
   transition: all 0.25s ease;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
 }
 
 .planCard:hover {
@@ -1492,17 +1493,11 @@
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.02);
 }
 
-.planCardSelected {
-  border-color: var(--primary, #10B981);
-  background: rgba(16, 185, 129, 0.02);
-  box-shadow: 0 12px 30px -10px rgba(16, 185, 129, 0.12);
-}
-
 .planCardPopular {
-  border-color: var(--brand-dark, #005B45);
-  background: linear-gradient(135deg, var(--brand-darker, #143132), var(--brand-dark, #005B45));
-  color: #ffffff;
-  box-shadow: 0 12px 32px rgba(20, 49, 50, 0.25);
+  border: 3px solid var(--brand-dark, #005B45);
+  background: #FFFFFF;
+  color: var(--brand-dark, #1E2D2F);
+  box-shadow: 0 12px 32px rgba(16, 185, 129, 0.08);
   margin-top: -16px;
   margin-bottom: -16px;
   padding: 36px 24px;
@@ -1511,40 +1506,62 @@
 
 .planCardPopular:hover {
   transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(20, 49, 50, 0.35);
+  box-shadow: 0 16px 40px rgba(20, 49, 50, 0.12);
+}
+
+.planCardSelected {
+  border-color: var(--primary, #10B981) !important;
+  background: rgba(16, 185, 129, 0.16) !important;
+  color: var(--brand-dark, #1E2D2F) !important;
+  box-shadow: 0 12px 32px rgba(16, 185, 129, 0.1) !important;
 }
 
 .planCardPopular.planCardSelected {
-  border-color: var(--primary, #10B981);
-  box-shadow: 0 0 0 2px var(--primary, #10B981), 0 16px 40px rgba(20, 49, 50, 0.35);
+  border-color: var(--brand-dark, #005B45) !important;
+  background: rgba(16, 185, 129, 0.16) !important;
+  color: var(--brand-dark, #1E2D2F) !important;
+  box-shadow: 0 12px 32px rgba(20, 49, 50, 0.12) !important;
 }
 
-.planCardPopular .planName {
-  color: #ffffff;
+.planCardSelected .planName,
+.planCardPopular.planCardSelected .planName {
+  color: var(--brand-dark, #1E2D2F) !important;
 }
 
-.planCardPopular .planDesc {
-  color: rgba(255, 255, 255, 0.7);
+.planCardSelected .planDesc,
+.planCardPopular.planCardSelected .planDesc {
+  color: var(--muted-foreground, #6B7280) !important;
 }
 
-.planCardPopular .planPrice {
-  color: #ffffff;
+.planCardSelected .planPrice,
+.planCardPopular.planCardSelected .planPrice {
+  color: var(--brand-dark, #1E2D2F) !important;
 }
 
-.planCardPopular .planPeriod {
-  color: rgba(255, 255, 255, 0.6);
+.planCardSelected .planPeriod,
+.planCardPopular.planCardSelected .planPeriod {
+  color: var(--muted-foreground, #6B7280) !important;
 }
 
-.planCardPopular .planFeatureItem {
-  color: rgba(255, 255, 255, 0.9);
+.planCardSelected .planFeatureItem,
+.planCardPopular.planCardSelected .planFeatureItem {
+  color: var(--brand-dark, #1E2D2F) !important;
 }
 
-.planCardPopular .featureCheckIcon {
-  color: var(--primary, #10B981);
+.planCardSelected .featureCheckIcon,
+.planCardPopular.planCardSelected .featureCheckIcon {
+  color: var(--primary, #10B981) !important;
 }
 
-.planCardPopular .planLabel {
-  color: var(--primary, #10B981);
+.planCardSelected .planLabel,
+.planCardPopular.planCardSelected .planLabel {
+  color: var(--primary, #10B981) !important;
+}
+
+.planCardSelected .selectedCheckIcon,
+.planCardPopular.planCardSelected .selectedCheckIcon {
+  background: var(--primary, #10B981) !important;
+  color: #FFFFFF !important;
 }
 
 .planCardPopular .popularBadge {
@@ -1663,6 +1680,19 @@
   border-top: 1px solid rgba(0, 0, 0, 0.05);
   padding-top: 24px;
   margin-top: auto;
+}
+
+.flowFooterTwoRow {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+}
+
+.flowFooterButtons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 
 .flowBackBtn {
@@ -2321,8 +2351,47 @@
   }
 
   .plansGrid {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
     gap: 16px;
+    padding: 20px 20px;
+    margin: 0 -20px 24px -20px;
+    scrollbar-width: none;
+  }
+
+  .plansGrid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .planCard {
+    flex: 0 0 280px;
+    scroll-snap-align: center;
+    box-sizing: border-box;
+  }
+
+  .planCardPopular {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 28px 24px;
+    z-index: 5;
+  }
+
+  .flowFooterButtons {
+    width: 100%;
+  }
+
+  .flowFooterButtons .flowBackBtn,
+  .flowFooterButtons .flowContinueBtn {
+    flex: 1;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 10px;
+    font-size: 0.8rem;
+    text-align: center;
   }
 
   .dateGrid {

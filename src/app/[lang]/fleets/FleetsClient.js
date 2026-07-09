@@ -114,6 +114,7 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
   const priceRef = useRef(null);
   const sortRef = useRef(null);
   const trackRef = useRef(null);
+  const plansGridRef = useRef(null);
 
   // Generate the next 5 working days (excluding Sunday) for booking
   const getBookingDates = () => {
@@ -371,6 +372,23 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
     return () => window.removeEventListener("popstate", handlePopState);
   }, []);
 
+  // Auto-scroll the popular plan to the center on mobile when the plans step is active
+  useEffect(() => {
+    if (modalStep === "plans" && plansGridRef.current) {
+      const popularCard = plansGridRef.current.querySelector(`.${styles.planCardPopular}`);
+      if (popularCard) {
+        const timer = setTimeout(() => {
+          popularCard.scrollIntoView({
+            behavior: "auto",
+            block: "nearest",
+            inline: "center"
+          });
+        }, 80);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [modalStep]);
+
   const handleBrandChange = (brandName) => {
     setSelectedBrands((prev) =>
       prev.includes(brandName)
@@ -521,7 +539,7 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
           </div>
         </div>
 
-        <div className={styles.plansGrid}>
+        <div ref={plansGridRef} className={styles.plansGrid}>
           {plans.map((plan) => {
             const isSelected = selectedPlan === plan.id;
             return (
@@ -560,23 +578,25 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
           })}
         </div>
 
-        <div className={styles.flowFooter}>
-          <button className={styles.flowBackBtn} onClick={() => setModalStep("details")} type="button">
-            {dict.backToDetails || "Back to details"}
-          </button>
+        <div className={`${styles.flowFooter} ${styles.flowFooterTwoRow}`}>
           <div className={styles.selectedPlanSummary}>
             <span className={styles.summaryLabel}>{dict.selectedPlanText || "SELECTED"}:</span>
             <span className={styles.summaryValue}>
               {currentSelectedPlanObj.name} - {formatPrice(currentSelectedPlanObj.price)} Ft/mo
             </span>
           </div>
-          <button className={styles.flowContinueBtn} onClick={handleContinueFromPlans} type="button">
-            {isHu ? "Kiegészítők kiválasztása" : "Select Add-ons"}
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </button>
+          <div className={styles.flowFooterButtons}>
+            <button className={styles.flowBackBtn} onClick={() => setModalStep("details")} type="button">
+              {dict.backToDetails || "Back to details"}
+            </button>
+            <button className={styles.flowContinueBtn} onClick={handleContinueFromPlans} type="button">
+              {isHu ? "Kiegészítők kiválasztása" : "Select Add-ons"}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -638,23 +658,25 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
           })}
         </div>
 
-        <div className={styles.flowFooter}>
-          <button className={styles.flowBackBtn} onClick={() => setModalStep("plans")} type="button">
-            {isHu ? "Vissza a csomagokhoz" : "Back to plans"}
-          </button>
+        <div className={`${styles.flowFooter} ${styles.flowFooterTwoRow}`}>
           <div className={styles.selectedPlanSummary}>
             <span className={styles.summaryLabel}>{isHu ? "KIVÁLASZTOTT" : "SELECTED"}:</span>
             <span className={styles.summaryValue}>
               {selectedAddons.length} {dict.addonsSuffix || (isHu ? "kiegészítő" : "add-ons")}
             </span>
           </div>
-          <button className={styles.flowContinueBtn} onClick={handleContinueFromAddons} type="button">
-            {dict.rentNow || "Rent now"}
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </button>
+          <div className={styles.flowFooterButtons}>
+            <button className={styles.flowBackBtn} onClick={() => setModalStep("plans")} type="button">
+              {isHu ? "Vissza a csomagokhoz" : "Back to plans"}
+            </button>
+            <button className={styles.flowContinueBtn} onClick={handleContinueFromAddons} type="button">
+              {dict.rentNow || "Rent now"}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     );
