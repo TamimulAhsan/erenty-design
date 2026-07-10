@@ -1,0 +1,638 @@
+.footer {
+  background-color: #FFFFFF;
+  border-top: 1px solid #DAE2DA;
+  position: relative;
+  overflow: hidden;
+  height: 530px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Inner two-column layout ── */
+.inner {
+  display: flex;
+  flex: 1;
+  min-height: 0; /* allow flex children to shrink */
+}
+
+/* ── Left Column (42%) ── */
+.leftCol {
+  width: 42%;
+  padding: 44px 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 3;
+}
+
+.brandZone {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.logo {
+  font-family: var(--font-cruiser), sans-serif;
+  font-size: 24px;
+  color: var(--foreground);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  line-height: 1;
+  margin-bottom: 6px;
+  width: fit-content;
+}
+
+.tagline {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: #667370;
+  margin: 0;
+  text-transform: none;
+}
+
+.partnerBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.partnerLabel {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #667370;
+}
+
+.logoWrapper {
+  display: inline-block;
+}
+
+.duottsLogo {
+  filter: grayscale(100%) opacity(0.5);
+  transition: filter 0.3s ease;
+}
+
+.logoWrapper:hover .duottsLogo {
+  filter: grayscale(0%) opacity(1);
+}
+
+/* Subscribe Zone */
+.subscribeZone {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.subscribeLabel {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #005B45;
+}
+
+.subscribeForm {
+  display: flex;
+}
+
+.subscribeInput {
+  flex: 1;
+  padding: 11px 14px;
+  border-radius: 12px 0 0 12px;
+  border: 1.5px solid #E3E9E3;
+  border-right: none;
+  background: #F7FAF7;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 14px;
+  color: #22191B;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.subscribeInput::placeholder { color: #667370; }
+.subscribeInput:focus { border-color: #00D8A4; }
+
+.subscribeBtn {
+  width: 110px;
+  padding: 11px 14px;
+  border-radius: 0 12px 12px 0;
+  border: none;
+  background: #00D8A4;
+  color: #143132;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+
+.subscribeBtn:hover { opacity: 0.85; }
+
+.legalNote {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 11px;
+  color: rgba(102, 115, 112, 0.65);
+  margin: 0;
+}
+
+/* Inline subscribe confirmation (replaces the form after submit) */
+.subscribeSuccess {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+  border-radius: 12px;
+  border: 1.5px solid rgba(0, 216, 164, 0.35);
+  background: rgba(0, 216, 164, 0.08);
+  font-family: var(--font-inter), sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #005B45;
+}
+
+.subscribeSuccessIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #00D8A4;
+  color: #143132;
+}
+
+/* Social channels */
+.socialRow {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.socialLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid #DAE2DA;
+  color: #667370;
+  background: #F7FAF7;
+  transition: color 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.socialLink:hover {
+  color: #005B45;
+  border-color: #00D8A4;
+  transform: translateY(-2px);
+}
+
+/* ── Right Column (58%) ── */
+.rightCol {
+  flex: 1;
+  padding: 44px 56px 44px 48px;
+  position: relative;
+  overflow: visible;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  z-index: 3;
+}
+
+/* Nav Grid */
+.navGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  align-self: flex-start;
+}
+
+.navCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.navHeader {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #143132;
+  margin-bottom: 18px;
+  display: block;
+}
+
+.navList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.navList a,
+.contactText {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #667370;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.navList a:hover { color: #00D8A4; }
+
+/* Ghost Bike — large, angled, teal glow */
+.ghostBike {
+  position: absolute;
+  bottom: 80px;
+  right: -80px;
+  z-index: 2;
+  pointer-events: none;
+  transform: rotate(-6deg);
+  transform-origin: bottom right;
+}
+
+.ghostBikeGlow {
+  position: absolute;
+  inset: -60px;
+  background: radial-gradient(ellipse at 55% 55%, rgba(0, 216, 164, 0.15) 0%, rgba(0, 216, 164, 0.04) 45%, transparent 70%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.ghostBikeImg {
+  opacity: 0.08;
+  display: block;
+  width: 780px;
+  height: auto;
+  position: relative;
+  z-index: 1;
+  filter: hue-rotate(140deg) saturate(0.5) brightness(0.85);
+}
+
+/* ── Bottom Legal Bar ── */
+.bottomBar {
+  border-top: 1px solid #DAE2DA;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 3;
+  background: #FFFFFF;
+}
+
+.badgeRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 12px 64px;
+}
+
+.paymentLabel {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #667370;
+  white-space: nowrap;
+}
+
+.paymentIcons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.paymentChip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 11px;
+  border: 1px solid #DAE2DA;
+  border-radius: 8px;
+  background: #F7FAF7;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #143132;
+  white-space: nowrap;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.paymentChip:hover {
+  border-color: #00D8A4;
+  color: #005B45;
+}
+
+.paymentChip svg {
+  flex-shrink: 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.legalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 64px;
+}
+
+.copyright {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 13px;
+  color: #667370;
+}
+
+.legalLinks {
+  display: flex;
+  gap: 24px;
+}
+
+.legalLinks a {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 13px;
+  color: #667370;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.legalLinks a:hover { color: #005B45; }
+
+/* ── Fleet Partners Marquee Section ── */
+.partnersSection {
+  padding: 24px 0;
+  border-top: 1px solid #DAE2DA;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  overflow: hidden;
+  position: relative;
+  /* CSS variables for responsive marquee spacing */
+  --marquee-gap: 48px;
+  --marquee-gap-half: 24px;
+}
+
+.partnersBg {
+  position: absolute;
+  inset: 0;
+  background-color: #FAFCFA;
+  z-index: 1;
+}
+
+.partnersContent {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  z-index: 3;
+}
+
+.partnersLabel {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #667370;
+}
+
+.tickerContainer {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  position: relative;
+}
+
+/* Gradient fade-out overlays */
+.tickerContainer::before,
+.tickerContainer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.tickerContainer::before {
+  left: 0;
+  background: linear-gradient(to right, #FAFCFA, transparent);
+}
+
+.tickerContainer::after {
+  right: 0;
+  background: linear-gradient(to left, #FAFCFA, transparent);
+}
+
+.tickerTrack {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+  gap: var(--marquee-gap);
+  padding-left: var(--marquee-gap-half);
+}
+
+.tickerContainer:hover .tickerTrack {
+  animation-play-state: paused;
+}
+
+.logoItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 68px;
+  width: 180px;
+  flex-shrink: 0;
+  background: #FFFFFF;
+  border: 1px solid #E8EFE8;
+  border-radius: 8px;
+  padding: 6px 16px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.logoItem:hover {
+  border-color: #00D8A4;
+  box-shadow: 0 4px 12px rgba(0, 216, 164, 0.1);
+  transform: translateY(-2px);
+}
+
+.partnerLogoImg {
+  opacity: 0.95;
+  transition: opacity 0.3s ease;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.logoItem:hover .partnerLogoImg {
+  opacity: 1;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - var(--marquee-gap-half)));
+  }
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 991px) {
+  .footer {
+    height: auto;
+  }
+
+  .leftCol {
+    width: 40%;
+    padding: 40px 36px;
+  }
+
+  .rightCol {
+    padding: 40px 36px 40px 32px;
+  }
+
+  .navGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+
+  .ghostBikeImg {
+    width: 300px;
+  }
+
+  .partnersSection {
+    --marquee-gap: 32px;
+    --marquee-gap-half: 16px;
+  }
+
+  .logoItem {
+    width: 156px;
+    height: 62px;
+  }
+
+  .tickerContainer::before,
+  .tickerContainer::after {
+    width: 60px;
+  }
+
+  .partnerLogoImg {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 767px) {
+  .footer {
+    height: auto;
+    overflow: visible;
+  }
+
+  .inner {
+    flex-direction: column;
+  }
+
+  .leftCol {
+    width: 100%;
+    padding: 36px 24px;
+    gap: 32px;
+    justify-content: flex-start;
+  }
+
+  .rightCol {
+    width: 100%;
+    padding: 32px 24px;
+    overflow: visible;
+    align-items: flex-start;
+  }
+
+  .navGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 24px;
+  }
+
+  .ghostBike { display: none; }
+
+  .subscribeForm { flex-direction: column; gap: 8px; }
+
+  .subscribeInput {
+    border-radius: 12px;
+    border-right: 1.5px solid #E3E9E3;
+  }
+
+  .subscribeBtn {
+    width: 100%;
+    border-radius: 12px;
+  }
+
+  .badgeRow {
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px 24px;
+  }
+
+  .paymentIcons {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .legalRow {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    text-align: center;
+  }
+
+  .legalLinks {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .partnersSection {
+    --marquee-gap: 20px;
+    --marquee-gap-half: 10px;
+  }
+
+  .logoItem {
+    width: 132px;
+    height: 55px;
+    padding: 4px 10px;
+  }
+
+  .tickerContainer::before,
+  .tickerContainer::after {
+    width: 40px;
+  }
+}
+

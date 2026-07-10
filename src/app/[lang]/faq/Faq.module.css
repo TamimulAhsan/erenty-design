@@ -1,0 +1,409 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   FAQ Page Styles
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Hero ────────────────────────────────────────────────────────────── */
+
+.hero {
+  background: linear-gradient(165deg, #0a1618 0%, #0e2022 50%, #143132 100%);
+  color: #ffffff;
+  padding: calc(72px + var(--space-16)) var(--space-6) var(--space-16);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  /* Pulls the tab bar up to overlap the hero. This lives here (not as a
+     negative margin on the sticky element) because a sticky element's
+     containing block must stay tall — putting the negative margin on its
+     own wrapper collapses that wrapper to the sticky element's own height,
+     breaking the sticky range entirely. */
+  margin-bottom: -28px;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -20%;
+  width: 140%;
+  height: 200%;
+  background: radial-gradient(ellipse at 40% 30%, rgba(0, 216, 164, 0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.heroInner {
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.heroEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: rgba(0, 216, 164, 0.1);
+  border: 1px solid rgba(0, 216, 164, 0.2);
+  border-radius: var(--radius-full);
+  padding: 6px 16px;
+  margin-bottom: var(--space-6);
+  color: var(--primary);
+}
+
+.heroTitle {
+  font-size: 48px;
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-4);
+}
+
+.heroDesc {
+  font-size: 17px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.65);
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* ── Tabs ─────────────────────────────────────────────────────────────── */
+
+.tabsWrapper {
+  max-width: 920px;
+  margin: 0 auto; /* horizontal centering only — vertical margin would break sticky, see .hero */
+  position: sticky;
+  /* Matches the navbar's non-scrolled height so the tab bar never sits under it;
+     stays true once transparent chrome shrinks to headerScrolled, just leaves a small gap. */
+  top: 72px;
+  z-index: 50;
+  padding: 0 var(--space-6) var(--space-4);
+}
+
+.tabBar {
+  display: flex;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  /* Deeper, tighter shadow than --shadow-elevated so the bar separates clearly
+     from the near-white page/card backgrounds behind it once it's pinned. */
+  box-shadow: 0 2px 8px rgba(15, 35, 30, 0.06), 0 12px 32px -8px rgba(15, 35, 30, 0.22);
+  overflow: hidden;
+}
+
+.tabBtn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-5) var(--space-4);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted-foreground);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+  font-family: inherit;
+}
+
+.tabBtn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+  right: 20%;
+  height: 3px;
+  background: var(--gradient-primary);
+  border-radius: 3px 3px 0 0;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.tabBtn:hover {
+  color: var(--brand-darker);
+  background: rgba(0, 216, 164, 0.04);
+}
+
+.tabBtnActive {
+  color: var(--brand-dark);
+  background: rgba(0, 216, 164, 0.06);
+}
+
+.tabBtnActive::after {
+  opacity: 1;
+}
+
+.tabIcon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* ── FAQ Content ─────────────────────────────────────────────────────── */
+
+.faqContent {
+  max-width: 840px;
+  margin: 0 auto;
+  padding: var(--space-12) var(--space-6) var(--space-20);
+}
+
+.categoryBlock {
+  margin-bottom: var(--space-12);
+}
+
+.categoryBlock:last-child {
+  margin-bottom: 0;
+}
+
+.categoryTitle {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: var(--space-5);
+  padding-left: var(--space-2);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.categoryTitle::before {
+  content: '';
+  width: 3px;
+  height: 16px;
+  background: var(--gradient-primary);
+  border-radius: 2px;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.faqItem {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.faqItem:hover {
+  border-color: rgba(0, 216, 164, 0.2);
+}
+
+.faqItemOpen {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(0, 216, 164, 0.08);
+}
+
+.faqQuestion {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-6);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--brand-darker);
+  text-align: left;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: inherit;
+  transition: color 0.2s ease;
+}
+
+.faqQuestion:hover {
+  color: var(--brand-dark);
+}
+
+.faqChevron {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-darker);
+  transition: all 0.3s ease;
+}
+
+.faqChevronOpen {
+  background: var(--brand-darker);
+  color: #ffffff;
+  transform: rotate(180deg);
+}
+
+.faqAnswer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.faqAnswerOpen {
+  grid-template-rows: 1fr;
+}
+
+.faqAnswerInner {
+  min-height: 0;
+}
+
+.faqAnswerText {
+  padding: 0 var(--space-6) var(--space-5);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--muted-foreground);
+  margin: 0;
+  white-space: pre-line;
+}
+
+/* ── CTA Section ─────────────────────────────────────────────────────── */
+
+.ctaSection {
+  padding: 0 var(--space-6) var(--space-20);
+}
+
+.ctaCard {
+  max-width: 900px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #143132, #005b45);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-16) var(--space-12);
+  text-align: center;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.ctaCard::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 60%;
+  height: 200%;
+  background: radial-gradient(ellipse, rgba(0, 216, 164, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.ctaTitle {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-3);
+  position: relative;
+  z-index: 1;
+}
+
+.ctaDesc {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: var(--space-8);
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: var(--space-4);
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  .heroTitle {
+    font-size: 34px;
+  }
+
+  .heroDesc {
+    font-size: 15px;
+  }
+
+  .tabsWrapper {
+    /* Navbar has no scrolled-down shrink state worth chasing on mobile; a smaller,
+       fixed offset keeps the bar snug under the mobile header. */
+    top: 56px;
+    padding: 0 var(--space-4) var(--space-3);
+  }
+
+  .tabBar {
+    /* Row of content-sized, horizontally scrollable tabs — a stacked column would
+       be too tall to pin without dominating a small screen. */
+    border-radius: var(--radius-lg);
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .tabBar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tabBtn {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    padding: var(--space-3) var(--space-4);
+    font-size: 13px;
+  }
+
+  .faqContent {
+    padding: var(--space-8) var(--space-4) var(--space-16);
+  }
+
+  .faqQuestion {
+    padding: var(--space-4) var(--space-4);
+    font-size: 14px;
+  }
+
+  .faqAnswerText {
+    padding: 0 var(--space-4) var(--space-4);
+    font-size: 13px;
+  }
+
+  .ctaCard {
+    padding: var(--space-10) var(--space-6);
+  }
+
+  .ctaTitle {
+    font-size: 24px;
+  }
+
+  .ctaButtons {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero {
+    padding: calc(72px + var(--space-10)) var(--space-4) var(--space-12);
+  }
+
+  .heroTitle {
+    font-size: 28px;
+  }
+
+  .hero {
+    margin-bottom: -24px;
+  }
+
+  .tabsWrapper {
+    padding: 0 var(--space-4);
+  }
+}

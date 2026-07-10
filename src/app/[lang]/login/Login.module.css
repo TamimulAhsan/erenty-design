@@ -1,0 +1,595 @@
+/* Login / Signup — split-screen layout */
+
+.page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 0.85fr 1fr;
+  background: var(--background);
+}
+
+/* ── Left: brand / context panel ─────────────────────────────────────── */
+
+.brandPanel {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(165deg, #0a1618 0%, #0e2022 50%, #143132 100%);
+  color: #fff;
+  padding: calc(72px + var(--space-10)) var(--space-10) var(--space-10);
+  display: flex;
+  flex-direction: column;
+}
+
+.brandPanel::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -25%;
+  width: 90%;
+  height: 90%;
+  background: radial-gradient(ellipse at 60% 40%, rgba(0, 216, 164, 0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.brandInner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.panelHeader {
+  display: grid;
+  grid-template-columns: 100%;
+  margin-bottom: var(--space-8);
+}
+
+.headerBlock {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s ease;
+}
+
+.headerBlockActive {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.panelHeading {
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-3);
+}
+
+.panelSub {
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0;
+}
+
+/* Mode toggle (Log in / Sign up) */
+.modeToggle {
+  display: flex;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-lg);
+  padding: 4px;
+  gap: 4px;
+  margin-bottom: var(--space-8);
+}
+
+.modeBtn {
+  flex: 1;
+  padding: 11px var(--space-4);
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: inherit;
+}
+
+.modeBtn:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.modeBtnActive {
+  background: var(--gradient-primary);
+  color: var(--brand-darker);
+}
+
+.modeBtnActive:hover {
+  color: var(--brand-darker);
+}
+
+/* Account type selector (signup only) */
+.typeSection {
+  margin-bottom: var(--space-8);
+}
+
+.typeLabel {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: var(--space-3);
+}
+
+.typeSelector {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.typeCard {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.03);
+  text-align: left;
+}
+
+.typeCard:hover {
+  border-color: rgba(0, 216, 164, 0.4);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.typeCardActive {
+  border-color: var(--primary);
+  background: rgba(0, 216, 164, 0.08);
+}
+
+.typeIcon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: rgba(0, 216, 164, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+}
+
+.typeCardActive .typeIcon {
+  background: var(--gradient-primary);
+  color: var(--brand-darker);
+}
+
+.typeText {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.typeName {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 3px;
+}
+
+.typeDesc {
+  display: block;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.4;
+}
+
+.typeCheck {
+  margin-left: auto;
+  flex-shrink: 0;
+  color: var(--primary);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.typeCardActive .typeCheck {
+  opacity: 1;
+}
+
+/* Benefits (pinned toward the bottom) */
+.benefits {
+  margin-top: 0;
+  padding-top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.benefitItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.benefitCheck {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-full);
+  background: rgba(0, 216, 164, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+}
+
+/* ── Right: form panel ───────────────────────────────────────────────── */
+
+.formPanel {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: calc(72px + var(--space-10)) var(--space-8) var(--space-10);
+}
+
+.formInner {
+  width: 100%;
+  max-width: 400px;
+  overflow: hidden;
+}
+
+.formInnerBusiness {
+  max-width: 640px;
+  transition: max-width 0.3s ease;
+}
+
+.formTitle {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--brand-darker);
+  margin-bottom: var(--space-2);
+}
+
+.formSubtitle {
+  font-size: 14px;
+  color: var(--muted-foreground);
+  margin-bottom: var(--space-6);
+  line-height: 1.5;
+}
+
+.formGrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fieldLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.fieldInput {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--card);
+  color: var(--foreground);
+  font-family: inherit;
+  font-size: 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+
+.fieldInput:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(0, 216, 164, 0.12);
+}
+
+.fieldInput::placeholder {
+  color: var(--muted-foreground);
+  opacity: 0.6;
+}
+
+/* Override the browser's autofill highlight so filled fields match the design. */
+.fieldInput:-webkit-autofill,
+.fieldInput:-webkit-autofill:hover,
+.fieldInput:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--foreground);
+  -webkit-box-shadow: 0 0 0 100px var(--card) inset;
+  box-shadow: 0 0 0 100px var(--card) inset;
+  caret-color: var(--foreground);
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+.passwordWrapper {
+  position: relative;
+}
+
+.passwordWrapper .fieldInput {
+  padding-right: 44px;
+}
+
+.passwordToggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: var(--muted-foreground);
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.passwordToggle:hover {
+  color: var(--brand-dark);
+}
+
+.forgotLink {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary);
+  text-align: right;
+  margin-top: -2px;
+  transition: color 0.2s ease;
+  /* Now rendered as a <button> — strip native chrome so it still reads as a link. */
+  align-self: flex-end;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.forgotLink:hover {
+  color: var(--primary-glow);
+}
+
+/* Forgot-password: back link + inline success */
+.backLink {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted-foreground);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: center;
+  transition: color 0.2s ease;
+}
+
+.backLink:hover {
+  color: var(--brand-darker);
+}
+
+.forgotSuccess {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+}
+
+.forgotSuccessIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--brand-darker);
+  margin-bottom: 4px;
+}
+
+.checkboxRow {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.checkbox {
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  margin-top: 2px;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+.checkboxLabel {
+  font-size: 13px;
+  color: var(--muted-foreground);
+  line-height: 1.5;
+}
+
+.checkboxLabel a {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 216, 164, 0.3);
+  text-underline-offset: 2px;
+}
+
+.submitBtn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  background: var(--gradient-primary);
+  color: var(--brand-darker);
+  font-weight: 700;
+  font-size: 15px;
+  padding: 14px 28px;
+  border: none;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  font-family: inherit;
+}
+
+.submitBtn:hover {
+  box-shadow: var(--shadow-btn-primary-hover);
+  transform: translateY(-1px);
+}
+
+/* Business CTA block on the form side */
+.businessCta {
+  text-align: center;
+  padding: var(--space-6) var(--space-4) var(--space-2);
+}
+
+.businessCtaIcon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background: rgba(0, 216, 164, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-4);
+  color: var(--brand-dark);
+}
+
+.businessCtaDesc {
+  font-size: 14px;
+  color: var(--muted-foreground);
+  line-height: 1.6;
+  margin-bottom: var(--space-6);
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────── */
+
+/*
+ * Below 900px the split collapses to a single column: the dark panel becomes a
+ * COMPACT header band (heading + mode toggle + account-type cards) sitting
+ * directly above the form, so the primary action stays close to the fold.
+ */
+@media (max-width: 900px) {
+  .page {
+    grid-template-columns: 1fr;
+  }
+
+  .brandPanel {
+    position: relative;
+    height: auto;
+    /* Keep overflow hidden so the decorative glow can't push horizontal scroll. */
+    overflow: hidden;
+    padding: calc(72px + var(--space-6)) var(--space-6) var(--space-6);
+  }
+
+  .brandInner {
+    max-width: 460px;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .panelHeader {
+    margin-bottom: var(--space-6);
+  }
+
+  .panelHeading {
+    font-size: 26px;
+  }
+
+  .panelSub {
+    font-size: 14px;
+  }
+
+  .modeToggle {
+    margin-bottom: var(--space-5);
+  }
+
+  /* Type cards sit flush above the form; the panel's bottom padding is the gap. */
+  .typeSection {
+    margin-bottom: 0;
+  }
+
+  /* On the stacked layout the benefits add too much height — hide them. */
+  .benefits {
+    display: none;
+  }
+
+  .formPanel {
+    padding: var(--space-8) var(--space-6) var(--space-12);
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .formInner,
+  .formInnerBusiness {
+    max-width: 460px;
+  }
+}
+
+@media (max-width: 480px) {
+  .brandPanel {
+    padding: calc(72px + var(--space-4)) var(--space-4) var(--space-5);
+  }
+
+  .brandInner {
+    max-width: 100%;
+  }
+
+  .panelHeading {
+    font-size: 22px;
+  }
+
+  .panelSub {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  /* Slightly larger tap target for the segmented toggle on phones. */
+  .modeBtn {
+    padding: 12px var(--space-3);
+  }
+
+  .formPanel {
+    padding: var(--space-6) var(--space-4) var(--space-10);
+  }
+
+  .formInner,
+  .formInnerBusiness {
+    max-width: 100%;
+  }
+
+  .formTitle {
+    font-size: 21px;
+  }
+}

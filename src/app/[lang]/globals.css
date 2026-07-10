@@ -1,0 +1,276 @@
+:root {
+  /* Colors */
+  --primary: #00D8A4;
+  --primary-glow: #00FFCA;
+  --brand-dark: #005B45;
+  --brand-darker: #143132;
+  --brand-light: #E3F0DF;
+  --background: #F7FAF7;
+  --foreground: #22191B;
+  --card: #FFFFFF;
+  --secondary: #EBF3E8;
+  --muted: #F1F4F1;
+  --muted-foreground: #667370;
+  --accent: #D5EDE8;
+  --border: #DAE2DA;
+  --input: #E3E9E3;
+  --destructive: #E03030;
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #00D8A4, #00FFCA);
+  --gradient-dark: linear-gradient(160deg, #143132, #005b45); /* Correction: using brand-dark (#005B45) instead of #005B14 */
+
+  /* Shadows */
+  --shadow-card: 0 4px 24px -8px hsl(165 50% 10% / 0.10);
+  --shadow-glow: 0 0 48px -8px hsl(165 100% 42% / 0.35);
+  --shadow-elevated: 0 16px 48px -12px hsl(165 50% 10% / 0.18);
+  --shadow-btn-primary-hover: 0 8px 24px -6px rgba(0, 216, 164, 0.4);
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  scrollbar-width: thin;
+  scrollbar-color: #000000 var(--background);
+}
+
+/* Custom Scrollbar for Webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #000000;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--background);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #111111;
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
+html.modalOpen {
+  overflow: hidden;
+}
+
+html.modalOpen body {
+  overflow: hidden;
+}
+
+html,
+body {
+  min-height: 100vh;
+}
+
+body {
+  min-height: 100%;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+button {
+  background: none;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Common Typography Classes */
+.hero-display {
+  font-size: 64px;
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+@media (max-width: 1279px) and (min-width: 992px) {
+  .hero-display {
+    font-size: 52px;
+  }
+}
+
+@media (max-width: 991px) {
+  .hero-display {
+    font-size: 42px;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-display {
+    font-size: 36px;
+  }
+}
+
+.h2 {
+  font-size: 36px;
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.h3 {
+  font-size: 22px;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.body-lg {
+  font-size: 18px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.body-default {
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.body-sm {
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.caption {
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.eyebrow {
+  font-size: 12px;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.mono-num {
+  font-family: var(--font-mono), monospace;
+}
+
+/* Button UI Patterns */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-primary);
+  color: var(--brand-darker);
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: var(--radius-lg);
+  gap: var(--space-2);
+}
+
+.btn-primary:hover {
+  box-shadow: var(--shadow-btn-primary-hover);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--border);
+  background: transparent;
+  color: var(--foreground);
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: var(--radius-lg);
+  gap: var(--space-2);
+}
+
+.btn-secondary:hover {
+  background: var(--secondary);
+  border-color: var(--brand-dark);
+}
+
+.btn-secondary.dark {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.btn-secondary.dark:hover {
+  background: rgba(0, 216, 164, 0.1);
+  border-color: var(--primary);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--brand-darker);
+  background: transparent;
+  color: var(--brand-darker);
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: var(--radius-lg);
+  gap: var(--space-2);
+  transition: all 0.2s ease;
+}
+
+.btn-outline:hover {
+  background: var(--brand-darker);
+  color: #FFFFFF;
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--primary);
+  font-weight: 600;
+  background: none;
+  border: none;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+}
+
+.btn-ghost:hover {
+  color: var(--primary-glow);
+  background: rgba(0, 216, 164, 0.05);
+}

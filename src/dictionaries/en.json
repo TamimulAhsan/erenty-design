@@ -1,0 +1,1480 @@
+{
+  "meta": {
+    "title": "E-Renty — Fuel-Free, Stress-Free Fleet Solutions",
+    "description": "Find and lease the perfect e-bike fleet for your business or personal use."
+  },
+  "navbar": {
+    "fleets": "Fleets",
+    "seeAllFleets": "See all fleets",
+    "courierPlus": "Courier+",
+    "howItWorks": "How it works",
+    "forBusiness": "For Business",
+    "seeFleetsBtn": "See Fleets",
+    "tagline": "Fuel-Free. Stress-Free.",
+    "selectLanguage": "Select Language",
+    "help": "Help",
+    "profile": "Profile",
+    "services": "Services",
+    "company": "Company",
+    "explore": "Explore",
+    "repairPartners": "Repair Partners",
+    "about": "About",
+    "contact": "Contact",
+    "faq": "FAQ",
+    "toggleMenu": "Toggle menu",
+    "closeMenu": "Close menu",
+    "login": "Login"
+  },
+  "hero": {
+    "titleLine1": "Fuel Free",
+    "titleLine2": "",
+    "titleHighlight": "Stress Free",
+    "ctaSeeFleets": "See Fleets",
+    "ctaCourierPlus": "Courier+",
+    "statCustomers": "Customers",
+    "statDeployed": "Deployed",
+    "statAvgMo": "AVG/MO",
+    "statUpTime": "UP TIME"
+  },
+  "startJourney": {
+    "title": "Start your journey",
+    "card1Title": "Choose fleet",
+    "card1Desc": "Browse vetted DUOTTS, Neuzer, MyEsel and Mamba models. Filter by range, motor power, and intended use.",
+    "card1Stat1Value": "4 brands",
+    "card1Stat1Label": "curated",
+    "card1Stat2Value": "12 models",
+    "card1Stat2Label": "in stock",
+    "card2Title": "Choose plans",
+    "card2Desc": "Select a flexible subscription plan (Basic, Plus, or Max) and toggle add-ons tailored to your needs.",
+    "planBasic": "Basic",
+    "planPlus": "Plus",
+    "planMax": "Max",
+    "addonRack": "Heavy Cargo Rack",
+    "addonBattery": "Extended Battery",
+    "addonMount": "Phone Mount & USB",
+    "addonsSuffix": "add-ons",
+    "card2Stat1Value": "3 tiers",
+    "card2Stat1Label": "available",
+    "card2Stat2Label": "selected",
+    "card3Title": "Pay and sign",
+    "card3Desc": "Choose your payment method and sign the digital lease agreement securely in seconds.",
+    "paymentMethod": "Payment Method",
+    "card": "Card",
+    "googlePay": "Google Pay",
+    "applePay": "Apple Pay",
+    "typeToSign": "Type full name to e-sign:",
+    "placeholderName": "John Doe",
+    "docTitle": "Lease Agreement",
+    "docStatusPending": "PENDING SIGNATURE",
+    "docStatusSigned": "DIGITALLY SIGNED",
+    "docTermsLabel": "E-Renty Lease Terms:",
+    "docModelLabel": "Model:",
+    "docPlanLabel": "Plan:",
+    "docAddonsLabel": "Add-ons:",
+    "docPaymentLabel": "Payment:",
+    "docAppointmentLabel": "Pickup:",
+    "docNone": "none",
+    "card3Stat1Value": "Secure SSL",
+    "card3Stat1Label": "encryption",
+    "card3Stat2Label": "signature",
+    "card3Stat2Pending": "Pending",
+    "card3Stat2Signed": "Signed",
+    "card4Title": "Book appointment & ride",
+    "card4Desc": "Select a convenient pickup time slot at our central Budapest workshop and ride home with your new fleet.",
+    "card4Stat1Label": "pickup window",
+    "card4Stat2Value": "Instant",
+    "card4Stat2Label": "handover",
+    "cta": "Explore Fleets",
+    "stepAria": "Go to step"
+  },
+  "journeyPartner": {
+    "eyebrow": "Your Journey Partner",
+    "rentPrefix": "Rent",
+    "viewAll": "View All",
+    "perMonth": "/month",
+    "categories": {
+      "cargo": "Cargo Fleet",
+      "courier": "Courier Fleet",
+      "urban": "Urban Fleet",
+      "scooter": "Scooter Fleet"
+    },
+    "specs": {
+      "c29": [
+        "Motor: 750W Peak High-Torque Brushless",
+        "Range: Up to 100 km (Dual-Battery option)",
+        "Battery: 48V 15Ah (720Wh) LG cells",
+        "Smart Features: Telemetry, GPS & App lock"
+      ],
+      "cargo": [
+        "Cargo Volume: 250 Liters / 120 kg capacity",
+        "Range: Up to 100 km per charge",
+        "Battery: Dual 1.5 kWh Li-ion (Removable)",
+        "Safety: Heavy-duty hydraulic disc brakes"
+      ],
+      "courier": [
+        "Range: Up to 125 km (Pedal Assist)",
+        "Motor: 250W Brushless (57Nm torque)",
+        "Transmission: Shimano 24-Speed gears",
+        "Suspension: Lockout hydraulic front fork"
+      ],
+      "scooter": [
+        "Power: Dual 1200W Hub Motors",
+        "Max Speed: 65 km/h (limited for public)",
+        "Climbing: Up to 30-degree slopes",
+        "Braking: Front and rear oil disc brakes"
+      ]
+    },
+    "slideAria": "Go to slide"
+  },
+  "weHandleItAll": {
+    "title": "We Handle It All",
+    "subtitle": "With our nationwide service partner network, every operational burden is lifted from your shoulders.",
+    "services": [
+      {
+        "title": "Always in top shape",
+        "description": "Periodic servicing, detailed inspections, electrical system repairs, tire replacement & seasonal storage are fully managed."
+      },
+      {
+        "title": "Zero downtime guarantee",
+        "description": "We keep you moving. If your bike needs off-site service, we provide an immediate replacement bike to eliminate downtime."
+      },
+      {
+        "title": "Hassle-free protection",
+        "description": "Fully covered with mandatory insurance, detailed damage assessment, and liability settlement included in one package."
+      },
+      {
+        "title": "Smart theft monitoring",
+        "description": "Every fleet bike features integrated high-precision GPS tracking, active theft monitoring, and remote security controls."
+      },
+      {
+        "title": "24/7 for you",
+        "description": "Reach our support team anytime via the digital customer portal for real-time fleet assistance and diagnostics."
+      },
+      {
+        "title": "Nationwide partner network",
+        "description": "Access our certified service partner network of mobile mechanics and local workshops across Hungary."
+      }
+    ]
+  },
+  "locations": {
+    "selectorLabel": "Find certified workshop:",
+    "workshopSingular": "workshop",
+    "workshopPlural": "workshops",
+    "headline": "Certified Repair Network",
+    "subline": "Select a city pin or use the search dropdown above to book an appointment.",
+    "courierPlus": "Courier+",
+    "bookService": "Book a service",
+    "drawerTabText": "Find Certified Workshop",
+    "serviceHub": "Service Hub",
+    "certifiedRepair": "certified repair",
+    "partnerSingular": "partner",
+    "partnerPlural": "partners",
+    "found": "found",
+    "filterAll": "All Partners",
+    "filterPriority": "Priority / Featured",
+    "filterStandard": "Standard",
+    "emptyState": "No workshops match the selected filters.",
+    "featured": "Featured",
+    "freeCoverage": "Free repair coverage",
+    "businessHours": "Business Hours",
+    "contact": "Contact",
+    "viewOnMap": "View on Map ↗",
+    "openDirectory": "Open workshop directory",
+    "closeDirectory": "Close directory"
+  },
+  "trustedBy": {
+    "headingLine1": "Trusted by",
+    "headingLine2": "leading companies",
+    "forBusiness": "For Business",
+    "rentNow": "Rent now"
+  },
+  "faq": {
+    "eyebrow": "Support & Help",
+    "title": "Frequently Asked Questions",
+    "subtitle": "Have questions about account setup, document verification, or payments? Find quick answers below.",
+    "viewAll": "View all FAQs",
+    "items": [
+      {
+        "question": "How do I create an account?",
+        "answer": "Visit e-renty.com, click Sign In, then choose to register. Enter your name, email and a password of at least 8 characters. We'll send a 6-digit verification code to your inbox — enter it to activate your account."
+      },
+      {
+        "question": "What documents do I need to rent?",
+        "answer": "All customers must pass identity verification before renting. You need to upload an ID card or residence permit, a selfie, a proof-of-address card, and a business registration certificate. Each document is reviewed individually and you'll be notified once approved."
+      },
+      {
+        "question": "What payment methods are accepted?",
+        "answer": "We accept Visa/Mastercard, Google Pay, Apple Pay, and bank transfer. Card and wallet payments are processed securely through Stripe — your card details are never stored on our servers."
+      },
+      {
+        "question": "Can I pay monthly instead of upfront?",
+        "answer": "Yes. At checkout you choose Monthly (only the first month is charged now, future months appear in your Payments tab with due dates) or Upfront (pay the full period at a discounted rate shown live in the checkout summary)."
+      },
+      {
+        "question": "What is the minimum rental period?",
+        "answer": "The platform minimum is typically 3 months, though this can vary. The checkout flow clearly shows the minimum — period buttons below it are greyed out and not selectable."
+      }
+    ]
+  },
+  "footer": {
+    "tagline": "Fuel-Free. Stress-Free.",
+    "stayUpdated": "Stay Updated",
+    "emailPlaceholder": "Your email address",
+    "subscribe": "Subscribe",
+    "subscribeSuccess": "Subscribed successfully!",
+    "followUs": "Follow us",
+    "legalNote": "By submitting, you agree to our Privacy Policy.",
+    "companyHeader": "Company",
+    "servicesHeader": "Services",
+    "contactHeader": "Contact",
+    "contactUs": "Contact Us",
+    "aboutUs": "About Us",
+    "howItWorks": "How It Works",
+    "forBusiness": "For Business",
+    "fleetSubs": "Fleet Subscriptions",
+    "courierPlus": "Courier+",
+    "insurance": "Insurance & Coverage",
+    "maintenance": "Repair Partners",
+    "damageProtection": "Damage Protection",
+    "location": "1012 Budapest, Kuny Domokos utca 13-15",
+    "viewOnMaps": "View on Maps ↗",
+    "ourFleetPartners": "OUR FLEET PARTNERS",
+    "acceptedPayments": "Accepted Payments",
+    "card": "Card",
+    "googlePay": "Google Pay",
+    "applePay": "Apple Pay",
+    "bankTransfer": "Bank Transfer",
+    "rights": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "cookies": "Cookie Policy"
+  },
+  "fleet3dPage": {
+    "title": "3D view is on the way",
+    "desc": "We're building an interactive 3D model so you can inspect every angle of this bike before you rent. It isn't ready just yet.",
+    "back": "Back to the bike"
+  },
+  "fleetsPage": {
+    "view3d": "3D View",
+    "metaTitle": "E-Renty Fleet | Premium Electric Bike Subscriptions",
+    "metaDesc": "Browse 7 connected electric vehicle models from trusted brands. Subscriptions include GPS tracking, comprehensive insurance, and 24/7 service support.",
+    "heroPre": "E-Renty Fleets",
+    "heroTitle": "Go Green. Go Electric.",
+    "heroSubtitle": "Smart GPS, anti-theft insurance, and 24/7 service included. Pick the bike that fits your urban journey.",
+    "categories": {
+      "all": "All",
+      "cargo": "Cargo",
+      "courier": "Courier",
+      "scooter": "Scooter",
+      "urban": "Urban"
+    },
+    "searchPlaceholder": "Search e-bikes by name, type, or spec…",
+    "searchClear": "Clear search",
+    "filterBrand": "Brand",
+    "filterBrandTitle": "Filter by Brand",
+    "selectAll": "Select All",
+    "clearAll": "Clear All",
+    "filterPrice": "Price",
+    "filterPriceTitle": "Price Range (Monthly)",
+    "sortLabel": "Sort",
+    "sortOptions": {
+      "price-asc": "Price: Low to High",
+      "price-desc": "Price: High to Low",
+      "range-desc": "Range: Longest First",
+      "motor-desc": "Power: Highest First"
+    },
+    "reset": "Reset",
+    "resultsSingle": "bike matches",
+    "resultsMultiple": "bikes match",
+    "rentThisFleet": "Rent this fleet",
+    "viewDetails": "View details",
+    "noResults": "No fleets match this search",
+    "noResultsDetail": "Try adjusting your brand toggles, category selectors, or price range inputs.",
+    "resetFilters": "Reset Filter Parameters",
+    "modalStartingFrom": "Starting From",
+    "modalPeriod": "/ month",
+    "modalRange": "Range:",
+    "modalRangeDetail": " (Pedal Assist / Dual mode options)",
+    "modalSpeed": "Top speed:",
+    "modalSpeedDetail": " (Electronically optimized)",
+    "modalMotor": "Motor capacity:",
+    "modalMotorDetail": " brushless peak output",
+    "modalSecurity": "Security:",
+    "modalSecurityDetail": " Smart GPS tracking + Remote anti-theft app lock",
+    "modalInsurance": "Insurance:",
+    "modalInsuranceDetail": " Full comprehensive damages & third party liability",
+    "modalServiceSupport": "24/7 Service Support",
+    "modalMaintenance": "Sub-24h Maintenance",
+    "modalRentBtn": "View rental plans",
+    "modalCourierBtn": "View courier+ plan",
+    "chooseRentalPlan": "Choose a rental plan to continue",
+    "planBasic": "Basic",
+    "planPlus": "Plus",
+    "planMax": "Max",
+    "planBasicDesc": "Basic Tier for Minimum Coverage",
+    "planPlusDesc": "Plus Tier for Balanced Coverage",
+    "planMaxDesc": "Max Tier for Comprehensive Coverage",
+    "gpsTracking": "GPS Tracking",
+    "theftInsurance": "Theft Insurance",
+    "servicePoint1": "1 Service Point",
+    "multipleServicePoints": "Multiple service Points",
+    "nationwideServicePoints": "Nationwide Service Points",
+    "support247": "Support 24/7",
+    "supportHours": "Support (09:00 - 18:00)",
+    "selectedPlanText": "SELECTED",
+    "continueBtn": "Continue",
+    "docVerificationRequired": "Document verification required",
+    "documentsUnderReview": "Documents Under Review",
+    "documentsUnderReviewDesc": "Your documents are awaiting admin approval. You'll be able to rent once they're approved.",
+    "backToPlans": "Back to plans",
+    "goToDocuments": "Go to Documents",
+    "goToDashboard": "Go to Dashboard",
+    "backToDetails": "Back to details",
+    "rentNow": "Rent now",
+    "verificationRequired": "Identity Verification Required",
+    "verificationRequiredDesc": "You need to upload your identity document (ID or Passport) and address card before you can rent a vehicle.",
+    "uploadDocuments": "Upload Documents",
+    "goToProfile": "Go to Profile",
+    "verificationSuccess": "Account Verified",
+    "verificationSuccessDesc": "Your account is verified! You can proceed with the rental agreement.",
+    "proceedToEsign": "Proceed to E-Sign",
+    "basicSupport": "Support (Office Hours)",
+    "esignTitle": "E-Sign Lease Agreement",
+    "esignSubtitle": "Please sign the digital contract to proceed with your rental.",
+    "typeFullName": "Type your full name to e-sign:",
+    "placeholderFullName": "e.g. John Doe",
+    "proceedToBooking": "Proceed to Booking",
+    "bookingTitle": "Appoint Booking",
+    "bookingSubtitle": "Select a pickup date and time slot at our central workshop.",
+    "confirmBooking": "Confirm Booking & Rent",
+    "successTitle": "Booking Confirmed!",
+    "successSubtitle": "Your vehicle is ready. We look forward to seeing you at our central Budapest workshop.",
+    "pickupAt": "Pickup date & time:",
+    "emailSentNotice": "A copy of your signed contract and booking details has been sent to your email.",
+    "finishBtn": "Finish",
+    "planLabel": "PLAN",
+    "popularBadge": "POPULAR",
+    "perMonthShort": "/ mo",
+    "ftPerMonth": "Ft/mo",
+    "docTitle": "Lease Agreement",
+    "contractIntro": "This digital agreement is made between E-Renty Kft. and the undersigned customer for the rental of the following vehicle:",
+    "contractSelectedPlan": "Selected Plan:",
+    "contractIncludedServices": "Included Services:",
+    "contractServicesList": "GPS anti-theft tracking, comprehensive theft and accident insurance, and maintenance service as per plan details.",
+    "contractTerms": "The customer agrees to maintain the vehicle in good condition, report any damages immediately, and adhere to local traffic regulations.",
+    "signedBy": "Digitally Signed By:",
+    "selectDate": "Select Date",
+    "selectTimeSlot": "Select Time Slot",
+    "receiptVehicle": "Vehicle:",
+    "receiptPlan": "Rental Plan:",
+    "hotspots": {
+      "handlebars": {
+        "title": "Smart Telemetry",
+        "desc": "Integrated GPS anti-theft, active digital dashboard, and remote app lock controls."
+      },
+      "seat": {
+        "title": "Ergonomic Saddle",
+        "desc": "Premium, shock-absorbing comfort saddle optimized for long-distance urban navigation."
+      },
+      "battery": {
+        "title": "LG Lithium Battery",
+        "desc": "Removable 48V 15Ah (720Wh) cells, lockable within frame, supplying up to 100km range."
+      },
+      "motor": {
+        "title": "750W Brushless Motor",
+        "desc": "High-torque output providing rapid acceleration and effortless climbing power."
+      },
+      "tires": {
+        "title": "Puncture-Resistant Tires",
+        "desc": "All-terrain dual compound tires coupled with dual hydraulic safety disc brakes."
+      }
+    }
+  },
+  "fleetDetailPage": {
+    "details": "Details",
+    "specsSubtitle": "Detailed fleet specifications and custom lease options for the",
+    "backToFleets": "← Back to Fleets",
+    "metaRange": "range",
+    "metaTopSpeed": "top speed",
+    "metaMotor": "motor",
+    "metaSuffix": "Monthly e-bike subscription with GPS tracking, insurance and 24/7 service."
+  },
+  "courierPlusPage": {
+    "metaTitle": "E-Renty Courier+ | Fleet Maintenance & Insurance",
+    "metaDesc": "Maximize uptime with Courier+ protection plans. Includes GPS tracking, theft insurance, and priority maintenance.",
+    "heroTitle": "Courier+ for your fleet.",
+    "heroSubtitle": "Built for owner couriers riding their own E-Bikes. One fixed monthly fee covers maintenance, GPS tracking and theft insurance.",
+    "ctaSeePlans": "See Plans ↓",
+    "liveTrack": "E-Renty Live Track",
+    "active": "Active",
+    "budapestCenter": "Budapest Center",
+    "battery": "Battery (84 km)",
+    "covered": "Covered",
+    "theftInsurance": "Theft Insurance",
+    "onlineSecurity": "Online Security",
+    "statPlans": "Plans",
+    "statMaintenance": "Maintenance Response",
+    "statVat": "VAT Reclaimable",
+    "statNetwork": "Service Network",
+    "benefitFixedCost": "Fixed monthly cost",
+    "benefitFixedCostDesc": "Predictable maintenance instead of random repair bills.",
+    "benefitDowntime": "Minimal downtime",
+    "benefitDowntimeDesc": "<24h maintenance turnaround keeps you earning on the street.",
+    "benefitInsurance": "Theft insurance & GPS",
+    "benefitInsuranceDesc": "Your work bike is tracked and fully covered against theft, 24/7.",
+    "benefitNetwork": "Nationwide network",
+    "benefitNetworkDesc": "Partners across all of Hungary, no matter where you deliver.",
+    "pricingPlans": "Pricing Plans",
+    "chooseLevel": "Choose the level of support your work bike needs",
+    "allPlansMade": "All plans are made for couriers riding their own E-Bikes.",
+    "mostPopular": "Most popular",
+    "huf": "HUF",
+    "perMonth": "/ month",
+    "compareInDetail": "Compare in detail",
+    "featureColumn": "Feature",
+    "perMoPerBike": "Ft / mo",
+    "businessPre": "Business · 20+ bikes",
+    "businessTitle": "Manage your whole fleet from one dashboard.",
+    "businessDesc": "Volume pricing kicks in automatically. Plus: master invoicing, employee provisioning, and a dedicated account manager.",
+    "businessCta": "Request a custom quote →",
+    "businessStatDiscount": "Volume discount up to",
+    "businessStatInvoicing": "Master invoicing",
+    "businessStatSLA": "SLA response",
+    "businessStatAM": "Dedicated AM (50+ bk)",
+    "plans": {
+      "basic": {
+        "name": "Basic",
+        "tagline": "Reliable coverage for everyday wear and tear.",
+        "features": [
+          "GPS tracking",
+          "Theft insurance",
+          "1 service point",
+          "0–24 online support"
+        ],
+        "cta": "Choose Basic"
+      },
+      "extra": {
+        "name": "Extra",
+        "tagline": "A stronger package for riders who want broader repairs and faster support.",
+        "features": [
+          "GPS tracking",
+          "Theft insurance",
+          "0–24 online support",
+          "Phone support (9:00–18:00)",
+          "Service points across Hungary"
+        ],
+        "cta": "Choose Extra"
+      },
+      "max": {
+        "name": "Max",
+        "tagline": "Maximum protection for couriers who need the least possible downtime.",
+        "features": [
+          "GPS tracking",
+          "Theft insurance",
+          "0–24 online support",
+          "Phone support (9:00–18:00)",
+          "Priority / express repair",
+          "Replacement vehicle",
+          "Service points across Hungary"
+        ],
+        "cta": "Choose Max"
+      }
+    },
+    "comparisonLabels": {
+      "GPS tracking": "GPS tracking",
+      "Theft insurance": "Theft insurance",
+      "Service points": "Service points",
+      "0–24 online support": "0–24 online support",
+      "Phone support (9:00–18:00)": "Phone support (9:00–18:00)",
+      "Priority / express repair": "Priority / express repair",
+      "Replacement vehicle": "Replacement vehicle"
+    },
+    "comparisonValues": {
+      "Across Hungary": "Across Hungary",
+      "1": "1"
+    }
+  },
+  "checkoutPage": {
+    "metaTitle": "Secure Checkout | Courier+ | E-Renty",
+    "metaDesc": "Complete your Courier+ plan subscription.",
+    "loading": "Loading secure checkout...",
+    "checkout": "Checkout",
+    "configure": "Configure",
+    "payment": "Payment",
+    "confirm": "Confirm",
+    "stepOf": "Step {step} of 2: {name}",
+    "stepShort": "Step {step}/2",
+    "orderConfirmation": "Order confirmation",
+    "secureCheckout": "Secure checkout",
+    "stepLabel": "Step {step} of 2",
+    "configureSubtitle": "Select your plan, billing frequency and input your vehicles. Longer commitments save more.",
+    "configureTitle": "Configure your subscription",
+    "selectedPlanLabel": "Selected Coverage Plan",
+    "planSuffix": "Plan",
+    "perMonthPerBike": "/ month / bike",
+    "active": "Active",
+    "switchCoverage": "Or switch to another coverage",
+    "billingCycle": "Billing Cycle",
+    "monthly": "Monthly",
+    "quarterly": "Quarterly",
+    "6months": "6 Months",
+    "yearly": "Yearly",
+    "standardRate": "Standard rate",
+    "cycleSuffix": "cycle",
+    "yearSuffix": "year",
+    "numVehicles": "Number of Vehicles",
+    "perVehicleMo": "per vehicle / month",
+    "vinHeading": "VIN / Frame Number",
+    "vinSubtitle": "Enter the VIN or frame number for each vehicle. You can find this on the frame or in your vehicle documents.",
+    "vehicleVinLabel": "Vehicle {number} VIN",
+    "whatsIncluded": "What's Included",
+    "optionalAddons": "Optional Add-ons",
+    "backToPlans": "← Back to plans",
+    "howToPay": "How would you like to pay?",
+    "paySubtitle": "Pay now to activate your plan. We'll send a Hungarian VAT invoice within minutes.",
+    "card": "Card",
+    "googlePay": "Google Pay",
+    "applePay": "Apple Pay",
+    "applePayError": "Apple Pay is only available on iOS or macOS devices.",
+    "cardDetails": "Card details",
+    "securedByStripe": "Secured by Stripe",
+    "nameOnCard": "Name on card",
+    "saveCard": "Save this card for future payments",
+    "browserFastPay": "Your browser or device supports fast checkout with {method}.",
+    "noCardStored": "No card stored on our servers",
+    "backToConfigure": "← Back to configure",
+    "yourOrder": "Your Order",
+    "dueToday": "Due today",
+    "nextBilling": "Next billing",
+    "couponCode": "Coupon code",
+    "apply": "Apply",
+    "couponApplied": "✓ Coupon code {code} applied (10% discount)",
+    "pleaseEnterCode": "Please enter a code",
+    "invalidCode": "Invalid promo code",
+    "continueToPayment": "Continue to payment ➔",
+    "payAndConfirm": "Pay {price} Ft & confirm",
+    "allCovered": "You're all covered.",
+    "planActiveSubtitle": "Your {planName} plan is now active. Our team will be in touch within 24 hours to get you started.",
+    "goToDashboard": "Go to dashboard ➔",
+    "downloadInvoice": "Download invoice",
+    "whatNext": "What happens next",
+    "step1NextTitle": "Subscription Activated",
+    "step1NextDesc": "Your plan is live. Invoice and plan details emailed to your inbox.",
+    "step2NextTitle": "Configure Vehicle",
+    "step2NextDesc": "Set up VIN/Frame Number of your vehicle/s in dashboard.",
+    "step3NextTitle": "Collect Items",
+    "step3NextDesc": "Collect your items from our pickup point.",
+    "now": "Now",
+    "next": "Next",
+    "then": "Then",
+    "receipt": "Receipt",
+    "paidToday": "Paid today",
+    "addMoreVehicles": "Add more vehicles to your fleet",
+    "addMoreDesc": "Manage multiple vehicles under one plan. Visit your dashboard to add more vehicles to your Courier+ coverage.",
+    "toastVinError": "Please enter a VIN / Frame Number for each vehicle.",
+    "toastCardholderError": "Please enter the cardholder's name.",
+    "toastCardNumberError": "Please enter a valid card number.",
+    "toastExpiryError": "Please enter a valid expiry date (MM/YY).",
+    "toastCvcError": "Please enter a valid CVC.",
+    "invoiceNo": "Invoice No:",
+    "date": "Date:",
+    "dueDate": "Due Date:",
+    "status": "Status:",
+    "paid": "PAID",
+    "billTo": "Bill To",
+    "paymentMethod": "Payment Method",
+    "coveredVins": "Covered Vehicle Frame Numbers (VINs)",
+    "description": "Description",
+    "qty": "Qty",
+    "unitPrice": "Unit Price",
+    "total": "Total",
+    "subtotal": "Subtotal:",
+    "discount": "Discount ({percent}% {coupon}):",
+    "totalPaid": "Total Paid:",
+    "thankYou": "Thank you for choosing E-RENTY for maintaining your fleet.",
+    "invoiceTerms": "This invoice is proof of payment for your active subscription. Billing cycles renew automatically. Manage or cancel your coverage via the partner dashboard.",
+    "backToCheckout": "← Back to Checkout",
+    "printSave": "Print / Save PDF",
+    "close": "Close",
+    "invoiceSheetTitle": "Subscription Invoice",
+    "creditCardDetail": "Credit Card (Visa / Mastercard ending in 4242)"
+  },
+  "repairPartnersPage": {
+    "metaTitle": "E-Renty Repair Partners | Certified Service Workshops",
+    "metaDesc": "Find certified service and repair workshops across Hungary. Free repair coverage for Courier+ members.",
+    "heroTitle": "Service & Repair Partners",
+    "heroSubtitle": "Book standard repairs, battery diagnostics, or emergency mobile service with our certified partner workshops across the country.",
+    "statPartners": "Certified partners",
+    "statCities": "Cities covered",
+    "statSpecialties": "Specialties",
+    "allCities": "All Cities",
+    "searchPlaceholder": "Search by name or city",
+    "searchClear": "Clear search",
+    "specialty": "Specialty",
+    "filterBySpecialty": "Filter by Specialty",
+    "reset": "Reset",
+    "partner": "partner",
+    "partners": "partners",
+    "found": "found",
+    "noPartnersFound": "No partners match this search",
+    "adjustFilters": "Try adjusting your city, specialty, or search filters.",
+    "resetFilters": "Reset filters",
+    "featured": "Featured",
+    "viewDetails": "View details",
+    "ridingCourierFleet": "Riding a Courier fleet?",
+    "ridingCourierFleetDesc": "Courier+ subscribers get free repair coverage at every partner workshop on this page.",
+    "exploreCourierPlus": "Explore Courier+",
+    "contactUs": "Contact Us",
+    "viewOnMap": "View on Map ↗",
+    "repairTiersCovered": "Repair tiers covered",
+    "freeRepairCoverage": "Free repair coverage",
+    "businessHours": "Business Hours",
+    "scheduleAppointment": "Schedule Appointment",
+    "bookingAsLabel": "Booking as",
+    "serviceLabel": "Service",
+    "selectDate": "Select Date",
+    "selectTime": "Select Time",
+    "confirmAppointment": "Confirm Appointment",
+    "bookingConfirmed": "Appointment Confirmed",
+    "workshop": "Workshop",
+    "tier": "Tier",
+    "date": "Date",
+    "time": "Time",
+    "reschedule": "Reschedule Appointment",
+    "errorDate": "Please select an appointment date.",
+    "errorTime": "Please select an appointment time.",
+    "partnerApplyHeroLink": "Own a repair shop? Become a partner",
+    "partnerApplyEyebrow": "Workshop Partners",
+    "partnerApplyTitle": "Become a repair partner",
+    "partnerApplyDesc": "Join the E-renty network and get featured in the directory. Tell us about your workshop.",
+    "partnerApplyCta": "Apply now",
+    "partnerApplySuccessTitle": "Application received!",
+    "partnerApplySuccessDesc": "Thanks for reaching out — our partnerships team will review your workshop details and get back to you within 2 business days.",
+    "partnerApplyPrivacyNote": "We'll never share your details outside E-renty.",
+    "partnerApplySubmit": "Submit application",
+    "closeBtn": "Close",
+    "businessNameLabel": "Business name",
+    "businessNamePlaceholder": "e.g. Volt Garázs",
+    "contactNameLabel": "Contact name",
+    "contactNamePlaceholder": "Full name",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@workshop.hu",
+    "phoneLabel": "Phone",
+    "phonePlaceholder": "+36 …",
+    "cityLabel": "City",
+    "cityPlaceholder": "Budapest",
+    "addressLabel": "Workshop address",
+    "addressPlaceholder": "Street, number, postal code",
+    "specialtyLabel": "Repair specialty",
+    "specialtyPlaceholder": "Select specialty",
+    "errorSpecialty": "Please select a repair specialty.",
+    "notesLabel": "Anything we should know? (optional)",
+    "notesPlaceholder": "Certifications, opening hours, capacity…",
+    "months": [
+      "January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ],
+    "weekdays": ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
+    "timeSlots": {
+      "08:00": "08:00 AM",
+      "09:00": "09:00 AM",
+      "10:00": "10:00 AM",
+      "11:00": "11:00 AM",
+      "12:00": "12:00 PM",
+      "13:00": "01:00 PM",
+      "14:00": "02:00 PM",
+      "15:00": "03:00 PM",
+      "16:00": "04:00 PM",
+      "17:00": "05:00 PM",
+      "18:00": "06:00 PM"
+    },
+    "types": {
+      "Full service": "Full service",
+      "Battery & motor": "Battery & motor",
+      "Wheels & brakes": "Wheels & brakes",
+      "Mobile repair": "Mobile repair",
+      "Frame & bodywork": "Frame & bodywork"
+    },
+    "days": {
+      "Monday": "Monday",
+      "Tuesday": "Tuesday",
+      "Wednesday": "Wednesday",
+      "Thursday": "Thursday",
+      "Friday": "Friday",
+      "Saturday": "Saturday",
+      "Sunday": "Sunday",
+      "Closed": "Closed"
+    }
+  },
+  "aboutPage": {
+    "metaTitle": "About E-Renty | Smarter Fleets, Greener Cities",
+    "metaDesc": "E-Renty is a Budapest-based e-bike fleet management company helping Hungarian businesses cut costs, reduce emissions, and keep their teams moving sustainably.",
+    "heroEyebrow": "About E-Renty",
+    "heroTitleLine1": "Smarter fleets.",
+    "heroTitleLine2": "Greener cities.",
+    "heroDesc": "E-Renty is a Budapest-based e-bike fleet management company helping Hungarian businesses cut costs, reduce emissions, and keep their teams moving sustainably.",
+    "ctaFleet": "Browse Fleet",
+    "ctaContact": "Get in touch",
+    "stats": [
+      { "value": "2019", "label": "Founded" },
+      { "value": "32+", "label": "Business customers" },
+      { "value": "120+", "label": "E-bikes deployed" },
+      { "value": "99.1%", "label": "Fleet uptime" }
+    ],
+    "missionEyebrow": "Our mission",
+    "missionTitle": "Make sustainable fleet mobility the default choice for every Hungarian business.",
+    "missionDesc": "We believe that electric bikes are the most cost-effective, sustainable, and employee-friendly form of urban transport available today. Our job is to remove every obstacle between a company and a fully managed, insured, GPS-tracked e-bike fleet.",
+    "missionBullets": [
+      "100% VAT-reclaimable rental fees",
+      "Income tax exemption on e-bike benefits",
+      "Nationwide service partner network",
+      "E-signed contracts — riding in 48h",
+      "Per-bike GPS telemetry and analytics"
+    ],
+    "metrics": [
+      { "value": "18.4t / yr", "label": "CO₂ saved", "sub": "" },
+      { "value": "502k", "label": "km ridden", "sub": "" },
+      { "value": "< 24h", "label": "Service calls", "sub": "" },
+      { "value": "72", "label": "Customer NPS", "sub": "Fleet analytics · 2024" }
+    ],
+    "valuesEyebrow": "What we stand for",
+    "valuesTitle": "Six principles that guide every decision.",
+    "valuesSubtitle": "From how we write a contract to how we respond to a breakdown — these values aren't a poster on the wall.",
+    "values": [
+      {
+        "title": "Sustainability",
+        "desc": "Every kilometer ridden on an E-Renty bike saves roughly 180g of CO₂ compared to a car commute. We track this fleet-wide and report it to our partners quarterly."
+      },
+      {
+        "title": "Reliability",
+        "desc": "Sub-24h maintenance response, nationwide service partners, and a replacement-bike guarantee. Your fleet stays running — full stop."
+      },
+      {
+        "title": "Transparency",
+        "desc": "No hidden fees. One fixed monthly invoice per company, VAT-compliant, exportable to any ERP. You always know exactly what you're paying and why."
+      },
+      {
+        "title": "Partnership",
+        "desc": "We assign a dedicated account manager to every fleet over 10 bikes. Your business goals become our service roadmap."
+      },
+      {
+        "title": "People-first",
+        "desc": "E-bikes make commuting enjoyable. We've seen 14% average uplift in employee satisfaction scores across our corporate clients in the first 6 months."
+      },
+      {
+        "title": "Innovation",
+        "desc": "From our live GPS telemetry dashboard to e-signed contracts and smart battery analytics — we keep building tools that make fleet management invisible."
+      }
+    ],
+    "timelineEyebrow": "Our journey",
+    "timelineTitle": "From 12 bikes to 120+ — and still growing.",
+    "timelineSubtitle": "Six years of learnings, mistakes, and milestones that shaped E-Renty into what it is today.",
+    "timeline": [
+      { "year": "2019", "title": "Founded in Budapest", "desc": "Three logistics engineers frustrated by rising fuel costs and unreliable company cars launched E-Renty with a seed fleet of 12 DUOTTS bikes." },
+      { "year": "2020", "title": "First corporate fleet", "desc": "Signed our first 20-bike corporate contract with a Budapest courier startup. Proved the model works at scale." },
+      { "year": "2021", "title": "Courier+ launched", "desc": "Introduced the maintenance + GPS + insurance subscription product. Fixed-fee predictability became our biggest differentiator." },
+      { "year": "2022", "title": "Nationwide expansion", "desc": "Opened service-partner agreements in Debrecen, Győr, Pécs and Miskolc. Any bike, anywhere in Hungary, serviced within 24 hours." },
+      { "year": "2023", "title": "100 bikes milestone", "desc": "Surpassed 100 active bikes across 20+ companies. Launched the admin fleet-management portal and per-bike GPS dashboard." },
+      { "year": "2024", "title": "E-signed contracts", "desc": "Rolled out fully digital KYC and e-signature flow — from account creation to riding takes under 48 hours, no paperwork." }
+    ],
+    "teamEyebrow": "The team",
+    "teamTitle": "Built by people who ride.",
+    "teamSubtitleText": "Our founders and leadership team are daily e-bike commuters — which means every product decision starts with personal experience.",
+    "team": [
+      { "initials": "SH", "name": "Szabolcs Halász", "role": "Co-Founder & Managing Director" },
+      { "initials": "MF", "name": "Moldován & Fia Investment Ltd.", "role": "Co-Founder & Investor" },
+      { "initials": "ZN", "name": "Zsombor Nagy", "role": "Business Unit Director" },
+      { "initials": "KH", "name": "Kristóf Horváth", "role": "Fleet Operations Manager" },
+      { "initials": "NS", "name": "Nóra Schulteisz", "role": "Courier Division Manager" },
+      { "initials": "PM", "name": "Petra Méri", "role": "Junior Sales Representative" }
+    ],
+    "logosTitle": "Trusted by leading companies",
+    "ctaTitle": "Ready to start?",
+    "ctaDesc": "Join 32+ companies already riding with E-Renty. Set up a call with our fleet team and have bikes at your office within a week.",
+    "ctaFleetBtn": "Browse the fleet",
+    "ctaContactBtn": "Contact us"
+  },
+  "businessPage": {
+    "b2bPre": "Business · 20+ bikes",
+    "b2bTitle": "Manage your whole fleet from one dashboard.",
+    "b2bDesc": "Volume pricing kicks in automatically. Plus: master invoicing, employee provisioning, and a dedicated account manager.",
+    "b2bCta": "Request a custom quote →",
+    "b2bStatDiscount": "Volume discount up to",
+    "b2bStatInvoicing": "Master invoicing",
+    "b2bStatSLA": "SLA response",
+    "b2bStatAM": "Dedicated AM (50+ bk)",
+    "metaTitle": "E-Renty for Business | Corporate E-Bike Fleets & Courier Solutions",
+    "metaDesc": "Fully managed electric bike and scooter fleets for Hungarian businesses — from tax-free employee mobility to always-on courier fleets. GPS tracking, theft insurance, sub-24h maintenance, one fixed monthly invoice.",
+    "heroEyebrow": "",
+    "heroTitleLine1": "Your team, your fleet,",
+    "heroTitleLine2": "your E-Renty solution",
+    "heroDesc": "Premium e-bike fleets, fully managed for your business. From tax-free employee mobility to always-on courier fleets, E-Renty gives Hungarian companies a turnkey, GPS-tracked, insured, and maintained electric fleet for one fixed monthly fee per bike.",
+    "ctaPrimary": "Talk to our team",
+    "ctaSecondary": "Browse the fleet",
+    "stats": [
+      { "value": "from 25 000 Ft", "label": "Per rider, per month" },
+      { "value": "100%", "label": "VAT reclaimable" },
+      { "value": "0%", "label": "Income tax on the e-bike benefit" },
+      { "value": "< 24h", "label": "Maintenance response" }
+    ],
+    "logosTitle": "Trusted by delivery platforms, hotels and enterprises across Hungary",
+    "whyEyebrow": "Why E-Renty",
+    "whyTitle": "The company fleet that pays for itself.",
+    "whySubtitle": "Cars are expensive, slow in the city and hard on the planet. An E-Renty e-bike fleet is cheaper to run, faster door-to-door and tax-advantaged from day one.",
+    "why": [
+      {
+        "title": "One predictable fee",
+        "desc": "A single fixed monthly invoice per company covers the bike, GPS, insurance and maintenance. No surprise repair bills, no depreciation, no fleet admin."
+      },
+      {
+        "title": "Tax-advantaged by design",
+        "desc": "Rental fees are fully expensable, VAT is reclaimable, and since 2022 e-bikes given to staff are exempt from personal income tax — a benefit employees actually use."
+      },
+      {
+        "title": "Cheaper than a company car",
+        "desc": "Charging an e-bike costs roughly 900–1 800 Ft a month. No fuel, no parking, no servicing surprises — a fraction of the total cost of a company car."
+      },
+      {
+        "title": "Zero fleet headaches",
+        "desc": "We handle procurement, registration, servicing, insurance claims and replacements. Your team rides; we keep the wheels turning."
+      }
+    ],
+    "benefitsEyebrow": "The business case",
+    "benefitsTitle": "Built around the Hungarian tax rules that favour e-bikes.",
+    "benefitsDesc": "Since January 2022, the law strongly rewards companies that put employees on electric bikes. E-Renty is structured to help you capture every advantage — cleanly and compliantly.",
+    "benefitsBullets": [
+      "VAT on e-bikes used for taxable activity is fully reclaimable.",
+      "E-bikes up to 300 W provided for private use, including commuting, are exempt from personal income tax (SZJA).",
+      "The full monthly rental fee is deductible as a business cost — with no social contribution obligation.",
+      "Purchase, service and maintenance costs reduce your corporate tax (TAO) base.",
+      "No down payment and no residual-value risk — you rent, you don't own."
+    ],
+    "benefitsNote": "E-Renty is not a tax advisor — we're happy to walk your finance team through the details.",
+    "benefitsMetrics": [
+      { "value": "100%", "label": "VAT reclaimable", "sub": "on qualifying fleets" },
+      { "value": "0 Ft", "label": "Personal income tax", "sub": "on the e-bike benefit" },
+      { "value": "1–3 yr", "label": "Flexible contracts", "sub": "fixed monthly fee" },
+      { "value": "~1 500 Ft", "label": "Monthly charging", "sub": "per bike, on average" }
+    ],
+    "solutionsEyebrow": "Fleet solutions",
+    "solutionsTitle": "One partner for every kind of fleet.",
+    "solutionsSubtitle": "Whether you're moving couriers, commuters or guests, we build the fleet around how your business actually operates.",
+    "solutions": [
+      {
+        "title": "Employee mobility fleets",
+        "desc": "Give staff a tax-free, healthy way to commute and move between sites. We help each employee pick the right bike, train them, and hand over multilingual manuals.",
+        "points": ["Tax-free employee benefit", "Site-to-site & last-mile commuting", "Bike selection & rider training"]
+      },
+      {
+        "title": "Courier & delivery fleets",
+        "desc": "Purpose-built for delivery operations that can't afford downtime. GPS tracking, theft insurance and sub-24h repairs keep riders earning. Official rental partner of Foodora.",
+        "points": ["GPS tracking + theft insurance", "Sub-24h maintenance & replacement bikes", "Foodora courier partner — 10% rider discount"]
+      },
+      {
+        "title": "Custom-branded fleets",
+        "desc": "Turn your fleet into moving billboards. We wrap and brand bikes in your identity so every delivery and commute doubles as advertising.",
+        "points": ["Full livery & branding", "Marketing messaging on the frames", "A consistent, professional fleet look"]
+      },
+      {
+        "title": "Seasonal & event fleets",
+        "desc": "Short-term fleets for festivals, tourism peaks and campuses — deployed fast and collected when you're done. Winter kits and rain covers included.",
+        "points": ["Flexible short-term terms", "Festival, hotel & campus ready", "All-weather equipment supplied"]
+      }
+    ],
+    "industriesEyebrow": "Who we serve",
+    "industriesTitle": "On the road with Hungarian businesses.",
+    "industriesSubtitle": "From food delivery to five-star hotels, companies across Hungary already run on E-Renty.",
+    "industries": [
+      { "name": "Delivery & courier", "desc": "Food and grocery platforms and independent couriers — the backbone of urban last-mile delivery." },
+      { "name": "Hotels & hospitality", "desc": "Guest and staff mobility for hotels, spas and resorts that want a greener, more memorable experience." },
+      { "name": "Tourism & leisure", "desc": "Tour operators and tourism offices offering visitors an effortless way to explore the city." },
+      { "name": "Events & festivals", "desc": "Fast, emission-free transport for crews and staff across large festival and event sites." },
+      { "name": "Corporate & facilities", "desc": "Distributors and multi-site employers moving teams between buildings, warehouses and plants." },
+      { "name": "Real estate & campuses", "desc": "Property groups and campuses giving residents and staff shared, sustainable micro-mobility." }
+    ],
+    "howEyebrow": "How it works",
+    "howTitle": "From first call to riding in under a week.",
+    "howSubtitle": "No dealerships, no procurement maze — a simple, mostly-digital path to a fleet on the road.",
+    "steps": [
+      { "title": "Talk to our fleet team", "desc": "Tell us your headcount, routes and goals. We recommend the right bikes, plan and fleet size — no obligation." },
+      { "title": "Choose your fleet & plan", "desc": "Pick models from our catalogue and a support level. We confirm volume pricing and a fixed monthly quote." },
+      { "title": "E-sign your contract", "desc": "Fully digital KYC and e-signature. Most fleets go from agreement to delivery without a single sheet of paper." },
+      { "title": "Deploy & onboard", "desc": "We deliver, brand and register the bikes, set up charging, and train your riders with multilingual guides." },
+      { "title": "Ride — we manage the rest", "desc": "GPS telemetry, insurance, servicing and replacements are handled for you, reported through one account manager." }
+    ],
+    "includedEyebrow": "Everything included",
+    "includedTitle": "A fleet that manages itself.",
+    "includedSubtitle": "Every E-Renty business fleet comes fully loaded — no add-ons, no fine print.",
+    "included": [
+      { "title": "GPS tracking & telemetry", "desc": "Every bike is tracked live, with per-bike analytics for your fleet admin." },
+      { "title": "Theft insurance", "desc": "Bikes are insured against theft 24/7, with claims handled by us." },
+      { "title": "Sub-24h maintenance", "desc": "Nationwide service partners keep downtime to a minimum, wherever you operate." },
+      { "title": "Replacement bikes", "desc": "Priority plans include a replacement vehicle so work never stops." },
+      { "title": "Charging setup", "desc": "We help install charging points and secure bike storage at your sites." },
+      { "title": "Rider training & manuals", "desc": "Hands-on onboarding plus user manuals in multiple languages." },
+      { "title": "All-weather kit", "desc": "Rain covers and heated winter jackets keep riders comfortable year-round." },
+      { "title": "One master invoice", "desc": "A single monthly, VAT-compliant invoice per company, exportable to your ERP." },
+      { "title": "Dedicated account manager", "desc": "Fleets over 10 bikes get a named contact and online fault reporting." }
+    ],
+    "sustainEyebrow": "Sustainability",
+    "sustainTitle": "Cut costs and carbon in the same move.",
+    "sustainDesc": "Every kilometre ridden on an E-Renty bike instead of a car keeps roughly 180 g of CO₂ out of the air. We track it fleet-wide and report it to you — evidence for your ESG goals, not just a nice idea.",
+    "sustainBullets": [
+      "Zero tailpipe emissions across your fleet",
+      "Quarterly CO₂-saved reporting, per company",
+      "Less congestion, noise and city parking pressure",
+      "A visible, credible signal of your green commitment"
+    ],
+    "sustainMetrics": [
+      { "value": "18.4 t", "label": "CO₂ saved per year across our fleet" },
+      { "value": "502k", "label": "Green kilometres ridden" },
+      { "value": "0 g", "label": "Tailpipe emissions per kilometre" }
+    ],
+    "faqEyebrow": "Business FAQ",
+    "faqTitle": "Questions from finance, fleet and HR teams.",
+    "faqSubtitle": "Everything you need before you bring E-Renty to your next planning meeting.",
+    "faqs": [
+      { "q": "How much does a business fleet cost?", "a": "Employee-mobility bikes start from around 25 000 Ft per rider per month, with volume pricing as your fleet grows. Courier support plans start lower. You always get one fixed monthly quote — no hidden fees." },
+      { "q": "Do we buy or rent the bikes?", "a": "You rent. There's no down payment and no residual-value risk. The full monthly fee is expensable, and you can scale the fleet up or down as your needs change." },
+      { "q": "What are the tax benefits exactly?", "a": "VAT is reclaimable on qualifying use, the monthly fee is fully deductible with no social contribution, and e-bikes up to 300 W given to employees are exempt from personal income tax. We're glad to brief your accountant on the details." },
+      { "q": "What happens when a bike breaks down?", "a": "Report it online and our nationwide service network responds within 24 hours. Priority plans include a replacement bike so your operation keeps moving." },
+      { "q": "Can you brand the bikes for us?", "a": "Yes. We wrap and brand fleets in your identity and can add marketing messaging to the frames — turning every ride into advertising." },
+      { "q": "How long are the contracts?", "a": "Typically one to three years for corporate fleets, with flexible short-term options for seasonal and event needs." },
+      { "q": "Where do you operate?", "a": "We're based in Budapest and Kecskemét with a nationwide service-partner network, so we can support fleets anywhere in Hungary." }
+    ],
+    "viewAllFaq": "View all FAQs",
+    "ctaTitle": "Let's build your fleet.",
+    "ctaDesc": "Tell us about your team and routes, and we'll come back with the right bikes, a fixed monthly quote, and wheels at your door within a week.",
+    "ctaPrimaryBtn": "Contact sales",
+    "ctaSecondaryBtn": "Browse the fleet",
+    "ctaNote": "Talk to a human — no bots, no obligation."
+  },
+  "contactPage": {
+    "metaTitle": "Contact E-Renty | Let's Talk Fleet Strategy",
+    "metaDesc": "Get in touch with the E-Renty team. Whether you're exploring your first e-bike pilot or scaling an existing fleet, we're here to help.",
+    "heroEyebrow": "Contact Us",
+    "heroTitleLine1": "Let's talk",
+    "heroTitleLine2": "fleet strategy.",
+    "heroDesc": "Whether you're exploring your first e-bike pilot or scaling an existing fleet, our team is here to help you move faster.",
+    "emailLabel": "Email",
+    "emailSub": "We reply within 1 business day",
+    "phoneLabel": "Phone",
+    "phoneSub": "Mon–Fri, 8:00–17:00",
+    "addressLabel": "Address",
+    "addressValue": "1012 Budapest, Kuny Domokos utca 13-15",
+    "addressSub": "Ring the bell for E-Renty",
+    "hoursLabel": "Office Hours",
+    "hoursValue": "Mon–Fri 8:00–17:00",
+    "hoursSub": "CET/CEST · Emergency line 24/7",
+    "formTitle": "Send a message",
+    "formSubtitle": "Fill in the form and someone from our team will reply within one business day.",
+    "topicLabel": "Topic",
+    "topicPlaceholder": "Select a topic",
+    "topics": [
+      "Corporate fleet inquiry",
+      "General question",
+      "Support request",
+      "Partnership"
+    ],
+    "nameLabel": "Full Name",
+    "namePlaceholder": "Your full name",
+    "emailFieldLabel": "Email",
+    "emailFieldPlaceholder": "you@company.com",
+    "companyLabel": "Company (optional)",
+    "companyPlaceholder": "Your company name",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Tell us about your fleet needs, question or idea…",
+    "submitBtn": "Send Message",
+    "privacyNote": "We respect your privacy. Your details will never be shared with third parties.",
+    "successTitle": "Message sent!",
+    "successDesc": "Thank you for reaching out. Someone from our team will reply within one business day.",
+    "mapEyebrow": "Visit us",
+    "mapTitle": "Find our office.",
+    "mapSubtitle": "We're in the heart of Budapest, a short walk from the M1 metro line.",
+    "openInMaps": "Open in maps",
+    "faqTitle": "Frequently asked questions",
+    "faqViewAll": "View all FAQs",
+    "faqs": [
+      {
+        "q": "How quickly can we get started?",
+        "a": "Once KYC is complete, we can have bikes delivered within 48 hours anywhere in Hungary. Fleet setup for 10+ bikes typically takes 3–5 business days."
+      },
+      {
+        "q": "Do you offer a free trial?",
+        "a": "Yes — we offer a 30-day pilot programme for new corporate clients with up to 5 bikes. Contact our sales team to arrange the terms."
+      },
+      {
+        "q": "What support is included?",
+        "a": "All plans include email and phone support. Courier+ Extra and Max include a dedicated account manager and a 24/7 emergency line for theft or breakdown."
+      }
+    ],
+    "ctaTitle": "Ready to go fuel-free?",
+    "ctaDesc": "Join 32+ Hungarian companies already saving costs and boosting employee satisfaction with E-Renty.",
+    "ctaFleetBtn": "Browse the fleet",
+    "ctaAboutBtn": "Our story"
+  },
+  "faqPage": {
+    "metaTitle": "FAQ | E-Renty — Frequently Asked Questions",
+    "metaDesc": "Find answers about E-Renty rentals, Courier+ subscriptions, identity verification, payments, and fleet management.",
+    "heroEyebrow": "Help Center",
+    "heroTitle": "Frequently Asked Questions",
+    "heroDesc": "Find answers for your situation. Switch between customer, courier, or business tabs below.",
+    "tabs": [
+      {
+        "label": "Customers",
+        "categories": [
+          {
+            "title": "Getting Started",
+            "items": [
+              { "q": "How do I create an account?", "a": "Visit e-renty.com, click Sign In, then choose to register. Enter your name, email address, and a password of at least 8 characters. We'll send a 6-digit verification code to your inbox — enter it to activate your account. Codes expire after 15 minutes and can be resent after a 60-second cooldown." },
+              { "q": "What documents do I need to rent?", "a": "All customers must pass identity verification (KYC) before renting. You need to upload:\n1. ID card (front) or residence permit\n2. ID card (back)\n3. Selfie — a clear photo of your face\n4. Address card (proof of address)\n5. Business registration certificate\n\nEach document is reviewed by our team individually. You'll receive a notification once approved or rejected with a reason." },
+              { "q": "How long does verification take?", "a": "Typically within one business day. You can monitor the status of each document in your Dashboard → Documents tab. Once all slots show 'Approved', your account is verified and you can place your first rental." },
+              { "q": "What is the security deposit?", "a": "A one-time refundable security deposit of 20,000 Ft is charged alongside your very first rental payment. It is never charged again on any subsequent rental. The deposit is returned when your account is closed in good standing." },
+              { "q": "Can I rent more than one bike at a time?", "a": "Yes. During checkout you can set the quantity for your rental. Each unit gets its own vehicle assigned from our inventory automatically." }
+            ]
+          },
+          {
+            "title": "Payments & Pricing",
+            "items": [
+              { "q": "What payment methods are accepted?", "a": "We accept Visa/Mastercard cards, Google Pay, Apple Pay, and bank transfer. Card and wallet payments are processed securely through Stripe — your card details are never stored on our servers." },
+              { "q": "Can I pay monthly instead of all upfront?", "a": "Yes. At checkout you choose:\n• Monthly — only the first month is charged now. Future months appear in your Dashboard → Payments tab.\n• Upfront — pay the full period at once at a discounted rate shown live in the checkout summary." },
+              { "q": "Are there discounts for longer commitments?", "a": "Yes. Upfront payment discounts are applied automatically based on the number of months you commit to. The exact percentage is shown in the checkout summary before you pay." },
+              { "q": "Can I use a coupon code?", "a": "Yes. There is a coupon code field in the checkout flow. Enter your code and the discount is validated instantly and reflected in the price summary." },
+              { "q": "How are invoices issued?", "a": "A VAT invoice is generated automatically after every confirmed payment. You can download it from your Dashboard → Documents tab." }
+            ]
+          },
+          {
+            "title": "Rentals & Bikes",
+            "items": [
+              { "q": "What is the minimum rental period?", "a": "The platform minimum is typically 3 months, but this can change. The checkout flow clearly shows the minimum — period buttons below it are greyed out and not selectable." },
+              { "q": "How does vehicle assignment work?", "a": "When you complete checkout, the system automatically assigns an idle vehicle of your chosen model from the nearest available location. You'll see the vehicle number, battery number, and lock number in your Dashboard." },
+              { "q": "Can I renew my rental before it expires?", "a": "Yes. On any expiring rental (within 7 days of the end date) you'll see a Renew button. Open it to choose additional months, pick a payment schedule, optionally apply a coupon, and pay." },
+              { "q": "What happens if my bike needs repair?", "a": "Contact us through the platform or by phone. Our team arranges collection and assigns the bike to a certified repair partner. A replacement vehicle is arranged where possible." },
+              { "q": "How do I return the bike at the end?", "a": "Returns are handled by E-Renty staff at one of our depots. Contact us before the end date to arrange handover. Once the bike is received and inspected, your rental is closed." }
+            ]
+          },
+          {
+            "title": "Account & Privacy",
+            "items": [
+              { "q": "How do I change my email address?", "a": "Go to Dashboard → Settings → Email section. Enter your new address and save. A confirmation is automatically sent to your old address." },
+              { "q": "How do I request a copy of my data (GDPR)?", "a": "Go to Dashboard → Settings and use the 'Request Data Export' button. Your full data export will be prepared within 30 days." },
+              { "q": "How do I delete my account?", "a": "Go to Dashboard → Settings → Delete Account section. Enter your password to confirm. Active rentals must be returned before deletion can be completed." }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "E-Bike Owners & Couriers",
+        "categories": [
+          {
+            "title": "Getting Started",
+            "items": [
+              { "q": "I own my own e-bike — what does Courier+ cover?", "a": "Courier+ is a service subscription for e-bike owners. You keep riding your own bike — we cover scheduled and unscheduled maintenance, GPS device + live tracking, theft insurance with 24/7 monitoring, and roadside assistance. No rental involved." },
+              { "q": "Who is Courier+ designed for?", "a": "Courier+ is built for anyone who relies on their own e-bike daily — Wolt and Foodora delivery couriers, independent riders, and commuters who want professional-grade coverage without unexpected repair bills. No minimum mileage or fleet size requirement." },
+              { "q": "Is there a deposit or upfront hardware fee?", "a": "No deposit and no upfront hardware cost. The GPS device is included in your plan at no extra charge. You pay only the subscription fee. You can cancel at any time." },
+              { "q": "How do I register my bike?", "a": "During checkout enter your bike's VIN (frame number) and an optional description. Once payment is confirmed your bike is registered and coverage begins immediately. You can add or remove bikes from Dashboard → Courier+." },
+              { "q": "What happens if my bike breaks down?", "a": "Contact us via the platform or phone. We'll coordinate pick-up to the nearest certified repair partner — usually within the same day. All labour and parts for covered faults are included. Max plan subscribers can also request a temporary loan bike." }
+            ]
+          },
+          {
+            "title": "Courier+ Plan Details",
+            "items": [
+              { "q": "Which Courier+ plan is right for me?", "a": "• Basic — standard maintenance and GPS coverage for a single own bike.\n• Extra — priority support, extended theft coverage, and faster repair turnaround.\n• Max — full coverage for power users, including a temporary loan bike during repairs.\n\nAll plans include the GPS device, roadside assistance, and maintenance." },
+              { "q": "Can I cover multiple bikes on one plan?", "a": "Yes. When subscribing, enter how many vehicles you want covered and provide their VIN numbers. You can update the VIN list at any time from Dashboard → Courier+." },
+              { "q": "What billing cycles are available?", "a": "Monthly, quarterly (every 3 months), bi-annual (every 6 months), or yearly. Longer cycles typically come with a lower effective monthly rate." },
+              { "q": "Will I receive an invoice for tax purposes?", "a": "Yes. A VAT invoice is automatically generated after every confirmed payment and available for download in your Dashboard → Courier+ tab." }
+            ]
+          },
+          {
+            "title": "Day-to-Day & Claims",
+            "items": [
+              { "q": "How does maintenance work for my own bike?", "a": "When your bike needs service, book it through Dashboard → Courier+ or by calling us. We arrange drop-off at the nearest certified repair partner. Typical turnaround is 24–48 hours. Max plan subscribers can request home collection." },
+              { "q": "What if my bike is stolen?", "a": "Report the theft immediately in Dashboard → Courier+ or call our emergency line. You will need a police report reference number. Claims are typically processed within 5–10 working days. Max subscribers receive a temporary loan bike while the claim is in progress." },
+              { "q": "How do I track my payments?", "a": "All payment history is visible in your Dashboard → Payments tab. Scheduled upcoming payments show their due date and a Pay button when they become due." }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Businesses & Fleets",
+        "categories": [
+          {
+            "title": "Onboarding & Registration",
+            "items": [
+              { "q": "How does business registration work on E-Renty?", "a": "After creating an account, businesses go through a separate registration wizard where you submit your company details. Your application is reviewed by our team — you'll be on the pending screen until approved. Once approved, you get access to the full business dashboard." },
+              { "q": "What is the difference between a business and an individual account?", "a": "Business accounts are not charged the 20,000 Ft security deposit. Beyond that, the rental and Courier+ flows work the same. Businesses also have a dedicated dashboard showing all active rentals, fleet status, and payment history." },
+              { "q": "What documents are required for business verification?", "a": "The same KYC documents as individual customers: ID card (front + back), selfie, address document, and business registration certificate." },
+              { "q": "How long does business approval take?", "a": "Our team reviews business applications within one business day. You'll receive an email notification when approved or if further information is needed." }
+            ]
+          },
+          {
+            "title": "Fleet Management",
+            "items": [
+              { "q": "Can we rent multiple bikes under one business account?", "a": "Yes. Each rental can cover multiple units — set the quantity in checkout. All rentals are visible in your business dashboard in one place." },
+              { "q": "How does vehicle tracking work for our fleet?", "a": "Each vehicle has a unique fleet ID, battery number, and lock number visible in your dashboard. Vehicle status (idle / rented / in repair) is updated in real time." },
+              { "q": "Can we add Courier+ coverage for our entire fleet?", "a": "Yes. Subscribe to a Courier+ plan and enter all the VIN numbers. The Extra and Max plans are designed for multi-bike fleets with priority support." },
+              { "q": "What happens when a fleet vehicle needs repair?", "a": "Notify us via the platform or your account manager. We assign the vehicle to a certified repair partner and update its status. For Courier+ businesses, a replacement vehicle is arranged." }
+            ]
+          },
+          {
+            "title": "Billing & Contracts",
+            "items": [
+              { "q": "Are invoices issued per rental or per company?", "a": "Each confirmed payment generates its own VAT invoice automatically. All invoices are available for download from your business dashboard and can be filtered by date or rental." },
+              { "q": "Can we pay by bank transfer?", "a": "Yes. Select bank transfer at checkout. You'll receive a unique payment reference (ERN-XXXXXX) and our OTP Bank IBAN details. Our team confirms receipt of funds manually." },
+              { "q": "What contract terms are available?", "a": "Rental contracts are generated automatically and signed digitally. We offer rental periods from 3 months up to 24 months. For custom enterprise contracts, contact our fleet team directly." }
+            ]
+          }
+        ]
+      }
+    ],
+    "ctaTitle": "Still have questions?",
+    "ctaDesc": "Our team is happy to help. Send us a message or browse the available e-bikes.",
+    "ctaContactBtn": "Contact us",
+    "ctaFleetBtn": "Browse fleet"
+  },
+  "loginPage": {
+    "metaTitle": "Login | E-Renty",
+    "metaDesc": "Sign in to your E-Renty account or create a new one to start renting electric bikes.",
+    "tagline": "Fuel-Free. Stress-Free.",
+    "loginTab": "Log in",
+    "signupTab": "Sign up",
+    "loginTitle": "Welcome back",
+    "loginSubtitle": "Sign in to manage your rentals, subscriptions, and fleet.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@company.com",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "forgotPassword": "Forgot password?",
+    "forgotTitle": "Reset your password",
+    "forgotSubtitle": "Enter the email linked to your account and we'll send you a reset link.",
+    "forgotSubmit": "Send reset link",
+    "forgotSuccessTitle": "Check your inbox",
+    "forgotSuccessDesc": "If an account exists for that email, a password reset link is on its way.",
+    "backToLogin": "Back to log in",
+    "loginBtn": "Sign in",
+    "signupTitle": "Create an account",
+    "signupSubtitle": "Choose your account type to get started.",
+    "panelLoginHeading": "Manage your fleet in one place.",
+    "panelLoginSub": "Sign in to reach your rentals, subscriptions, and support — all from a single dashboard.",
+    "panelSignupHeading": "Join E-Renty.",
+    "panelSignupSub": "Create an account to rent electric bikes, or set up a business fleet.",
+    "accountTypeLabel": "I'm signing up as",
+    "individualSubtitle": "Personal rental account. Get started in minutes.",
+    "benefit1": "GPS-tracked, fully insured fleet",
+    "benefit2": "Maintenance & 24/7 support included",
+    "benefit3": "Flexible monthly or upfront billing",
+    "typeIndividual": "Individual",
+    "typeIndividualDesc": "Personal rental account. Get started in minutes.",
+    "typeBusiness": "Business",
+    "typeBusinessDesc": "Fleet management for companies. 4-step setup.",
+    "nameLabel": "Full Name",
+    "namePlaceholder": "Your full name",
+    "phoneLabel": "Phone number",
+    "phonePlaceholder": "+36 20 123 4567",
+    "createPasswordPlaceholder": "Create a strong password",
+    "confirmLabel": "Confirm Password",
+    "confirmPlaceholder": "Repeat your password",
+    "termsPrefix": "I have read and accept the",
+    "termsLink": "Terms and Conditions",
+    "termsAnd": "and the",
+    "privacyLink": "Privacy Policy",
+    "signupBtn": "Create account",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "businessSetupTitle": "Set up your business account",
+    "businessSetupDesc": "Business registration takes about 3 minutes and includes company and document verification. We'll review and email you within 1 business day.",
+    "businessSetupBtn": "Start business setup"
+  },
+  "businessSignupPage": {
+    "metaTitle": "Business Signup | E-Renty",
+    "metaDesc": "Set up your E-Renty business account for fleet management, invoicing, and courier subscriptions.",
+    "headerTitle": "Set up your business",
+    "headerSubtitle": "Takes about 3 minutes. We'll review and email you within 1 business day.",
+    "steps": [
+      { "label": "Contact Details", "desc": "Tell us about you." },
+      { "label": "Company Details", "desc": "Your legal entity." },
+      { "label": "Documents", "desc": "Specimen signature." },
+      { "label": "Verify Email", "desc": "Confirm your address." }
+    ],
+    "back": "Back",
+    "continue": "Continue",
+    "submit": "Submit",
+    "step1": {
+      "title": "Contact details",
+      "subtitle": "This is the person who'll manage the account.",
+      "fullNameLabel": "Full name",
+      "fullNamePlaceholder": "Anna Manager",
+      "designationLabel": "Designation / Job title",
+      "designationPlaceholder": "Fleet Operations Lead",
+      "phoneLabel": "Phone number",
+      "phonePlaceholder": "+36 20 123 4567",
+      "emailLabel": "Email address",
+      "emailPlaceholder": "ops@company.com",
+      "emailHelper": "We'll send a verification link to this address.",
+      "passwordLabel": "Password",
+      "confirmLabel": "Confirm password",
+      "confirmPlaceholder": "Repeat your password",
+      "passwordMismatch": "Passwords don't match.",
+      "addressLabel": "Mailing address",
+      "addressPlaceholder": "Street, city, post code"
+    },
+    "step2": {
+      "title": "Company details",
+      "subtitle": "Legal entity information for contracts and invoicing.",
+      "companyNameLabel": "Company name (legal entity)",
+      "companyNamePlaceholder": "Company A Holdings Ltd.",
+      "postCodeLabel": "Post code",
+      "postCodePlaceholder": "1052",
+      "cityLabel": "City",
+      "cityPlaceholder": "Budapest",
+      "streetLabel": "Street address",
+      "streetPlaceholder": "Váci út 1.",
+      "regNumberLabel": "Company registration number",
+      "regNumberPlaceholder": "REG-000-000",
+      "taxNumberLabel": "Business Tax Number",
+      "taxNumberPlaceholder": "12345678-1-41",
+      "taxNumberHelper": "This will appear on your invoices.",
+      "repNameLabel": "Name of authorized representative",
+      "repNamePlaceholder": "Full legal name",
+      "repNameHelper": "The person legally empowered to sign contracts."
+    },
+    "step3": {
+      "title": "Specimen signature document",
+      "subtitle": "Upload a document signed by your authorized representative.",
+      "dropLabel": "Drop file here or browse",
+      "fileTypes": "PDF, PNG or JPG · up to 10 MB",
+      "invalidFile": "Please upload a PDF, PNG or JPG under 10 MB.",
+      "removeFile": "Remove",
+      "consentPrefix": "By submitting you agree to our",
+      "consentTermsLink": "Terms",
+      "consentSuffix": "and acknowledge that approval may take up to 1 business day."
+    },
+    "step4": {
+      "title": "Check your email",
+      "subtitle": "We sent a 6-digit code to",
+      "resendPrompt": "Didn't receive it?",
+      "resendBtn": "Resend code",
+      "resendCountdown": "Resend in {s}s",
+      "verifyBtn": "Verify & finish",
+      "verifying": "Verifying…",
+      "redirecting": "Redirecting to your dashboard…",
+      "invalidCode": "Enter all 6 digits"
+    }
+  },
+  "privacyPage": {
+    "metaTitle": "Privacy Policy | E-Renty",
+    "metaDesc": "How E-Renty Kft. collects, uses, and protects your personal data in accordance with GDPR and Hungarian law.",
+    "heroEyebrow": "Legal",
+    "heroTitle": "Privacy Policy",
+    "lastUpdated": "Last updated: 12 June 2026",
+    "intro": "This Privacy Policy explains how E-Renty Kft. (\"E-Renty\", \"we\", \"us\") collects, uses, and protects your personal data in accordance with Regulation (EU) 2016/679 (GDPR) and Act CXII of 2011 on the Right of Informational Self-Determination and on Freedom of Information (Hungarian Info Act).",
+    "contactLine": "For privacy-related enquiries:",
+    "sections": [
+      {
+        "title": "1. Data Controller",
+        "card": [
+          "E-Renty Kft.",
+          "Registered address: 1012 Budapest, Kuny Domokos utca 13-15, Hungary",
+          "Company registration number: 01-09-437591",
+          "Tax number: 32690370-2-41",
+          "Phone: <a href=\"tel:+36204340771\">+36 20 434 0771</a>",
+          "Email: <a href=\"mailto:info@e-renty.com\">info@e-renty.com</a>"
+        ]
+      },
+      {
+        "title": "2. Data We Collect",
+        "paragraphs": ["We collect the following categories of personal data:"],
+        "items": [
+          "Account data: email address, full name, phone number, password (hashed)",
+          "Identity verification (KYC): identity card or residence permit scan, selfie photograph, proof of address, and business registration documents",
+          "Business data: company name, registration number, tax number (business accounts only)",
+          "Rental & subscription data: rental period, selected plan, payment schedule, discount applied, payment amounts and references",
+          "Vehicle & bike data: assigned vehicle number, vehicle type, battery and lock serial numbers; Courier+ VIN / frame numbers",
+          "GPS and location data (Courier+ only): live location coordinates, movement history, and telematics data for live tracking, theft alerts, and remote-lock",
+          "Digital signature data: drawn signature image and signed contract PDF",
+          "Usage and analytics data: pages visited, session duration, browser type, device type, IP address — via Google Analytics (GA4), subject to cookie consent",
+          "Marketing interaction data: ad engagement via Meta Pixel (Facebook), subject to cookie consent",
+          "Server logs: login timestamps, API request logs, IP addresses"
+        ],
+        "afterItems": ["We do not collect payment card numbers. Card processing is handled end-to-end by Stripe (PCI-DSS certified). We receive only a payment confirmation and a masked card summary."]
+      },
+      {
+        "title": "3. Legal Basis and Purposes",
+        "paragraphs": ["We process your data under the following legal bases (GDPR Art. 6):"],
+        "items": [
+          "Performance of a contract (Art. 6(1)(b)): creating accounts, processing rentals and subscriptions, generating contracts and invoices, identity verification, GPS tracking, and theft insurance claims",
+          "Legal obligation (Art. 6(1)(c)): accounting records retained for 8 years under Hungarian Accounting Act; KYC for anti-money-laundering compliance",
+          "Legitimate interest (Art. 6(1)(f)): fraud prevention, platform security, dispute resolution, and service improvement based on aggregated usage patterns",
+          "Consent (Art. 6(1)(a)): analytics and marketing cookies activated only when you accept via the consent banner; optional marketing communications"
+        ]
+      },
+      {
+        "title": "4. GPS and Location Data",
+        "paragraphs": [
+          "If you subscribe to Courier+, a GPS device is fitted to your registered bike. Location data is processed for live Dashboard tracking, theft alerts, remote-lock functionality, and insurance claim verification.",
+          "Location data is retained for 90 days of rolling history. It is shared with our GPS/telematics provider (GDPR Art. 28 agreement) and with our insurance partner when a theft claim is submitted.",
+          "Location data is not used for advertising, profiling, or any purpose beyond the Courier+ service."
+        ]
+      },
+      {
+        "title": "5. Data Retention",
+        "paragraphs": ["We retain your data only as long as necessary:"],
+        "items": [
+          "Account & profile data: duration of account + 30 days after deletion request",
+          "KYC documents: active contractual relationship, deleted within 90 days of account closure",
+          "Rental contracts and signed PDFs: 5 years from end of rental (civil law limitation period)",
+          "Invoices & payment records: 8 years (Hungarian Accounting Act)",
+          "GPS / location history: 90 days rolling window",
+          "Server logs: 90 days",
+          "Analytics data: as set by Google Analytics retention settings (default 14 months)"
+        ]
+      },
+      {
+        "title": "6. Data Sharing",
+        "paragraphs": ["We do not sell your personal data. We share data only with:"],
+        "items": [
+          "Payment processor (Stripe): for card, Google Pay, and Apple Pay transactions",
+          "Repair partners: vehicle number and repair-relevant information",
+          "Insurance partner: name, contact details, bike VIN, GPS data for theft claims",
+          "GPS / telematics provider: location coordinates for Courier+ tracking",
+          "Accounting software: invoice data for bookkeeping",
+          "Google (Analytics & Ads): anonymised usage data, subject to cookie consent",
+          "Meta / Facebook: marketing data via Meta Pixel, subject to cookie consent",
+          "Authorities: when required by applicable law or court order"
+        ],
+        "afterItems": ["All processors (other than Meta, which is an independent controller) are bound by GDPR Art. 28 data processing agreements."]
+      },
+      {
+        "title": "7. Cookies and Tracking Technologies",
+        "paragraphs": ["We use the following categories:"],
+        "items": [
+          "Strictly necessary (no consent): authentication tokens, refresh tokens, language preference, consent choice, UI preferences",
+          "Analytics (consent required): Google Analytics 4 — anonymised data on pages visited, session duration, device type",
+          "Marketing (consent required): Google Ads conversion tracking; Meta Pixel for ad engagement optimisation"
+        ],
+        "afterItems": ["You can change your consent at any time by clearing the erenty_cookie_consent key from local storage, or by contacting us. We self-host all fonts — no external CDN requests."]
+      },
+      {
+        "title": "8. Your Rights under GDPR",
+        "items": [
+          "Right of access (Art. 15): request a copy of your personal data",
+          "Right to rectification (Art. 16): correct inaccurate data via profile settings or by contacting us",
+          "Right to erasure (Art. 17): request deletion of your account and data (subject to legal retention)",
+          "Right to data portability (Art. 20): receive your data in a structured, machine-readable format",
+          "Right to restrict processing (Art. 18): limit how we use your data in certain circumstances",
+          "Right to object (Art. 21): object to processing based on legitimate interests",
+          "Right to withdraw consent: at any time without affecting the lawfulness of prior processing"
+        ],
+        "afterItems": ["To exercise any right, email info@e-renty.com or call +36 20 434 0771. We will respond within 30 days."]
+      },
+      {
+        "title": "9. Right to Lodge a Complaint",
+        "card": [
+          "Nemzeti Adatvédelmi és Információszabadság Hatóság (NAIH)",
+          "Address: 1055 Budapest, Falk Miksa utca 9–11.",
+          "Website: <a href=\"https://www.naih.hu\" target=\"_blank\" rel=\"noopener noreferrer\">www.naih.hu</a>"
+        ]
+      },
+      {
+        "title": "10. Security",
+        "paragraphs": ["We implement appropriate technical and organisational measures including: encrypted data transmission (HTTPS/TLS 1.2+), password hashing (bcrypt), short-lived JWT access tokens with refresh token rotation, role-based access control, and authenticated access to all uploaded documents and GPS data. KYC documents are never publicly accessible."]
+      },
+      {
+        "title": "11. Changes to This Policy",
+        "paragraphs": ["We may update this Privacy Policy from time to time. Material changes will be communicated via email or a prominent notice in the platform at least 14 days before taking effect. The date at the top of this page always reflects the most recent revision."]
+      }
+    ]
+  },
+  "termsPage": {
+    "metaTitle": "Terms and Conditions | E-Renty",
+    "metaDesc": "Terms and Conditions (ÁSZF) of E-Renty Kft. for e-bike rental and fleet management services.",
+    "heroEyebrow": "Legal",
+    "heroTitle": "Terms & Conditions",
+    "lastUpdated": "Last updated: 12 June 2026",
+    "intro": "These Terms and Conditions (\"T&C\" or \"ÁSZF\") govern the use of the e-bike rental services and online platform provided by E-Renty Kft. By placing an order, renting a vehicle, or signing a contract, you accept these terms in full. The summary below highlights the key points — the complete, legally binding document is available as a PDF.",
+    "fullDocTitle": "Full General Terms and Conditions",
+    "fullDocDesc": "The sections below are a plain-language summary. For the complete and legally binding General Terms and Conditions (GTC / ÁSZF), please refer to the official document.",
+    "fullDocBtn": "Download the full GTC (PDF)",
+    "sections": [
+      {
+        "title": "1. Contractual Parties",
+        "paragraphs": [
+          "The rental agreement is concluded between the Customer (individual or business) and E-Renty Kft. (registered address: 1012 Budapest, Kuny Domokos utca 13-15, Hungary; company registration number: 01-09-437591; tax number: 32690370-2-41)."
+        ]
+      },
+      {
+        "title": "2. Subscription & Rental Conditions",
+        "items": [
+          "Minimum age: The renter must be at least 18 years of age.",
+          "Identity verification: Renters must provide valid government-issued ID or passport, selfie photograph, and proof of address before vehicle handover.",
+          "Security Deposit: A security deposit may be required, which will be fully refunded within 5 business days after returning the bike in undamaged condition.",
+          "Payment: Subscription fees are billed monthly in advance via Stripe. Late payments may result in remote locking of the vehicle."
+        ]
+      },
+      {
+        "title": "3. Vehicle Usage Rules",
+        "paragraphs": [
+          "The renter agrees to use the vehicle with due diligence and comply with all local traffic laws (KRESZ in Hungary).",
+          "The renter is prohibited from: sub-leasing the vehicle, modifying the vehicle's hardware, or operating the vehicle under the influence of alcohol or drugs.",
+          "Courier+ users must keep the GPS telemetry module active at all times. Tampering with telemetry will trigger a breach of contract fee."
+        ]
+      },
+      {
+        "title": "4. Damage, Theft, and Insurance",
+        "paragraphs": [
+          "All E-Renty bikes are insured against theft and third-party liability, subject to a deductible (self-risk) fee of 15% of the replacement value or a fixed amount specified in the individual contract.",
+          "In case of theft, the renter must report the incident to E-Renty and the Police immediately (within 2 hours) and provide the police report number.",
+          "Normal wear and tear is covered under E-Renty's maintenance plan, but damages due to improper use, vandalism, or neglect are the sole financial responsibility of the renter."
+        ]
+      }
+    ]
+  },
+  "cookiesPage": {
+    "metaTitle": "Cookie Policy | E-Renty",
+    "metaDesc": "Information about how E-Renty uses cookies and tracking technologies to improve our fleet management system.",
+    "heroEyebrow": "Legal",
+    "heroTitle": "Cookie Policy",
+    "lastUpdated": "Last updated: 12 June 2026",
+    "intro": "This Cookie Policy explains how E-Renty Kft. uses cookies and similar tracking technologies on our website and dashboards. You can manage your preferences at any time.",
+    "sections": [
+      {
+        "title": "1. What Are Cookies?",
+        "paragraphs": [
+          "Cookies are small text files stored on your device when you visit websites. They help us recognize your browser, remember settings, and optimize your navigation experience."
+        ]
+      },
+      {
+        "title": "2. Types of Cookies We Use",
+        "items": [
+          "Necessary Cookies: Essential for basic site features (login sessions, CSRF protection, and lang routing). These cannot be disabled.",
+          "Functional & Preference Cookies: Remember your choices (such as your language setting) to personalize your experience.",
+          "Performance & Analytics Cookies (Google Analytics 4): Collect anonymous data on how visitors interact with our site, helping us identify bugs and improve loading speeds.",
+          "Marketing & Pixel Cookies (Meta Pixel): Used to track the efficacy of our advertising campaigns."
+        ]
+      },
+      {
+        "title": "3. How to Manage Cookies",
+        "paragraphs": [
+          "You can change or withdraw your consent using our cookie banner, or configure your browser settings to block or delete cookies entirely. Note that blocking necessary cookies will prevent you from logging into your account."
+        ]
+      }
+    ]
+  },
+  "cookieConsent": {
+    "title": "We value your privacy",
+    "description": "We use cookies to improve your browsing experience, analyze site traffic, and support our marketing efforts. By clicking \"Accept\", you consent to our use of cookies as described in our Cookie Policy.",
+    "cookiePolicyLink": "Cookie Policy",
+    "acceptAll": "Accept",
+    "decline": "Decline",
+    "customize": "Customize",
+    "save": "Save Preferences",
+    "necessary": "Necessary",
+    "necessaryDesc": "Required for secure log-in, language routing, and core functionality.",
+    "necessaryWarning": "Disabling these cookies fully via browser settings may cause issues with logging in.",
+    "analytics": "Analytics",
+    "analyticsDesc": "Helps us improve performance and understand how you interact with our pages.",
+    "marketing": "Marketing",
+    "marketingDesc": "Allows us to measure advertising performance and personalize content."
+  }
+}
+

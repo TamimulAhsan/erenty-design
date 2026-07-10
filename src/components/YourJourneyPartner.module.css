@@ -1,0 +1,389 @@
+.section {
+  height: 400vh;
+  position: relative;
+  background-color: var(--background);
+}
+
+.stickyContainer {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 72px;
+  /* Offset to sit below the sticky navbar */
+  height: calc(100vh - 72px);
+  height: calc(100dvh - 72px);
+  width: 100%;
+  overflow: hidden;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-8);
+  position: relative;
+}
+
+.eyebrow {
+  text-align: center;
+  color: var(--brand-dark);
+  margin-bottom: var(--space-4);
+  z-index: 15;
+}
+
+.sliderContainer {
+  width: 100%;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.track {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  z-index: 1;
+}
+
+.slideActive {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 2;
+}
+
+/* Staggered Animations */
+@keyframes slideUpFade {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideRightFade {
+  from { transform: translateX(-50px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideLeftFade {
+  from { transform: translateX(50px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* Base hidden state for internal elements is handled by the slide opacity and keyframe "from" blocks */
+
+/* Triggers - Sequence: Image -> Name/Price -> Specs -> CTA */
+.slideActive .imageWrapper {
+  animation: slideUpFade 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.1s both;
+}
+
+.slideActive .topLeft, 
+.slideActive .bottomLeft {
+  animation: slideRightFade 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.3s both;
+}
+
+.slideActive .topRight {
+  animation: slideLeftFade 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.5s both;
+}
+
+.slideActive .ctaContainer {
+  animation: slideUpFade 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.7s both;
+}
+
+.slideInner {
+  max-width: 1280px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 var(--space-8);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.topLeft {
+  position: absolute;
+  top: var(--space-12);
+  left: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  z-index: 10;
+}
+
+.fleetName {
+  color: var(--brand-darker);
+  margin: 0;
+}
+
+.category {
+  color: var(--muted-foreground);
+  font-weight: 500;
+}
+
+.topRight {
+  position: absolute;
+  top: 25%;
+  right: var(--space-8);
+  z-index: 10;
+  max-width: 320px;
+}
+
+.specsList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: 0;
+  margin: 0;
+}
+
+.specsList li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  color: var(--foreground);
+  line-height: 1.5;
+}
+
+.bullet {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  margin-top: 8px;
+  flex-shrink: 0;
+  box-shadow: 0 0 8px var(--primary-glow);
+}
+
+.centerColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  z-index: 5;
+  padding-top: 100px;
+  padding-bottom: 50px;
+  box-sizing: border-box;
+}
+
+.imageWrapper {
+  max-width: 640px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  z-index: 5;
+  flex: 1;
+  min-height: 0;
+}
+
+.bikeImage {
+  object-fit: contain;
+  height: auto;
+  width: 100%;
+  max-height: 52vh;
+  filter: drop-shadow(0 20px 30px rgba(0, 91, 69, 0.08));
+}
+
+.bottomLeft {
+  position: absolute;
+  bottom: 30%;
+  left: var(--space-8);
+  z-index: 10;
+}
+
+.priceContainer {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.price {
+  color: var(--brand-darker);
+  font-weight: 700;
+}
+
+.period {
+  color: var(--muted-foreground);
+  font-weight: 500;
+}
+
+.ctaContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  z-index: 10;
+  margin-top: 8vh;
+  /* Pushed lower on desktop */
+  flex-shrink: 0;
+}
+
+/* Side Indicators */
+.sideIndicators {
+  position: absolute;
+  right: var(--space-8);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  z-index: 20;
+}
+
+.indicatorDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--border);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.indicatorDot:hover {
+  background-color: var(--muted-foreground);
+}
+
+.indicatorDotActive {
+  background-color: var(--brand-dark);
+  transform: scale(1.4);
+  box-shadow: 0 0 10px rgba(0, 91, 69, 0.25);
+}
+
+/* Responsive & Mobile Stacking (under 992px) */
+@media (max-width: 992px) {
+  .centerColumn {
+    display: contents;
+  }
+
+  .container {
+    padding-top: var(--space-4);
+    padding-bottom: var(--space-4);
+  }
+
+  .slideInner {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-4) var(--space-6);
+    height: 100%;
+    box-sizing: border-box;
+    gap: 0;
+  }
+
+  /* Reset absolute margins to flexbox normal flow */
+  .topLeft {
+    position: static;
+    text-align: center;
+    align-items: center;
+    order: 1;
+    margin-bottom: auto;
+    /* Dynamic 'some gap' below Name */
+    flex-shrink: 0;
+  }
+
+  .topRight {
+    position: static;
+    max-width: 100%;
+    order: 4;
+    margin-bottom: var(--space-5);
+    /* Fixed gap between specs and CTA */
+    flex-shrink: 0;
+  }
+
+  .specsList {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: fit-content;
+    gap: var(--space-2);
+  }
+
+  .imageWrapper {
+    order: 2;
+    max-width: 360px;
+    margin: 0 auto var(--space-2);
+    /* Fixed 'little gap' below image */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-shrink: 0;
+  }
+
+  .bikeImage {
+    max-height: 35dvh;
+    /* Increased from 25dvh to naturally fill layout voids */
+    max-width: 100%;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .bottomLeft {
+    position: static;
+    order: 3;
+    display: flex;
+    justify-content: center;
+    margin-bottom: auto;
+    /* Dynamic 'gap' below Price */
+    flex-shrink: 0;
+  }
+
+  .priceContainer {
+    background: none;
+    border: none;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .ctaContainer {
+    position: static;
+    transform: none;
+    order: 5;
+    flex-shrink: 0;
+    gap: var(--space-2);
+    margin-top: 0;
+  }
+
+  .sideIndicators {
+    right: var(--space-4);
+  }
+}
+
+@media (max-width: 576px) {
+  .slideInner {
+    padding: var(--space-4);
+  }
+
+  .specsList {
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .specsList li {
+    font-size: 13px;
+    gap: var(--space-2);
+  }
+}

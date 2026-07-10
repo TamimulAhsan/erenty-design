@@ -1,0 +1,1479 @@
+{
+  "meta": {
+    "title": "E-Renty — Üzemanyagmentes, stresszmentes flottamegoldások",
+    "description": "Találja meg és bérelje a tökéletes e-bike flottát vállalkozása vagy személyes használatához."
+  },
+  "navbar": {
+    "fleets": "Flották",
+    "seeAllFleets": "Összes flotta megtekintése",
+    "courierPlus": "Futár+",
+    "howItWorks": "Hogyan működik",
+    "forBusiness": "Üzleti ügyfeleknek",
+    "seeFleetsBtn": "Flották megtekintése",
+    "tagline": "Üzemanyagmentes. Stresszmentes.",
+    "selectLanguage": "Nyelv kiválasztása",
+    "help": "Segítség",
+    "profile": "Profil",
+    "services": "Szolgáltatások",
+    "company": "Vállalat",
+    "explore": "Felfedezés",
+    "repairPartners": "Javító partnerek",
+    "about": "Rólunk",
+    "contact": "Kapcsolat",
+    "faq": "GYIK",
+    "toggleMenu": "Menü megnyitása",
+    "closeMenu": "Menü bezárása",
+    "login": "Bejelentkezés"
+  },
+  "hero": {
+    "titleLine1": "Üzemanyagmentes",
+    "titleLine2": "",
+    "titleHighlight": "Stresszmentes",
+    "ctaSeeFleets": "Flották megtekintése",
+    "ctaCourierPlus": "Futár+",
+    "statCustomers": "Ügyfél",
+    "statDeployed": "Üzemben",
+    "statAvgMo": "ÁTLAG/HÓ",
+    "statUpTime": "RENDELKEZÉSRE ÁLLÁS"
+  },
+  "startJourney": {
+    "title": "Kezdje el az utat",
+    "card1Title": "Válasszon flottát",
+    "card1Desc": "Böngésszen ellenőrzött DUOTTS, Neuzer, MyEsel és Mamba modellek között. Szűrjön hatótáv, motorteljesítmény és felhasználási cél szerint.",
+    "card1Stat1Value": "4 márka",
+    "card1Stat1Label": "válogatott",
+    "card1Stat2Value": "12 modell",
+    "card1Stat2Label": "raktáron",
+    "card2Title": "Válasszon csomagot",
+    "card2Desc": "Válassza ki az Ön igényeinek megfelelő bérleti csomagot (Alap, Plusz vagy Max) és válasszon hozzá kiegészítőket.",
+    "planBasic": "Alap",
+    "planPlus": "Plusz",
+    "planMax": "Max",
+    "addonRack": "Nagy teherbírású csomagtartó",
+    "addonBattery": "Kiterjesztett akkumulátor",
+    "addonMount": "Telefontartó és USB",
+    "addonsSuffix": "kiegészítő",
+    "card2Stat1Value": "3 szint",
+    "card2Stat1Label": "elérhető",
+    "card2Stat2Label": "kiválasztva",
+    "card3Title": "Fizetés és aláírás",
+    "card3Desc": "Válassza ki a fizetési módot, és írja alá biztonságosan a digitális bérleti szerződést másodpercek alatt.",
+    "paymentMethod": "Fizetési mód",
+    "card": "Kártya",
+    "googlePay": "Google Pay",
+    "applePay": "Apple Pay",
+    "typeToSign": "Írja be teljes nevét az e-aláíráshoz:",
+    "placeholderName": "Kovács János",
+    "docTitle": "Bérleti szerződés",
+    "docStatusPending": "ALÁÍRÁSRA VÁR",
+    "docStatusSigned": "DIGITÁLISAN ALÁÍRVA",
+    "docTermsLabel": "E-Renty bérleti feltételek:",
+    "docModelLabel": "Modell:",
+    "docPlanLabel": "Csomag:",
+    "docAddonsLabel": "Kiegészítők:",
+    "docPaymentLabel": "Fizetés:",
+    "docAppointmentLabel": "Átvétel:",
+    "docNone": "nincs",
+    "card3Stat1Value": "Biztonságos SSL",
+    "card3Stat1Label": "titkosítás",
+    "card3Stat2Label": "aláírás",
+    "card3Stat2Pending": "Függőben",
+    "card3Stat2Signed": "Aláírva",
+    "card4Title": "Időpontfoglalás és indulás",
+    "card4Desc": "Válasszon egy Önnek megfelelő átvételi időpontot budapesti központi műhelyünkben, és vigye haza új flottáját.",
+    "card4Stat1Label": "átvételi idősáv",
+    "card4Stat2Value": "Azonnali",
+    "card4Stat2Label": "átadás",
+    "cta": "Flották felfedezése",
+    "stepAria": "Ugrás a lépéshez"
+  },
+  "journeyPartner": {
+    "eyebrow": "Az Ön útitársa",
+    "rentPrefix": "Bérlés:",
+    "viewAll": "Összes megtekintése",
+    "perMonth": "/hó",
+    "categories": {
+      "cargo": "Teherszállító flotta",
+      "courier": "Futárflotta",
+      "urban": "Városi flotta",
+      "scooter": "Robogó flotta"
+    },
+    "specs": {
+      "c29": [
+        "Motor: 750W csúcs, nagy nyomatékú kefe nélküli",
+        "Hatótáv: akár 100 km (dupla akkumulátoros opció)",
+        "Akkumulátor: 48V 15Ah (720Wh) LG cellák",
+        "Okosfunkciók: telemetria, GPS és alkalmazászár"
+      ],
+      "cargo": [
+        "Raktér: 250 liter / 120 kg teherbírás",
+        "Hatótáv: akár 100 km töltésenként",
+        "Akkumulátor: dupla 1,5 kWh Li-ion (kivehető)",
+        "Biztonság: nagy teherbírású hidraulikus tárcsafékek"
+      ],
+      "courier": [
+        "Hatótáv: akár 125 km (pedálrásegítés)",
+        "Motor: 250W kefe nélküli (57 Nm nyomaték)",
+        "Váltó: Shimano 24 sebességes",
+        "Rugózás: zárható hidraulikus első villa"
+      ],
+      "scooter": [
+        "Teljesítmény: dupla 1200W agymotorok",
+        "Végsebesség: 65 km/h (közúton korlátozva)",
+        "Kapaszkodás: akár 30 fokos emelkedő",
+        "Fékezés: első és hátsó olajtárcsafékek"
+      ]
+    },
+    "slideAria": "Ugrás a diára"
+  },
+  "weHandleItAll": {
+    "title": "Mindent elintézünk",
+    "subtitle": "Országos szervizpartner-hálózatunknak köszönhetően minden üzemeltetési teher lekerül a válláról.",
+    "services": [
+      {
+        "title": "Mindig kifogástalan állapotban",
+        "description": "A rendszeres karbantartást, részletes átvizsgálásokat, az elektromos rendszer javítását, gumicserét és szezonális tárolást teljes körűen kezeljük."
+      },
+      {
+        "title": "Nulla állásidő garancia",
+        "description": "Nem hagyjuk megállni. Ha kerékpárja külső szervizt igényel, azonnal cserekerékpárt biztosítunk, hogy elkerülje az állásidőt."
+      },
+      {
+        "title": "Gondmentes védelem",
+        "description": "Teljes körű fedezet kötelező biztosítással, részletes kárfelméréssel és felelősségrendezéssel, mindez egyetlen csomagban."
+      },
+      {
+        "title": "Okos lopásfigyelés",
+        "description": "Minden flottakerékpár beépített, nagy pontosságú GPS-követéssel, aktív lopásfigyeléssel és távoli biztonsági vezérléssel rendelkezik."
+      },
+      {
+        "title": "0-24 Önért",
+        "description": "Érje el ügyfélszolgálatunkat bármikor a digitális ügyfélportálon valós idejű flottatámogatásért és diagnosztikáért."
+      },
+      {
+        "title": "Országos partnerhálózat",
+        "description": "Férjen hozzá tanúsított szervizpartner-hálózatunkhoz, amely mobil szerelőkből és helyi műhelyekből áll egész Magyarországon."
+      }
+    ]
+  },
+  "locations": {
+    "selectorLabel": "Tanúsított műhely keresése:",
+    "workshopSingular": "műhely",
+    "workshopPlural": "műhely",
+    "headline": "Tanúsított javítóhálózat",
+    "subline": "Válasszon egy várost a térképen, vagy használja a fenti keresőt időpont foglalásához.",
+    "courierPlus": "Futár+",
+    "bookService": "Szerviz foglalása",
+    "drawerTabText": "Tanúsított műhely keresése",
+    "serviceHub": "Szervizközpont",
+    "certifiedRepair": "tanúsított javítópartner",
+    "partnerSingular": "",
+    "partnerPlural": "",
+    "found": "található",
+    "filterAll": "Összes partner",
+    "filterPriority": "Kiemelt",
+    "filterStandard": "Normál",
+    "emptyState": "Nincs a szűrőknek megfelelő műhely.",
+    "featured": "Kiemelt",
+    "freeCoverage": "Ingyenes javítási fedezet",
+    "businessHours": "Nyitvatartás",
+    "contact": "Kapcsolat",
+    "viewOnMap": "Megtekintés a térképen ↗",
+    "openDirectory": "Műhelyjegyzék megnyitása",
+    "closeDirectory": "Jegyzék bezárása"
+  },
+  "trustedBy": {
+    "headingLine1": "Vezető cégek",
+    "headingLine2": "bizalmát élvezzük",
+    "forBusiness": "Üzleti ügyfeleknek",
+    "rentNow": "Béreljen most"
+  },
+  "faq": {
+    "eyebrow": "Támogatás és segítség",
+    "title": "Gyakran Ismételt Kérdések",
+    "subtitle": "Kérdése van a fiók létrehozásáról, a dokumentumok ellenőrzéséről vagy a fizetésről? Az alábbiakban gyors válaszokat talál.",
+    "viewAll": "Összes kérdés megtekintése",
+    "items": [
+      {
+        "question": "Hogyan hozhatok létre fiókot?",
+        "answer": "Látogasson el az e-renty.com oldalra, kattintson a Bejelentkezés gombra, majd válassza a regisztrációt. Adja meg a nevét, e-mail-címét és egy legalább 8 karakteres jelszót. Egy 6 jegyű ellenőrző kódot küldünk a postaládájába — írja be a fiók aktiválásához."
+      },
+      {
+        "question": "Milyen dokumentumok kellenek a bérléshez?",
+        "answer": "Minden ügyfélnek át kell esnie a személyazonosság-ellenőrzésen a bérlés előtt. Fel kell töltenie egy személyi igazolványt vagy tartózkodási engedélyt, egy szelfit, egy lakcímkártyát és egy cégkivonatot. Minden dokumentumot egyenként ellenőrzünk, és értesítjük a jóváhagyásról."
+      },
+      {
+        "question": "Milyen fizetési módokat fogadnak el?",
+        "answer": "Elfogadunk Visa/Mastercard kártyát, Google Payt, Apple Payt és banki átutalást. A kártyás és pénztárcás fizetéseket a Stripe biztonságosan dolgozza fel — kártyaadatait soha nem tároljuk szervereinken."
+      },
+      {
+        "question": "Fizethetek havonta az előre fizetés helyett?",
+        "answer": "Igen. A pénztárnál választhat Havi (csak az első hónapot terheljük most, a további hónapok a Fizetések fülön jelennek meg a határidőkkel) vagy Előre fizetés (a teljes időszakot kedvezményes díjjal fizeti, amelyet a pénztár összegzésében élőben lát) lehetőséget."
+      },
+      {
+        "question": "Mennyi a minimális bérlési időszak?",
+        "answer": "A platform minimuma jellemzően 3 hónap, bár ez változhat. A pénztár folyamata egyértelműen mutatja a minimumot — az alatta lévő időszakgombok kiszürkítettek és nem választhatók."
+      }
+    ]
+  },
+  "footer": {
+    "tagline": "Üzemanyagmentes. Stresszmentes.",
+    "stayUpdated": "Maradjon naprakész",
+    "emailPlaceholder": "Az Ön e-mail-címe",
+    "subscribe": "Feliratkozás",
+    "subscribeSuccess": "Sikeres feliratkozás!",
+    "followUs": "Kövess minket",
+    "legalNote": "A beküldéssel elfogadja Adatvédelmi szabályzatunkat.",
+    "companyHeader": "Vállalat",
+    "servicesHeader": "Szolgáltatások",
+    "contactHeader": "Kapcsolat",
+    "contactUs": "Kapcsolatfelvétel",
+    "aboutUs": "Rólunk",
+    "howItWorks": "Hogyan működik",
+    "forBusiness": "Üzleti ügyfeleknek",
+    "fleetSubs": "Flotta-előfizetések",
+    "courierPlus": "Futár+",
+    "insurance": "Biztosítás és fedezet",
+    "maintenance": "Javító partnerek",
+    "damageProtection": "Kárvédelem",
+    "location": "1012 Budapest, Kuny Domokos utca 13-15",
+    "viewOnMaps": "Megtekintés a térképen ↗",
+    "ourFleetPartners": "FLOTTAPARTNEREINK",
+    "acceptedPayments": "Elfogadott fizetési módok",
+    "card": "Kártya",
+    "googlePay": "Google Pay",
+    "applePay": "Apple Pay",
+    "bankTransfer": "Banki átutalás",
+    "rights": "Minden jog fenntartva.",
+    "privacy": "Adatvédelmi szabályzat",
+    "terms": "Felhasználási feltételek",
+    "cookies": "Cookie-szabályzat"
+  },
+  "fleet3dPage": {
+    "title": "A 3D nézet hamarosan elérhető",
+    "desc": "Interaktív 3D modellen dolgozunk, hogy bérlés előtt minden szögből megvizsgálhassa a kerékpárt. Még nem készült el.",
+    "back": "Vissza a kerékpárhoz"
+  },
+  "fleetsPage": {
+    "view3d": "3D nézet",
+    "metaTitle": "E-Renty Flotta | Prémium elektromos kerékpár előfizetések",
+    "metaDesc": "Böngésszen 7 csatlakoztatott elektromos járműmodell között megbízható márkáktól. Az előfizetések tartalmazzák a GPS-nyomkövetést, a teljes körű biztosítást és a 24 órás szerviztámogatást.",
+    "heroPre": "E-Renty Flották",
+    "heroTitle": "Zöldüljön. Váltson elektromosra.",
+    "heroSubtitle": "Okos GPS, lopás elleni biztosítás és 24 órás szerviz az árban. Válassza ki a városi útjához illő kerékpárt.",
+    "categories": {
+      "all": "Mind",
+      "cargo": "Teherszállító",
+      "courier": "Futár",
+      "scooter": "Robogó",
+      "urban": "Városi"
+    },
+    "searchPlaceholder": "Keresés név, típus vagy jellemző alapján…",
+    "searchClear": "Keresés törlése",
+    "filterBrand": "Márka",
+    "filterBrandTitle": "Szűrés márka szerint",
+    "selectAll": "Mindet kiválaszt",
+    "clearAll": "Mindet töröl",
+    "filterPrice": "Ár",
+    "filterPriceTitle": "Árkategória (Havi)",
+    "sortLabel": "Rendezés",
+    "sortOptions": {
+      "price-asc": "Ár: alacsonytól a magasig",
+      "price-desc": "Ár: magastól az alacsonyig",
+      "range-desc": "Hatótáv: leghosszabb először",
+      "motor-desc": "Teljesítmény: legnagyobb először"
+    },
+    "reset": "Visszaállítás",
+    "resultsSingle": "kerékpár találat",
+    "resultsMultiple": "kerékpár találat",
+    "rentThisFleet": "Flotta bérlése",
+    "viewDetails": "Részletek megtekintése",
+    "noResults": "Nincs a keresésnek megfelelő kerékpár",
+    "noResultsDetail": "Próbálja módosítani a márkaszűrőket, a kategóriákat vagy az árkategóriát.",
+    "resetFilters": "Szűrőparaméterek visszaállítása",
+    "modalStartingFrom": "Kezdőár",
+    "modalPeriod": "/ hó",
+    "modalRange": "Hatótáv:",
+    "modalRangeDetail": " (Pedálrásegítés / Dupla üzemmód opciók)",
+    "modalSpeed": "Végsebesség:",
+    "modalSpeedDetail": " (Elektronikusan optimalizált)",
+    "modalMotor": "Motor teljesítmény:",
+    "modalMotorDetail": " szénkefe nélküli csúcsteljesítmény",
+    "modalSecurity": "Biztonság:",
+    "modalSecurityDetail": " Okos GPS nyomkövetés + Távoli lopásgátló alkalmazászár",
+    "modalInsurance": "Biztosítás:",
+    "modalInsuranceDetail": " Teljes körű kárfedezet és felelősségbiztosítás",
+    "modalServiceSupport": "24/7 Szerviztámogatás",
+    "modalMaintenance": "24 órán belüli karbantartás",
+    "modalRentBtn": "Bérleti csomagok megtekintése",
+    "modalCourierBtn": "Futár+ csomag megtekintése",
+    "chooseRentalPlan": "Válasszon bérleti csomagot a folytatáshoz",
+    "planBasic": "Alap",
+    "planPlus": "Plusz",
+    "planMax": "Max",
+    "planBasicDesc": "Alap szint a minimális fedezetért",
+    "planPlusDesc": "Plusz szint a kiegyensúlyozott fedezetért",
+    "planMaxDesc": "Max szint a teljes körű fedezetért",
+    "gpsTracking": "GPS nyomkövetés",
+    "theftInsurance": "Lopásbiztosítás",
+    "servicePoint1": "1 Szervizpont",
+    "multipleServicePoints": "Több szervizpont",
+    "nationwideServicePoints": "Országos szervizpontok",
+    "support247": "0-24 órás támogatás",
+    "supportHours": "Ügyfélszolgálat (09:00 - 18:00)",
+    "selectedPlanText": "KIVÁLASZTVA",
+    "continueBtn": "Folytatás",
+    "docVerificationRequired": "Dokumentum-ellenőrzés szükséges",
+    "documentsUnderReview": "Dokumentumok ellenőrzése folyamatban",
+    "documentsUnderReviewDesc": "Dokumentumai az adminisztrátor jóváhagyására várnak. A bérlés jóváhagyás után válik elérhetővé.",
+    "backToPlans": "Vissza a csomagokhoz",
+    "goToDocuments": "Ugrás a dokumentumokhoz",
+    "goToDashboard": "Ugrás a vezérlőpultra",
+    "backToDetails": "Vissza a részletekhez",
+    "rentNow": "Bérlés most",
+    "verificationRequired": "Személyazonosság igazolása szükséges",
+    "verificationRequiredDesc": "A jármű bérléséhez fel kell töltenie a személyazonosító okmányát (személyi igazolvány vagy útlevél) és a lakcímkártyáját.",
+    "uploadDocuments": "Okmányok feltöltése",
+    "goToProfile": "Ugrás a profilra",
+    "verificationSuccess": "Fiók hitelesítve",
+    "verificationSuccessDesc": "A fiókja hitelesítve van! Továbbléphet a bérleti szerződés aláírásához.",
+    "proceedToEsign": "Továbblépés az e-aláíráshoz",
+    "basicSupport": "Ügyfélszolgálat (Irodai órákban)",
+    "esignTitle": "Bérleti szerződés e-aláírása",
+    "esignSubtitle": "A bérlés folytatásához írja alá a digitális szerződést.",
+    "typeFullName": "Írja be a teljes nevét az e-aláíráshoz:",
+    "placeholderFullName": "pl. Kovács János",
+    "proceedToBooking": "Tovább az időpontfoglaláshoz",
+    "bookingTitle": "Időpont foglalása",
+    "bookingSubtitle": "Válassza ki a kerékpár átvételének dátumát és időpontját központi műhelyünkben.",
+    "confirmBooking": "Időpont megerősítése és bérlés",
+    "successTitle": "Foglalás megerősítve!",
+    "successSubtitle": "A járműve készen áll. Várjuk Önt központi budapesti műhelyünkben.",
+    "pickupAt": "Átvétel időpontja:",
+    "emailSentNotice": "Az aláírt szerződés másolatát és a foglalás részleteit elküldtük e-mailben.",
+    "finishBtn": "Befejezés",
+    "planLabel": "CSOMAG",
+    "popularBadge": "NÉPSZERŰ",
+    "perMonthShort": "/ hó",
+    "ftPerMonth": "Ft/hó",
+    "docTitle": "Bérleti szerződés",
+    "contractIntro": "Ezt a digitális megállapodást az E-Renty Kft. és az alulírott ügyfél az alábbi jármű bérlésére köti:",
+    "contractSelectedPlan": "Kiválasztott csomag:",
+    "contractIncludedServices": "Tartalmazott szolgáltatások:",
+    "contractServicesList": "GPS lopásvédelmi nyomkövetés, teljes körű lopás- és balesetbiztosítás, valamint a csomag szerinti karbantartási szolgáltatás.",
+    "contractTerms": "Az ügyfél vállalja, hogy a járművet jó állapotban tartja, minden kárt haladéktalanul bejelent, és betartja a helyi közlekedési szabályokat.",
+    "signedBy": "Digitálisan aláírta:",
+    "selectDate": "Válasszon dátumot",
+    "selectTimeSlot": "Válasszon idősávot",
+    "receiptVehicle": "Jármű:",
+    "receiptPlan": "Bérleti csomag:",
+    "hotspots": {
+      "handlebars": {
+        "title": "Okos telemetria",
+        "desc": "Integrált GPS lopásgátló, aktív digitális műszerfal és távoli applikációs zárvezérlők."
+      },
+      "seat": {
+        "title": "Ergonomikus nyereg",
+        "desc": "Prémium, rezgéscsillapító kényelmi nyereg, hosszú távú városi navigációra optimalizálva."
+      },
+      "battery": {
+        "title": "LG lítium akkumulátor",
+        "desc": "Kivehető 48V 15Ah (720Wh) cellák, a vázban kulccsal zárható, akár 100 km-es hatótávolsággal."
+      },
+      "motor": {
+        "title": "750 W-os kefe nélküli motor",
+        "desc": "Nagy nyomatékú kimenet, amely gyors gyorsulást és könnyed hegymászó erőt biztosít."
+      },
+      "tires": {
+        "title": "Defektálló gumiabroncsok",
+        "desc": "Minden terepre alkalmas kettős keverékű gumiabroncsok, kettős hidraulikus biztonsági tárcsafékkel párosítva."
+      }
+    }
+  },
+  "fleetDetailPage": {
+    "details": "Részletek",
+    "specsSubtitle": "Részletes járműspecifikációk és egyedi bérleti lehetőségek a következőhöz:",
+    "backToFleets": "← Vissza a flotta listához",
+    "metaRange": "hatótáv",
+    "metaTopSpeed": "végsebesség",
+    "metaMotor": "motor",
+    "metaSuffix": "Havi e-kerékpár bérlet GPS nyomkövetéssel, biztosítással és 0-24 órás szervizzel."
+  },
+  "courierPlusPage": {
+    "metaTitle": "E-Renty Courier+ | Flottakarbantartás és biztosítás",
+    "metaDesc": "Maximalizálja az üzemidőt a Courier+ kártyás védelmi tervekkel. Tartalmazza a GPS-követést, a lopásbiztosítást és a prioritásos karbantartást.",
+    "heroTitle": "Futár+ a flottájához.",
+    "heroSubtitle": "Saját elektromos kerékpárral rendelkező egyéni futároknak tervezve. Egy fix havi díj fedezi a karbantartást, a GPS nyomkövetést és a lopás elleni biztosítást.",
+    "ctaSeePlans": "Csomagok megtekintése ↓",
+    "liveTrack": "E-Renty Élő Nyomkövetés",
+    "active": "Aktív",
+    "budapestCenter": "Budapesti Központ",
+    "battery": "Akkumulátor (84 km)",
+    "covered": "Biztosított",
+    "theftInsurance": "Lopásbiztosítás",
+    "onlineSecurity": "Online biztonság",
+    "statPlans": "Csomag",
+    "statMaintenance": "Karbantartási válaszidő",
+    "statVat": "ÁFA visszaigényelhető",
+    "statNetwork": "Szervizhálózat",
+    "benefitFixedCost": "Fix havi díj",
+    "benefitFixedCostDesc": "Kiszámítható karbantartás a váratlan javítási számlák helyett.",
+    "benefitDowntime": "Minimális állásidő",
+    "benefitDowntimeDesc": "<24 órás karbantartási határidő, hogy Ön folyamatosan az utcán kereshessen.",
+    "benefitInsurance": "Lopásbiztosítás és GPS",
+    "benefitInsuranceDesc": "Munkaeszköze 0-24 órában nyomon követett és lopás ellen teljes körűen biztosított.",
+    "benefitNetwork": "Országos hálózat",
+    "benefitNetworkDesc": "Partnerek egész Magyarországon, függetlenül attól, hogy hol szállít ki.",
+    "pricingPlans": "Árak és csomagok",
+    "chooseLevel": "Válassza ki a munkaeszközének megfelelő szerviztámogatási szintet",
+    "allPlansMade": "Minden csomagot saját e-kerékpárral dolgozó futárok részére terveztünk.",
+    "mostPopular": "Legnépszerűbb",
+    "huf": "HUF",
+    "perMonth": "/ hó",
+    "compareInDetail": "Részletes összehasonlítás",
+    "featureColumn": "Szolgáltatás",
+    "perMoPerBike": "Ft / hó",
+    "businessPre": "Üzleti · 20+ kerékpár",
+    "businessTitle": "Kezelje a teljes flottáját egyetlen irányítópultról.",
+    "businessDesc": "A mennyiségi kedvezmények automatikusan érvénybe lépnek. Ezen felül: gyűjtőszámlázás, munkavállalói hozzáférések és dedikált ügyfélmenedzser.",
+    "businessCta": "Kérjen egyedi ajánlatot →",
+    "businessStatDiscount": "Mennyiségi kedvezmény akár",
+    "businessStatInvoicing": "Gyűjtőszámlázás",
+    "businessStatSLA": "Garantált SLA válaszidő",
+    "businessStatAM": "Dedikált menedzser (50+ kerékpár)",
+    "plans": {
+      "basic": {
+        "name": "Alap",
+        "tagline": "Megbízható fedezet a mindennapi kopás és elhasználódás ellen.",
+        "features": [
+          "GPS nyomkövetés",
+          "Lopás elleni biztosítás",
+          "1 szervizpont",
+          "0–24 online támogatás"
+        ],
+        "cta": "Alap csomag kiválasztása"
+      },
+      "extra": {
+        "name": "Extra",
+        "tagline": "Egy erősebb csomag azon futároknak, akik szélesebb körű javítást és gyorsabb támogatást szeretnének.",
+        "features": [
+          "GPS nyomkövetés",
+          "Lopás elleni biztosítás",
+          "0–24 online támogatás",
+          "Telefonos támogatás (9:00–18:00)",
+          "Szervizpontok Magyarország-szerte"
+        ],
+        "cta": "Extra csomag kiválasztása"
+      },
+      "max": {
+        "name": "Max",
+        "tagline": "Maximális védelem a legkevesebb állásidőt igénylő futárok számára.",
+        "features": [
+          "GPS nyomkövetés",
+          "Lopás elleni biztosítás",
+          "0–24 online támogatás",
+          "Telefonos támogatás (9:00–18:00)",
+          "Elsőbbségi / expressz javítás",
+          "Cserejármű biztosítása",
+          "Szervizpontok Magyarország-szerte"
+        ],
+        "cta": "Max csomag kiválasztása"
+      }
+    },
+    "comparisonLabels": {
+      "GPS tracking": "GPS nyomkövetés",
+      "Theft insurance": "Lopásbiztosítás",
+      "Service points": "Szervizpontok",
+      "0–24 online support": "0–24 online támogatás",
+      "Phone support (9:00–18:00)": "Telefonos támogatás (9:00–18:00)",
+      "Priority / express repair": "Elsőbbségi / expressz javítás",
+      "Replacement vehicle": "Cserejármű biztosítása"
+    },
+    "comparisonValues": {
+      "Across Hungary": "Országszerte",
+      "1": "1"
+    }
+  },
+  "checkoutPage": {
+    "metaTitle": "Biztonságos fizetés | Courier+ | E-Renty",
+    "metaDesc": "Fejezze be a Courier+ csomag előfizetését.",
+    "loading": "Biztonságos fizetés betöltése...",
+    "checkout": "Fizetés",
+    "configure": "Konfigurálás",
+    "payment": "Fizetés",
+    "confirm": "Megerősítés",
+    "stepOf": "{step}. lépés a 2-ből: {name}",
+    "stepShort": "{step}/2. lépés",
+    "orderConfirmation": "Rendelés megerősítése",
+    "secureCheckout": "Biztonságos fizetés",
+    "stepLabel": "{step}. lépés a 2-ből",
+    "configureSubtitle": "Válassza ki a csomagot, a számlázási gyakoriságot és adja meg a járműveit. Hosszabb elköteleződéssel többet takaríthat meg.",
+    "configureTitle": "Előfizetés konfigurálása",
+    "selectedPlanLabel": "Kiválasztott fedezeti csomag",
+    "planSuffix": "csomag",
+    "perMonthPerBike": "/ hó / kerékpár",
+    "active": "Aktív",
+    "switchCoverage": "Vagy váltson másik csomagra",
+    "billingCycle": "Számlázási ciklus",
+    "monthly": "Havi",
+    "quarterly": "Negyedéves",
+    "6months": "Féléves",
+    "yearly": "Éves",
+    "standardRate": "Alapár",
+    "cycleSuffix": "ciklus",
+    "yearSuffix": "év",
+    "numVehicles": "Járművek száma",
+    "perVehicleMo": "járművenként / hó",
+    "vinHeading": "Alvázszám / Vázszám",
+    "vinSubtitle": "Adja meg az egyes járművek alvázszámát vagy vázszámát. Ezt a vázon vagy a jármű dokumentumaiban találja meg.",
+    "vehicleVinLabel": "{number}. Jármű alvázszáma",
+    "whatsIncluded": "Amit tartalmaz",
+    "optionalAddons": "Opcionális kiegészítők",
+    "backToPlans": "← Vissza a csomagokhoz",
+    "howToPay": "Hogyan szeretne fizetni?",
+    "paySubtitle": "Fizesse ki most az előfizetés aktiválásához. Percek alatt kiállítjuk a magyar ÁFA-s számlát.",
+    "card": "Bankkártya",
+    "googlePay": "Google Pay",
+    "applePay": "Apple Pay",
+    "applePayError": "Az Apple Pay csak iOS vagy macOS eszközökön érhető el.",
+    "cardDetails": "Kártyaadatok",
+    "securedByStripe": "Stripe által biztosítva",
+    "nameOnCard": "Kártyán szereplő név",
+    "saveCard": "Kártya mentése a jövőbeni fizetésekhez",
+    "browserFastPay": "A böngészője vagy eszköze támogatja a gyors fizetést a {method} segítségével.",
+    "noCardStored": "Nem tárolunk kártyaadatokat a szervereinken",
+    "backToConfigure": "← Vissza a konfiguráláshoz",
+    "yourOrder": "Rendelése",
+    "dueToday": "Ma fizetendő",
+    "nextBilling": "Következő számlázás",
+    "couponCode": "Kuponkód",
+    "apply": "Alkalmaz",
+    "couponApplied": "✓ A {code} kuponkód sikeresen érvényesítve (10% kedvezmény)",
+    "pleaseEnterCode": "Kérjük, adjon meg egy kódot",
+    "invalidCode": "Érvénytelen kuponkód",
+    "continueToPayment": "Tovább a fizetéshez ➔",
+    "payAndConfirm": "{price} Ft fizetése és megerősítés",
+    "allCovered": "Ön teljesen védett.",
+    "planActiveSubtitle": "A {planName} csomagja mostantól aktív. Csapatunk 24 órán belül felveszi Önnel a kapcsolatot a kezdéshez.",
+    "goToDashboard": "Tovább az irányítópultra ➔",
+    "downloadInvoice": "Számla letöltése",
+    "whatNext": "Mi történik ezután",
+    "step1NextTitle": "Előfizetés aktiválva",
+    "step1NextDesc": "Az Ön csomagja aktív. A számlát és a csomag részleteit e-mailben küldtük el.",
+    "step2NextTitle": "Jármű konfigurálása",
+    "step2NextDesc": "Állítsa be járműve(i) alvázszámát / vázszámát az irányítópulton.",
+    "step3NextTitle": "Eszközök átvétele",
+    "step3NextDesc": "Vegye át a kiegészítőket az átvételi pontunkon.",
+    "now": "Most",
+    "next": "Ezután",
+    "then": "Majd",
+    "receipt": "Bizonylat",
+    "paidToday": "Ma fizetve",
+    "addMoreVehicles": "Adjon hozzá több járművet a flottájához",
+    "addMoreDesc": "Kezeljen több járművet egyetlen előfizetés alatt. Keresse fel az irányítópultot, ha több járművet szeretne hozzáadni a Courier+ csomaghoz.",
+    "toastVinError": "Kérjük, adja meg a vázszámot / alvázszámot minden járműhöz.",
+    "toastCardholderError": "Kérjük, adja meg a kártyatulajdonos nevét.",
+    "toastCardNumberError": "Kérjük, adjon meg egy érvényes kártyaszámot.",
+    "toastExpiryError": "Kérjük, adjon meg egy érvényes lejárati dátumot (HH/ÉÉ).",
+    "toastCvcError": "Kérjük, adjon meg egy érvényes CVC-kódot.",
+    "invoiceNo": "Bizonylatszám:",
+    "date": "Dátum:",
+    "dueDate": "Esedékesség:",
+    "status": "Státusz:",
+    "paid": "FIZETVE",
+    "billTo": "Vevő",
+    "paymentMethod": "Fizetési mód",
+    "coveredVins": "Lefedett járművek alvázszámai (VIN)",
+    "description": "Megnevezés",
+    "qty": "Menny.",
+    "unitPrice": "Egységár",
+    "total": "Összesen",
+    "subtotal": "Részösszeg:",
+    "discount": "Kedvezmény ({percent}% {coupon}):",
+    "totalPaid": "Végösszeg:",
+    "thankYou": "Köszönjük, hogy az E-RENTY-t választotta flottája fenntartásához.",
+    "invoiceTerms": "Ez a bizonylat az aktív előfizetés fizetési igazolása. A számlázási ciklusok automatikusan megújulnak. Kezelje vagy törölje az előfizetését a partner irányítópulton.",
+    "backToCheckout": "← Vissza a fizetéshez",
+    "printSave": "Nyomtatás / PDF mentése",
+    "close": "Bezárás",
+    "invoiceSheetTitle": "Előfizetési számla",
+    "creditCardDetail": "Bankkártya (Visa / Mastercard, végződése: 4242)"
+  },
+  "repairPartnersPage": {
+    "metaTitle": "E-Renty Javító Partnerek | Minősített szervizműhelyek",
+    "metaDesc": "Keressen minősített szerviz- és javítóműhelyeket Magyarország-szerte. Ingyenes javítási fedezet Futár+ tagoknak.",
+    "heroTitle": "Szerviz- és javítópartnerek",
+    "heroSubtitle": "Foglaljon időpontot szabványos javításokra, akkumulátor-diagnosztikára vagy helyszíni segélynyújtásra minősített szervizpartnereinknél országszerte.",
+    "statPartners": "Minősített partner",
+    "statCities": "Lefedett város",
+    "statSpecialties": "Szakterület",
+    "allCities": "Minden város",
+    "searchPlaceholder": "Keresés név vagy város alapján",
+    "searchClear": "Keresés törlése",
+    "specialty": "Szakterület",
+    "filterBySpecialty": "Szűrés szakterület szerint",
+    "reset": "Visszaállítás",
+    "partner": "partner",
+    "partners": "partner",
+    "found": "találat",
+    "noPartnersFound": "Nincs a keresésnek megfelelő partner",
+    "adjustFilters": "Próbálja meg módosítani a város, szakterület vagy keresési szűrőket.",
+    "resetFilters": "Szűrők visszaállítása",
+    "featured": "Kiemelt",
+    "viewDetails": "Részletek megtekintése",
+    "ridingCourierFleet": "Futárflottát használ?",
+    "ridingCourierFleetDesc": "A Futár+ előfizetők ingyenes javítási fedezetet kapnak az ezen az oldalon található összes partnerszervizben.",
+    "exploreCourierPlus": "Futár+ felfedezése",
+    "contactUs": "Kapcsolatfelvétel",
+    "viewOnMap": "Megtekintés térképen ↗",
+    "repairTiersCovered": "Lefedett javítási szintek",
+    "freeRepairCoverage": "Ingyenes javítási fedezet",
+    "businessHours": "Nyitvatartás",
+    "scheduleAppointment": "Időpont foglalása",
+    "bookingAsLabel": "Foglalás mint",
+    "serviceLabel": "szerviz",
+    "selectDate": "Válasszon dátumot",
+    "selectTime": "Válasszon időpontot",
+    "confirmAppointment": "Időpont megerősítése",
+    "bookingConfirmed": "Időpont megerősítve",
+    "workshop": "Műhely",
+    "tier": "Szint",
+    "date": "Dátum",
+    "time": "Időpont",
+    "reschedule": "Időpont módosítása",
+    "errorDate": "Kérjük, válasszon időpont dátumot.",
+    "errorTime": "Kérjük, válasszon időpontot.",
+    "partnerApplyHeroLink": "Van szervize? Váljon partnerré",
+    "partnerApplyEyebrow": "Szervizpartnereknek",
+    "partnerApplyTitle": "Váljon javítópartnerré",
+    "partnerApplyDesc": "Csatlakozzon az E-renty hálózatához, és jelenjen meg kiemelt partnerként a listában. Meséljen a műhelyéről.",
+    "partnerApplyCta": "Jelentkezem",
+    "partnerApplySuccessTitle": "Jelentkezés beérkezett!",
+    "partnerApplySuccessDesc": "Köszönjük a jelentkezést — partnerségi csapatunk átnézi a műhely adatait, és 2 munkanapon belül jelentkezünk.",
+    "partnerApplyPrivacyNote": "Az Ön adatait sosem osztjuk meg az E-renty-n kívül.",
+    "partnerApplySubmit": "Jelentkezés elküldése",
+    "closeBtn": "Bezárás",
+    "businessNameLabel": "Cégnév",
+    "businessNamePlaceholder": "pl. Volt Garázs",
+    "contactNameLabel": "Kapcsolattartó neve",
+    "contactNamePlaceholder": "Teljes név",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "te@muhely.hu",
+    "phoneLabel": "Telefonszám",
+    "phonePlaceholder": "+36 …",
+    "cityLabel": "Város",
+    "cityPlaceholder": "Budapest",
+    "addressLabel": "Műhely címe",
+    "addressPlaceholder": "Utca, házszám, irányítószám",
+    "specialtyLabel": "Javítási szakterület",
+    "specialtyPlaceholder": "Válasszon szakterületet",
+    "errorSpecialty": "Kérjük, válasszon javítási szakterületet.",
+    "notesLabel": "Van még valami, amit tudnunk kell? (opcionális)",
+    "notesPlaceholder": "Minősítések, nyitvatartás, kapacitás…",
+    "months": [
+      "Január", "Február", "Március", "Április", "Május", "Június",
+      "Július", "Augusztus", "Szeptember", "Október", "November", "December"
+    ],
+    "weekdays": ["V", "H", "K", "Sze", "Cs", "P", "Szo"],
+    "timeSlots": {
+      "08:00": "08:00",
+      "09:00": "09:00",
+      "10:00": "10:00",
+      "11:00": "11:00",
+      "12:00": "12:00",
+      "13:00": "13:00",
+      "14:00": "14:00",
+      "15:00": "15:00",
+      "16:00": "16:00",
+      "17:00": "17:00",
+      "18:00": "18:00"
+    },
+    "types": {
+      "Full service": "Teljes körű szerviz",
+      "Battery & motor": "Akkumulátor és motor",
+      "Wheels & brakes": "Kerekek és fékek",
+      "Mobile repair": "Mobil javítás",
+      "Frame & bodywork": "Váz és karosszéria"
+    },
+    "days": {
+      "Monday": "Hétfő",
+      "Tuesday": "Kedd",
+      "Wednesday": "Szerda",
+      "Thursday": "Csütörtök",
+      "Friday": "Péntek",
+      "Saturday": "Szombat",
+      "Sunday": "Vasárnap",
+      "Closed": "Zárva"
+    }
+  },
+  "aboutPage": {
+    "metaTitle": "Az E-Renty-ről | Okosabb flották, zöldebb városok",
+    "metaDesc": "Az E-Renty egy budapesti e-bike flottakezelő cég, amely segít a magyar vállalatoknak csökkenteni a költségeket, a kibocsátást, és fenntarthatóan mozgatja csapataikat.",
+    "heroEyebrow": "Az E-Renty-ről",
+    "heroTitleLine1": "Okosabb flották.",
+    "heroTitleLine2": "Zöldebb városok.",
+    "heroDesc": "Az E-Renty egy budapesti e-bike flottakezelő cég, amely segít a magyar vállalatoknak csökkenteni a költségeket, a kibocsátást, és fenntarthatóan mozgatja csapataikat.",
+    "ctaFleet": "Flotta böngészése",
+    "ctaContact": "Kapcsolatfelvétel",
+    "stats": [
+      { "value": "2019", "label": "Alapítva" },
+      { "value": "32+", "label": "Üzleti ügyfél" },
+      { "value": "120+", "label": "Üzembe helyezett e-bike" },
+      { "value": "99.1%", "label": "Flotta rendelkezésre állás" }
+    ],
+    "missionEyebrow": "Küldetésünk",
+    "missionTitle": "A fenntartható flottamobilitás legyen az alapértelmezett választás minden magyar vállalkozás számára.",
+    "missionDesc": "Meggyőződésünk, hogy az elektromos kerékpárok a legköltséghatékonyabb, legfenntarthatóbb és a dolgozók számára legbarátságosabb városi közlekedési formák. A mi feladatunk, hogy minden akadályt eltávolítsunk egy vállalat és egy teljesen menedzselt, biztosított, GPS-követett e-bike flotta között.",
+    "missionBullets": [
+      "100%-ban ÁFA-visszaigényelhető bérleti díjak",
+      "Személyi jövedékadó-mentesség az e-bike juttatásokra",
+      "Országos szervizpartner-hálózat",
+      "Elektronikus szerződéskötés — 48 órán belül tekerhetsz",
+      "Kerékpáronkénti GPS telemetria és elemzések"
+    ],
+    "metrics": [
+      { "value": "18,4t / év", "label": "Megtakarított CO₂", "sub": "" },
+      { "value": "502e", "label": "Megtett km", "sub": "" },
+      { "value": "< 24 óra", "label": "Szervizidő", "sub": "" },
+      { "value": "72", "label": "Ügyfél NPS", "sub": "Flottaelemzés · 2024" }
+    ],
+    "valuesEyebrow": "Amit képviselünk",
+    "valuesTitle": "Hat alapelv, ami minden döntésünket vezérli.",
+    "valuesSubtitle": "A szerződésírástól a meghibásodásra adott válaszunkig — ezek az értékek nem plakátok a falon.",
+    "values": [
+      {
+        "title": "Fenntarthatóság",
+        "desc": "Minden E-Renty kerékpárral megtett kilométer nagyjából 180g CO₂-t takarít meg az autós ingázáshoz képest. Ezt flottaszinten nyomon követjük és negyedévente jelentjük partnereinknek."
+      },
+      {
+        "title": "Megbízhatóság",
+        "desc": "24 órán belüli karbantartási válasz, országos szervizpartnerek és cserekerékpár-garancia. A flottád megy — pont."
+      },
+      {
+        "title": "Átláthatóság",
+        "desc": "Nincs rejtett díj. Egy fix havi számla vállalatonként, ÁFA-megfelelő, bármilyen ERP-be exportálható. Mindig pontosan tudod, miért fizetsz."
+      },
+      {
+        "title": "Partnerség",
+        "desc": "Minden 10 kerékpárnál nagyobb flottához dedikált ügyfélmenedzsert rendelünk. Az Ön üzleti céljai válnak a mi szolgáltatási ütemtervünkké."
+      },
+      {
+        "title": "Emberközpontúság",
+        "desc": "Az e-kerékpárok élvezetessé teszik az ingázást. Vállalati ügyfeleink körében az első 6 hónapban átlagosan 14%-os emelkedést mértünk a dolgozói elégedettségi mutatókban."
+      },
+      {
+        "title": "Innováció",
+        "desc": "Az élő GPS telemetriai műszerfalunktól az elektronikus szerződésekig és az okos akkumulátor-elemzésekig — olyan eszközöket építünk, amelyek láthatatlanná teszik a flottakezelést."
+      }
+    ],
+    "timelineEyebrow": "Utunk",
+    "timelineTitle": "12 kerékpártól 120+-ig — és még mindig növekedünk.",
+    "timelineSubtitle": "Hat év tanulságai, hibái és mérföldkövei, amelyek az E-Renty-t azzá formálták, ami ma.",
+    "timeline": [
+      { "year": "2019", "title": "Alapítás Budapesten", "desc": "Három logisztikai mérnök, akiket frusztrált az emelkedő üzemanyagár és a megbízhatatlan céges autók, megalapította az E-Renty-t 12 DUOTTS kerékpárból álló induló flottával." },
+      { "year": "2020", "title": "Első vállalati flotta", "desc": "Aláírtuk az első 20 kerékpáros vállalati szerződésünket egy budapesti futárcéggel. Bebizonyítottuk, hogy a modell működik nagy léptékben is." },
+      { "year": "2021", "title": "Futár+ indulása", "desc": "Bevezettük a karbantartás + GPS + biztosítás előfizetési terméket. A fix díjas kiszámíthatóság lett a legnagyobb megkülönböztető előnyünk." },
+      { "year": "2022", "title": "Országos terjeszkedés", "desc": "Szervizpartner-megállapodásokat kötöttünk Debrecenben, Győrben, Pécsett és Miskolcon. Bármely kerékpár, bárhol Magyarországon, 24 órán belül szervizelve." },
+      { "year": "2023", "title": "100 kerékpáros mérföldkő", "desc": "Meghaladtuk a 100 aktív kerékpárt 20+ vállalatnál. Elindítottuk az adminisztrációs flottakezelő portált és a kerékpáronkénti GPS műszerfalat." },
+      { "year": "2024", "title": "Elektronikus szerződéskötés", "desc": "Bevezettük a teljesen digitális KYC és e-aláírási folyamatot — a fiók létrehozásától a kerékpározásig kevesebb mint 48 óra, papírmunka nélkül." }
+    ],
+    "teamEyebrow": "A csapat",
+    "teamTitle": "Olyan emberek építették, akik tekernek.",
+    "teamSubtitleText": "Alapítóink és vezetőségünk napi e-kerékpáros ingázók — ami azt jelenti, hogy minden termékdöntés személyes tapasztalatból indul.",
+    "team": [
+      { "initials": "SH", "name": "Halász Szabolcs", "role": "Társalapító és ügyvezető igazgató" },
+      { "initials": "MF", "name": "Moldován és Fia Befektetési Kft.", "role": "Társalapító és befektető" },
+      { "initials": "ZN", "name": "Nagy Zsombor", "role": "Üzletág-igazgató" },
+      { "initials": "KH", "name": "Horváth Kristóf", "role": "Flottaüzemeltetési vezető" },
+      { "initials": "NS", "name": "Schulteisz Nóra", "role": "Futárdivízió-vezető" },
+      { "initials": "PM", "name": "Méri Petra", "role": "Junior értékesítési munkatárs" }
+    ],
+    "logosTitle": "Vezető cégek bizalmát élvezzük",
+    "ctaTitle": "Készen áll az indulásra?",
+    "ctaDesc": "Csatlakozzon a 32+ vállalathoz, amelyek már az E-Renty-vel közlekednek. Beszéljen flottacsapatunkkal, és egy héten belül kerékpárok lesznek az irodájában.",
+    "ctaFleetBtn": "Flotta böngészése",
+    "ctaContactBtn": "Kapcsolatfelvétel"
+  },
+  "businessPage": {
+    "b2bPre": "Üzleti · 20+ kerékpár",
+    "b2bTitle": "Kezelje a teljes flottáját egyetlen irányítópultról.",
+    "b2bDesc": "A mennyiségi kedvezmények automatikusan érvénybe lépnek. Ezen felül: gyűjtőszámlázás, munkavállalói hozzáférések és dedikált ügyfélmenedzser.",
+    "b2bCta": "Kérjen egyedi ajánlatot →",
+    "b2bStatDiscount": "Mennyiségi kedvezmény akár",
+    "b2bStatInvoicing": "Gyűjtőszámlázás",
+    "b2bStatSLA": "Garantált SLA válaszidő",
+    "b2bStatAM": "Dedikált menedzser (50+ kerékpár)",
+    "metaTitle": "E-Renty cégeknek | Elektromos kerékpár flották és futármegoldások",
+    "metaDesc": "Teljeskörűen menedzselt elektromos kerékpár- és rollerflották magyar cégeknek — az adómentes munkavállalói mobilitástól a folyamatosan üzemelő futárflottákig. GPS-nyomkövetés, lopásbiztosítás, 24 órán belüli szerviz, egyetlen fix havidíjas számla.",
+    "heroEyebrow": "",
+    "heroTitleLine1": "Az Ön csapata, az Ön flottája,",
+    "heroTitleLine2": "az Ön E-Renty megoldása",
+    "heroDesc": "Prémium e-bike flották, teljeskörűen menedzselve az Ön cégének. Az adómentes munkavállalói mobilitástól a folyamatosan üzemelő futárflottákig az E-Renty kulcsrakész, GPS-nyomkövetéssel, biztosítással és szervizzel felszerelt elektromos flottát ad a magyar cégeknek, egyetlen fix havidíjért kerékpáronként.",
+    "ctaPrimary": "Beszéljen csapatunkkal",
+    "ctaSecondary": "Flotta böngészése",
+    "stats": [
+      { "value": "25 000 Ft-tól", "label": "Kerékpáronként, havonta" },
+      { "value": "100%", "label": "Visszaigényelhető áfa" },
+      { "value": "0%", "label": "SZJA az e-bike juttatásra" },
+      { "value": "< 24 óra", "label": "Szervizreakció" }
+    ],
+    "logosTitle": "Szállítóplatformok, szállodák és nagyvállalatok bizalmát élvezzük szerte Magyarországon",
+    "whyEyebrow": "Miért az E-Renty",
+    "whyTitle": "A céges flotta, amely megtermeli az árát.",
+    "whySubtitle": "Az autók drágák, lassúak a városban és terhelik a környezetet. Egy E-Renty e-bike flotta olcsóbb üzemeltetni, gyorsabb ajtótól ajtóig, és az első naptól adóelőnyös.",
+    "why": [
+      {
+        "title": "Egyetlen kiszámítható díj",
+        "desc": "Egyetlen fix havi számla cégenként fedezi a kerékpárt, a GPS-t, a biztosítást és a szervizt. Nincs váratlan javítási számla, értékcsökkenés vagy flottaadminisztráció."
+      },
+      {
+        "title": "Adóelőnyös felépítés",
+        "desc": "A bérleti díj teljes egészében elszámolható, az áfa visszaigényelhető, 2022 óta pedig a dolgozóknak adott e-bike SZJA-mentes — olyan juttatás, amelyet valóban használnak."
+      },
+      {
+        "title": "Olcsóbb, mint a céges autó",
+        "desc": "Egy e-bike töltése havonta nagyjából 900–1 800 Ft. Nincs üzemanyag, parkolás vagy váratlan szervizköltség — a céges autó teljes költségének töredéke."
+      },
+      {
+        "title": "Nulla flottagond",
+        "desc": "Mi intézzük a beszerzést, regisztrációt, szervizt, biztosítási kárügyintézést és a cseréket. Az Ön csapata csak teker; a kerekeket mi tartjuk mozgásban."
+      }
+    ],
+    "benefitsEyebrow": "Az üzleti érv",
+    "benefitsTitle": "A magyar adószabályokra építve, amelyek az e-bike-ot díjazzák.",
+    "benefitsDesc": "2022 januárja óta a jogszabály erősen jutalmazza a cégeket, amelyek elektromos kerékpárra ültetik a munkavállalóikat. Az E-Renty úgy van felépítve, hogy minden előnyt tisztán és jogszerűen kihasználhasson.",
+    "benefitsBullets": [
+      "Az adóköteles tevékenységhez használt e-bike áfája teljes egészében visszaigényelhető.",
+      "A magáncélra, ingázásra is biztosított, legfeljebb 300 W-os e-bike SZJA-mentes.",
+      "A teljes havi bérleti díj költségként elszámolható — szociális hozzájárulási kötelezettség nélkül.",
+      "A beszerzési, szerviz- és karbantartási költségek csökkentik a társasági adó (TAO) alapját.",
+      "Nincs önerő és nincs maradványérték-kockázat — Ön bérel, nem vásárol."
+    ],
+    "benefitsNote": "Az E-Renty nem adótanácsadó — szívesen átbeszéljük a részleteket a pénzügyi csapatával.",
+    "benefitsMetrics": [
+      { "value": "100%", "label": "Visszaigényelhető áfa", "sub": "megfelelő flottákra" },
+      { "value": "0 Ft", "label": "Személyi jövedelemadó", "sub": "az e-bike juttatásra" },
+      { "value": "1–3 év", "label": "Rugalmas szerződések", "sub": "fix havidíjjal" },
+      { "value": "~1 500 Ft", "label": "Havi töltési költség", "sub": "kerékpáronként, átlagosan" }
+    ],
+    "solutionsEyebrow": "Flottamegoldások",
+    "solutionsTitle": "Egyetlen partner minden flottatípushoz.",
+    "solutionsSubtitle": "Akár futárokat, ingázókat vagy vendégeket mozgat, a flottát az köré építjük, ahogyan a cége valóban működik.",
+    "solutions": [
+      {
+        "title": "Munkavállalói mobilitási flották",
+        "desc": "Adómentes, egészséges közlekedést adjon a dolgozóknak az ingázáshoz és a telephelyek közötti mozgáshoz. Segítünk minden munkatársnak kiválasztani a megfelelő kerékpárt, betanítjuk őket, és többnyelvű útmutatót adunk.",
+        "points": ["Adómentes munkavállalói juttatás", "Telephelyek közötti és utolsó kilométeres ingázás", "Kerékpárválasztás és sofőrbetanítás"]
+      },
+      {
+        "title": "Futár- és szállítóflották",
+        "desc": "Kifejezetten olyan szállítási műveletekre, amelyek nem engedhetik meg maguknak az állásidőt. A GPS-nyomkövetés, a lopásbiztosítás és a 24 órán belüli javítás mozgásban tartja a futárokat. A Foodora hivatalos bérlőpartnere.",
+        "points": ["GPS-nyomkövetés + lopásbiztosítás", "24 órán belüli szerviz és cserekerékpár", "Foodora futárpartner — 10% futárkedvezmény"]
+      },
+      {
+        "title": "Egyedi arculatú flották",
+        "desc": "Változtassa flottáját mozgó hirdetőfelületté. A kerékpárokat az Ön arculatába öltöztetjük, így minden kiszállítás és ingázás egyben reklám is.",
+        "points": ["Teljes fóliázás és arculat", "Reklámüzenet a vázon", "Egységes, professzionális flottakép"]
+      },
+      {
+        "title": "Szezonális és rendezvényflották",
+        "desc": "Rövid távú flották fesztiválokra, turisztikai csúcsidőszakokra és kampuszokra — gyorsan kiszállítva, és összegyűjtve, amikor végzett. A téli szettek és esővédők járnak hozzá.",
+        "points": ["Rugalmas rövid távú feltételek", "Fesztiválra, szállodára, kampuszra kész", "Minden időjárásra felszerelve"]
+      }
+    ],
+    "industriesEyebrow": "Kiket szolgálunk ki",
+    "industriesTitle": "Úton a magyar cégekkel.",
+    "industriesSubtitle": "Az ételkiszállítástól az ötcsillagos szállodákig már ma is számos magyar cég épít az E-Renty-re.",
+    "industries": [
+      { "name": "Szállítás és futárszolgálat", "desc": "Étel- és élelmiszerplatformok, valamint önálló futárok — a városi utolsó kilométeres kiszállítás gerince." },
+      { "name": "Szállodák és vendéglátás", "desc": "Vendég- és személyzeti mobilitás szállodáknak, fürdőknek és üdülőknek, amelyek zöldebb, emlékezetesebb élményt szeretnének." },
+      { "name": "Turizmus és szabadidő", "desc": "Utazásszervezők és turisztikai irodák, amelyek könnyed módot kínálnak a látogatóknak a város felfedezésére." },
+      { "name": "Rendezvények és fesztiválok", "desc": "Gyors, kibocsátásmentes közlekedés a stáb és a személyzet számára a nagy fesztivál- és rendezvényhelyszíneken." },
+      { "name": "Vállalati és létesítményi", "desc": "Nagykereskedők és több telephelyes munkáltatók, akik épületek, raktárak és üzemek között mozgatják a csapatokat." },
+      { "name": "Ingatlan és kampuszok", "desc": "Ingatlancsoportok és kampuszok, amelyek közös, fenntartható mikromobilitást adnak a lakóknak és a személyzetnek." }
+    ],
+    "howEyebrow": "Hogyan működik",
+    "howTitle": "Az első hívástól egy héten belül a nyeregben.",
+    "howSubtitle": "Nincs márkakereskedés, nincs beszerzési útvesztő — egyszerű, jórészt digitális út a flotta elindításához.",
+    "steps": [
+      { "title": "Beszéljen flottacsapatunkkal", "desc": "Mondja el a létszámot, az útvonalakat és a célokat. Javaslunk megfelelő kerékpárokat, csomagot és flottaméretet — kötelezettség nélkül." },
+      { "title": "Válassza ki a flottát és a csomagot", "desc": "Válasszon modelleket a kínálatunkból és egy támogatási szintet. Megerősítjük a mennyiségi árat és a fix havi ajánlatot." },
+      { "title": "Írja alá elektronikusan", "desc": "Teljesen digitális azonosítás és e-aláírás. A legtöbb flotta egyetlen papírlap nélkül jut el a megállapodástól a kiszállításig." },
+      { "title": "Kiszállítás és beüzemelés", "desc": "Kiszállítjuk, arculatozzuk és regisztráljuk a kerékpárokat, beállítjuk a töltést, és többnyelvű útmutatókkal betanítjuk a sofőröket." },
+      { "title": "Ön teker — a többit mi intézzük", "desc": "A GPS-telemetriát, a biztosítást, a szervizt és a cseréket mi kezeljük, egyetlen kapcsolattartón keresztül." }
+    ],
+    "includedEyebrow": "Minden benne van",
+    "includedTitle": "Flotta, amely magát menedzseli.",
+    "includedSubtitle": "Minden E-Renty céges flotta teljes felszereltséggel érkezik — nincs felár, nincs apró betűs rész.",
+    "included": [
+      { "title": "GPS-nyomkövetés és telemetria", "desc": "Minden kerékpár élőben követhető, kerékpáronkénti analitikával a flottakezelőnek." },
+      { "title": "Lopásbiztosítás", "desc": "A kerékpárok 0–24 órában biztosítva vannak lopás ellen, a kárügyintézést mi végezzük." },
+      { "title": "24 órán belüli szerviz", "desc": "Az országos szervizpartner-hálózat minimálisra csökkenti az állásidőt, bárhol is működik." },
+      { "title": "Cserekerékpárok", "desc": "A prémium csomagok cserejárművet tartalmaznak, hogy a munka soha ne álljon le." },
+      { "title": "Töltés kiépítése", "desc": "Segítünk töltőpontok és biztonságos kerékpártárolók telepítésében a telephelyein." },
+      { "title": "Sofőrbetanítás és útmutatók", "desc": "Gyakorlati betanítás és több nyelven elérhető használati útmutatók." },
+      { "title": "Minden időjárásra felszerelés", "desc": "Az esővédők és fűtött téli kabátok egész évben kényelmet adnak a sofőröknek." },
+      { "title": "Egyetlen gyűjtőszámla", "desc": "Egyetlen havi, áfás számla cégenként, amely exportálható az ERP-rendszerébe." },
+      { "title": "Dedikált kapcsolattartó", "desc": "A 10 kerékpár feletti flották névre szóló kapcsolattartót és online hibabejelentést kapnak." }
+    ],
+    "sustainEyebrow": "Fenntarthatóság",
+    "sustainTitle": "Csökkentse a költségeket és a szén-dioxidot egy mozdulattal.",
+    "sustainDesc": "Minden kilométer, amelyet E-Renty kerékpáron tesz meg autó helyett, nagyjából 180 g CO₂-t tart távol a levegőtől. Ezt flottaszinten mérjük és jelentjük Önnek — bizonyíték az ESG-céljaihoz, nem csupán egy szép gondolat.",
+    "sustainBullets": [
+      "Nulla kipufogógáz-kibocsátás a teljes flottában",
+      "Negyedéves, cégenkénti CO₂-megtakarítási jelentés",
+      "Kevesebb torlódás, zaj és városi parkolási nyomás",
+      "Látható, hiteles jelzése a zöld elköteleződésének"
+    ],
+    "sustainMetrics": [
+      { "value": "18,4 t", "label": "Évente megtakarított CO₂ a flottánkon" },
+      { "value": "502e", "label": "Megtett zöld kilométer" },
+      { "value": "0 g", "label": "Kipufogógáz-kibocsátás kilométerenként" }
+    ],
+    "faqEyebrow": "Céges GYIK",
+    "faqTitle": "Kérdések a pénzügyi, flotta- és HR-csapatoktól.",
+    "faqSubtitle": "Minden, amire szüksége van, mielőtt az E-Renty-t a következő tervezési megbeszélésre viszi.",
+    "faqs": [
+      { "q": "Mennyibe kerül egy céges flotta?", "a": "A munkavállalói mobilitási kerékpárok nagyjából 25 000 Ft-tól indulnak kerékpáronként havonta, a flotta növekedésével mennyiségi árazással. A futártámogatási csomagok alacsonyabbról indulnak. Mindig egyetlen fix havi ajánlatot kap — rejtett díjak nélkül." },
+      { "q": "Megvásároljuk vagy béreljük a kerékpárokat?", "a": "Ön bérel. Nincs önerő és nincs maradványérték-kockázat. A teljes havidíj elszámolható, a flottát pedig igény szerint bővítheti vagy csökkentheti." },
+      { "q": "Pontosan mik az adóelőnyök?", "a": "Az áfa a megfelelő használatra visszaigényelhető, a havidíj teljes egészében elszámolható szociális hozzájárulás nélkül, a dolgozóknak adott, legfeljebb 300 W-os e-bike pedig SZJA-mentes. Szívesen tájékoztatjuk a könyvelőjét a részletekről." },
+      { "q": "Mi történik, ha elromlik egy kerékpár?", "a": "Jelentse be online, és országos szervizhálózatunk 24 órán belül reagál. A prémium csomagok cserekerékpárt tartalmaznak, hogy a működése ne álljon le." },
+      { "q": "Le tudják a kerékpárokat arculatozni nekünk?", "a": "Igen. A flottákat az Ön arculatába fóliázzuk, és reklámüzenetet is elhelyezhetünk a vázon — így minden út egyben reklám is." },
+      { "q": "Milyen hosszúak a szerződések?", "a": "A céges flották esetében jellemzően egy-három év, a szezonális és rendezvényigényekhez pedig rugalmas rövid távú lehetőségekkel." },
+      { "q": "Hol működnek?", "a": "Budapesten és Kecskeméten vagyunk jelen, országos szervizpartner-hálózattal, így bárhol Magyarországon támogatni tudjuk a flottákat." }
+    ],
+    "viewAllFaq": "Összes GYIK megtekintése",
+    "ctaTitle": "Építsük meg a flottáját.",
+    "ctaDesc": "Mesélje el, milyen a csapata és az útvonalai, mi pedig visszatérünk a megfelelő kerékpárokkal, egy fix havi ajánlattal, és egy héten belül kerekekkel az ajtaja előtt.",
+    "ctaPrimaryBtn": "Kapcsolat az értékesítéssel",
+    "ctaSecondaryBtn": "Flotta böngészése",
+    "ctaNote": "Emberrel beszél — nincs bot, nincs kötelezettség."
+  },
+  "contactPage": {
+    "metaTitle": "Kapcsolat | E-Renty — Beszéljünk flottastratégiáról",
+    "metaDesc": "Vegye fel a kapcsolatot az E-Renty csapatával. Akár az első e-bike pilotprogramját tervezi, akár egy meglévő flottát bővít, segítünk.",
+    "heroEyebrow": "Kapcsolat",
+    "heroTitleLine1": "Beszéljünk",
+    "heroTitleLine2": "flottastratégiáról.",
+    "heroDesc": "Akár az első e-bike pilotprogramját tervezi, akár egy meglévő flottát bővít, csapatunk segít gyorsabban haladni.",
+    "emailLabel": "E-mail",
+    "emailSub": "1 munkanapon belül válaszolunk",
+    "phoneLabel": "Telefon",
+    "phoneSub": "H–P, 8:00–17:00",
+    "addressLabel": "Cím",
+    "addressValue": "1012 Budapest, Kuny Domokos utca 13-15",
+    "addressSub": "Csengetés az E-Renty-hez",
+    "hoursLabel": "Nyitvatartás",
+    "hoursValue": "H–P 8:00–17:00",
+    "hoursSub": "CET/CEST · Sürgősségi vonal 24/7",
+    "formTitle": "Üzenet küldése",
+    "formSubtitle": "Töltse ki az űrlapot, és csapatunk egy munkanapon belül válaszol.",
+    "topicLabel": "Téma",
+    "topicPlaceholder": "Válasszon témát",
+    "topics": [
+      "Vállalati flottaérdeklődés",
+      "Általános kérdés",
+      "Támogatási kérelem",
+      "Partnerség"
+    ],
+    "nameLabel": "Teljes név",
+    "namePlaceholder": "Az Ön teljes neve",
+    "emailFieldLabel": "E-mail",
+    "emailFieldPlaceholder": "on@example.com",
+    "companyLabel": "Cég (opcionális)",
+    "companyPlaceholder": "Az Ön cégének neve",
+    "messageLabel": "Üzenet",
+    "messagePlaceholder": "Meséljen flottaigényeiről, kérdéséről vagy ötletéről…",
+    "submitBtn": "Üzenet küldése",
+    "privacyNote": "Tiszteletben tartjuk a magánéletét. Adatait soha nem osztjuk meg harmadik féllel.",
+    "successTitle": "Üzenet elküldve!",
+    "successDesc": "Köszönjük, hogy megkeresett minket. Csapatunk egy munkanapon belül válaszol.",
+    "mapEyebrow": "Látogasson meg",
+    "mapTitle": "Találja meg irodánkat.",
+    "mapSubtitle": "Budapest szívében vagyunk, rövid sétára az M1 metróvonaltól.",
+    "openInMaps": "Megnyitás a térképen",
+    "faqTitle": "Gyakran ismételt kérdések",
+    "faqViewAll": "Összes GYIK megtekintése",
+    "faqs": [
+      {
+        "q": "Milyen gyorsan tudunk elkezdeni?",
+        "a": "A KYC befejezése után 48 órán belül szállítunk kerékpárokat bárhová Magyarországon. 10+ kerékpáros flottafelállítás jellemzően 3–5 munkanapot vesz igénybe."
+      },
+      {
+        "q": "Kínálnak ingyenes próbaidőszakot?",
+        "a": "Igen — 30 napos pilotprogramot kínálunk új vállalati ügyfeleknek akár 5 kerékpárral. Lépjen kapcsolatba értékesítési csapatunkkal a feltételek egyeztetéséhez."
+      },
+      {
+        "q": "Milyen támogatás jár?",
+        "a": "Minden csomag tartalmaz e-mail és telefonos támogatást. A Futár+ Extra és Max csomagok dedikált ügyfélmenedzsert és 24/7-es sürgősségi vonalat biztosítanak lopás vagy meghibásodás esetén."
+      }
+    ],
+    "ctaTitle": "Készen áll az üzemanyagmentesre?",
+    "ctaDesc": "Csatlakozzon 32+ magyar vállalathoz, amelyek már költségeket takarítanak meg és növelik a dolgozói elégedettséget az E-Renty-vel.",
+    "ctaFleetBtn": "Flotta böngészése",
+    "ctaAboutBtn": "Történetünk"
+  },
+  "faqPage": {
+    "metaTitle": "GYIK | E-Renty — Gyakran Ismételt Kérdések",
+    "metaDesc": "Találja meg a válaszokat az E-Renty bérléssel, a Futár+ előfizetésekkel, a személyazonosság-ellenőrzéssel, a fizetésekkel és a flottakezeléssel kapcsolatban.",
+    "heroEyebrow": "Súgóközpont",
+    "heroTitle": "Gyakran Ismételt Kérdések",
+    "heroDesc": "Találja meg a válaszokat az Ön helyzetére. Váltson az alábbi ügyfél, futár vagy vállalati lapok között.",
+    "tabs": [
+      {
+        "label": "Ügyfelek",
+        "categories": [
+          {
+            "title": "Kezdés",
+            "items": [
+              { "q": "Hogyan hozhatok létre fiókot?", "a": "Látogasson el az e-renty.com oldalra, kattintson a Bejelentkezés gombra, majd válassza a regisztrációt. Adja meg nevét, e-mail címét és egy legalább 8 karakteres jelszót. Küldünk egy 6 számjegyű ellenőrző kódot a postaládájába — írja be fiókja aktiválásához. A kódok 15 perc után lejárnak, és 60 másodperces várakozási idő után újra elküldhetők." },
+              { "q": "Milyen dokumentumokra van szükségem a bérléshez?", "a": "A bérlés előtt minden ügyfélnek át kell esnie a személyazonosság-ellenőrzésen (KYC). A következőket kell feltöltenie:\n1. Személyi igazolvány (eleje) vagy tartózkodási engedély\n2. Személyi igazolvány (hátulja)\n3. Szelfi — egy tiszta fénykép az arcáról\n4. Lakcímkártya (lakcím igazolása)\n5. Cégbejegyzési igazolás\n\nMinden dokumentumot csapatunk külön-külön ellenőriz. Értesítést kap, amint jóváhagyták, vagy elutasították indoklással." },
+              { "q": "Mennyi ideig tart az ellenőrzés?", "a": "Általában egy munkanapon belül. A dokumentumok állapotát a Vezérlőpult → Dokumentumok lapon követheti nyomon. Amint minden helyen 'Jóváhagyva' szerepel, fiókja ellenőrzött, és leadhatja első bérlését." },
+              { "q": "Mi a kaució?", "a": "A legelső bérleti díjjal együtt egy egyszeri, visszatérítendő, 20 000 Ft-os biztonsági letétet számolunk fel. A későbbi bérléseknél ezt soha többé nem számítjuk fel. A letétet fiókja szabályszerű lezárásakor visszatérítjük." },
+              { "q": "Bérelhetek egyszerre több kerékpárt is?", "a": "Igen. A fizetés során beállíthatja a bérlés mennyiségét. Minden egység automatikusan megkapja a saját járművét a készletünkből." }
+            ]
+          },
+          {
+            "title": "Fizetések és árazás",
+            "items": [
+              { "q": "Milyen fizetési módokat fogadnak el?", "a": "Elfogadjuk a Visa/Mastercard kártyákat, a Google Payt, az Apple Payt és a banki átutalást. A kártyás és pénztárcás fizetéseket a Stripe biztonságosan dolgozza fel — a kártyaadatait soha nem tároljuk a szervereinken." },
+              { "q": "Fizethetek havonta ahelyett, hogy mindent előre fizetnék?", "a": "Igen. A fizetésnél választhat:\n• Havi — most csak az első hónap fizetendő. A jövőbeli hónapok a Vezérlőpult → Fizetések fülön jelennek meg.\n• Előre — fizesse ki a teljes időszakot egyszerre kedvezményes áron, amely élőben látható a fizetés összesítőjében." },
+              { "q": "Vannak kedvezmények a hosszabb kötelezettségvállalásokra?", "a": "Igen. Az előrefizetési kedvezményeket automatikusan alkalmazzuk a vállalt hónapok száma alapján. A pontos százalék a fizetés előtt megjelenik az összesítőben." },
+              { "q": "Használhatok kuponkódot?", "a": "Igen. A fizetési folyamatban található egy kuponkód mező. Adja meg a kódját, és a kedvezmény azonnal érvényesül és megjelenik az árösszesítőben." },
+              { "q": "Hogyan állítanak ki számlát?", "a": "Minden visszaigazolt fizetés után automatikusan ÁFÁ-s számla generálódik. Letöltheti a Vezérlőpult → Dokumentumok lapról." }
+            ]
+          },
+          {
+            "title": "Bérlések és kerékpárok",
+            "items": [
+              { "q": "Mi a minimális bérleti idő?", "a": "A platform minimuma jellemzően 3 hónap, de ez változhat. A fizetési folyamat egyértelműen mutatja a minimumot — az ez alatti időszak gombjai kiszürkítve jelennek meg, és nem választhatók ki." },
+              { "q": "Hogyan történik a jármű kiosztása?", "a": "A fizetés befejezésekor a rendszer automatikusan hozzárendel egy szabad járművet a kiválasztott modellből a legközelebbi elérhető helyszínről. A jármű számát, akkumulátorszámát és lakatszámát a Vezérlőpulton fogja látni." },
+              { "q": "Megújíthatom a bérlésemet a lejárata előtt?", "a": "Igen. Bármely lejáró bérlésnél (a befejezés dátuma előtti 7 napon belül) látni fog egy Megújítás gombot. Nyissa meg, válasszon további hónapokat, válasszon fizetési ütemtervet, opcionálisan alkalmazzon kupont, és fizessen." },
+              { "q": "Mi történik, ha a kerékpáromat javítani kell?", "a": "Vegye fel velünk a kapcsolatot a platformon keresztül vagy telefonon. Csapatunk megszervezi a begyűjtést, és a kerékpárt egy tanúsított szervizpartnerhez rendeli. Lehetőség szerint cserejárművet biztosítunk." },
+              { "q": "Hogyan adhatom vissza a kerékpárt a végén?", "a": "A visszavételt az E-Renty személyzete intézi az egyik telephelyünkön. Vegye fel velünk a kapcsolatot a befejezés dátuma előtt az átadás megszervezéséhez. A kerékpár átvétele és ellenőrzése után a bérlés lezárul." }
+            ]
+          },
+          {
+            "title": "Fiók és adatvédelem",
+            "items": [
+              { "q": "Hogyan változtathatom meg az e-mail címemet?", "a": "Lépjen a Vezérlőpult → Beállítások → E-mail részhez. Adja meg az új címét, és mentse el. Biztonsági okokból automatikusan megerősítést küldünk a régi címére." },
+              { "q": "Hogyan kérhetem ki az adataim másolatát (GDPR)?", "a": "Lépjen a Vezérlőpult → Beállítások menübe, és használja az 'Adatexport kérése' gombot. A teljes adatexportját 30 napon belül előkészítjük." },
+              { "q": "Hogyan törölhetem a fiókomat?", "a": "Lépjen a Vezérlőpult → Beállítások → Fiók törlése részhez. A megerősítéshez adja meg a jelszavát. Az aktív bérléseket vissza kell küldeni a törlés befejezése előtt." }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "E-bike tulajdonosok és Futár+",
+        "categories": [
+          {
+            "title": "Kezdés",
+            "items": [
+              { "q": "Saját e-bike-om van — mit takar a Futár+?", "a": "A Futár+ egy szolgáltatási előfizetés az e-kerékpár tulajdonosok számára. Ön továbbra is a saját kerékpárját használja — mi fedezzük az ütemezett és a nem tervezett karbantartásokat, a GPS-eszközt + az élő követést, a lopásbiztosítást a 24/7-es felügyelettel és a közúti segítségnyújtást. Nincs bérbeadás." },
+              { "q": "Kinek szól a Futár+?", "a": "A Futár+ mindenki számára készült, aki napi szinten a saját e-kerékpárjára támaszkodik — a Wolt és a Foodora futárjainak, független motorosoknak és ingázóknak, akik professzionális szintű fedezetet szeretnének váratlan javítási számlák nélkül. Nincs minimális futásteljesítmény vagy flottaméret-követelmény." },
+              { "q": "Van letét vagy előzetes hardverdíj?", "a": "Nincs kaució és nincs előzetes hardverköltség. A GPS-eszközt a csomag tartalmazza felár nélkül. Ön csak az előfizetési díjat fizeti. Bármikor lemondhatja." },
+              { "q": "Hogyan regisztrálhatom a kerékpáromat?", "a": "A fizetés során adja meg kerékpárjának alvázszámát (VIN) és egy opcionális leírást. A fizetés visszaigazolása után a kerékpárja regisztrálva van, és a fedezet azonnal megkezdődik. Bármikor hozzáadhat vagy eltávolíthat kerékpárokat a Vezérlőpult → Futár+ menüpontban." },
+              { "q": "Mi történik, ha elromlik a kerékpárom?", "a": "Vegye fel velünk a kapcsolatot a platformon vagy telefonon. Mi koordináljuk a felszállást a legközelebbi hivatalos szervizpartnerhez — általában még aznap. A fedezett hibák minden munkadíja és alkatrésze benne van. A Max csomag előfizetői ideiglenes cserekerékpárt is kérhetnek." }
+            ]
+          },
+          {
+            "title": "A Futár+ csomag részletei",
+            "items": [
+              { "q": "Melyik Futár+ csomag a megfelelő számomra?", "a": "• Basic — alap karbantartás és GPS fedezet egy saját kerékpárra.\n• Extra — elsőbbségi támogatás, kiterjesztett lopásvédelem és gyorsabb javítási átfutási idő.\n• Max — teljes körű lefedettség az erős felhasználóknak, beleértve az ideiglenes cserekerékpárt a javítások során.\n\nMinden csomag tartalmazza a GPS-eszközt, a közúti segélyszolgálatot és a karbantartást." },
+              { "q": "Fedezi a csomag a több kerékpárt is?", "a": "Igen. Előfizetéskor adja meg, hány járművet szeretne fedezni, és adja meg a VIN-számaikat. Bármikor frissítheti a VIN-listát a Vezérlőpult → Futár+ lapján." },
+              { "q": "Milyen számlázási ciklusok állnak rendelkezésre?", "a": "Havi, negyedéves (3 havonta), féléves (6 havonta) vagy éves. A hosszabb ciklusok általában alacsonyabb tényleges havi díjjal járnak." },
+              { "q": "Kapok számlát adózási célokra?", "a": "Igen. Minden visszaigazolt fizetés után automatikusan ÁFÁ-s számla generálódik, és letölthető a Vezérlőpult → Futár+ fülön." }
+            ]
+          },
+          {
+            "title": "Napi teendők és kárigények",
+            "items": [
+              { "q": "Hogyan működik a saját kerékpárom karbantartása?", "a": "Ha kerékpárjának szervizre van szüksége, foglalja le a Vezérlőpult → Futár+ menüpontban vagy telefonon. Elintézzük a leadást a legközelebbi hivatalos szervizpartnernél. Tipikus átfutási idő 24-48 óra. A Max csomag előfizetői házhozszállítást kérhetnek." },
+              { "q": "Mi a teendő, ha a kerékpáromat ellopják?", "a": "Azonnal jelentse a lopást a Vezérlőpult → Futár+ menüpontban, vagy hívja a segélyhívó számunkat. Szüksége lesz egy rendőrségi jegyzőkönyv hivatkozási számára. A kárrendezés általában 5-10 munkanapon belül megtörténik. A Max-előfizetők ideiglenes cserekerékpárt kapnak, amíg a kárigény folyamatban van." },
+              { "q": "Hogyan követhetem nyomon a kifizetéseimet?", "a": "A teljes fizetési előzmény látható a Vezérlőpult → Fizetések fülön. Az ütemezett közelgő fizetések mutatják a fizetés esedékességét és egy Fizetés gombot, amikor esedékessé válnak." }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Vállalkozások és flották",
+        "categories": [
+          {
+            "title": "Beszállás és regisztráció",
+            "items": [
+              { "q": "Hogyan működik a vállalati regisztráció az E-Renty oldalon?", "a": "A fiók létrehozása után a vállalkozások egy külön regisztrációs varázslón mennek keresztül, ahol megadhatják a cég adatait. Jelentkezését csapatunk felülvizsgálja — a jóváhagyásig a függőben lévő képernyőn lesz. A jóváhagyás után hozzáférhet a teljes üzleti irányítópulthoz." },
+              { "q": "Mi a különbség az üzleti és az egyéni fiók között?", "a": "Az üzleti fiókokra nem számítunk fel 20 000 Ft kauciót. Ezen túlmenően a bérleti és a Futár+ folyamatok ugyanúgy működnek. Vállalkozások számára egy dedikált műszerfal is rendelkezésre áll, amely megmutatja az összes aktív bérlést, a flotta állapotát és a fizetési előzményeket." },
+              { "q": "Milyen dokumentumok szükségesek a cég hitelesítéséhez?", "a": "Ugyanazok a KYC dokumentumok, mint a magánszemélyek esetében: személyi igazolvány (elöl+hátul), szelfi, lakcímigazolvány és a cégbejegyzési okirat." },
+              { "q": "Mennyi ideig tart a vállalati jóváhagyás?", "a": "Csapatunk egy munkanapon belül felülvizsgálja az üzleti jelentkezéseket. A jóváhagyásról e-mailben értesítjük, vagy ha további információra van szükség." }
+            ]
+          },
+          {
+            "title": "Flottakezelés",
+            "items": [
+              { "q": "Bérelhetünk több kerékpárt egy üzleti számla alatt?", "a": "Igen. Minden bérlés több egységre is kiterjedhet — állítsa be a mennyiséget a pénztárnál. Minden bérlet egy helyen látható az üzleti irányítópulton." },
+              { "q": "Hogyan működik a járműkövetés a flottánknál?", "a": "Minden jármű egyedi flottaazonosítóval, akkumulátorszámmal és zárszámmal rendelkezik, amely látható az irányítópulton. A járművek állapota (üres / bérelt / javítás alatt) valós időben frissül." },
+              { "q": "Hozzáadhatjuk a Futár+ biztosítást a teljes flottánkhoz?", "a": "Igen. Iratkozzon fel a Futár+ csomagra, és adja meg az összes VIN-számot. Az Extra és Max csomagokat több kerékpáros flották számára tervezték elsőbbségi támogatással." },
+              { "q": "Mi történik, ha egy flottajárművet javítani kell?", "a": "Értesítsen minket a platformon vagy a fiókkezelőjén keresztül. A járművet beosztjuk egy tanúsított javítópartnerhez, és frissítjük az állapotát. A Futár+ vállalkozásoknál cserejárműről is gondoskodunk." }
+            ]
+          },
+          {
+            "title": "Számlázás és szerződések",
+            "items": [
+              { "q": "A számlákat bérlésenként vagy cégenként állítják ki?", "a": "Minden visszaigazolt fizetés után automatikusan ÁFÁ-s számla generálódik. Minden számla letölthető az üzleti irányítópultjáról, és dátum vagy bérleti díj alapján szűrhető." },
+              { "q": "Fizethetünk banki átutalással?", "a": "Igen. Válassza a banki átutalást a fizetésnél. Kapni fog egy egyedi fizetési hivatkozást (ERN-XXXXXX) és az OTP Bank IBAN adatait. Csapatunk a pénzeszközök beérkezését manuálisan igazolja." },
+              { "q": "Milyen szerződéses feltételek érhetők el?", "a": "A bérleti szerződések automatikusan generálódnak és digitálisan kerülnek aláírásra. Bérleti időszakokat kínálunk 3 hónaptól akár 24 hónapig. Egyedi vállalati szerződésekért kérjük, vegye fel a kapcsolatot közvetlenül a flottacsapatunkkal." }
+            ]
+          }
+        ]
+      }
+    ],
+    "ctaTitle": "Még mindig vannak kérdései?",
+    "ctaDesc": "Csapatunk örömmel segít. Küldjön nekünk üzenetet, vagy böngésszen az elérhető e-kerékpárok között.",
+    "ctaContactBtn": "Kapcsolatfelvétel",
+    "ctaFleetBtn": "Flotta böngészése"
+  },
+  "loginPage": {
+    "metaTitle": "Bejelentkezés | E-Renty",
+    "metaDesc": "Jelentkezzen be az E-Renty fiókjába, vagy hozzon létre egy újat az elektromos kerékpárok bérlésének megkezdéséhez.",
+    "tagline": "Üzemanyagmentes. Stresszmentes.",
+    "loginTab": "Bejelentkezés",
+    "signupTab": "Regisztráció",
+    "loginTitle": "Üdvözöljük újra",
+    "loginSubtitle": "Jelentkezzen be bérlései, előfizetései és flottája kezeléséhez.",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "on@example.com",
+    "passwordLabel": "Jelszó",
+    "passwordPlaceholder": "Adja meg a jelszavát",
+    "forgotPassword": "Elfelejtette a jelszavát?",
+    "forgotTitle": "Jelszó visszaállítása",
+    "forgotSubtitle": "Adja meg a fiókjához tartozó e-mail-címet, és elküldjük a visszaállítási linket.",
+    "forgotSubmit": "Visszaállítási link küldése",
+    "forgotSuccessTitle": "Nézze meg a postaládáját",
+    "forgotSuccessDesc": "Ha létezik fiók ehhez az e-mail-címhez, a jelszó-visszaállítási link úton van.",
+    "backToLogin": "Vissza a bejelentkezéshez",
+    "loginBtn": "Bejelentkezés",
+    "signupTitle": "Fiók létrehozása",
+    "signupSubtitle": "Kezdésként válassza ki a fióktípust.",
+    "panelLoginHeading": "Kezelje flottáját egy helyen.",
+    "panelLoginSub": "Jelentkezzen be, hogy egyetlen felületről elérje bérléseit, előfizetéseit és támogatását.",
+    "panelSignupHeading": "Csatlakozzon az E-Rentyhez.",
+    "panelSignupSub": "Hozzon létre fiókot elektromos kerékpárok bérléséhez, vagy állítson be vállalati flottát.",
+    "accountTypeLabel": "Regisztráció mint",
+    "individualSubtitle": "Személyes bérlési fiók. Kezdés percek alatt.",
+    "benefit1": "GPS-követett, teljes körűen biztosított flotta",
+    "benefit2": "Karbantartás és 0–24 támogatás",
+    "benefit3": "Rugalmas havi vagy előre fizetés",
+    "typeIndividual": "Egyéni",
+    "typeIndividualDesc": "Személyes bérlési fiók. Kezdés percek alatt.",
+    "typeBusiness": "Vállalati",
+    "typeBusinessDesc": "Flottakezelés cégeknek. 4 lépéses beállítás.",
+    "nameLabel": "Teljes név",
+    "namePlaceholder": "Az Ön teljes neve",
+    "phoneLabel": "Telefonszám",
+    "phonePlaceholder": "+36 20 123 4567",
+    "createPasswordPlaceholder": "Hozzon létre egy erős jelszavát",
+    "confirmLabel": "Jelszó megerősítése",
+    "confirmPlaceholder": "Ismételje meg a jelszavát",
+    "termsPrefix": "Elolvastam és elfogadom az",
+    "termsLink": "Általános Szerződési Feltételeket",
+    "termsAnd": "és az",
+    "privacyLink": "Adatvédelmi Tájékoztatót",
+    "signupBtn": "Fiók létrehozása",
+    "noAccount": "Még nincs fiókja?",
+    "hasAccount": "Már van fiókja?",
+    "businessSetupTitle": "Állítsa be vállalati fiókját",
+    "businessSetupDesc": "A vállalati regisztráció körülbelül 3 percet vesz igénybe, és cég- és dokumentumellenőrzést is tartalmaz. Ellenőrizzük, és 1 munkanapon belül e-mailben értesítjük.",
+    "businessSetupBtn": "Vállalati beállítás indítása"
+  },
+  "businessSignupPage": {
+    "metaTitle": "Vállalati regisztráció | E-Renty",
+    "metaDesc": "Állítsa be E-Renty vállalati fiókját flottakezeléshez, számlázáshoz és Futár+ előfizetésekhez.",
+    "headerTitle": "Állítsa be vállalkozását",
+    "headerSubtitle": "Körülbelül 3 percet vesz igénybe. Ellenőrizzük, és 1 munkanapon belül e-mailben értesítjük.",
+    "steps": [
+      { "label": "Kapcsolattartási adatok", "desc": "Meséljen magáról." },
+      { "label": "Cégadatok", "desc": "Jogi entitása." },
+      { "label": "Dokumentumok", "desc": "Aláírás-minta." },
+      { "label": "E-mail megerősítése", "desc": "Erősítse meg címét." }
+    ],
+    "back": "Vissza",
+    "continue": "Tovább",
+    "submit": "Beküldés",
+    "step1": {
+      "title": "Kapcsolattartási adatok",
+      "subtitle": "Ő fogja kezelni a fiókot.",
+      "fullNameLabel": "Teljes név",
+      "fullNamePlaceholder": "Anna Manager",
+      "designationLabel": "Beosztás / munkakör",
+      "designationPlaceholder": "Flottaüzemeltetési vezető",
+      "phoneLabel": "Telefonszám",
+      "phonePlaceholder": "+36 20 123 4567",
+      "emailLabel": "E-mail cím",
+      "emailPlaceholder": "ops@company.com",
+      "emailHelper": "Ellenőrző linket küldünk erre a címre.",
+      "passwordLabel": "Jelszó",
+      "confirmLabel": "Jelszó megerősítése",
+      "confirmPlaceholder": "Ismételje meg a jelszavát",
+      "passwordMismatch": "A jelszavak nem egyeznek.",
+      "addressLabel": "Levelezési cím",
+      "addressPlaceholder": "Utca, város, irányítószám"
+    },
+    "step2": {
+      "title": "Cégadatok",
+      "subtitle": "Jogi entitás adatai a szerződésekhez és számlázáshoz.",
+      "companyNameLabel": "Cégnév (jogi entitás)",
+      "companyNamePlaceholder": "Company A Holdings Kft.",
+      "postCodeLabel": "Irányítószám",
+      "postCodePlaceholder": "1052",
+      "cityLabel": "Város",
+      "cityPlaceholder": "Budapest",
+      "streetLabel": "Utca, házszám",
+      "streetPlaceholder": "Váci út 1.",
+      "regNumberLabel": "Cégjegyzékszám",
+      "regNumberPlaceholder": "REG-000-000",
+      "taxNumberLabel": "Adószám",
+      "taxNumberPlaceholder": "12345678-1-41",
+      "taxNumberHelper": "Ez fog szerepelni a számláin.",
+      "repNameLabel": "Meghatalmazott képviselő neve",
+      "repNamePlaceholder": "Teljes jogi név",
+      "repNameHelper": "A szerződések aláírására jogosult személy."
+    },
+    "step3": {
+      "title": "Aláírás-minta dokumentum",
+      "subtitle": "Töltse fel a meghatalmazott képviselő által aláírt dokumentumot.",
+      "dropLabel": "Húzza ide a fájlt, vagy tallózzon",
+      "fileTypes": "PDF, PNG vagy JPG · max. 10 MB",
+      "invalidFile": "Kérjük, töltsön fel egy PDF, PNG vagy JPG fájlt, legfeljebb 10 MB méretben.",
+      "removeFile": "Eltávolítás",
+      "consentPrefix": "A beküldéssel elfogadja",
+      "consentTermsLink": "Felhasználási feltételeinket",
+      "consentSuffix": "és tudomásul veszi, hogy a jóváhagyás akár 1 munkanapot is igénybe vehet."
+    },
+    "step4": {
+      "title": "Nézze meg e-mailjét",
+      "subtitle": "6 jegyű kódot küldtünk erre a címre:",
+      "resendPrompt": "Nem érkezett meg?",
+      "resendBtn": "Kód újraküldése",
+      "resendCountdown": "Újraküldés {s} mp múlva",
+      "verifyBtn": "Megerősítés és befejezés",
+      "verifying": "Megerősítés…",
+      "redirecting": "Átirányítás az irányítópultra…",
+      "invalidCode": "Adja meg mind a 6 számjegyet"
+    }
+  },
+  "privacyPage": {
+    "metaTitle": "Adatvédelmi Tájékoztató | E-Renty",
+    "metaDesc": "Hogyan gyűjti, használja és védi az E-Renty Kft. az Ön személyes adatait a GDPR és a magyar törvények értelmében.",
+    "heroEyebrow": "Jogi információk",
+    "heroTitle": "Adatvédelmi Tájékoztató",
+    "lastUpdated": "Utolsó frissítés: 2026. június 12.",
+    "intro": "Ez az Adatvédelmi Tájékoztató elmagyarázza, hogyan gyűjti, használja és védi az E-Renty Kft. („E-Renty”, „mi”, „minket”) az Ön személyes adatait az (EU) 2016/679 rendelet (GDPR) és az információs önrendelkezési jogról és az információszabadságról szóló 2011. évi CXII. törvény (Infotv.) értelmében.",
+    "contactLine": "Adatvédelemmel kapcsolatos kérdések:",
+    "sections": [
+      {
+        "title": "1. Adatkezelő",
+        "card": [
+          "E-Renty Kft.",
+          "Székhely: 1012 Budapest, Kuny Domokos utca 13-15, Magyarország",
+          "Cégjegyzékszám: 01-09-437591",
+          "Adószám: 32690370-2-41",
+          "Telefon: <a href=\"tel:+36204340771\">+36 20 434 0771</a>",
+          "E-mail: <a href=\"mailto:info@e-renty.com\">info@e-renty.com</a>"
+        ]
+      },
+      {
+        "title": "2. Az általunk gyűjtött adatok",
+        "paragraphs": ["A személyes adatok alábbi kategóriáit gyűjtjük:"],
+        "items": [
+          "Fiókadatok: e-mail cím, teljes név, telefonszám, jelszó (titkosítva)",
+          "Személyazonosság ellenőrzése (KYC): személyi igazolvány vagy tartózkodási engedély szkennelt másolata, szelfi fénykép, lakcímkártya, valamint vállalati regisztrációs dokumentumok",
+          "Üzleti adatok: cégnév, cégjegyzékszám, adószám (csak vállalati fiókok esetén)",
+          "Bérleti és előfizetési adatok: bérleti időszak, kiválasztott csomag, fizetési ütemezés, alkalmazott kedvezmény, fizetési összegek és hivatkozások",
+          "Jármű- és kerékpáradatok: hozzárendelt jármű száma, járműtípus, akkumulátor és lakat sorozatszáma; Futár+ VIN / alvázszámok",
+          "GPS és helymeghatározási adatok (csak Futár+): élő helykoordináták, mozgási előzmények és telemetriai adatok az élő követéshez, lopásriasztásokhoz és távoli zároláshoz",
+          "Digitális aláírás adatai: rajzolt aláírás képe és az aláírt szerződés PDF formátumban",
+          "Használati és elemzési adatok: meglátogatott oldalak, munkamenet hossza, böngésző típusa, eszköz típusa, IP-cím — a Google Analytics (GA4) révén, a cookie-hozzájárulástól függően",
+          "Marketing interakciós adatok: hirdetésbeli elkötelezettség a Meta Pixel (Facebook) révén, a cookie-hozzájárulástól függően",
+          "Szervernaplók: bejelentkezési időbélyegek, API kérésnaplók, IP-címek"
+        ],
+        "afterItems": ["Nem gyűjtjük be a fizetési kártyák számát. A kártyafeldolgozást a Stripe (PCI-DSS minősítésű) végzi teljes egészében. Csak a fizetési visszaigazolást és a maszkolt kártyaösszesítőt kapjuk meg."]
+      },
+      {
+        "title": "3. Jogalap és célok",
+        "paragraphs": ["Az adatait a következő jogalapok alapján kezeljük (GDPR 6. cikk):"],
+        "items": [
+          "Szerződés teljesítése (6. cikk (1) bek. b) pont): fiókok létrehozása, bérlések és előfizetések feldolgozása, szerződések és számlák generálása, személyazonosság ellenőrzése, GPS-követés és lopásbiztosítási kárigények",
+          "Jogi kötelezettség (6. cikk (1) bek. c) pont): a számviteli nyilvántartásokat a magyar Számviteli törvény értelmében 8 évig kell megőrizni; KYC a pénzmosás elleni megfelelés érdekében",
+          "Jogos érdek (6. cikk (1) bek. f) pont): csalásmegelőzés, platformbiztonság, vitarendezés és a szolgáltatás javítása összesített használati minták alapján",
+          "Hozzájárulás (6. cikk (1) bek. a) pont): az elemzési és marketing cookie-k csak akkor aktiválódnak, ha Ön elfogadja őket a hozzájárulási szalagon; opcionális marketing kommunikáció"
+        ]
+      },
+      {
+        "title": "4. GPS és Helymeghatározási adatok",
+        "paragraphs": [
+          "Ha Ön előfizet a Futár+ szolgáltatásra, egy GPS-eszközt szerelnek a regisztrált kerékpárjára. A helyadatait élő Dashboard követéshez, lopásriasztásokhoz, távoli zárolási funkcióhoz és biztosítási kárigények ellenőrzéséhez dolgozzuk fel.",
+          "A helyadatokat a gördülő előzményekben 90 napig őrizzük meg. Ezeket megosztjuk GPS/telemetriai szolgáltatónkkal (GDPR 28. cikk szerinti megállapodás) és biztosítási partnerünkkel a lopási kárigény benyújtásakor.",
+          "A helyadatokat nem használjuk hirdetési, profilalkotási vagy a Futár+ szolgáltatáson kívüli bármely más célra."
+        ]
+      },
+      {
+        "title": "5. Adatmegőrzés",
+        "paragraphs": ["Adatait csak addig őrizzük meg, amíg szükséges:"],
+        "items": [
+          "Fiók- és profiladatok: a fiók fennállásának időtartama + 30 nap a törlési kérelem után",
+          "KYC dokumentumok: az aktív szerződéses kapcsolat időtartama, a fiók bezárását követő 90 napon belül törölve",
+          "Bérleti szerződések és aláírt PDF-ek: a bérlés végétől számított 5 év (polgári jogi elévülési idő)",
+          "Számlák és fizetési nyilvántartások: 8 év (magyar Számviteli törvény)",
+          "GPS / helymeghatározási előzmények: 90 napos gördülő ablak",
+          "Szervernaplók: 90 nap",
+          "Elemzési adatok: a Google Analytics adatmegőrzési beállításai szerint (alapértelmezetten 14 hónap)"
+        ]
+      },
+      {
+        "title": "6. Adatmegosztás",
+        "paragraphs": ["Személyes adatait nem értékesítjük. Az adatokat csak a következőkkel osztjuk meg:"],
+        "items": [
+          "Fizetésfeldolgozó (Stripe): kártyás, Google Pay és Apple Pay tranzakciókhoz",
+          "Szervizpartnerek: járműszám és a javításhoz kapcsolódó információk",
+          "Biztosítási partner: név, elérhetőségek, kerékpár VIN, GPS adatok lopási kárigényekhez",
+          "GPS / telemetriai szolgáltató: helykoordináták a Futár+ követéshez",
+          "Számviteli szoftver: számlaadatok könyveléshez",
+          "Google (Analytics & Ads): anonimizált használati adatok, a cookie-hozzájárulástól függően",
+          "Meta / Facebook: marketing adatok a Meta Pixel révén, a cookie-hozzájárulástól függően",
+          "Hatóságok: amikor az alkalmazandó törvények vagy bírósági végzések megkövetelik"
+        ],
+        "afterItems": ["Minden adatfeldolgozót (kivéve a Metát, amely független adatkezelő) köt a GDPR 28. cikke szerinti adatfeldolgozási megállapodás."]
+      },
+      {
+        "title": "7. Cookie-k és nyomkövetési technológiák",
+        "paragraphs": ["Az alábbi kategóriákat használjuk:"],
+        "items": [
+          "Feltétlenül szükséges (hozzájárulás nem szükséges): hitelesítési tokenek, frissítési tokenek, nyelvi preferenciák, hozzájárulási választás, felhasználói felület preferenciái",
+          "Elemzési (hozzájárulás szükséges): Google Analytics 4 — anonimizált adatok a meglátogatott oldalakról, munkamenet hosszáról, eszköztípusokról",
+          "Marketing (hozzájárulás szükséges): Google Ads konverziókövetés; Meta Pixel a hirdetési elkötelezettség optimalizálására"
+        ],
+        "afterItems": ["Hozzájárulását bármikor megváltoztathatja, ha törli az erenty_cookie_consent kulcsot a helyi tárhelyből, vagy ha felveszi velünk a kapcsolatot. Minden betűtípust mi magunk tárolunk — nincsenek külső CDN lekérések."]
+      },
+      {
+        "title": "8. Az Ön jogai a GDPR értelmében",
+        "items": [
+          "Hozzáférés joga (15. cikk): másolatot kérhet a személyes adatairól",
+          "Helyesbítéshez való jog (16. cikk): kijavíthatja a pontatlan adatokat a profilbeállításokon keresztül vagy kapcsolatfelvétellel",
+          "Törléshez való jog (17. cikk): kérheti fiókja és adatai törlését (a jogi megőrzési kötelezettségek figyelembevételével)",
+          "Adathordozhatósághoz való jog (20. cikk): adatait strukturált, géppel olvasható formátumban kaphatja meg",
+          "Adatkezelés korlátozásához való jog (18. cikk): bizonyos körülmények között korlátozhatja, hogyan használjuk adatait",
+          "Tiltakozáshoz való jog (21. cikk): tiltakozhat a jogos érdeken alapuló adatkezelés ellen",
+          "Hozzájárulás visszavonásának joga: bármikor, anélkül, hogy ez befolyásolná az azt megelőző adatkezelés jogszerűségét"
+        ],
+        "afterItems": ["Bármely jog gyakorlásához írjon az info@e-renty.com címre, vagy hívja a +36 20 434 0771-es számot. 30 napon belül válaszolunk."]
+      },
+      {
+        "title": "9. A panasz benyújtásának joga",
+        "card": [
+          "Nemzeti Adatvédelmi és Információszabadság Hatóság (NAIH)",
+          "Cím: 1055 Budapest, Falk Miksa utca 9–11.",
+          "Weboldal: <a href=\"https://www.naih.hu\" target=\"_blank\" rel=\"noopener noreferrer\">www.naih.hu</a>"
+        ]
+      },
+      {
+        "title": "10. Biztonság",
+        "paragraphs": ["Megfelelő technikai és szervezési intézkedéseket vezetünk be, beleértve: titkosított adatátvitel (HTTPS/TLS 1.2+), jelszó titkosítás (bcrypt), rövid élettartamú JWT hozzáférési tokenek a frissítési token forgatásával, szerepkör alapú hozzáférés-szabályozás, valamint hitelesített hozzáférés az összes feltöltött dokumentumhoz és GPS adathoz. A KYC dokumentumok soha nem nyilvánosak."]
+      },
+      {
+        "title": "11. Változások az Adatvédelmi Tájékoztatóban",
+        "paragraphs": ["Ezt az Adatvédelmi Tájékoztatót időről időre frissíthetjük. Lényeges változások esetén — e-mailben vagy a platformon megjelenő figyelemfelkeltő értesítés formájában — legalább 14 nappal a hatálybalépés előtt értesítjük Önt. Az oldal tetején található dátum mindig a legutóbbi felülvizsgálatot tükrözi."]
+      }
+    ]
+  },
+  "termsPage": {
+    "metaTitle": "Általános Szerződési Feltételek (ÁSZF) | E-Renty",
+    "metaDesc": "Az E-Renty Kft. Általános Szerződési Feltételei (ÁSZF) elektromos kerékpárok bérlésére és flottakezelési szolgáltatásokra vonatkozóan.",
+    "heroEyebrow": "Jogi információk",
+    "heroTitle": "Általános Szerződési Feltételek",
+    "lastUpdated": "Utolsó frissítés: 2026. június 12.",
+    "intro": "A jelen Általános Szerződési Feltételek („ÁSZF”) szabályozzák az E-Renty Kft. által nyújtott elektromos kerékpár-bérlési szolgáltatások és az online platform használatát. Megrendelés leadásával, bérléssel vagy a szerződés aláírásával Ön teljes egészében elfogadja ezen feltételeket. Az alábbi összefoglaló a legfontosabb pontokat emeli ki — a teljes, jogilag kötelező érvényű dokumentum PDF formátumban érhető el.",
+    "fullDocTitle": "Teljes Általános Szerződési Feltételek",
+    "fullDocDesc": "Az alábbi szakaszok közérthető összefoglalót nyújtanak. A teljes és jogilag kötelező érvényű Általános Szerződési Feltételekért (ÁSZF) kérjük, tekintse meg a hivatalos dokumentumot.",
+    "fullDocBtn": "A teljes ÁSZF letöltése (PDF)",
+    "sections": [
+      {
+        "title": "1. Szerződő felek",
+        "paragraphs": [
+          "A bérleti szerződés a Bérlő (magánszemély vagy vállalkozás) és az E-Renty Kft. (székhely: 1012 Budapest, Kuny Domokos utca 13-15, Magyarország; cégjegyzékszám: 01-09-437591; adószám: 32690370-2-41) között jön létre."
+        ]
+      },
+      {
+        "title": "2. Előfizetési és bérlési feltételek",
+        "items": [
+          "Minimális életkor: A bérlőnek legalább 18 évesnek kell lennie.",
+          "Személyazonosság igazolása: A bérlőknek a jármű átadása előtt érvényes fényképes igazolványt, szelfit és lakcímkártyát kell bemutatniuk.",
+          "Kaució: Biztonsági kaució bérléstől függően előírható, amely a kerékpár sérülésmentes visszaszállítását követő 5 munkanapon belül visszajár.",
+          "Fizetés: A bérleti díjak számlázása havonta előre történik a Stripe-on keresztül. Késedelmes fizetés a jármű távoli lezárását vonhatja maga után."
+        ]
+      },
+      {
+        "title": "3. Járműhasználat szabályai",
+        "paragraphs": [
+          "A bérlő vállalja, hogy a járművet kellő gondossággal használja, és betartja a hatályos KRESZ szabályokat.",
+          "A bérlőnek tilos: a járművet albérletbe adni, a hardvert módosítani, vagy alkohol, illetve drog befolyása alatt vezetni.",
+          "A Courier+ felhasználóknak a GPS telemetriai modult folyamatosan aktívan kell tartaniuk. A telemetria megkerülése szerződésszegési kötbért von maga után."
+        ]
+      },
+      {
+        "title": "4. Károk, lopás és biztosítás",
+        "paragraphs": [
+          "Minden E-Renty kerékpár biztosítva van lopás és felelősségbiztosítás ellen, a szerződésben meghatározott önrész (általában a pótlási érték 15%-a) megfizetése mellett.",
+          "Lopás esetén a bérlőnek haladéktalanul (2 órán belül) értesítenie kell az E-Renty-t és a rendőrséget, majd át kell adnia a feljelentési jegyzőkönyv számát.",
+          "A rendeltetésszerű használatból eredő kopást az E-Renty karbantartási terve fedezi, a nem rendeltetésszerű használatból, vandalizmusból vagy hanyag kezelésből eredő károk azonban teljes mértékben a bérlő anyagi felelősségét képezik."
+        ]
+      }
+    ]
+  },
+  "cookiesPage": {
+    "metaTitle": "Süti (Cookie) Szabályzat | E-Renty",
+    "metaDesc": "Tájékoztatás arról, hogyan használja az E-Renty a sütiket és a nyomkövetési technológiákat a rendszer optimalizálására.",
+    "heroEyebrow": "Jogi információk",
+    "heroTitle": "Süti Szabályzat",
+    "lastUpdated": "Utolsó frissítés: 2026. június 12.",
+    "intro": "Ez a Süti Szabályzat elmagyarázza, hogyan használja az E-Renty Kft. a sütiket és a hasonló nyomon követési technológiákat a weboldalán és dashboardjain. Ön bármikor módosíthatja hozzájárulását.",
+    "sections": [
+      {
+        "title": "1. Mik azok a sütik (cookie-k)?",
+        "paragraphs": [
+          "A sütik kis méretű szöveges fájlok, amelyek a weboldalak látogatása során a böngészőjében tárolódnak. Segítenek felismerni a látogatót, megjegyezni a beállításokat és javítani a felhasználói élményt."
+        ]
+      },
+      {
+        "title": "2. Az általunk használt sütik típusai",
+        "items": [
+          "Szükséges sütik: Elengedhetetlenek a webhely alapvető működéséhez (bejelentkezések, CSRF-védelem és nyelvválasztás). Nem kikapcsolhatók.",
+          "Funkcionális és kényelmi sütik: Megjegyzik az Ön választásait (például a nyelvet) a személyre szabott élmény érdekében.",
+          "Teljesítmény és elemzési sütik (Google Analytics 4): Névtelen adatokat gyűjtenek a látogatók interakcióiról, segítve minket a hibák feltárásában és a sebesség növelésében.",
+          "Marketing és képpont sütik (Meta Pixel): A hirdetési kampányaink hatékonyságának mérésére szolgálnak."
+        ]
+      },
+      {
+        "title": "3. Sütik kezelése és kikapcsolása",
+        "paragraphs": [
+          "Hozzájárulását bármikor módosíthatja vagy visszavonhatja a süti-bannerünkben, vagy beállíthatja a böngészőjét a sütik teljes letiltására. Vegye figyelembe, hogy a szükséges sütik letiltása esetén a fiókjába való bejelentkezés sikertelen lesz."
+        ]
+      }
+    ]
+  },
+  "cookieConsent": {
+    "title": "Értékeljük a magánéletét",
+    "description": "Sütiket használunk a böngészési élmény javítására, a webhely forgalmának elemzésére és marketing tevékenységeink támogatására. Az „Elfogadás” gombra kattintva hozzájárul a sütik használatához a Süti Szabályzatunkban leírtak szerint.",
+    "cookiePolicyLink": "Süti Szabályzat",
+    "acceptAll": "Elfogadás",
+    "decline": "Elutasítás",
+    "customize": "Testreszabás",
+    "save": "Mentés",
+    "necessary": "Szükséges",
+    "necessaryDesc": "A biztonságos bejelentkezéshez, a nyelvi irányításhoz és az alapvető működéshez szükséges.",
+    "necessaryWarning": "Ezen cookie-k teljes letiltása a böngésző beállításaiban bejelentkezési problémákat okozhat.",
+    "analytics": "Elemzés",
+    "analyticsDesc": "Segít javítani a teljesítményt és megérteni, hogyan lép kapcsolatba oldalainkkal.",
+    "marketing": "Marketing",
+    "marketingDesc": "Lehetővé teszi a hirdetési teljesítmény mérését és a tartalom személyre szabását."
+  }
+}

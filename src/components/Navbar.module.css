@@ -1,0 +1,914 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 72px;
+  background: var(--card);
+  border-bottom: none;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  transition: background 0.3s ease, height 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* First-frame guard: suppress transitions/animations until the real scroll
+   state has painted, so the top→scrolled correction snaps instantly. */
+.headerBooting,
+.headerBooting * {
+  transition: none !important;
+  animation: none !important;
+}
+
+.headerScrolled {
+  height: 56px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+.headerScrolled .navLink {
+  height: 56px !important;
+  font-size: 14px;
+}
+
+.headerScrolled .logoArea {
+  font-size: 21px;
+}
+
+.headerScrolled .businessBtn,
+.headerScrolled .businessBtnLeft,
+.headerScrolled .seeFleetsBtn {
+  padding: 6px 12px !important;
+  font-size: 13px;
+}
+
+.headerScrolled .iconButton {
+  width: 36px;
+  height: 36px;
+}
+
+
+/* ── Transparent state: hero top ────────────────────────────────────── */
+.headerTransparent {
+  background: transparent;
+}
+
+.headerTransparentLight {
+  background: transparent;
+  box-shadow: none;
+}
+
+.headerTransparent .logoArea {
+  color: #FFFFFF;
+}
+
+.headerTransparent .navLink {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.headerTransparent .navLink:hover,
+.headerTransparent .navLinkActive {
+  color: #FFFFFF;
+}
+
+.headerTransparent .iconButton {
+  color: rgba(255, 255, 255, 0.70);
+}
+
+.headerTransparent .iconButton:hover {
+  background: rgba(255, 255, 255, 0.10);
+  color: #FFFFFF;
+}
+
+.headerTransparent .businessBtn {
+  background: rgba(255, 255, 255, 0.10);
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.headerTransparent .businessBtn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: none;
+}
+
+.headerTransparent .mobileMenuBtn {
+  color: #FFFFFF;
+}
+
+/* ── Hover on transparent state → restore solid appearance ──────────── */
+.headerTransparent:hover,
+.headerTransparentLight:hover {
+  background: var(--card);
+}
+
+.headerTransparent:hover .logoArea,
+.headerTransparentLight:hover .logoArea {
+  color: var(--foreground);
+}
+
+.headerTransparent:hover .navLink,
+.headerTransparentLight:hover .navLink {
+  color: var(--foreground);
+}
+
+.headerTransparent:hover .navLink:hover,
+.headerTransparentLight:hover .navLink:hover,
+.headerTransparent:hover .navLinkActive,
+.headerTransparentLight:hover .navLinkActive {
+  color: var(--primary);
+}
+
+.headerTransparent:hover .iconButton,
+.headerTransparentLight:hover .iconButton {
+  color: var(--muted-foreground);
+}
+
+.headerTransparent:hover .iconButton:hover,
+.headerTransparentLight:hover .iconButton:hover {
+  background: var(--muted);
+  color: var(--foreground);
+}
+
+.headerTransparent:hover .businessBtn,
+.headerTransparentLight:hover .businessBtn {
+  background: var(--brand-light);
+  color: var(--brand-dark);
+  border-color: rgba(0, 91, 69, 0.2);
+}
+
+.headerTransparent:hover .businessBtn:hover,
+.headerTransparentLight:hover .businessBtn:hover {
+  background: var(--accent);
+  border-color: var(--brand-dark);
+  box-shadow: 0 4px 12px rgba(0, 91, 69, 0.15);
+}
+
+.headerTransparent:hover .mobileMenuBtn,
+.headerTransparentLight:hover .mobileMenuBtn {
+  color: var(--foreground);
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--space-8);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  position: relative;
+  height: 100%;
+}
+
+@media (max-width: 1150px) {
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--space-5);
+  }
+}
+
+.logoArea {
+  position: relative;
+  justify-self: center;
+  font-family: var(--font-cruiser), sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--foreground);
+  cursor: pointer;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.logoTagline {
+  display: none;
+}
+
+@media (max-width: 1150px) {
+  .logoTagline {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 2px;
+    font-family: var(--font-inter), sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: none;
+    color: #667370;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .logoTaglineVisible {
+    /* always visible on mobile — no-op */
+  }
+}
+
+@media (max-width: 1150px) {
+  .logoArea {
+    justify-self: auto;
+    align-items: flex-start;
+  }
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  justify-self: start;
+  height: 100%;
+}
+
+.navLinkWrapper {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  position: static;
+}
+
+@media (max-width: 1150px) {
+  .nav {
+    display: none; /* Hide desktop nav on tablet/mobile */
+  }
+}
+
+.navLink {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--foreground);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  height: 72px; /* Occupy full height to avoid hover gaps */
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.navLink:hover,
+.navLinkActive {
+  color: var(--primary);
+}
+
+.navLinkActive {
+  border-bottom-color: var(--primary);
+}
+
+.chevron {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease;
+}
+
+.navLinkActive .chevron {
+  transform: rotate(180deg);
+}
+
+/* ── Compact dropdowns (Services / Company) ─────────────────────────── */
+.dropdownWrapper {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  transform: translateY(-6px);
+  min-width: 220px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-elevated);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+  z-index: 999;
+}
+
+.dropdownOpen {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--foreground);
+  white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.dropdownItem:hover {
+  background: var(--muted);
+  color: var(--primary);
+}
+
+.rightArea {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  justify-self: end;
+  margin-right: -10px; /* Counter-balance standard 40px icon-button padding for perfect visual alignment */
+}
+
+.iconButton {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted-foreground);
+  transition: all 0.2s ease;
+}
+
+.iconButton:hover {
+  background: var(--muted);
+  color: var(--foreground);
+}
+
+.businessBtn {
+  font-size: 14px;
+  font-weight: 600;
+  background: var(--brand-light);
+  color: var(--brand-dark);
+  border: 1.5px solid rgba(0, 91, 69, 0.2);
+  padding: 8px 16px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  transition: all 0.2s ease;
+}
+
+.businessBtn:hover {
+  background: var(--accent);
+  border-color: var(--brand-dark);
+  box-shadow: 0 4px 12px rgba(0, 91, 69, 0.15);
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.businessBtnLeft {
+  font-size: 14px;
+  font-weight: 600;
+  background: var(--brand-light);
+  color: var(--brand-dark);
+  border: 1.5px solid rgba(0, 91, 69, 0.2);
+  padding: 8px 16px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  transition: all 0.2s ease;
+  animation: fadeInLeft 0.25s ease forwards;
+}
+
+.businessBtnLeft:hover {
+  background: var(--accent);
+  border-color: var(--brand-dark);
+  box-shadow: 0 4px 12px rgba(0, 91, 69, 0.15);
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.seeFleetsBtn {
+  font-size: 14px;
+  font-weight: 600;
+  background: var(--primary, #00D8A4);
+  color: var(--brand-darker, #143132);
+  padding: 8px 16px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  transition: all 0.2s ease;
+  animation: fadeInRight 0.25s ease forwards;
+}
+
+.seeFleetsArrow {
+  transition: transform 0.2s ease;
+}
+
+.seeFleetsBtn:hover {
+  background: var(--primary-glow, #00FFCA);
+  box-shadow: var(--shadow-btn-primary-hover);
+  transform: translateY(-1px);
+}
+
+.seeFleetsBtn:hover .seeFleetsArrow {
+  transform: translateX(4px);
+}
+
+.mobileMenuBtn {
+  display: none;
+  font-size: 24px;
+  color: var(--foreground);
+}
+
+@media (max-width: 1150px) {
+  .mobileMenuBtn {
+    display: flex;
+  }
+  .rightArea {
+    gap: var(--space-2);
+    margin-right: 0;
+  }
+  .iconButton {
+    display: none;
+  }
+  .businessBtn {
+    display: none;
+  }
+  .businessBtnLeft {
+    display: none;
+  }
+  .seeFleetsBtn {
+    display: none;
+  }
+}
+
+/* Mega Menu Dropdown */
+.megaMenu {
+  position: fixed;
+  top: 72px; /* Anchored directly below navbar with no gap */
+  left: 0;
+  width: 100%;
+  background: var(--card);
+  box-shadow: var(--shadow-elevated);
+  border-bottom: 1px solid var(--border);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out, top 0.3s ease;
+}
+
+.headerScrolled .megaMenu {
+  top: 56px;
+}
+
+.megaMenuOpen {
+  opacity: 1;
+  visibility: visible;
+}
+
+.megaMenuContent {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--space-8);
+  display: grid;
+  grid-template-columns: 3.5fr 1fr;
+  gap: var(--space-8);
+}
+
+.fleetGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-4);
+}
+
+.fleetItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-4) var(--space-2);
+  border-radius: var(--radius-lg);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  text-align: center;
+}
+
+.fleetItem:hover {
+  background: var(--muted);
+}
+
+.bikeImageWrapper {
+  width: 100%;
+  height: 90px;
+  position: relative;
+  margin-bottom: var(--space-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.fleetItem:hover .bikeImageWrapper {
+  transform: scale(1.05);
+}
+
+.bikeImage {
+  object-fit: contain;
+}
+
+.bikeName {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--foreground);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+}
+
+.lightningIcon {
+  color: var(--primary);
+  font-size: 13px;
+}
+
+.quickLinks {
+  border-left: 1px solid var(--border);
+  padding-left: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-5);
+}
+
+.quickLinkItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--brand-dark);
+  transition: color 0.2s ease;
+}
+
+.quickLinkItem:hover {
+  color: var(--primary);
+}
+
+.arrowIcon {
+  transition: transform 0.2s ease;
+}
+
+.quickLinkItem:hover .arrowIcon {
+  transform: translateX(4px);
+}
+
+/* Mobile Drawer Overlay */
+.mobileOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 1001;
+}
+
+/* Mobile Drawer Container */
+.mobileDrawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+  background: var(--card);
+  z-index: 1002;
+  transform: translateX(-100%);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .mobileDrawer {
+    max-width: 400px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.mobileDrawerOpen {
+  transform: translateX(0);
+}
+
+.drawerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-5) var(--space-6);
+  border-bottom: 1px solid var(--border);
+}
+
+.drawerLogoArea {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  line-height: 1;
+}
+
+.drawerTagline {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: #667370;
+}
+
+.drawerLogo {
+  font-family: var(--font-cruiser), sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--foreground);
+}
+
+.closeBtn {
+  color: var(--muted-foreground);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-1);
+  border-radius: var(--radius-full);
+  transition: background 0.2s ease;
+}
+
+.closeBtn:hover {
+  background: var(--muted);
+  color: var(--foreground);
+}
+
+.drawerContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-6);
+  overflow-y: auto;
+}
+
+.mobileNavLinks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.mobileNavLink {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--foreground);
+  padding: var(--space-3) var(--space-2);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  width: 100%;
+}
+
+.mobileNavLink:hover,
+.mobileAccordionActive {
+  background: var(--muted);
+  color: var(--primary);
+}
+
+.mobileBusinessLink {
+  font-size: 16px;
+  font-weight: 600;
+  background: var(--brand-light);
+  color: var(--brand-dark);
+  border: 1.5px solid rgba(0, 91, 69, 0.2);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: var(--space-4);
+  text-align: center;
+}
+
+.mobileBusinessLink:hover {
+  background: var(--accent);
+  border-color: var(--brand-dark);
+}
+
+/* Accordion */
+.mobileAccordion {
+  width: 100%;
+}
+
+.drawerChevron {
+  transition: transform 0.2s ease;
+}
+
+.rotateChevron {
+  transform: rotate(180deg);
+}
+
+.mobileAccordionContent {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s ease;
+  padding: 0 var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.mobileAccordionContentOpen {
+  max-height: 380px; /* Accommodate the 5 items */
+  padding: var(--space-2) var(--space-4) var(--space-4);
+}
+
+.mobileFleetItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2);
+  border-radius: var(--radius-md);
+  transition: background 0.2s ease;
+}
+
+.mobileFleetItem:hover {
+  background: var(--muted);
+}
+
+.mobileFleetThumb {
+  width: 48px;
+  height: 32px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobileFleetImg {
+  object-fit: contain;
+}
+
+.mobileFleetName {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.mobileFleetItemAll {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--brand-dark);
+  padding: var(--space-2);
+  display: inline-block;
+}
+
+.mobileFleetItemAll:hover {
+  color: var(--primary);
+}
+
+.mobileSubLink {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--foreground);
+  padding: var(--space-2);
+  border-radius: var(--radius-md);
+  display: block;
+}
+
+.mobileSubLink:hover {
+  background: var(--muted);
+  color: var(--primary);
+}
+
+/* Drawer Footer */
+.drawerFooter {
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.footerIconButton {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  padding: var(--space-2);
+  border-radius: var(--radius-md);
+  transition: background 0.2s ease, color 0.2s ease;
+  width: 100%;
+  text-align: left;
+}
+
+.footerIconButton:hover {
+  background: var(--muted);
+  color: var(--foreground);
+}
+
+.logoImage {
+  transition: filter 0.3s ease;
+  display: block;
+}
+
+.headerTransparent .logoImage {
+  filter: brightness(0) invert(1);
+}
+
+.headerTransparent:hover .logoImage,
+.headerTransparentLight:hover .logoImage {
+  filter: none;
+}
+
+.drawerLogoArea {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.drawerLogoImage {
+  display: block;
+}
+
+.mobileDirectLink {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--foreground);
+  padding: var(--space-3) var(--space-2);
+  border-radius: var(--radius-md);
+  display: block;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.mobileDirectLink:hover {
+  background: var(--muted);
+  color: var(--primary);
+}
+
+.drawerLoginBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-size: 15px;
+  font-weight: 700;
+  background: var(--primary, #00D8A4);
+  color: var(--brand-darker, #143132) !important;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 216, 164, 0.15);
+  margin-top: var(--space-2);
+}
+
+.drawerLoginBtn:hover {
+  background: var(--primary-glow, #00FFCA);
+  box-shadow: 0 4px 16px rgba(0, 216, 164, 0.25);
+  transform: translateY(-1px);
+}
+

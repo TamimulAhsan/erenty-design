@@ -1,0 +1,691 @@
+"use client";
+
+import { useState, useEffect, useLayoutEffect, useTransition, useRef } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
+import { localeFromPathname, defaultLocale, isLocale, localizeHref } from "@/lib/i18n";
+import styles from "./Navbar.module.css";
+
+// Run the initial scroll-state sync before the browser paints (avoids a
+// visible snap when a page loads already scrolled, e.g. after a language toggle).
+// Falls back to useEffect on the server to skip React's SSR warning.
+const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
+const fleetList = [
+  { name: "DUOTTS C29 Pro", isElectric: true, image: "/images/c29_pro.png", slug: "duotts-c29-pro" },
+  { name: "VOK S", isElectric: true, image: "/images/S.png", slug: "vok-s" },
+  { name: "ELEGLIDE M2", isElectric: true, image: "/images/m2.png", slug: "eleglide-m2" },
+  { name: "Equickey Q8 - Pro", isElectric: true, image: "/images/q8_pro.png", slug: "equickey-q8-pro" },
+  { name: "Kukirin G3 Pro", isElectric: true, image: "/images/g3_pro.png", slug: "kukirin-g3-pro" },
+];
+
+// Routes with dark hero sections where navbar sits transparent over dark backgrounds.
+const DARK_HERO_ROUTES = ["/", "/courier-plus", "/privacy", "/faq", "/about", "/contact", "/cookies", "/terms", "/business"];
+
+// Routes with hero is light, so the navbar sits transparent over a light background.
+const LIGHT_HERO_ROUTES = ["/fleets", "/repair-partners"];
+
+// Every real top-level route. Anything NOT matching one of these is, by
+// definition, the not-found page (it can be reached from any bad URL, so it
+// has no fixed path of its own) — its hero is dark, so it gets the same
+// transparent treatment as the other DARK_HERO_ROUTES.
+const KNOWN_ROUTES = [
+  "/", "/about", "/contact", "/faq", "/privacy", "/terms", "/cookies",
+  "/business", "/insurance", "/login", "/signup",
+  "/courier-plus", "/fleets", "/repair-partners", "/checkout", "/profile",
+];
+
+export default function Navbar({ dict }) {
+  const pathname = usePathname();
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+
+  // Strip the locale segment to get the app route (e.g. "/en/fleets" -> "/fleets").
+  const routePath = "/" + pathname.split("/").slice(2).join("/");
+  const forceSolid = false;
+  const isKnownRoute = KNOWN_ROUTES.some((r) => routePath === r || routePath.startsWith(`${r}/`));
+  const isDarkHeroRoute = DARK_HERO_ROUTES.includes(routePath) || !isKnownRoute;
+  const isLightHeroRoute = LIGHT_HERO_ROUTES.includes(routePath);
+
+  // Which desktop dropdown is open: "fleets" | "explore" | null
+  const [openMenu, setOpenMenu] = useState(null);
+  const [hoverTimeout, setHoverTimeout] = useState(null);
+
+  const [isAtTop, setIsAtTop] = useState(true);
+  const [hasScrolled, setHasScrolled] = useState(false);
+  const [footerNear, setFooterNear] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const [transitionsReady, setTransitionsReady] = useState(false);
+
+  // Mobile drawer states
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileFleetsOpen, setIsMobileFleetsOpen] = useState(false);
+  const [isMobileExploreOpen, setIsMobileExploreOpen] = useState(false);
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState("user");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+      setIsLoggedIn(loggedIn);
+      if (loggedIn) {
+        setUsername(localStorage.getItem("username") || "user");
+      }
+    }
+  }, [pathname]);
+
+  // Close mega menu and mobile menu drawers upon navigation to new pages.
+  // Adjusted during render (rather than in an effect) per React's guidance on
+  // resetting state when a prop/value changes: https://react.dev/learn/you-might-not-need-an-effect
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
+    setOpenMenu(null);
+    setIsMobileMenuOpen(false);
+  }
+
+  // Extract language from URL path
+  const currentLangLower = localeFromPathname(pathname) || defaultLocale;
+  const currentLang = currentLangLower.toUpperCase();
+
+  // Localization dictionary fallback
+  const t = dict || {
+    fleets: "Fleets",
+    seeAllFleets: "See all fleets",
+    courierPlus: "Courier+",
+    howItWorks: "How it works",
+    forBusiness: "For Business",
+    seeFleetsBtn: "See Fleets",
+    tagline: "Fuel-Free. Stress-Free.",
+    selectLanguage: "Select Language",
+    help: "Help",
+    profile: "Profile",
+    explore: "Explore",
+    repairPartners: "Repair Partners",
+    about: "About",
+    contact: "Contact",
+    faq: "FAQ",
+    toggleMenu: "Toggle menu",
+    closeMenu: "Close menu",
+    login: "Login"
+  };
+
+  const localizePath = (path) => localizeHref(currentLangLower, path);
+
+  useIsomorphicLayoutEffect(() => {
+    const handleScroll = () => {
+      const y = window.scrollY;
+      setIsAtTop(y < 10);
+      setHasScrolled(y > 550);
+
+      const footer = document.getElementById("footer");
+      if (footer) {
+        const rect = footer.getBoundingClientRect();
+        setFooterNear(rect.top <= 120);
+      }
+    };
+
+    // Sync the real scroll state before paint so the first painted frame is correct.
+    handleScroll();
+    setMounted(true);
+
+    // Re-enable transitions/animations only after the corrected state has painted,
+    // so the initial top→scrolled correction snaps instantly instead of animating.
+    const raf = requestAnimationFrame(() => setTransitionsReady(true));
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleDocumentClick = () => {
+      setOpenMenu(null);
+    };
+    document.addEventListener("click", handleDocumentClick);
+    return () => document.removeEventListener("click", handleDocumentClick);
+  }, []);
+
+  const toggleLanguage = () => {
+    if (isPending) return;
+    const nextLang = currentLangLower === "en" ? "hu" : "en";
+
+    try {
+      document.cookie = `NEXT_LOCALE=${nextLang}; path=/; max-age=31536000; SameSite=Lax`;
+    } catch (e) {
+      console.warn("Could not set NEXT_LOCALE cookie:", e);
+    }
+
+    // Swap (or insert) the locale segment, preserving query + hash and scroll position.
+    const segments = pathname.split("/");
+    if (isLocale(segments[1])) {
+      segments[1] = nextLang;
+    } else {
+      segments.splice(1, 0, nextLang);
+    }
+    const suffix = typeof window !== "undefined"
+      ? window.location.search + window.location.hash
+      : "";
+    const newPath = (segments.join("/") || `/${nextLang}`) + suffix;
+
+    startTransition(() => {
+      router.replace(newPath, { scroll: false });
+    });
+  };
+
+  // Safe checks to avoid hydration mismatches
+  const isMegaMenuOpen = openMenu === "fleets";
+  const isTransparentDark = !forceSolid && isDarkHeroRoute && (mounted ? isAtTop : true) && !openMenu;
+  const isTransparentLight = !forceSolid && isLightHeroRoute && (mounted ? isAtTop : true) && !openMenu;
+  const isNavbarScrolled = mounted ? !isAtTop : false;
+  const showMegaMenu = mounted ? !hasScrolled : true;
+  const showBusinessBtnLeft = mounted ? hasScrolled : false;
+  const showBusinessBtn = mounted ? !hasScrolled : true;
+  const showSeeFleetsBtn = mounted ? hasScrolled : false;
+  const showLogoTagline = mounted ? footerNear : false;
+
+  const handlePointerEnter = (e, menu) => {
+    if (e.pointerType === "touch") return;
+    if (hoverTimeout) clearTimeout(hoverTimeout);
+    setOpenMenu(menu);
+  };
+
+  const handlePointerLeave = (e) => {
+    if (e.pointerType === "touch") return;
+    const timeout = setTimeout(() => {
+      setOpenMenu(null);
+    }, 200);
+    setHoverTimeout(timeout);
+  };
+
+  const handleTriggerClick = (e, menu) => {
+    e.stopPropagation();
+    setOpenMenu(openMenu === menu ? null : menu);
+  };
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const toggleMobileFleets = (e) => {
+    e.stopPropagation();
+    setIsMobileFleetsOpen(!isMobileFleetsOpen);
+  };
+
+  const toggleMobileExplore = (e) => {
+    e.stopPropagation();
+    setIsMobileExploreOpen(!isMobileExploreOpen);
+  };
+
+  if (routePath.startsWith("/checkout")) {
+    return null;
+  }
+
+  return (
+    <header className={`${styles.header} ${transitionsReady ? "" : styles.headerBooting} ${isTransparentDark ? styles.headerTransparent : ""} ${isTransparentLight ? styles.headerTransparentLight : ""} ${isNavbarScrolled ? styles.headerScrolled : ""}`}>
+      <div className={styles.container}>
+        {/* Left Side: Desktop Navigation Links */}
+        <nav className={styles.nav}>
+          {showMegaMenu && (
+            <div
+              className={styles.navLinkWrapper}
+              onPointerEnter={(e) => handlePointerEnter(e, "fleets")}
+              onPointerLeave={handlePointerLeave}
+              onClick={(e) => handleTriggerClick(e, "fleets")}
+            >
+              <div className={`${styles.navLink} ${isMegaMenuOpen ? styles.navLinkActive : ""}`}>
+                {t.fleets}
+                <svg
+                  className={styles.chevron}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+
+              {/* Mega Menu Dropdown */}
+              <div 
+                className={`${styles.megaMenu} ${isMegaMenuOpen ? styles.megaMenuOpen : ""}`}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className={styles.megaMenuContent}>
+                  <div className={styles.fleetGrid}>
+                    {fleetList.map((bike, idx) => (
+                      <Link key={idx} href={localizePath(`/fleets/${bike.slug}`)} className={styles.fleetItem}>
+                        <div className={styles.bikeImageWrapper}>
+                          <Image
+                            src={bike.image}
+                            alt={bike.name}
+                            fill
+                            sizes="140px"
+                            className={styles.bikeImage}
+                            priority={true}
+                          />
+                        </div>
+                        <div className={styles.bikeName}>
+                          {bike.name}
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+
+                  <div className={styles.quickLinks}>
+                    <Link href={localizePath("/fleets")} className={styles.quickLinkItem}>
+                      {t.seeAllFleets}
+                      <span className={styles.arrowIcon}>→</span>
+                    </Link>
+                    <Link href={localizePath("/courier-plus")} className={styles.quickLinkItem}>
+                      {t.courierPlus}
+                      <span className={styles.arrowIcon}>→</span>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Courier+ Direct Link */}
+          <Link
+            href={localizePath("/courier-plus")}
+            className={`${styles.navLink} ${routePath === "/courier-plus" ? styles.navLinkActive : ""}`}
+          >
+            {t.courierPlus}
+          </Link>
+
+          {/* Explore dropdown */}
+          <div
+            className={styles.dropdownWrapper}
+            onPointerEnter={(e) => handlePointerEnter(e, "explore")}
+            onPointerLeave={handlePointerLeave}
+            onClick={(e) => handleTriggerClick(e, "explore")}
+          >
+            <div className={`${styles.navLink} ${openMenu === "explore" ? styles.navLinkActive : ""}`}>
+              {t.explore}
+              <svg
+                className={styles.chevron}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+            <div 
+              className={`${styles.dropdown} ${openMenu === "explore" ? styles.dropdownOpen : ""}`}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Link href={localizePath("/#how-it-works")} className={styles.dropdownItem}>
+                {t.howItWorks}
+              </Link>
+              <Link href={localizePath("/repair-partners")} className={styles.dropdownItem}>
+                {t.repairPartners}
+              </Link>
+              <Link href={localizePath("/about")} className={styles.dropdownItem}>
+                {t.about}
+              </Link>
+              <Link href={localizePath("/contact")} className={styles.dropdownItem}>
+                {t.contact}
+              </Link>
+              <Link href={localizePath("/faq")} className={styles.dropdownItem}>
+                {t.faq}
+              </Link>
+            </div>
+          </div>
+
+          {showBusinessBtnLeft && (
+            <Link href={localizePath("/business")} className={styles.businessBtnLeft}>
+              {t.forBusiness}
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+            </Link>
+          )}
+        </nav>
+
+        {/* Middle Side: Image Logo */}
+        <Link href={localizePath("/")} className={styles.logoArea}>
+          <Image
+            src="/erenty-logo-green.svg"
+            alt="E-Renty Logo"
+            width={130}
+            height={14}
+            className={styles.logoImage}
+            priority
+          />
+          <span className={`${styles.logoTagline} ${showLogoTagline ? styles.logoTaglineVisible : ""}`}>
+            {t.tagline}
+          </span>
+        </Link>
+
+        {/* Right Side: Utilities */}
+        <div className={styles.rightArea}>
+          {showBusinessBtn && (
+            <Link href={localizePath("/business")} className={styles.businessBtn}>
+              {t.forBusiness}
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
+              </svg>
+            </Link>
+          )}
+
+          {/* Language Toggle Button */}
+          <button
+            className={styles.iconButton}
+            aria-label={t.selectLanguage}
+            onClick={toggleLanguage}
+            style={{ display: 'flex', alignItems: 'center', gap: '4px', minWidth: '54px', justifyContent: 'center' }}
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <line x1="2" y1="12" x2="22" y2="12" />
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+            </svg>
+            <span style={{ fontSize: '11px', fontWeight: '800' }}>{currentLang}</span>
+          </button>
+
+          {/* Help Center */}
+          <Link href={localizePath("/faq")} className={styles.iconButton} aria-label={t.help}>
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+              <line x1="12" y1="17" x2="12.01" y2="17" />
+            </svg>
+          </Link>
+
+          {/* Profile */}
+          <Link 
+            href={isLoggedIn ? localizePath(`/profile/${username}`) : localizePath("/login")} 
+            className={styles.iconButton} 
+            aria-label={isLoggedIn ? (t.profile || "Profile") : (t.login || "Login")}
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+          </Link>
+
+          {showSeeFleetsBtn && (
+            <Link href={localizePath("/fleets")} className={styles.seeFleetsBtn}>
+              {t.seeFleetsBtn}
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className={styles.seeFleetsArrow}
+              >
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </Link>
+          )}
+
+          {/* Mobile menu trigger */}
+          <button className={styles.mobileMenuBtn} onClick={toggleMobileMenu} aria-label={t.toggleMenu}>
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Drawer Overlay */}
+      {isMobileMenuOpen && (
+        <div className={styles.mobileOverlay} onClick={toggleMobileMenu}></div>
+      )}
+
+      {/* Mobile Drawer Panel */}
+      <div className={`${styles.mobileDrawer} ${isMobileMenuOpen ? styles.mobileDrawerOpen : ""}`}>
+        <div className={styles.drawerHeader}>
+          <Link href={localizePath("/")} className={styles.drawerLogoArea} onClick={toggleMobileMenu}>
+            <Image
+              src="/erenty-logo-green.svg"
+              alt="E-Renty Logo"
+              width={110}
+              height={12}
+              className={styles.drawerLogoImage}
+              priority
+            />
+            <span className={styles.drawerTagline}>{t.tagline}</span>
+          </Link>
+          <button className={styles.closeBtn} onClick={toggleMobileMenu} aria-label={t.closeMenu}>
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+
+        <div className={styles.drawerContent}>
+          <div className={styles.mobileNavLinks}>
+            {/* Accordion item for Fleets */}
+            <div className={styles.mobileAccordion}>
+              <button
+                className={`${styles.mobileNavLink} ${isMobileFleetsOpen ? styles.mobileAccordionActive : ""}`}
+                onClick={toggleMobileFleets}
+              >
+                <span>{t.fleets}</span>
+                <svg
+                  className={`${styles.drawerChevron} ${isMobileFleetsOpen ? styles.rotateChevron : ""}`}
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </button>
+
+              <div className={`${styles.mobileAccordionContent} ${isMobileFleetsOpen ? styles.mobileAccordionContentOpen : ""}`}>
+                {fleetList
+                  .filter((bike) => bike.slug !== "equickey-q8-pro")
+                  .map((bike, idx) => (
+                    <Link
+                      key={idx}
+                      href={localizePath(`/fleets/${bike.slug}`)}
+                      className={styles.mobileFleetItem}
+                      onClick={toggleMobileMenu}
+                    >
+                      <div className={styles.mobileFleetThumb}>
+                        <Image
+                          src={bike.image}
+                          alt={bike.name}
+                          fill
+                          sizes="48px"
+                          className={styles.mobileFleetImg}
+                        />
+                      </div>
+                      <span className={styles.mobileFleetName}>
+                        {bike.name}
+                      </span>
+                    </Link>
+                  ))}
+                <Link href={localizePath("/fleets")} className={styles.mobileFleetItemAll} onClick={toggleMobileMenu}>
+                  {t.seeAllFleets} →
+                </Link>
+              </div>
+            </div>
+
+            {/* Courier+ Direct Link */}
+            <Link
+              href={localizePath("/courier-plus")}
+              className={styles.mobileDirectLink}
+              onClick={toggleMobileMenu}
+            >
+              {t.courierPlus}
+            </Link>
+
+            {/* Accordion item for Explore */}
+            <div className={styles.mobileAccordion}>
+              <button
+                className={`${styles.mobileNavLink} ${isMobileExploreOpen ? styles.mobileAccordionActive : ""}`}
+                onClick={toggleMobileExplore}
+              >
+                <span>{t.explore}</span>
+                <svg
+                  className={`${styles.drawerChevron} ${isMobileExploreOpen ? styles.rotateChevron : ""}`}
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </button>
+
+              <div className={`${styles.mobileAccordionContent} ${isMobileExploreOpen ? styles.mobileAccordionContentOpen : ""}`}>
+                <Link href={localizePath("/#how-it-works")} className={styles.mobileSubLink} onClick={toggleMobileMenu}>
+                  {t.howItWorks}
+                </Link>
+                <Link href={localizePath("/repair-partners")} className={styles.mobileSubLink} onClick={toggleMobileMenu}>
+                  {t.repairPartners}
+                </Link>
+                <Link href={localizePath("/about")} className={styles.mobileSubLink} onClick={toggleMobileMenu}>
+                  {t.about}
+                </Link>
+                <Link href={localizePath("/contact")} className={styles.mobileSubLink} onClick={toggleMobileMenu}>
+                  {t.contact}
+                </Link>
+                <Link href={localizePath("/faq")} className={styles.mobileSubLink} onClick={toggleMobileMenu}>
+                  {t.faq}
+                </Link>
+              </div>
+            </div>
+
+            <Link href={localizePath("/business")} className={styles.mobileBusinessLink} onClick={toggleMobileMenu}>
+              {t.forBusiness}
+            </Link>
+          </div>
+
+          <div className={styles.drawerFooter}>
+            <button
+              className={styles.footerIconButton}
+              aria-label={t.selectLanguage}
+              onClick={toggleLanguage}
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="2" y1="12" x2="22" y2="12" />
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+              </svg>
+              <span>{currentLang === "EN" ? "English" : "Hungarian (HU)"}</span>
+            </button>
+
+            <Link href={localizePath("/faq")} className={styles.footerIconButton} aria-label={t.help} onClick={toggleMobileMenu}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                <line x1="12" y1="17" x2="12.01" y2="17" />
+              </svg>
+              <span>{t.help}</span>
+            </Link>
+
+            {isLoggedIn ? (
+              <Link href={localizePath(`/profile/${username}`)} className={styles.footerIconButton} style={{ fontWeight: '600', color: 'var(--foreground)' }} onClick={toggleMobileMenu}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+                <span>{t.profile || "Profile"}</span>
+              </Link>
+            ) : (
+              <Link href={localizePath("/login")} className={styles.drawerLoginBtn} onClick={toggleMobileMenu}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+                  <polyline points="10 17 15 12 10 7" />
+                  <line x1="15" y1="12" x2="3" y2="12" />
+                </svg>
+                <span>{t.login}</span>
+              </Link>
+            )}
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+}

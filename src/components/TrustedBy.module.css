@@ -1,0 +1,303 @@
+.trustedBySection {
+  padding: 120px 0;
+  background-color: var(--background, #F7FAF7); /* Unified background */
+  overflow: hidden;
+  position: relative;
+  min-height: 700px;
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
+  display: flex;
+  position: relative;
+  z-index: 2;
+  align-items: center;
+}
+
+.textContent {
+  max-width: 500px;
+  position: relative;
+  z-index: 10;
+}
+
+.heading {
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--brand-dark, #143132);
+  margin-bottom: 40px;
+  font-family: var(--font-inter, sans-serif);
+  letter-spacing: -0.02em;
+}
+
+.primaryButton {
+  background-color: var(--brand-primary, #00D8A4);
+  color: #143132;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 16px 32px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  font-family: var(--font-inter, sans-serif);
+}
+
+.primaryButton:hover {
+  background-color: var(--brand-primary-glow, #00FFCA);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -8px rgba(0, 216, 164, 0.4);
+}
+
+.buttonGroup {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap; /* Keeps them side-by-side, but allows wrapping on small mobile screens */
+}
+
+.secondaryButton {
+  background: transparent;
+  color: var(--brand-dark, #143132);
+  font-size: 16px;
+  font-weight: 600;
+  padding: 16px 32px;
+  border-radius: 12px;
+  border: 1.5px solid rgba(20, 49, 50, 0.2);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  font-family: var(--font-inter, sans-serif);
+}
+
+.secondaryButton:hover {
+  border-color: var(--brand-dark, #143132);
+  background-color: rgba(20, 49, 50, 0.04);
+}
+
+.visualContent {
+  position: absolute;
+  top: 50%;
+  right: -100px;
+  transform: translateY(-50%);
+  width: 1100px;
+  height: 1100px;
+  pointer-events: none;
+}
+
+.bikeWrapper {
+  position: absolute;
+  inset: 0;
+  opacity: 0.12; /* Reduced opacity significantly to prevent dark parts from obscuring logos */
+  transform: rotate(-15deg) scale(1.2);
+  mask-image: radial-gradient(circle at 75% 50%, black 25%, transparent 65%);
+  -webkit-mask-image: radial-gradient(circle at 75% 50%, black 25%, transparent 65%);
+}
+
+.bikeImage {
+  object-fit: contain;
+  object-position: right center;
+}
+
+.rotatingWheel {
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  width: 800px;
+  height: 800px;
+  margin-top: -400px;
+  margin-right: -400px;
+  animation: spin 60s linear infinite;
+  border-radius: 50%;
+  border: 2px dashed rgba(20, 49, 50, 0.12); /* Make the outer track more visible */
+  --radius-outer: 400px;
+  --radius-inner: 180px; /* Increased gap */
+}
+
+/* Explicitly draw the inner orbital track so the circular shape is obvious */
+.rotatingWheel::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(var(--radius-inner) * 2);
+  height: calc(var(--radius-inner) * 2);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px dashed rgba(20, 49, 50, 0.12);
+}
+
+.logoWrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform: rotate(var(--angle)) translateY(calc(var(--radius) * -1));
+}
+
+.logoReverser {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+}
+
+.logoInnerWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  animation: counterSpin 60s linear infinite;
+}
+
+.logoInner {
+  position: absolute;
+  --size: 150px;
+  width: var(--size);
+  height: var(--size);
+  left: calc(var(--size) / -2);
+  top: calc(var(--size) / -2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #FFFFFF;
+  border-radius: 50%;
+  box-shadow: 
+    0 0 0 2px rgba(255, 255, 255, 0.8), /* subtle white halo ring */
+    0 32px 64px -12px rgba(20, 49, 50, 0.3), /* intense deep shadow */
+    0 16px 24px -8px rgba(20, 49, 50, 0.15); /* secondary shadow */
+  border: 1px solid rgba(20, 49, 50, 0.04);
+  font-weight: 800;
+  color: #143132;
+  padding: 8px;
+  font-family: var(--font-inter, sans-serif);
+  font-size: 20px;
+  overflow: hidden;
+  pointer-events: auto;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.logoInner:hover {
+  transform: scale(1.15);
+  border-color: var(--brand-primary, #00D8A4);
+  box-shadow: 
+    0 0 0 4px rgba(0, 216, 164, 0.15),
+    0 40px 80px -10px rgba(0, 216, 164, 0.35),
+    0 20px 32px -8px rgba(0, 216, 164, 0.15);
+  z-index: 50;
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.companyImage {
+  object-fit: contain;
+  padding: 2px; /* Slight inset so logos don't touch the edges */
+}
+
+@media (max-width: 992px) {
+  .trustedBySection {
+    min-height: auto;
+    padding: 80px 0 0 0;
+    align-items: flex-start;
+  }
+  
+  .container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .textContent {
+    margin-bottom: 20px;
+  }
+
+  .heading {
+    font-size: 36px;
+  }
+
+  .buttonGroup {
+    justify-content: center;
+    gap: 12px;
+  }
+  
+  .primaryButton, .secondaryButton {
+    padding: 14px 20px;
+    font-size: 15px;
+  }
+  
+  .visualContent {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    right: auto;
+    transform: none;
+    width: 100%;
+    height: 400px; /* Dome container height */
+    margin-top: 20px;
+  }
+  
+  .bikeWrapper {
+    inset: auto;
+    width: 700px;
+    height: 700px;
+    top: 100%; /* Anchor to bottom */
+    left: 50%;
+    margin-top: -420px;
+    margin-left: -350px;
+    mask-image: radial-gradient(circle at 50% 50%, black 40%, transparent 70%);
+    -webkit-mask-image: radial-gradient(circle at 50% 50%, black 40%, transparent 70%);
+    object-position: center center;
+    transform: rotate(-25deg) scale(1.4);
+  }
+
+  .rotatingWheel {
+    top: 100%; /* Anchor center to the bottom */
+    left: 50%;
+    right: auto;
+    width: 600px;
+    height: 600px;
+    margin-top: -300px; /* Center is exactly at the bottom edge */
+    margin-left: -300px;
+    margin-right: 0;
+    --radius-outer: 300px;
+    --radius-inner: 160px; 
+  }
+  
+  .logoInner {
+    --size: 105px;
+    padding: 4px;
+    font-size: 14px;
+    box-shadow: 
+      0 0 0 1.5px rgba(255, 255, 255, 0.8),
+      0 16px 32px -8px rgba(20, 49, 50, 0.25);
+  }
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes counterSpin {
+  100% { transform: rotate(-360deg); }
+}
