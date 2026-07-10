@@ -6,6 +6,7 @@ import styles from "./repair-partners.module.css";
 import { WORKSHOPS, CITIES, WORKSHOP_TYPES, getInitialsBg } from "@/data/workshops";
 import BookingForm from "@/components/BookingForm";
 import PartnerApplicationModal from "@/components/PartnerApplicationModal";
+import CountUp from "@/components/CountUp";
 
 export default function RepairPartnersClient({ dict = {}, lang = "en" }) {
   const [selectedCity, setSelectedCity] = useState("All");
@@ -172,18 +173,20 @@ export default function RepairPartnersClient({ dict = {}, lang = "en" }) {
 
         <div className={styles.heroStats}>
           <div className={styles.heroStat}>
-            <span className={`${styles.heroStatValue} mono-num`}>{filteredWorkshops.length}</span>
+            <span className={`${styles.heroStatValue} mono-num`}>
+              <CountUp value={filteredWorkshops.length} />
+            </span>
             <span className={styles.heroStatLabel}>{dict.statPartners || "Certified partners"}</span>
           </div>
           <div className={styles.heroStat}>
             <span className={`${styles.heroStatValue} mono-num`}>
-              {new Set(filteredWorkshops.map(w => w.location)).size}
+              <CountUp value={new Set(filteredWorkshops.map(w => w.location)).size} />
             </span>
             <span className={styles.heroStatLabel}>{dict.statCities || "Cities covered"}</span>
           </div>
           <div className={styles.heroStat}>
             <span className={`${styles.heroStatValue} mono-num`}>
-              {new Set(filteredWorkshops.map(w => w.type)).size}
+              <CountUp value={new Set(filteredWorkshops.map(w => w.type)).size} />
             </span>
             <span className={styles.heroStatLabel}>{dict.statSpecialties || "Specialties"}</span>
           </div>

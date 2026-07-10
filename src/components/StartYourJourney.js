@@ -1,11 +1,20 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "@/components/LocalizedLink";
+import CountUp from "./CountUp";
+import { BIKE_MORPH_TAKEOFF } from "./BikeMorph";
 import styles from "./StartYourJourney.module.css";
 
 const FLEET_CATEGORIES = [
+  {
+    id: "c29",
+    name: "DUOTTS C29 Pro",
+    category: "Urban Fleet",
+    image: "/images/c29_pro.png",
+    specs: "Range: 100 km | Speed: 50 km/h",
+  },
   {
     id: "cargo",
     name: "VOK S",
@@ -21,13 +30,6 @@ const FLEET_CATEGORIES = [
     specs: "Range: 125 km | Speed: 25 km/h",
   },
   {
-    id: "q8",
-    name: "Equickey Q8 - Pro",
-    category: "Urban Fleet",
-    image: "/images/q8_pro.png",
-    specs: "Range: 70 km | Speed: 25 km/h",
-  },
-  {
     id: "scooter",
     name: "Kukirin G3 Pro",
     category: "Scooter Fleet",
@@ -41,6 +43,15 @@ export default function StartYourJourney({ dict }) {
   const [activeModel, setActiveModel] = useState(FLEET_CATEGORIES[0]);
   const [activeCardIndex, setActiveCardIndex] = useState(0);
   const gridRef = useRef(null);
+
+  // The morphing bike carries the default model, so when it lifts back out of
+  // this card the selection has to follow it home — otherwise the pills stay on
+  // the old pick while the bike that lands is the default one.
+  useEffect(() => {
+    const reset = () => setActiveModel(FLEET_CATEGORIES[0]);
+    window.addEventListener(BIKE_MORPH_TAKEOFF, reset);
+    return () => window.removeEventListener(BIKE_MORPH_TAKEOFF, reset);
+  }, []);
 
   // Handle mobile scroll swipe to update indicators
   const handleScroll = (e) => {
@@ -86,12 +97,12 @@ export default function StartYourJourney({ dict }) {
 
             {/* Interactive Bike Showcase Widget */}
             <div className={styles.bikeShowcase}>
-              <div className={styles.bikeImageWrapper}>
+              <div className={styles.bikeImageWrapper} data-morph="target">
                 <Image
                   src={activeModel.image}
                   alt={activeModel.name}
-                  width={220}
-                  height={130}
+                  fill
+                  sizes="220px"
                   className={styles.bikeImage}
                   priority
                 />
@@ -115,11 +126,11 @@ export default function StartYourJourney({ dict }) {
             {/* Metric Footer for Card 1 */}
             <div className={styles.cardStats}>
               <div className={styles.statBlock}>
-                <span className={styles.statValue}>{dict.card1Stat1Value}</span>
+                <span className={styles.statValue}><CountUp value={dict.card1Stat1Value} /></span>
                 <span className={styles.statLabel}>{dict.card1Stat1Label}</span>
               </div>
               <div className={styles.statBlock}>
-                <span className={styles.statValue}>{dict.card1Stat2Value}</span>
+                <span className={styles.statValue}><CountUp value={dict.card1Stat2Value} /></span>
                 <span className={styles.statLabel}>{dict.card1Stat2Label}</span>
               </div>
             </div>
@@ -166,11 +177,11 @@ export default function StartYourJourney({ dict }) {
             {/* Metric Footer for Card 2 */}
             <div className={styles.cardStats}>
               <div className={styles.statBlock}>
-                <span className={styles.statValue}>{dict.card2Stat1Value}</span>
+                <span className={styles.statValue}><CountUp value={dict.card2Stat1Value} /></span>
                 <span className={styles.statLabel}>{dict.card2Stat1Label}</span>
               </div>
               <div className={styles.statBlock}>
-                <span className={styles.statValue}>1 {isHu ? "kiegészítő" : "add-on"}</span>
+                <span className={styles.statValue}><CountUp value={`1 ${isHu ? "kiegészítő" : "add-on"}`} /></span>
                 <span className={styles.statLabel}>{dict.card2Stat2Label}</span>
               </div>
             </div>
@@ -232,11 +243,11 @@ export default function StartYourJourney({ dict }) {
             {/* Metric Footer for Card 3 */}
             <div className={styles.cardStats}>
               <div className={styles.statBlock}>
-                <span className={styles.statValue}>{dict.card3Stat1Value}</span>
+                <span className={styles.statValue}><CountUp value={dict.card3Stat1Value} /></span>
                 <span className={styles.statLabel}>{dict.card3Stat1Label}</span>
               </div>
               <div className={styles.statBlock}>
-                <span className={styles.statValue}>{dict.card3Stat2Signed}</span>
+                <span className={styles.statValue}><CountUp value={dict.card3Stat2Signed} /></span>
                 <span className={styles.statLabel}>{dict.card3Stat2Label}</span>
               </div>
             </div>
@@ -279,11 +290,11 @@ export default function StartYourJourney({ dict }) {
             {/* Metric Footer for Card 4 (Replaced by clean layout and CTA) */}
             <div className={styles.cardStats}>
               <div className={styles.statBlock}>
-                <span className={styles.statValue}>11:30</span>
+                <span className={styles.statValue}><CountUp value="11:30" /></span>
                 <span className={styles.statLabel}>{dict.card4Stat1Label}</span>
               </div>
               <div className={styles.statBlock}>
-                <span className={styles.statValue}>{dict.card4Stat2Value}</span>
+                <span className={styles.statValue}><CountUp value={dict.card4Stat2Value} /></span>
                 <span className={styles.statLabel}>{dict.card4Stat2Label}</span>
               </div>
             </div>

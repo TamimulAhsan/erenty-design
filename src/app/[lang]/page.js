@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import BikeMorph from "@/components/BikeMorph";
 import StartYourJourney from "@/components/StartYourJourney";
 import YourJourneyPartner from "@/components/YourJourneyPartner";
 import WeHandleItAll from "@/components/WeHandleItAll";
@@ -22,6 +23,7 @@ export default async function Home({ params }) {
     <main>
       <Hero dict={dict.hero} />
       <StartYourJourney dict={dict.startJourney} />
+      <BikeMorph />
       <YourJourneyPartner dict={dict.journeyPartner} />
       <WeHandleItAll dict={dict.weHandleItAll} />
       <LocationsWorkshops dict={dict.locations} />

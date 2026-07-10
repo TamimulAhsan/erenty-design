@@ -121,29 +121,42 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
   const [zoomStyle, setZoomStyle] = useState({});
   const [isZoomed, setIsZoomed] = useState(false);
 
+  const isCoarsePointer = () =>
+    typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches;
+
+  // The nav arrows live inside the zoom surface, so their pointer events bubble
+  // up to these handlers. Treat them as holes punched in that surface: hovering
+  // one drops the zoom, which is what makes them clickable.
+  const isZoomExempt = (e) => Boolean(e.target.closest?.("[data-no-zoom]"));
+
+  const handleMouseLeave = () => {
+    setIsZoomed(false);
+    setZoomStyle({});
+  };
+
   const handleMouseMove = (e) => {
-    if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) {
+    if (isCoarsePointer()) return;
+
+    if (isZoomExempt(e)) {
+      handleMouseLeave();
       return;
     }
+
     const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
     const x = ((e.clientX - left) / width) * 100;
     const y = ((e.clientY - top) / height) * 100;
+    // Re-arm here as well as on enter: moving off an arrow and back onto the
+    // image fires no fresh mouseenter on the container.
+    setIsZoomed(true);
     setZoomStyle({
       transformOrigin: `${x}% ${y}%`,
       transform: "scale(2.2)",
     });
   };
 
-  const handleMouseEnter = () => {
-    if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) {
-      return;
-    }
+  const handleMouseEnter = (e) => {
+    if (isCoarsePointer() || isZoomExempt(e)) return;
     setIsZoomed(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsZoomed(false);
-    setZoomStyle({});
   };
 
   // Generate the next 5 working days (excluding Sunday) for booking
@@ -1553,20 +1566,32 @@ export default function FleetsClient({ dict = {}, initialBikeSlug = null }) {
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                   >
-                    {modalImages.length > 1 && !isZoomed && (
+                    {modalImages.length > 1 && (
                       <>
-                        <button className={`${styles.navArrow} ${styles.prevArrow}`} onClick={handlePrevImage} type="button">
+                        <button data-no-zoom className={`${styles.navArrow} ${styles.prevArrow}`} onClick={handlePrevImage} type="button">
                           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                             <polyline points="15 18 9 12 15 6" />
                           </svg>
                         </button>
-                        <button className={`${styles.navArrow} ${styles.nextArrow}`} onClick={handleNextImage} type="button">
+                        <button data-no-zoom className={`${styles.navArrow} ${styles.nextArrow}`} onClick={handleNextImage} type="button">
                           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                             <polyline points="9 18 15 12 9 6" />
                           </svg>
                         </button>
                       </>
                     )}
+                    <Link
+                      data-no-zoom
+                      href={`/fleets/${activeModalBike.slug}/3d`}
+                      className={styles.view3dBtn}
+                    >
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                        <line x1="12" y1="22.08" x2="12" y2="12" />
+                      </svg>
+                      {dict.view3d || "3D View"}
+                    </Link>
                     <div
                       className={styles.zoomWrapper}
                       style={isZoomed ? zoomStyle : {}}

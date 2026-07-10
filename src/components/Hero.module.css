@@ -68,7 +68,7 @@
   bottom: clamp(2.5rem, 6vw, 5rem);
   left: 50%;
   transform: translateX(-50%);
-  font-size: clamp(3.5rem, 25vw, 100rem);
+  font-size: clamp(3rem, 19vw, 76rem);
   font-weight: 900;
   line-height: 0.75;
   color: rgba(255, 255, 255, 0.04);
@@ -211,11 +211,11 @@
     /* bleed the front wheel past the right edge (scales with viewport) */
     right: -12vw;
     /* drop it lower so the tires get cropped harder along the bottom */
-    bottom: clamp(-13rem, -17vh, -6rem);
+    bottom: clamp(-15rem, -19vh, -8rem);
     width: min(78vw, 70rem);
     height: auto;
     display: block;
-    transform: rotate(-5deg);
+    transform: rotate(3deg);
     transform-origin: center center;
     pointer-events: none;
   }
@@ -381,12 +381,12 @@
     order: 3;
     position: absolute;
     right: -15vw;
-    bottom: clamp(-3rem, -9vh, -2rem);
+    bottom: clamp(-5rem, -11vh, -3.5rem);
     width: min(115vw, 32rem);
     height: auto;
     display: block;
     padding: 0;
-    transform: rotate(-5deg);
+    transform: rotate(3deg);
     transform-origin: center center;
     pointer-events: none;
   }

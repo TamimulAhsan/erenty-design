@@ -13,11 +13,11 @@ import styles from "./Navbar.module.css";
 const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 const fleetList = [
+  { name: "DUOTTS C29 Pro", isElectric: true, image: "/images/c29_pro.png", slug: "duotts-c29-pro" },
   { name: "VOK S", isElectric: true, image: "/images/S.png", slug: "vok-s" },
   { name: "ELEGLIDE M2", isElectric: true, image: "/images/m2.png", slug: "eleglide-m2" },
   { name: "Equickey Q8 - Pro", isElectric: true, image: "/images/q8_pro.png", slug: "equickey-q8-pro" },
   { name: "Kukirin G3 Pro", isElectric: true, image: "/images/g3_pro.png", slug: "kukirin-g3-pro" },
-  { name: "DUOTTS C29 Pro", isElectric: true, image: "/images/c29_pro.png", slug: "duotts-c29-pro" },
 ];
 
 // Routes with dark hero sections where navbar sits transparent over dark backgrounds.
@@ -263,8 +263,8 @@ export default function Navbar({ dict }) {
                           <Image
                             src={bike.image}
                             alt={bike.name}
-                            width={140}
-                            height={90}
+                            fill
+                            sizes="140px"
                             className={styles.bikeImage}
                             priority={true}
                           />
@@ -573,8 +573,8 @@ export default function Navbar({ dict }) {
                         <Image
                           src={bike.image}
                           alt={bike.name}
-                          width={48}
-                          height={32}
+                          fill
+                          sizes="48px"
                           className={styles.mobileFleetImg}
                         />
                       </div>

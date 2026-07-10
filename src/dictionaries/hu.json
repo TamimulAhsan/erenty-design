@@ -249,7 +249,13 @@
     "terms": "Felhasználási feltételek",
     "cookies": "Cookie-szabályzat"
   },
+  "fleet3dPage": {
+    "title": "A 3D nézet hamarosan elérhető",
+    "desc": "Interaktív 3D modellen dolgozunk, hogy bérlés előtt minden szögből megvizsgálhassa a kerékpárt. Még nem készült el.",
+    "back": "Vissza a kerékpárhoz"
+  },
   "fleetsPage": {
+    "view3d": "3D nézet",
     "metaTitle": "E-Renty Flotta | Prémium elektromos kerékpár előfizetések",
     "metaDesc": "Böngésszen 7 csatlakoztatott elektromos járműmodell között megbízható márkáktól. Az előfizetések tartalmazzák a GPS-nyomkövetést, a teljes körű biztosítást és a 24 órás szerviztámogatást.",
     "heroPre": "E-Renty Flották",

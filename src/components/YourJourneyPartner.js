@@ -162,6 +162,7 @@ export default function YourJourneyPartner({ dict }) {
                           height={420}
                           className={styles.bikeImage}
                           priority={idx === 0}
+                          data-morph={idx === 0 ? "journey" : undefined}
                         />
                       </div>
 

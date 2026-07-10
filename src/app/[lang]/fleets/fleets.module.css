@@ -1176,6 +1176,38 @@
   padding: 24px 64px; /* Generous side padding to prevent overlapping with navigation arrows */
 }
 
+/* 3D view entry point — shares the nav arrows' floating-control language
+   (same surface, border, shadow and hover-to-brand-dark), shaped as a pill. */
+.view3dBtn {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 10px 16px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  color: var(--brand-dark);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: all 0.25s ease;
+}
+
+.view3dBtn:hover {
+  background: var(--brand-dark, #1E2D2F);
+  color: #FFFFFF;
+}
+
+.view3dBtn svg {
+  flex-shrink: 0;
+}
+
 /* Nav arrows on modal */
 .navArrow {
   position: absolute;

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "@/components/LocalizedLink";
+import CountUp from "@/components/CountUp";
 import styles from "./Business.module.css";
 
 /* Real E-Renty business customers (same asset set as the About page). */
@@ -157,7 +158,7 @@ export default function BusinessClient({ dict = {}, lang = "en" }) {
           <div className={styles.statsContainer}>
             {stats.map((s, i) => (
               <div key={i} className={styles.statItem}>
-                <span className={styles.statNum}>{s.value}</span>
+                <span className={styles.statNum}><CountUp value={s.value} /></span>
                 <span className={styles.statLabel}>{s.label}</span>
               </div>
             ))}
@@ -170,7 +171,7 @@ export default function BusinessClient({ dict = {}, lang = "en" }) {
         <div className={styles.statsContainer}>
           {stats.map((s, i) => (
             <div key={i} className={styles.statItem}>
-              <span className={styles.statNum}>{s.value}</span>
+              <span className={styles.statNum}><CountUp value={s.value} /></span>
               <span className={styles.statLabel}>{s.label}</span>
             </div>
           ))}
@@ -231,7 +232,7 @@ export default function BusinessClient({ dict = {}, lang = "en" }) {
           <div className={styles.benefitsMetrics}>
             {benefitsMetrics.map((m, i) => (
               <div key={i} className={`${styles.metricCard} ${styles.animateOnScroll} ${styles[`delay${(i % 4) + 1}`]}`}>
-                <span className={styles.metricValue}>{m.value}</span>
+                <span className={styles.metricValue}><CountUp value={m.value} /></span>
                 <span className={styles.metricLabel}>{m.label}</span>
                 {m.sub && <span className={styles.metricSub}>{m.sub}</span>}
               </div>

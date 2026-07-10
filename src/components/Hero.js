@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { localeFromPathname, defaultLocale, localizeHref } from "@/lib/i18n";
+import CountUp from "./CountUp";
 import styles from "./Hero.module.css";
 
 export default function Hero({ dict }) {
@@ -31,7 +32,7 @@ export default function Hero({ dict }) {
 
         {/* Giant background text */}
         <div className={styles.bgText} aria-hidden="true">
-          ERENTY {/* Redesigned background brand text update reload final split */}
+          E-RENTY {/* Redesigned background brand text update reload final split */}
         </div>
 
         {/* ── Text stage: capped + centered (title + CTA) ── */}
@@ -81,12 +82,13 @@ export default function Hero({ dict }) {
         <div className={styles.heroRight}>
           <div className={styles.imageWrap}>
             <Image
-              src="/images/f26_lite.png"
-              alt="DUOTTS F26 Lite Electric Bike"
+              src="/images/c29_pro.png"
+              alt="DUOTTS C29 Pro Electric Bike"
               width={750}
               height={500}
               className={styles.heroImage}
               priority
+              data-morph="hero"
             />
             {/* Glow ring behind the image */}
             <div className={styles.glowRing} aria-hidden="true" />
@@ -100,19 +102,19 @@ export default function Hero({ dict }) {
         <div className={`${styles.statsStrip} ${styles.mobileOnlyStats}`}>
           <div className={styles.statsContainer}>
             <div className={styles.statItem}>
-              <span className={styles.statNum}>32+</span>
+              <span className={styles.statNum}><CountUp value="32+" /></span>
               <span className={styles.statLabel}>{t.statCustomers}</span>
             </div>
             <div className={styles.statItem}>
-              <span className={styles.statNum}>120+</span>
+              <span className={styles.statNum}><CountUp value="120+" /></span>
               <span className={styles.statLabel}>{t.statDeployed}</span>
             </div>
             <div className={styles.statItem}>
-              <span className={styles.statNum}>4.2k</span>
+              <span className={styles.statNum}><CountUp value="4.2k" /></span>
               <span className={styles.statLabel}>{t.statAvgMo}</span>
             </div>
             <div className={styles.statItem}>
-              <span className={styles.statNum}>99.1%</span>
+              <span className={styles.statNum}><CountUp value="99.1%" /></span>
               <span className={styles.statLabel}>{t.statUpTime}</span>
             </div>
           </div>
@@ -123,19 +125,19 @@ export default function Hero({ dict }) {
       <div className={`${styles.statsStrip} ${styles.desktopOnlyStats}`}>
         <div className={styles.statsContainer}>
           <div className={styles.statItem}>
-            <span className={styles.statNum}>32+</span>
+            <span className={styles.statNum}><CountUp value="32+" /></span>
             <span className={styles.statLabel}>{t.statCustomers}</span>
           </div>
           <div className={styles.statItem}>
-            <span className={styles.statNum}>120+</span>
+            <span className={styles.statNum}><CountUp value="120+" /></span>
             <span className={styles.statLabel}>{t.statDeployed}</span>
           </div>
           <div className={styles.statItem}>
-            <span className={styles.statNum}>4.2k</span>
+            <span className={styles.statNum}><CountUp value="4.2k" /></span>
             <span className={styles.statLabel}>{t.statAvgMo}</span>
           </div>
           <div className={styles.statItem}>
-            <span className={styles.statNum}>99.1%</span>
+            <span className={styles.statNum}><CountUp value="99.1%" /></span>
             <span className={styles.statLabel}>{t.statUpTime}</span>
           </div>
         </div>

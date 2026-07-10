@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "@/components/LocalizedLink";
+import CountUp from "@/components/CountUp";
 import styles from "./courier-plus.module.css";
 
 const PLANS = [
@@ -254,15 +255,15 @@ export default function CourierPlusClient({ dict = {}, lang = "en" }) {
       <div className={styles.heroStatsStrip}>
         <div className={styles.heroStatsContainer}>
           <div className={styles.heroStatItem}>
-            <span className={styles.heroStatNum}>3</span>
+            <span className={styles.heroStatNum}><CountUp value="3" /></span>
             <span className={styles.heroStatLabel}>{dict.statPlans || "Plans"}</span>
           </div>
           <div className={styles.heroStatItem}>
-            <span className={styles.heroStatNum}>&lt;24h</span>
+            <span className={styles.heroStatNum}><CountUp value="<24h" /></span>
             <span className={styles.heroStatLabel}>{dict.statMaintenance || "Maintenance Response"}</span>
           </div>
           <div className={styles.heroStatItem}>
-            <span className={styles.heroStatNum}>100%</span>
+            <span className={styles.heroStatNum}><CountUp value="100%" /></span>
             <span className={styles.heroStatLabel}>{dict.statVat || "VAT Reclaimable"}</span>
           </div>
           <div className={styles.heroStatItem}>

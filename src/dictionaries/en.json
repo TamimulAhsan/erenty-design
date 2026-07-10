@@ -249,7 +249,13 @@
     "terms": "Terms of Service",
     "cookies": "Cookie Policy"
   },
+  "fleet3dPage": {
+    "title": "3D view is on the way",
+    "desc": "We're building an interactive 3D model so you can inspect every angle of this bike before you rent. It isn't ready just yet.",
+    "back": "Back to the bike"
+  },
   "fleetsPage": {
+    "view3d": "3D View",
     "metaTitle": "E-Renty Fleet | Premium Electric Bike Subscriptions",
     "metaDesc": "Browse 7 connected electric vehicle models from trusted brands. Subscriptions include GPS tracking, comprehensive insurance, and 24/7 service support.",
     "heroPre": "E-Renty Fleets",

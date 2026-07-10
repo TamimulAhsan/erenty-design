@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import Image from "next/image";
 import Link from "@/components/LocalizedLink";
+import CountUp from "@/components/CountUp";
 import styles from "./About.module.css";
 
 const COMPANY_LOGOS = [
@@ -133,7 +134,7 @@ export default function AboutClient({ dict }) {
       <div className={styles.statsBar}>
         {t.stats.map((s, i) => (
           <div key={i} className={styles.statItem}>
-            <span className={`${styles.statValue} mono-num`}>{s.value}</span>
+            <span className={`${styles.statValue} mono-num`}><CountUp value={s.value} /></span>
             <span className={styles.statLabel}>{s.label}</span>
           </div>
         ))}
@@ -160,7 +161,7 @@ export default function AboutClient({ dict }) {
             <div className={styles.metricsGrid}>
               {t.metrics.map((m, i) => (
                 <div key={i} className={`${styles.metricCard} ${styles.animateOnScroll} ${styles.slideRight} ${styles[`delay${i + 1}`]}`}>
-                  <span className={`${styles.metricValue} mono-num`}>{m.value}</span>
+                  <span className={`${styles.metricValue} mono-num`}><CountUp value={m.value} /></span>
                   <span className={styles.metricLabel}>{m.label}</span>
                   {m.sub && <span className={styles.metricMiniLabel}>{m.sub}</span>}
                 </div>
