@@ -13,13 +13,15 @@ export const BIKE_MORPH_TAKEOFF = "bikemorph:takeoff";
 /* The hero bike is rotated by `.heroRight`; neither landing site is. */
 const HERO_ROTATION = 3;
 
-/* Below the halfway point of hop 1 the bike still belongs to the hero, so it
-   paints underneath the bottom fade and the white stats card (z-index 10).
-   Past it, it has to land on top of the sections below (also z-index 10).
-   The navbar sits at 1000 and stays above throughout. */
+/* At rest at the very top, the bike paints underneath the bottom fade and the
+   white stats card (z-index 10). The moment it lifts off it rides on top of the
+   sections below (also z-index 10). The navbar sits at 1000, above throughout. */
 const Z_TAKEOFF = 1;
 const Z_FLIGHT = 60;
-const Z_SWITCH_AT = 0.45;
+
+/* Scroll depth (px) under which the bike counts as "parked" and stays tucked
+   behind the stats card. Past it, it's in flight and rides on top. */
+const REST_PX = 8;
 
 /* Hop 1 ends with card 1's image slot this far down the viewport. Hop 2 only
    begins once the card has climbed to here, so the bike sits parked in the card
@@ -129,6 +131,8 @@ export default function BikeMorph() {
       layer.style.transform =
         `translate3d(${cx - to.w / 2}px, ${cy - to.h / 2}px, 0) ` +
         `scale(${scale}) rotate(${rot}deg)`;
+
+      return cy;
     };
 
     const draw = () => {
@@ -204,7 +208,15 @@ export default function BikeMorph() {
         if (leftTheCard) window.dispatchEvent(new CustomEvent(BIKE_MORPH_TAKEOFF));
       }
 
-      const nextZone = inHop1 && p1 < Z_SWITCH_AT ? Z_TAKEOFF : Z_FLIGHT;
+      // Tuck behind the hero's white stats card only while parked at the very
+      // top, where the bike is at rest and this is a pure hero detail. The
+      // instant the user scrolls, it lifts onto the top layer and flies OVER the
+      // stats card and the sections below — rather than sliding behind them. On
+      // desktop the opaque white stats card would otherwise swallow it for a
+      // beat mid-descent (mobile's strip is transparent, so it never did there).
+      // Gated on scroll position, not descent geometry, because the only moment
+      // it must sit behind the card is when nothing is moving.
+      const nextZone = inHop1 && scrollY <= REST_PX ? Z_TAKEOFF : Z_FLIGHT;
       if (nextZone !== zone) {
         zone = nextZone;
         layer.style.zIndex = String(nextZone);
